@@ -1,0 +1,56 @@
+name: Verify
+on:
+  push:
+    branches:
+      - '**'
+jobs:
+  verify:
+    runs-on: ubuntu-22.04
+    env:
+      NODE_ENV: development
+    services:
+      minio:
+        image: bitnami/minio:2020.12.18
+        ports:
+          - 9000:9000
+        env:
+          MINIO_ACCESS_KEY: "UVDXF41PYEAX0PXD8826"
+          MINIO_SECRET_KEY: "SXtajmM3uahrQ1ALECh3Z3iKT76s2s5GBJlbQMZx"
+          MINIO_BROWSER: "on"
+          MINIO_DOMAIN: "localhost"
+      mongo:
+        image: educandu/mongo:5.0.6-multiplatform.2
+        ports:
+          - 27017:27017
+        env:
+          MONGODB_ROOT_USER: root
+          MONGODB_ROOT_PASSWORD: rootpw
+          MONGODB_REPLICA_SET_KEY: educandurs
+          MONGODB_REPLICA_SET_NAME: educandurs
+          MONGODB_REPLICA_SET_MODE: primary
+      maildev:
+        image: maildev/maildev:1.1.0
+        ports:
+          - 8000:8000
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3.2.0
+        with:
+          fetch-depth: 0
+      - name: Install node
+        uses: actions/setup-node@v3.5.1
+        with:
+          node-version: "18.12.1"
+          cache: "yarn"
+      - name: Install node modules
+        run: yarn install --non-interactive --check-files --frozen-lockfile
+      - name: Lint
+        run: ./node_modules/.bin/gulp lint
+      - name: Test
+        run: ./node_modules/.bin/gulp test
+      - name: Build
+        run: ./node_modules/.bin/gulp build
+      - name: Codecov
+        uses: codecov/codecov-action@v3.1.1
+        with:
+          files: ./coverage/coverage-final.json

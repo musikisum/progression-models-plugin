@@ -1,0 +1,12 @@
+{
+  "educandu/educandu-plugin-example": {
+    "name": {
+      "en": "Example plugin",
+      "de": "Beispiel-Plugin"
+    },
+    "currentServerTime": {
+      "en": "Current server time",
+      "de": "Aktuelle Serverzeit"
+    }
+  }
+}

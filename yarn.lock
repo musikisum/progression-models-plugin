@@ -856,10 +856,10 @@
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.5.0.tgz#6e52b3d1c38d13130101771821e09cdd414a16bc"
   integrity sha512-tlJpwF40DEQcfR/QF+wNMVyGMaO9FQp6Z1Wahj4Gk3CJQYHwA2xVG7iKDFdW6zuxZY9XWOpGcfNCTsX4McOsOg==
 
-"@educandu/dev-tools@^8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@educandu/dev-tools/-/dev-tools-8.0.1.tgz#5e24f7572753db54513ebb691ba587f694fcc9e8"
-  integrity sha512-p87+Y3ojEfWIyC3CvA3exlLcpp/zRc3iZGILJBcqBGUs694PIAMhj00OqjOrt9mnfgMTKLQGybfkCaSX+nrUDw==
+"@educandu/dev-tools@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@educandu/dev-tools/-/dev-tools-8.0.2.tgz#085ea2138f5e18cf85a11f31525d111e8e9658ae"
+  integrity sha512-KBHlUtd5RW9PGnpi7GVBUAPiQZwP7E/529WX8CvhZ0W7OVN8cqHpeYgq4i6yDy7F/t7XvM4XbRradFaqoWzxmg==
   dependencies:
     "@rauschma/stringio" "^1.4.0"
     axios "^1.2.1"
@@ -3689,9 +3689,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.3.47:
-  version "1.4.337"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.337.tgz#710168240b2dc5fe5eb5f8e4ef9c16d70aedc0ba"
-  integrity sha512-W8gdzXG86mVPoc56eM8YA+QiLxaAxJ8cmDjxZgfhLLWVvZQxyA918w5tX2JEWApZta45T1/sYcmFHTsTOUE3nw==
+  version "1.4.339"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.339.tgz#bfa611a7707ca8bbb784e01fe247c18a35bd8d28"
+  integrity sha512-MSXHBJGcbBydq/DQDlpBeUKnJ6C7aTiNCTRpfDV5Iz0sNr/Ng6RJFloq82AAicp/SrmDq4zF6XsKG0B8Xwn1UQ==
 
 elliptic@^6.5.3:
   version "6.5.4"
@@ -7181,9 +7181,9 @@ optionator@^0.9.1:
     word-wrap "^1.2.3"
 
 ora@^6.1.2:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/ora/-/ora-6.2.0.tgz#6d727902151d5b1badc599ace4df45a34d53f556"
-  integrity sha512-c1qb/1rdE+EFDYiLXh10VY459uMh7DN9zlgd8mZJLoeiPpYllN8eAOiih2Rkah5ywxRm5tHN5C9zPheDq8d1MA==
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/ora/-/ora-6.3.0.tgz#a314600999f514a989a0904f5c17c8b7c1f7c878"
+  integrity sha512-1/D8uRFY0ay2kgBpmAwmSA404w4OoPVhHMqRqtjvrcK/dnzcEZxMJ+V4DUbyICu8IIVRclHcOf5wlD1tMY4GUQ==
   dependencies:
     chalk "^5.0.0"
     cli-cursor "^4.0.0"

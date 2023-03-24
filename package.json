@@ -29,7 +29,7 @@
     "react-i18next": "^12.1.1"
   },
   "devDependencies": {
-    "@educandu/dev-tools": "^8.0.1",
+    "@educandu/dev-tools": "^8.0.2",
     "@educandu/educandu": ">=0.104.0",
     "@educandu/eslint-config": "^2.2.1",
     "@educandu/node-jsx-loader": "^3.0.4",

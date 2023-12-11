@@ -4,6 +4,10 @@
       "en": "Example plugin",
       "de": "Beispiel-Plugin"
     },
+    "label": {
+      "en": "Example label",
+      "de": "Beispiel-Label"
+    },
     "currentServerTime": {
       "en": "Current server time",
       "de": "Aktuelle Serverzeit"

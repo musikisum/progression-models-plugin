@@ -1,3 +1,4 @@
+import { Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import Logger from '@educandu/educandu/common/logger.js';
@@ -12,11 +13,15 @@ const POLL_INTERVAL_IN_MS = 5000;
 
 const logger = new Logger(import.meta.url);
 
-export default function ServerTimeDisplay({ content }) {
+export default function ServerTimeDisplay({ content, input, canModifyInput, onInputChanged }) {
   const { formatDate } = useDateFormat();
   const httpClient = useService(HttpClient);
   const [serverTime, setServerTime] = useState(null);
   const { t } = useTranslation('educandu/educandu-plugin-example');
+
+  const handleCurrentValueChange = event => {
+    onInputChanged({ value: event.target.value });
+  };
 
   useEffect(() => {
     let nextTimeout = null;
@@ -46,14 +51,27 @@ export default function ServerTimeDisplay({ content }) {
 
   return (
     <div className="EP_Educandu_Example_Display">
-      <Markdown renderAnchors>
-        {content.text}
-      </Markdown>
-      {!!serverTime && (
-        <div className="EP_Educandu_Example_Display-time">
-          {t('currentServerTime')}: {formatDate(serverTime)}
-        </div>
-      )}
+      <div className={`u-horizontally-centered u-width-${content.width}`}>
+        <Markdown renderAnchors>
+          {content.text}
+        </Markdown>
+        <Form layout="vertical">
+          <Form.Item label={t('label')}>
+            <Input
+              value={input.data?.value || ''}
+              maxLength={100}
+              disabled={!canModifyInput}
+              readOnly={!canModifyInput}
+              onChange={handleCurrentValueChange}
+              />
+          </Form.Item>
+        </Form>
+        {!!serverTime && (
+          <div className="EP_Educandu_Example_Display-time">
+            {t('currentServerTime')}: {formatDate(serverTime)}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

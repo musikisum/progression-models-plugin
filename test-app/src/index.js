@@ -7,8 +7,11 @@ import ExampleController from '../../src/example-controller.js';
 
 const thisDir = path.dirname(url.fileURLToPath(import.meta.url));
 
+const jsWithChecksumPathPattern = /\w+-[A-Z0-9]{8}\.js$/;
+
 const config = {
   appName: 'educandu-test-app',
+  appRootUrl: process.env.TEST_APP_APP_ROOT_URL,
   port: Number(process.env.TEST_APP_PORT),
   trustProxy: true,
   mongoConnectionString: process.env.TEST_APP_WEB_CONNECTION_STRING,
@@ -20,7 +23,16 @@ const config = {
   cdnBucketName: process.env.TEST_APP_CDN_BUCKET_NAME,
   cdnRootUrl: process.env.TEST_APP_CDN_ROOT_URL,
   customResolvers,
-  publicFolders: [path.resolve(thisDir, '../dist')],
+  publicFolders: [
+    {
+      publicPath: '/',
+      destination: path.resolve(thisDir, '../dist'),
+      setHeaders: (res, requestPath) => {
+        const maxAge = jsWithChecksumPathPattern.test(requestPath) ? 604800 : 0;
+        res.setHeader('Cache-Control', `public, max-age=${maxAge}`);
+      }
+    }
+  ],
   resources: [path.resolve(thisDir, '../../src/translations.json')],
   additionalControllers: [ExampleController],
   sessionSecret: process.env.TEST_APP_SESSION_SECRET,

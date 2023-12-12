@@ -10,6 +10,8 @@ class ServerTimeInfo {
 
   static typeName = 'educandu/educandu-plugin-example';
 
+  allowsInput = true;
+
   constructor(gfm) {
     this.gfm = gfm;
   }

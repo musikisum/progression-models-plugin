@@ -20,35 +20,32 @@
     "type": "git",
     "url": "https://github.com/educandu/educandu-plugin-example"
   },
-  "dependencies": {
-    "@ant-design/icons": "^4.8.0",
-    "antd": "^5.1.6",
-    "joi": "^17.7.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-i18next": "^12.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@educandu/dev-tools": "^8.0.2",
-    "@educandu/educandu": ">=0.104.0",
-    "@educandu/eslint-config": "^2.2.1",
-    "@educandu/node-jsx-loader": "^3.0.4",
-    "@educandu/rooms-auth-lambda": "^4.0.1",
-    "@vitest/coverage-c8": "^0.25.8",
-    "del": "^7.0.0",
-    "eslint": "^8.30.0",
-    "eslint-plugin-import": "^2.27.4",
-    "eslint-plugin-react": "^7.32.0",
+    "@ant-design/icons": "5.0.1",
+    "@educandu/dev-tools": "^11.5.0",
+    "@educandu/educandu": "3.2.2",
+    "@educandu/node-jsx-loader": "^3.1.0",
+    "@educandu/rooms-auth-lambda": "^6.1.0",
+    "@vitest/coverage-v8": "^1.0.2",
+    "antd": "5.4.0",
+    "del": "^7.1.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "gulp": "^4.0.2",
-    "mkdirp": "^1.0.4",
+    "mkdirp": "^3.0.1",
     "parseboolean": "^1.0.0",
-    "vitest": "^0.25.8"
+    "vitest": "^1.0.2"
   },
   "peerDependencies": {
-    "@educandu/educandu": ">=0.104.0"
-  },
-  "resolutions": {
-    "**/gl": "^6.0.2"
+    "@ant-design/icons": ">=5.0.1",
+    "@educandu/educandu": ">=3.2.2",
+    "antd": ">=5.4.0",
+    "joi": ">=17.11.0",
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0",
+    "react-i18next": ">=13.5.0"
   }
 }

@@ -3,7 +3,7 @@ import path from 'node:path';
 import parseBool from 'parseboolean';
 import educandu from '@educandu/educandu';
 import customResolvers from './custom-resolvers.js';
-import ExampleController from '../../src/example-controller.js';
+import ExampleController from '../../src/music-puzzle-controller.js';
 
 const thisDir = path.dirname(url.fileURLToPath(import.meta.url));
 

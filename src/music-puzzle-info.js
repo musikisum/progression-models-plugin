@@ -25,11 +25,11 @@ class ServerTimeInfo {
   }
 
   async resolveDisplayComponent() {
-    return (await import('./example-display.js')).default;
+    return (await import('./music-puzzle-display.js')).default;
   }
 
   async resolveEditorComponent() {
-    return (await import('./example-editor.js')).default;
+    return (await import('./music-puzzle-editor.js')).default;
   }
 
   getDefaultContent() {

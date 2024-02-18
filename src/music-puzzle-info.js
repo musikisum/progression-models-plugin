@@ -5,19 +5,17 @@ import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { couldAccessUrlFromRoom } from '@educandu/educandu/utils/source-utils.js';
 import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-markdown.js';
 
-class ServerTimeInfo {
+class MusicPuzzleInfo {
   static dependencies = [GithubFlavoredMarkdown];
 
-  static typeName = 'educandu/educandu-plugin-example';
-
-  allowsInput = true;
+  static typeName = 'musikisum/educandu-plugin-music-puzzle';
 
   constructor(gfm) {
     this.gfm = gfm;
   }
 
   getDisplayName(t) {
-    return t('educandu/educandu-plugin-example:name');
+    return t('musikisum/educandu-plugin-music-puzzle:name');
   }
 
   getIcon() {
@@ -68,4 +66,4 @@ class ServerTimeInfo {
   }
 }
 
-export default ServerTimeInfo;
+export default MusicPuzzleInfo;

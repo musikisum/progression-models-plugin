@@ -1,5 +1,5 @@
 {
-  "name": "@educandu/educandu-plugin-example",
+  "name": "@musikisum/educandu-plugin-music-puzzle",
   "version": "0.0.0",
   "description": "An example plugin for educandu",
   "type": "module",
@@ -14,11 +14,11 @@
     "educandu"
   ],
   "license": "MIT",
-  "author": "Educandu Team <team@educandu.dev>",
-  "homepage": "https://github.com/educandu/educandu-plugin-example",
+  "author": "Educandu Team <team@educandu.dev>, Ulrich Kaiser <kontakt@kaiser-ulrich.de>",
+  "homepage": "https://github.com/musikisum/music-puzzle-plugin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/educandu/educandu-plugin-example"
+    "url": "https://github.com/musikisum/music-puzzle-plugin"
   },
   "dependencies": {},
   "devDependencies": {

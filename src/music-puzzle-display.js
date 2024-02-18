@@ -1,53 +1,35 @@
 import { Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
-import Logger from '@educandu/educandu/common/logger.js';
 import Markdown from '@educandu/educandu/components/markdown.js';
-import HttpClient from '@educandu/educandu/api-clients/http-client.js';
-import { handleApiError } from '@educandu/educandu/ui/error-helper.js';
-import { useService } from '@educandu/educandu/components/container-context.js';
-import { useDateFormat } from '@educandu/educandu/components/locale-context.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
 
-const POLL_INTERVAL_IN_MS = 5000;
+import AbcNotation from '@educandu/educandu/components/abc-notation.js';
+import AbcPlayer from '@educandu/educandu/components/abc-player.js';
 
-const logger = new Logger(import.meta.url);
+const menuett = `X:1
+Q:120
+%score [1 2]
+L:1/8
+M:3/4
+V:1
+c3/2c'/2 c'4 | (3 bag g4 | G3/2f/2 f4 | (3 edc c4 | e2 eg^fa | gd d3^d | ecBAG^F | ^F4 G2 |]
+V:2 bass
+z2 E,2 C,2 | z2 B,2 G,2 | z2 B,2 G,2 | z2 C2 C,2 | z2 C2 C2 | z2 B,2 B,2 | C2 D2 D,2 | G,2 D,2 G,,2 |]`;
 
-export default function ServerTimeDisplay({ content, input, canModifyInput, onInputChanged }) {
-  const { formatDate } = useDateFormat();
-  const httpClient = useService(HttpClient);
-  const [serverTime, setServerTime] = useState(null);
-  const { t } = useTranslation('educandu/educandu-plugin-example');
+export default function MusicPuzzleDisplay({ content }) {
+
+  const [lastRenderResult, setLastRenderResult] = useState(null);
+  const [abcInput, setAbcInput] = useState(menuett);
+  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
 
   const handleCurrentValueChange = event => {
-    onInputChanged({ value: event.target.value });
+    setAbcInput(event.target.value);
   };
 
   useEffect(() => {
-    let nextTimeout = null;
-
-    const getUpdate = async () => {
-      try {
-        const response = await httpClient.get(
-          '/api/v1/plugin/educandu/educandu-plugin-example/time',
-          { responseType: 'json' }
-        );
-
-        setServerTime(response.data.time);
-        nextTimeout = setTimeout(getUpdate, POLL_INTERVAL_IN_MS);
-      } catch (error) {
-        handleApiError({ error, logger, t });
-      }
-    };
-
-    nextTimeout = setTimeout(getUpdate, 0);
-
-    return () => {
-      if (nextTimeout) {
-        clearTimeout(nextTimeout);
-      }
-    };
-  }, [httpClient, t]);
+   
+  }, []);
 
   return (
     <div className="EP_Educandu_Example_Display">
@@ -58,24 +40,23 @@ export default function ServerTimeDisplay({ content, input, canModifyInput, onIn
         <Form layout="vertical">
           <Form.Item label={t('label')}>
             <Input
-              value={input.data?.value || ''}
+              value={abcInput}
               maxLength={100}
-              disabled={!canModifyInput}
-              readOnly={!canModifyInput}
               onChange={handleCurrentValueChange}
               />
           </Form.Item>
         </Form>
-        {!!serverTime && (
-          <div className="EP_Educandu_Example_Display-time">
-            {t('currentServerTime')}: {formatDate(serverTime)}
+        {abcInput
+          ? <div>
+            <AbcNotation abcCode={abcInput} onRender={setLastRenderResult} />
+            <AbcPlayer renderResult={lastRenderResult} />
           </div>
-        )}
+          : null }
       </div>
     </div>
   );
 }
 
-ServerTimeDisplay.propTypes = {
+MusicPuzzleDisplay.propTypes = {
   ...sectionDisplayProps
 };

@@ -1,10 +1,4 @@
-educandu/educandu-plugin-example:
+musikisum/educandu-plugin-music-puzzle:
   name:
-    en: Example plugin
-    de: Beispiel-Plugin
-  label:
-    en: Example label
-    de: Beispiel-Label
-  currentServerTime:
-    en: Current server time
-    de: Aktuelle Serverzeit
+    en: Music Puzzle
+    de: Musik-Puzzle

@@ -3,28 +3,24 @@ import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import Markdown from '@educandu/educandu/components/markdown.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
+import { metaS, initialCadence, circleOfFifths, one2FifthModulation, finalCadence } from './phraseModels.js';
+import { metaM,  menuet1, menuet2, menuet3, menuet4 } from './menuets.js';
 
 import AbcNotation from '@educandu/educandu/components/abc-notation.js';
 import AbcPlayer from '@educandu/educandu/components/abc-player.js';
 
-const menuett = `X:1
-Q:120
-%score [1 2]
-L:1/8
-M:3/4
-V:1
-c3/2c'/2 c'4 | (3 bag g4 | G3/2f/2 f4 | (3 edc c4 | e2 eg^fa | gd d3^d | ecBAG^F | ^F4 G2 |]
-V:2 bass
-z2 E,2 C,2 | z2 B,2 G,2 | z2 B,2 G,2 | z2 C2 C,2 | z2 C2 C2 | z2 B,2 B,2 | C2 D2 D,2 | G,2 D,2 G,,2 |]`;
+const { TextArea } = Input;
 
 export default function MusicPuzzleDisplay({ content }) {
 
+  const testMenuet = metaM + menuet1['v1'] + menuet1['v2']; 
+
   const [lastRenderResult, setLastRenderResult] = useState(null);
-  const [abcInput, setAbcInput] = useState(menuett);
+  const [abcInput, setAbcInput] = useState(testMenuet);
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
 
   const handleCurrentValueChange = event => {
-    setAbcInput(event.target.value);
+    // setAbcInput(event.target.value);
   };
 
   useEffect(() => {
@@ -39,7 +35,7 @@ export default function MusicPuzzleDisplay({ content }) {
         </Markdown>
         <Form layout="vertical">
           <Form.Item label={t('label')}>
-            <Input
+            <TextArea
               value={abcInput}
               maxLength={100}
               onChange={handleCurrentValueChange}

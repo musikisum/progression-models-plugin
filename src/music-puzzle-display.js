@@ -12,8 +12,10 @@ import UpperFiveModulation from './model-upper-five-modulation.js';
 const { TextArea } = Input;
 
 const initialValue = () => {
-  const test = Cadence.getModelVoices('C', -1);
-  return ModelComposition.abcOutput('C', 'C', [test]);
+  // const test = Cadence.getModelVoices('C', [0, 0, -1]);
+  // const testEmpty = UpperFiveModulation.getEmptyStaff();
+  const example = CircleOfFifths.getExample(); 
+  return ModelComposition.abcOutput('D', 'C', 60, '1/4', [example]);
 };
 
 export default function MusicPuzzleDisplay({ content }) {
@@ -28,11 +30,11 @@ export default function MusicPuzzleDisplay({ content }) {
   };
   
   const onButtonClick = () => {
-    const cadc = Cadence.getModelVoices('C', -1);
-    const cof = CircleOfFifths.getModelVoices('C', -1);
-    const ufm = UpperFiveModulation.getModelVoices('G', 0);
-    const cadg = Cadence.getModelVoices('G', -1);
-    const playableABC = ModelComposition.abcOutput('C', 'C', [cadc, cof, ufm, cadg], 6);
+    const cadc = Cadence.getModelVoices('C', [0, 0, -1]);
+    const cof = CircleOfFifths.getModelVoices('C', [0, 0, -1]);
+    const ufm = UpperFiveModulation.getModelVoices('G', [0, 0, -1]);
+    const cadg = Cadence.getModelVoices('G', [-1, -1, -2]);
+    const playableABC = ModelComposition.abcOutput('C', 'C', '1/2=80', '1/2', [cadc, cof, ufm, cadg], 6);
     setAbcResult(playableABC);
   };
 

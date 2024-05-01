@@ -42,8 +42,8 @@ const validate = index => {
 };
 
 // Provides meta informations for an abc.js header of a phrase model combination in a key and a measure.
-const getMeta = (key, measure) => {
-  return `X:1\n%%score [(1 2) 3]\nM:${measure}\nL:1/2\nK:${key}\n`;
+const getMeta = (key, measure, tempo, length) => {
+  return `X:1\n%%score [(1 2) 3]\nM:${measure}\nQ:${tempo}\nL:${length}\nK:${key}\n`;
 };
 
 const ModelHelper = {

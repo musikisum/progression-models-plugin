@@ -1,25 +1,32 @@
 import ModelHelper from "./model-helper.js";
 
-const getComposition = (voices, barsPerLine) => {
-  //TODO: Hier noch eine Teilung der Stimmen über die Anzahl der Takte Implementieren
-  return `${ModelHelper.meta('C')}${ModelHelper.voice1}${voices[0]}\n${ModelHelper.voice2}${voices[1]}\n${ModelHelper.voice3}${voices[2]}`;
+// creates an array with playable abc.js strings from arrays with model voices 
+const getComposition = (key, measure, modelVoices, barsPerLine) => {
+
+  const unsplittetVoices = modelVoices[0].map((_, index) => 
+    modelVoices.reduce((combiVoice, modelVoice) => {
+      return combiVoice + modelVoice[index]
+    }, '')
+  );
+  let splittetVoices = undefined;
+  if(barsPerLine) {
+    splittetVoices = unsplittetVoices.map(voice => splitAtVerticalBarIndex(voice, barsPerLine));
+  }
+  const voices = splittetVoices ?? unsplittetVoices;
+
+  return `${ModelHelper.meta(key, measure)}${ModelHelper.voice1}${voices[0]}\n${ModelHelper.voice2}${voices[1]}\n${ModelHelper.voice3}${voices[2]}`;
 };
 
-const voicesAddition = (result, newVoices) => {
-  const threeVoices = 3;
-  if (result.length !== threeVoices || newVoices.length !== threeVoices) {
-    return result;
-  }
-  for (let index = 0; index < 3; index += 1) {
-    result[index] += ` ${newVoices[index]}`;
-  }
-  return result;
-};
+// split a voice after a number of measure lines
+function splitAtVerticalBarIndex(voice, barIndex) {
+  const parts = voice.split(' | ');
+  const firstPart = parts.slice(0, barIndex).join(' | ');
+  const secondPart = parts.slice(barIndex).join(' | ');
+  return `${firstPart}|\n${secondPart}`;
+}
 
 const ModelComposition = {
   abcOutput: getComposition,
-  addVoice: voicesAddition
 };
 
 export default ModelComposition;
-

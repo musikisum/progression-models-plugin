@@ -1,11 +1,11 @@
 import ModelHelper from './model-helper.js';
 
-export default class CircleOfFifths {
+export default class UpperFiveModulation {
 
-  static measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
+  static measure = [' | ', ' ', ' | ', ' ', ' | ', ' '];
   static defaultTransposeValue = -1;
-  static voicesLength = 8;
-  static voices = [[11, 12, 12, 11, 11, 10, 10, 9], [9, 9, 8, 8, 7, 7, 6, 7], [0, 3, -1, 2, -2, 1, -3, 0]];
+  static voicesLength = 6;
+  static voices = [[12, 11, 11, 10, 10, 9], [7, 6, 7, 7, 6, 7], [3, 3, 2, 1, 4, 0]];
 
   static getModelVoices(key, octave) {
     let localKey = key;
@@ -36,34 +36,25 @@ export default class CircleOfFifths {
     key: 'C',
     t: 0,
     accidentals: [
-      ['', '', '', '', '', '', '', ''], 
-      ['', '', '', '', '', '', '', ''], 
-      ['', '', '', '', '', '', '', '']
+      ['', '', '', '', '', ''], 
+      ['', '', '', '', '', ''], 
+      ['', '', '', '', '', '']
     ]
   },{
     key: 'Dm',
     t: 1,
     accidentals: [
-      ['', '_', '_', '', '', '', '', ''],
-      ['', '', '', '', '', '', '^', ''],
-      ['', '', '', '', '_', '', '', '']
+      ['_', '', '', '', '', ''],
+      ['', '^', '', '', '^', ''],
+      ['', '', '', '', '', '']
     ]
   },{
     key: 'G',
-    t: 4,
+    t: -3,
     accidentals: [
-      ['', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '^', ''],
-      ['', '', '^', '', '', '', '', '']
-    ]
-  },
-  {
-    key: 'Gm',
-    t: 4,
-    accidentals: [
-      ['', '_', '_', '', '', '', '', '_'],
-      ['_', '_', '', '', '', '', '^', ''],
-      ['', '', '', '_', '_', '', '', '']
+      ['', '', '', '', '', ''],
+      ['', '^', '', '', '^', ''],
+      ['', '', '', '', '', '']
     ]
   }];
 }

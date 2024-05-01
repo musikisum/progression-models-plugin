@@ -2,13 +2,12 @@ import ModelHelper from './model-helper.js';
 
 export default class Cadence {
 
-  measure = [' | ', ' ', ' | ', ' '];
-  defaultTransposeValue = -1;
-  v1 = [9, 8, 8, 9];
-  v2 = [7, 7, 6, 7];
-  v3 = [2, 3, 4, 0];
+  static measure = [' | ', ' ', ' | ', ' '];
+  static defaultTransposeValue = -1;
+  static voicesLength = 4;
+  static voices = [[9, 8, 8, 9], [7, 7, 6, 7], [2, 3, 4, 0]];
 
-  getModelVoices(key, octave) {
+  static getModelVoices(key, octave) {
     let localKey = key;
     let localOctave = octave;
     if(!localKey) {
@@ -18,47 +17,36 @@ export default class Cadence {
       localOctave = this.defaultTransposeValue;
     }
     const keyObject = this.keys.find(elem => elem.key === localKey);
-    let voice1 = '';
-    let voice2 = '';
-    let voice3 = '';
-    for (let index = 0; index < 4; index += 1) {
-      voice1 += keyObject.v1[index];
-      voice1 += ModelHelper.transposeOctave(localOctave, ModelHelper.validateValue(this.v1[index] + keyObject.t));
-      voice1 += this.measure[index];
-      voice2 += keyObject.v2[index];
-      voice2 += ModelHelper.transposeOctave(localOctave, ModelHelper.validateValue(this.v2[index] + keyObject.t));
-      voice2 += this.measure[index];
-      voice3 += keyObject.v3[index];
-      voice3 += ModelHelper.transposeOctave(localOctave, ModelHelper.validateValue(this.v3[index] + keyObject.t));
-      voice3 += this.measure[index];  
+    const abcVoices = ['', '', ''];
+    for (let index = 0; index < this.voicesLength; index += 1) {
+      abcVoices[0] += keyObject.accidentals[0][index];
+      abcVoices[0] += ModelHelper.transposeOctave(localOctave, ModelHelper.validateValue(this.voices[0][index] + keyObject.t));
+      abcVoices[0] += this.measure[index];
+      abcVoices[1] += keyObject.accidentals[1][index];
+      abcVoices[1] += ModelHelper.transposeOctave(localOctave, ModelHelper.validateValue(this.voices[1][index] + keyObject.t));
+      abcVoices[1] += this.measure[index];
+      abcVoices[2] += keyObject.accidentals[2][index];
+      abcVoices[2] += ModelHelper.transposeOctave(localOctave, ModelHelper.validateValue(this.voices[2][index] + keyObject.t));
+      abcVoices[2] += this.measure[index];  
     } 
-    return [voice1, voice2, voice3];
+    return abcVoices;
   }
 
-  keys = [{
+  static keys = [{
     key: 'C',
     t: 0,
-    v1: ['', '', '', ''],
-    v2: ['', '', '', ''],
-    v3: ['', '', '', '']
+    accidentals: [['', '', '', ''], ['', '', '', ''], ['', '', '', '']]
   },{
     key: 'Dm',
     t: 1,
-    v1: ['', '', '', ''],
-    v2: ['', '', '^', ''],
-    v3: ['', '', '', '']
+    accidentals: [['', '', '', ''], ['', '', '^', ''], ['', '', '', '']]
   },{
     key: 'G',
     t: 4,
-    v1: ['', '', '', ''],
-    v2: ['', '', '^', ''],
-    v3: ['', '', '', '']
-  },
-  {
+    accidentals: [['', '', '', ''], ['', '', '^', ''], ['', '', '', '']]
+  },{
     key: 'Gm',
     t: 4,
-    v1: ['_', '', '', '_'],
-    v2: ['', '', '^', ''],
-    v3: ['_', '', '', '']
+    accidentals: [['_', '', '', '_'], ['', '', '^', ''], ['_', '', '', '']]
   }];
 }

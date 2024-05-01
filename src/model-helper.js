@@ -21,6 +21,7 @@ const transpose = function (number, tone) {
   }
 };
 
+// Composes abc.js characters for values outside the valid range of the diatonic scale.
 const validate = index => {
   let value = '';
   let diatonicIndex = index;
@@ -40,8 +41,9 @@ const validate = index => {
   return result;
 };
 
-const getMeta = key => {
-  return `X:1\n%%score [(1 2) 3]\nM:C\nL:1/2\nK:${key}\n`;
+// Provides meta informations for an abc.js header of a phrase model combination in a key and a measure.
+const getMeta = (key, measure) => {
+  return `X:1\n%%score [(1 2) 3]\nM:${measure}\nL:1/2\nK:${key}\n`;
 };
 
 const ModelHelper = {

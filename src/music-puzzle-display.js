@@ -1,22 +1,19 @@
 import { Input, Button } from 'antd';
 import Cadence from './model-cadence.js';
+import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js'; 
 import CircleOfFifths from './model-circle-of-fifth.js'; 
 import Markdown from '@educandu/educandu/components/markdown.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
-
-import AbcSnippet from './abc-snippet.js';
-import ModelHelper from './model-helper.js';
+import UpperFiveModulation from './model-upper-five-modulation.js';
 
 const { TextArea } = Input;
 
 const initialValue = () => {
-  const cadence = new Cadence;
-  const voices = cadence.getModelVoices('C', -1); 
-  const abcOutput = ModelComposition.abcOutput(voices, null);
-  return abcOutput;
+  const test = Cadence.getModelVoices('C', -1);
+  return ModelComposition.abcOutput('C', 'C', [test]);
 };
 
 export default function MusicPuzzleDisplay({ content }) {
@@ -31,16 +28,11 @@ export default function MusicPuzzleDisplay({ content }) {
   };
   
   const onButtonClick = () => {
-    const barsPerLine = null;
-
-    const cof = new CircleOfFifths;
-    const cofVoices = cof.getModelVoices('C', -1);
-
-    const cadence = new Cadence;
-    const cadVoices = cadence.getModelVoices('C', -1);
-    const combi = ModelComposition.addVoice(cofVoices, cadVoices);
-
-    const playableABC = ModelComposition.abcOutput(combi, barsPerLine);
+    const cadc = Cadence.getModelVoices('C', -1);
+    const cof = CircleOfFifths.getModelVoices('C', -1);
+    const ufm = UpperFiveModulation.getModelVoices('G', 0);
+    const cadg = Cadence.getModelVoices('G', -1);
+    const playableABC = ModelComposition.abcOutput('C', 'C', [cadc, cof, ufm, cadg], 6);
     setAbcResult(playableABC);
   };
 

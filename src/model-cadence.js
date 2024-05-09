@@ -36,7 +36,7 @@ export default class Cadence {
     } 
 
     let abcVoiceArrangement = abcVoices;
-    if (voiceArrangement) {
+    if (!voiceArrangement || voiceArrangement.length) {
       abcVoiceArrangement = voiceArr.reduce((akku, number) => {
         akku.push(abcVoices[number - 1]);
         return akku;

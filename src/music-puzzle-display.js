@@ -12,7 +12,7 @@ import UpperFiveModulation from './model-upper-five-modulation.js';
 const { TextArea } = Input;
 
 const initialValue = () => {
-  const test = Cadence.getModelVoices('C', [0, 0, -1]);
+  const test = Cadence.getModelVoices('C', [0, 0, -1], [], false, true);
   // const testEmpty = UpperFiveModulation.getEmptyStaff();
   const example = CircleOfFifths.getExample(); 
   const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [test]);
@@ -35,7 +35,7 @@ export default function MusicPuzzleDisplay({ content }) {
     const cadc = Cadence.getModelVoices('C', [0, 0, -1]);
     const cof = CircleOfFifths.getModelVoices('C', [0, 0, -1]);
     const ufm = UpperFiveModulation.getModelVoices('G', [0, 0, 0]);
-    const cadg = Cadence.getModelVoices('Am', [0, 0, -1]);
+    const cadg = Cadence.getModelVoices('Am', [0, 0, -1], [], true);
     const playableABC = ModelComposition.abcOutput('C', 'C', '1/2=80', '1/2', [cadc, cof, ufm, cadg], 6);
     setAbcResult(playableABC);
   };

@@ -7,7 +7,14 @@ export default class Cadence {
   static voicesLength = 4;
   static voices = [[9, 8, 8, 9], [7, 7, 6, 7], [2, 3, 4, 0]];
 
-  static getModelVoices(key, octaves) {
+  static getModelVoices(key, octaves, voiceArrangement, isFinal, isBeginning) {
+    if (isFinal) {
+      this.voices[0] = [9, 8, 8, 7];
+    }
+    if (isBeginning) {
+      this.voices[2] = [0, 3, 4, 0];
+    }    
+    const voiceArr = voiceArrangement || [1, 2, 3]
     const localKey = key || 'C';
     const [v1, v2, v3] = octaves || this.defaultTransposeValue;
 
@@ -27,7 +34,15 @@ export default class Cadence {
       abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(this.voices[2][index] + keyObject.t));
       abcVoices[2] += this.measure[index];  
     } 
-    return abcVoices;
+
+    let abcVoiceArrangement = abcVoices;
+    if (voiceArrangement) {
+      abcVoiceArrangement = voiceArr.reduce((akku, number) => {
+        akku.push(abcVoices[number - 1]);
+        return akku;
+      }, []);      
+    }
+    return abcVoiceArrangement;
   }
 
   static getEmptyStaff() {

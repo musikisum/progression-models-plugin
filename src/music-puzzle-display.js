@@ -12,10 +12,12 @@ import UpperFiveModulation from './model-upper-five-modulation.js';
 const { TextArea } = Input;
 
 const initialValue = () => {
-  // const test = Cadence.getModelVoices('C', [0, 0, -1]);
+  const test = Cadence.getModelVoices('C', [0, 0, -1]);
   // const testEmpty = UpperFiveModulation.getEmptyStaff();
   const example = CircleOfFifths.getExample(); 
-  return ModelComposition.abcOutput('D', 'C', 60, '1/4', [example]);
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [test]);
+  console.log(output);
+  return output;
 };
 
 export default function MusicPuzzleDisplay({ content }) {

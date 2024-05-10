@@ -8,14 +8,16 @@ import CircleOfFifths from './model-circle-of-fifth.js';
 import Markdown from '@educandu/educandu/components/markdown.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
 import UpperFiveModulation from './model-upper-five-modulation.js';
+import CircleOfFifthsLinear from './model-circle-of-fifth-linear.js';
 
 const { TextArea } = Input;
 
 const initialValue = () => {
   const test = Cadence.getModelVoices('C', [0, 0, -1], [], false, true);
-  // const testEmpty = UpperFiveModulation.getEmptyStaff();
-  const example = CircleOfFifths.getExample(); 
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [test]);
+  const test1 = UpperFiveModulation.getModelVoices('G', [], []);
+  const test2 = CircleOfFifthsLinear.getModelVoices('C', [], []); 
+  const test3 = Cadence.getModelVoices('G', [-1, -1, -2], [], false, false);
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [test, test2, test1, test3]);
   console.log(output);
   return output;
 };

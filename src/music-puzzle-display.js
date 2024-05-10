@@ -13,12 +13,12 @@ import CircleOfFifthsLinear from './model-circle-of-fifth-linear.js';
 const { TextArea } = Input;
 
 const initialValue = () => {
-  const test = Cadence.getModelVoices('C', [0, 0, -1], [], false, true);
-  const test1 = UpperFiveModulation.getModelVoices('G', [], []);
-  const test2 = CircleOfFifthsLinear.getModelVoices('C', [], []); 
-  const test3 = Cadence.getModelVoices('G', [-1, -1, -2], [], false, false);
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [test, test2, test1, test3]);
-  console.log(output);
+  const m1 = Cadence.getModelVoices('C', [0, 0, -1], [], false, true); 
+  // const m2 = UpperFiveModulation.getModelVoices('C', [0, 0, -1]); 
+  // const m3 = CircleOfFifths.getModelVoices('C', [0, 0, -1], []); 
+  // const m4 = CircleOfFifthsLinear.getModelVoices('C', [0, 0, -1], [], true);
+  // const m5 = Cadence.getModelVoices('Am', [0, 0, -1], [], true, false); 
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m1]);
   return output;
 };
 
@@ -34,10 +34,10 @@ export default function MusicPuzzleDisplay({ content }) {
   };
   
   const onButtonClick = () => {
-    const cadc = Cadence.getModelVoices('C', [0, 0, -1]);
-    const cof = CircleOfFifths.getModelVoices('C', [0, 0, -1]);
-    const ufm = UpperFiveModulation.getModelVoices('G', [0, 0, 0]);
-    const cadg = Cadence.getModelVoices('Am', [0, 0, -1], [], true);
+    const cadc = Cadence.getModelVoices('C', [0, 0, -1], [], false, true);
+    const cof = CircleOfFifthsLinear.getModelVoices('C', [], []); 
+    const ufm = UpperFiveModulation.getModelVoices('G', [], []);
+    const cadg = Cadence.getModelVoices('G', [-1, -1, -2], [], false, false);
     const playableABC = ModelComposition.abcOutput('C', 'C', '1/2=80', '1/2', [cadc, cof, ufm, cadg], 6);
     setAbcResult(playableABC);
   };

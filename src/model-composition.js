@@ -18,6 +18,7 @@ const getComposition = (key, measure, tempo, defaultLength, modelVoices, barsPer
 };
 
 // split a voice after a number of measure lines
+//TODO: Diese Funktion muss noch rekursiv gemacht werden!
 function splitAtVerticalBarIndex(voice, barIndex) {
   const parts = voice.split(' | ');
   const firstPart = parts.slice(0, barIndex).join(' | ');

@@ -10,18 +10,21 @@ import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js
 import UpperFiveModulation from './model-upper-five-modulation.js';
 import LowerFiveModulation from './model-lower-five-modulation.js';
 import CircleOfFifthsLinear from './model-circle-of-fifth-linear.js';
+import ParalelismusDiminished from './model-paralelismus-diminished.js';
 
 const { TextArea } = Input;
 
 const initialValue = () => {
-  // const co = Cadence.getCadenceDefaultOptions();
-  // const m1 = Cadence.getCadenceVoices(co);
-  const m2 = UpperFiveModulation.getVoices(); 
-  // const m3 = CircleOfFifths.getVoices(CircleOfFifths.getDefaultOptions('Am'));
+  // const co = Cadence.getDefaultOptions();
+  // const m1 = Cadence.getVoices();
+  // const m2 = UpperFiveModulation.getVoices(); 
+  // const m3 = CircleOfFifths.getVoices();
   // const m4 = CircleOfFifthsLinear.getVoices(CircleOfFifthsLinear.getDefaultOptions('Dm'));
   // const m5 = Cadence.getVoices();
-  const m6 = LowerFiveModulation.getVoices(); 
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m2, m6]);
+  // const m6 = LowerFiveModulation.getVoices();
+  const m7 = ParalelismusDiminished.getVoices(ParalelismusDiminished.getDefaultOptions('G'));
+  // const m8 = Cadence.getVoices(Cadence.getDefaultOptions('Dm'));
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m7]);
   console.log(output);
   return output;
 };

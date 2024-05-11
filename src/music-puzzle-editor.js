@@ -11,6 +11,7 @@ import Cadence from './model-cadence.js';
 import ModelComposition from './model-composition.js'; 
 
 export default function MusicPuzzleEditor({ content, onContentChanged }) {
+
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const { text } = content;
 
@@ -18,11 +19,11 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     onContentChanged({ ...content, ...newContentValues });
   };
 
-  const [changedVoices, setChangedVoices] = useState({ v1: 0, v2: 0, v3: 0 });
-  const [abcResult, setAbcResult] = useState(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getModelVoices('C', [changedVoices.v1, changedVoices.v2, changedVoices.v3])]));
+  const [changedVoices, setChangedVoices] = useState();
+  const [abcResult, setAbcResult] = useState(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices()]));
 
   useEffect(() => {
-    setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getModelVoices('C', [changedVoices.v1, changedVoices.v2, changedVoices.v3])]));
+    setAbcResult(ModelComposition.abcOutput('C', 'C', 60, '1/2', [Cadence.getVoices()]));
   }, [changedVoices]);
 
   return (
@@ -30,8 +31,10 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
       <Form labelAlign="left" style={{ width: '100%' }}>
         <div style={{ display: 'flex', width: '100% !important' }}>
           <div style={{ flexGrow: 1 }}>
-            <Button onClick={() => setChangedVoices(prev => ({ ...prev, v1: prev.v1 + 1 }) )}><ArrowUpOutlined /></Button>
-            <Button onClick={() => setChangedVoices(prev => ({ ...prev, v1: prev.v1 - 1 }) )}><ArrowDownOutlined /></Button>
+            {/* <Button onClick={() => setChangedVoices(prev => ({ ...prev, v1: prev.v1 + 1 }) )}><ArrowUpOutlined /></Button>
+            <Button onClick={() => setChangedVoices(prev => ({ ...prev, v1: prev.v1 - 1 }) )}><ArrowDownOutlined /></Button> */}
+            <Button><ArrowUpOutlined /></Button>
+            <Button><ArrowDownOutlined /></Button>
           </div>
           <div style={{ flexGrow: 1 }}>
             { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }

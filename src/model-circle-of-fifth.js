@@ -1,83 +1,67 @@
 import ModelHelper from './model-helper.js';
 
-export default class CircleOfFifths {
-
-  static #voices;
-  static #measure
-  static #defaultTransposeValue;
-  static #voicesLength = 8;
-  static #keys = [{
-    key: 'C',
-    t: 0,
-    accidentals: [
-      ['', '', '', '', '', '', '', ''], 
-      ['', '', '', '', '', '', '', ''], 
-      ['', '', '', '', '', '', '', '']
-    ]
-  },{
-    key: 'Dm',
-    t: 1,
-    accidentals: [
-      ['', '_', '_', '', '', '', '', ''],
-      ['', '', '', '', '', '', '^', ''],
-      ['', '', '', '', '_', '', '', '']
-    ]
-  },{
-    key: 'G',
-    t: 4,
-    accidentals: [
-      ['', '', '', '', '', '', '', ''],
-      ['', '', '', '', '', '', '^', ''],
-      ['', '', '^', '', '', '', '', '']
-    ]
-  },
-  {
-    key: 'Gm',
-    t: 4,
-    accidentals: [
-      ['', '_', '_', '', '', '', '', '_'],
-      ['_', '_', '', '', '', '', '^', ''],
-      ['', '', '', '_', '_', '', '', '']
-    ]
-  }];
-
-  static #init() {
-    this.#defaultTransposeValue = [0, 0, 0];
-    this.#measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
-    this.#voices = [[11, 12, 12, 11, 11, 10, 10, 9], [9, 9, 8, 8, 7, 7, 6, 7], [0, 3, -1, 2, -2, 1, -3, 0]];
-  }
-
-  static getModelVoices(key, octaves, voiceArrangement) {
-
-    this.#init();
-    const localKey = key || 'C';
-    const [v1, v2, v3] = octaves && octaves.length ? octaves : this.#defaultTransposeValue;
-    const voiceArr = voiceArrangement && voiceArrangement.length ? voiceArrangement : [1, 2, 3];
-
-    const keyObject = this.#keys.find(elem => elem.key === localKey);
-    const abcVoices = ['', '', ''];
-
-    for (let index = 0; index < this.#voicesLength; index += 1) {
-      abcVoices[voiceArr[0]-1] += keyObject.accidentals[0][index];
-      abcVoices[voiceArr[0]-1] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(this.#voices[0][index] + keyObject.t));
-      abcVoices[voiceArr[0]-1] += this.#measure[index];
-
-      abcVoices[voiceArr[1]-1] += keyObject.accidentals[1][index];
-      abcVoices[voiceArr[1]-1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(this.#voices[1][index] + keyObject.t));
-      abcVoices[voiceArr[1]-1] += this.#measure[index];
-
-      abcVoices[voiceArr[2]-1] += keyObject.accidentals[2][index];
-      abcVoices[voiceArr[2]-1] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(this.#voices[2][index] + keyObject.t));
-      abcVoices[voiceArr[2]-1] += this.#measure[index];  
-    }
-    return abcVoices;
-  }
-
-  static getEmptyStaff() {
-    return ['x | x x | x x | x x | x', 'x | x x | x x | x x | x', 'x | x x | x x | x x | x'];
-  }
-
-  static getExample() {
-    return ['f- | f e2 d- | -d c d3/2', 'z | B2 A2 | G2 F z/', 'A,/D,/ | G,/F,/G,/C,/ F,/E,/F,/B,,/ | E,/F,//G,// A,/A,,/ D,/E,/,F,/]'];
+function _getKeyObject(change) {
+  switch (change) {      
+    case 'Dm':
+      return { key: 'Dm', t: 1, accidentals: [['', '_', '_', '', '', '', '', ''], ['', '', '', '', '', '', '^', ''], ['', '', '', '', '_', '', '', '']] };
+    case 'G':
+      return { key: 'G', t: 4, accidentals: [['', '', '', '', '', '', '', ''], ['', '', '', '', '', '', '^', ''], ['', '', '^', '', '', '', '', '']] };
+    case 'Gm':
+      return { key: 'Gm', t: 4, accidentals: [['', '_', '_', '', '', '', '', '_'], ['_', '_', '', '', '', '', '^', ''], ['', '', '', '_', '_', '', '', '']] };
+    case 'Am':
+      return { key: 'Am', t: -2, accidentals: [['', '', '', '', '', '', '', ''], ['', '', '', '', '', '', '^', ''], ['', '', '', '', '', '', '', '']] };
+    default:
+      return { key: 'C', t: 0, accidentals: [['', '', '', '', '', '', '', ''], ['', '', '', '', '', '', '', ''], ['', '', '', '', '', '', '', '']] };
   }
 }
+
+const getOptions = (change) => {
+  return {
+    key: change || 'C',  
+    voicesLength: 8,
+    measure: [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '],
+    transposeValues: [0, 0, -1],
+    voiceArrangement: [1, 2, 3],
+  }
+}
+
+const getVoices = (circleOfFifthsOptions) => {
+  const voices = [[11, 12, 12, 11, 11, 10, 10, 9], [9, 9, 8, 8, 7, 7, 6, 7], [0, 3, -1, 2, -2, 1, -3, 0]];
+  const options = circleOfFifthsOptions ?? getOptions();
+  const [v1, v2, v3] = options.transposeValues;
+  const voiceArr = options.voiceArrangement;
+  const keyObject = _getKeyObject(options.key);
+
+  const abcVoices = ['', '', ''];
+  for (let index = 0; index < options.voicesLength; index += 1) {
+    abcVoices[voiceArr[0]-1] += keyObject.accidentals[0][index];
+    abcVoices[voiceArr[0]-1] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[0][index] + keyObject.t));
+    abcVoices[voiceArr[0]-1] += options.measure[index];
+
+    abcVoices[voiceArr[1]-1] += keyObject.accidentals[1][index];
+    abcVoices[voiceArr[1]-1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[1][index] + keyObject.t));
+    abcVoices[voiceArr[1]-1] += options.measure[index];
+
+    abcVoices[voiceArr[2]-1] += keyObject.accidentals[2][index];
+    abcVoices[voiceArr[2]-1] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[2][index] + keyObject.t));
+    abcVoices[voiceArr[2]-1] += options.measure[index];  
+  }
+  return abcVoices;
+}
+
+const getStaff = () => {
+  return ['x | x x | x x | x x | x', 'x | x x | x x | x x | x', 'x | x x | x x | x x | x'];
+}
+
+const getExample = () => {
+  return ['f- | f e2 d- | -d c d3/2', 'z | B2 A2 | G2 F z/', 'A,/D,/ | G,/F,/G,/C,/ F,/E,/F,/B,,/ | E,/F,//G,// A,/A,,/ D,/E,/,F,/]'];
+}
+
+const CircleOfFifths = {
+  getDefaultOptions: getOptions,
+  getVoices: getVoices,
+  getEmptyStaff: getStaff,
+  getMusicExample: getExample
+}
+
+export default CircleOfFifths;

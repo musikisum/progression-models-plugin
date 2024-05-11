@@ -3,34 +3,32 @@ import ModelHelper from './model-helper.js';
 function _getKeyObject(change) {
   switch (change) {      
     case 'Dm':
-      return { key: 'Dm', t: 1, accidentals: [['_', '', '', '', '', ''], ['', '^', '', '', '^', ''], ['', '', '', '', '', '']] };
+      return { key: 'Dm', t: 1, accidentals: [['_', '', '', '', '', '', '', ''], ['', '^', '', '', '^', '', '', ''], ['', '', '', '', '', '', '', '']] };
     case 'G':
-      return { key: 'G', t: -3, accidentals: [['', '', '', '', '', ''], ['', '^', '', '', '^', ''], ['', '', '', '', '', '']] };
+      return { key: 'G', t: -3, accidentals: [['', '', '', '', '', '', '', ''], ['', '^', '', '', '^', '', '', ''], ['', '', '', '', '', '', '', '']] };
     case 'Gm':
-      return { key: 'Gm', t: -3, accidentals: [['_', '', '', '', '', '_'], ['', '^', '', '', '^', ''], ['', '', '', '', '', '']] };
+      return { key: 'Gm', t: -3, accidentals: [['_', '', '', '', '', '_', '', ''], ['', '^', '', '', '^', '', '', ''], ['', '', '', '', '', '', '', '']] };
     case 'Am':
-      return { key: 'Am', t: -2, accidentals: [['', '', '', '', '', ''], ['', '^', '', '', '^', ''], ['', '', '', '^', '', '']] };
+      return { key: 'Am', t: -2, accidentals: [['', '', '', '', '', '', '', ''], ['', '^', '', '', '^', '', '', ''], ['', '', '', '^', '', '', '', '']] };
     default:
-      return { key: 'C', t: 0, accidentals: [['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', '']] };
+      return { key: 'C', t: 0, accidentals: [['', '', '', '', '', '', '', ''], ['', '', '_', '_', '', '', '', ''], ['', '', '', '', '', '', '', '']] };
   }
 }
 
 const getOptions = (change) => {
   return {
     key: change || 'C',  
-    voicesLength: 6,
-    measure: [' | ', ' ', ' | ', ' ', ' | ', ' '],
+    voicesLength: 8,
+    measure: [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '],
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
-    isFinal: false,
-    isBegin: false
   }
 }
 
-const getVoices = (upperFifthModulationOptions) => {
+const getVoices = (lowerFifthModulationOptions) => {
 
-    const voices = [[12, 11, 11, 10, 10, 9], [7, 6, 7, 7, 6, 7], [3, 3, 2, 1, 4, 0]];
-    const options = upperFifthModulationOptions || getOptions();
+    const voices = [[9, 8, 8, 7, 10, 10, 9, 10], [7, 7, 6, 6, 5, 4, 4, 5], [0, 4, 4, 2, 3, 0, 0, 3]];
+    const options = lowerFifthModulationOptions || getOptions();
     const [v1, v2, v3] = options.transposeValues;
     const voiceArr = options.voiceArrangement;
     const keyObject = _getKeyObject(options.key);
@@ -53,18 +51,18 @@ const getVoices = (upperFifthModulationOptions) => {
   }
 
   const getStaff = () => {
-    return ['x | x x | x x | x]', 'x | x x | x x | x]', 'x | x x | x x | x]'];
+    return ['x | x x | x x | x x | x]', 'x | x x | x x | x x | x]', 'x | x x | x x | x x | x]'];
   }
 
   const getExample = () => {
     return ['', '', '']; 
   }
 
-  const UpperFiveModulation = {
+  const LowerFiveModulation = {
     getDefaultOptions: getOptions,
     getVoices: getVoices,
     getEmptyStaff: getStaff,
     getMusicWxample: getExample
   }
   
-  export default UpperFiveModulation;
+  export default LowerFiveModulation;

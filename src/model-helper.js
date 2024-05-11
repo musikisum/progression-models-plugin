@@ -1,7 +1,6 @@
 const diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
 
-// eslint-disable-next-line no-warning-comments
-//TODO: This funktion transpose only a single tone an not a model. It's a problem?
+// Transpose a single tone in octaves up or down.  
 const transpose = (number, tone) => {
   switch (number) {
     case -3:

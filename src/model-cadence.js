@@ -10,6 +10,8 @@ function _getKeyObject(change) {
       return { key: 'Gm', t: 4, accidentals: [['_', '', '', '_'], ['', '', '^', ''], ['_', '', '', '']] };
     case 'Am':
       return { key: 'Am', t: -2, accidentals: [['', '', '', ''], ['', '', '^', ''], ['', '', '', '']] };
+    case 'Em':
+      return { key: 'Em', t: 2, accidentals: [['', '^', '^', ''], ['', '', '^', ''], ['', '', '', '']] };
     default:
       return { key: 'C', t: 0, accidentals: [['', '', '', ''], ['', '', '', ''], ['', '', '', '']] };
   }
@@ -17,7 +19,7 @@ function _getKeyObject(change) {
 
 const getOptions = (change) => {
   return {
-    key: change || 'C',  
+    key: change || 'C',
     voicesLength: 4,
     measure: [' | ', ' ', ' | ', ' '],
     transposeValues: [0, 0, -1],
@@ -28,7 +30,6 @@ const getOptions = (change) => {
 }
 
 const getVoices = (cadenceOptions) => {
-
   const voices = [[9, 8, 8, 9], [7, 7, 6, 7], [2, 3, 4, 0]];
   const options = cadenceOptions ?? getOptions();
   options.isFinal && (voices[0] = [9, 8, 8, 7]);

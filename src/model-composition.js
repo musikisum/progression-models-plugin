@@ -22,7 +22,7 @@ function splitAtVerticalBarIndex(voice, barIndex) {
   const chunks = [];
   const parts = voice.split(' | ');
   for (let i = 0; i < parts.length; i += barIndex) {
-      chunks.push(parts.slice(i, i + barIndex).join(' | '));
+    chunks.push(parts.slice(i, i + barIndex).join(' | '));
   }
   return chunks.join(" |\n") + " |";
 }

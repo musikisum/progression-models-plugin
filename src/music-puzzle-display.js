@@ -19,14 +19,16 @@ const initialValue = () => {
   const m1 = Cadence.getVoices();
   const m2 = UpperFiveModulation.getVoices(UpperFiveModulation.getDefaultOptions('G')); 
   const m3 = CircleOfFifths.getVoices();
-  // const m4 = CircleOfFifthsLinear.getVoices(CircleOfFifthsLinear.getDefaultOptions('Dm'));
+  const abc = CircleOfFifthsLinear.getDefaultOptions();
+  const m4 = CircleOfFifthsLinear.getVoices();
   // const m5 = Cadence.getVoices();
   // const m6 = LowerFiveModulation.getVoices();
   const devOpt = ParalelismusDiminished.getDefaultOptions('G');
   devOpt.transposeValues = [1, 1, -1];
+  devOpt.numberOfSections = 1;
   const m7 = ParalelismusDiminished.getVoices(devOpt);
-  const m8 = Cadence.getVoices(Cadence.getDefaultOptions('Am'));
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m1, m3, m2, m7, m8], 6);
+  const m8 = Cadence.getVoices(Cadence.getDefaultOptions('Em'));
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m4]);
   return output;
 };
 

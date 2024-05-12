@@ -53,7 +53,7 @@ const getVoices = (upperFifthModulationOptions) => {
   }
 
   const getStaff = () => {
-    return ['x | x x | x x | x]', 'x | x x | x x | x]', 'x | x x | x x | x]'];
+    return ['x | x x | x x | x', 'x | x x | x x | x', 'x | x x | x x | x '];
   }
 
   const getExample = () => {

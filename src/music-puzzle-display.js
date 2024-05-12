@@ -16,16 +16,17 @@ const { TextArea } = Input;
 
 const initialValue = () => {
   // const co = Cadence.getDefaultOptions();
-  // const m1 = Cadence.getVoices();
-  // const m2 = UpperFiveModulation.getVoices(); 
-  // const m3 = CircleOfFifths.getVoices();
+  const m1 = Cadence.getVoices();
+  const m2 = UpperFiveModulation.getVoices(UpperFiveModulation.getDefaultOptions('G')); 
+  const m3 = CircleOfFifths.getVoices();
   // const m4 = CircleOfFifthsLinear.getVoices(CircleOfFifthsLinear.getDefaultOptions('Dm'));
   // const m5 = Cadence.getVoices();
   // const m6 = LowerFiveModulation.getVoices();
-  const m7 = ParalelismusDiminished.getVoices(ParalelismusDiminished.getDefaultOptions('G'));
-  // const m8 = Cadence.getVoices(Cadence.getDefaultOptions('Dm'));
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m7]);
-  console.log(output);
+  const devOpt = ParalelismusDiminished.getDefaultOptions('G');
+  devOpt.transposeValues = [1, 1, -1];
+  const m7 = ParalelismusDiminished.getVoices(devOpt);
+  const m8 = Cadence.getVoices(Cadence.getDefaultOptions('Am'));
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m1, m3, m2, m7, m8], 6);
   return output;
 };
 

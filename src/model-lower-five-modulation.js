@@ -3,13 +3,13 @@ import ModelHelper from './model-helper.js';
 function _getKeyObject(change) {
   switch (change) {      
     case 'Dm':
-      return { key: 'Dm', t: 1, accidentals: [['_', '', '', '', '', '', '', ''], ['', '^', '', '', '^', '', '', ''], ['', '', '', '', '', '', '', '']] };
+      return { key: 'Dm', t: 1, accidentals: [['', '', '', '', '', '', '^', ''], ['', '', '', '', '_', '', '', '_'], ['', '', '', '^', '', '', '', '']] };
     case 'G':
-      return { key: 'G', t: -3, accidentals: [['', '', '', '', '', '', '', ''], ['', '^', '', '', '^', '', '', ''], ['', '', '', '', '', '', '', '']] };
+      return { key: 'G', t: -3, accidentals: [['', '', '', '', '', '', '', ''], ['', '', '', '', '', '', '', ''], ['', '', '', '', '', '', '', '']] };
     case 'Gm':
-      return { key: 'Gm', t: -3, accidentals: [['_', '', '', '', '', '_', '', ''], ['', '^', '', '', '^', '', '', ''], ['', '', '', '', '', '', '', '']] };
+      return { key: 'Gm', t: -3, accidentals: [['_', '', '', '', '', '', '', ''], ['', '', '', '', '_', '', '', '_'], ['', '', '', '', '', '', '', '']] };
     case 'Am':
-      return { key: 'Am', t: -2, accidentals: [['', '', '', '', '', '', '', ''], ['', '^', '', '', '^', '', '', ''], ['', '', '', '^', '', '', '', '']] };
+      return { key: 'Am', t: -2, accidentals: [['', '', '', '', '', '', '^', ''], ['', '', '', '', '', '', '', ''], ['', '', '', '^', '', '', '', '']] };
     default:
       return { key: 'C', t: 0, accidentals: [['', '', '', '', '', '', '', ''], ['', '', '_', '_', '', '', '', ''], ['', '', '', '', '', '', '', '']] };
   }
@@ -22,6 +22,7 @@ const getOptions = (change) => {
     measure: [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '],
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    changeMode: false
   }
 }
 
@@ -32,6 +33,17 @@ const getVoices = (lowerFifthModulationOptions) => {
     const [v1, v2, v3] = options.transposeValues;
     const voiceArr = options.voiceArrangement;
     const keyObject = _getKeyObject(options.key);
+    const flatValues = ['Dm', 'G', 'Gm', 'C'];
+
+    if(lowerFifthModulationOptions.changeMode) {
+      if (flatValues.includes(keyObject.key)) {
+        keyObject.accidentals[1][4] = keyObject.accidentals[1][4] === '_' ? '' : '_';
+        keyObject.accidentals[1][7] = keyObject.accidentals[1][7] === '_' ? '' : '_';  
+      } else {
+        keyObject.accidentals[1][4] = keyObject.accidentals[1][4] === '^' ? '' : '^';
+        keyObject.accidentals[1][7] = keyObject.accidentals[1][7] === '^' ? '' : '^'; 
+      }
+    }
 
     const abcVoices = ['', '', ''];
     for (let index = 0; index < options.voicesLength; index += 1) {

@@ -1,11 +1,13 @@
 import { Form, Button, Dropdown, Space } from 'antd';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
+import VoiceSwitch from './components/voice-switch.js';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { FORM_ITEM_LAYOUT } from '@educandu/educandu/domain/constants.js';
 import MarkdownInput from '@educandu/educandu/components/markdown-input.js';
 import { sectionEditorProps } from '@educandu/educandu/ui/default-prop-types.js';
+import { swapItemsAt, removeItemAt, ensureIsExcluded, moveItem } from '@educandu/educandu/utils/array-utils.js';
 
 const items = [
   {
@@ -34,10 +36,22 @@ const items = [
   },
 ];
 
-import Cadence from './model-cadence.js';
+import Cadence from './models/model-cadence.js';
 import ModelComposition from './model-composition.js'; 
 
 export default function MusicPuzzleEditor({ content, onContentChanged }) {
+
+  const [switchButtons, setSwitchButtons] = useState([
+    {
+      key: useId(),
+      text: 'Stimme 1'
+    }, {
+      key: useId(),
+      text: 'Stimme 2'
+    }, {
+      key: useId(),
+      text: 'Stimme 3'
+    }]) ;
 
   const [key, setKey] = useState('C');
   const menuProps = {
@@ -77,8 +91,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
             <Button style={{ width: 'fit-content' }}><ArrowDownOutlined /></Button>
           </div>
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-            <Button style={{ width: 'fit-content' }}><ArrowUpOutlined /></Button>
-            <Button style={{ width: 'fit-content' }}><ArrowDownOutlined /></Button>
+            <VoiceSwitch switchButtons={switchButtons} setSwitchButtons={setSwitchButtons} />
           </div>
           <div style={{ flexGrow: 4 }}>
             { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }

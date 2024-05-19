@@ -1,7 +1,9 @@
-import ModelHelper from './model-helper.js';
+import ModelHelper from '../model-helper.js';
 
 function _getKeyObject(change) {
   switch (change) {      
+    case 'F':
+      return { key: 'F', t: 3, accidentals: [['', '', '', ''], ['', '', '', ''], ['', '_', '', '']] };
     case 'Dm':
       return { key: 'Dm', t: 1, accidentals: [['', '', '', ''], ['', '', '^', ''], ['', '', '', '']] };
     case 'G':
@@ -60,8 +62,8 @@ const getStaff = () => {
 
 const Cadence = {
   getDefaultOptions: getOptions,
-  getVoices: getVoices,
+  getVoices,
   getEmptyStaff: getStaff
-}
+};
 
 export default Cadence;

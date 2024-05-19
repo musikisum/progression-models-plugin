@@ -1,16 +1,16 @@
 import { Input, Button } from 'antd';
-import Cadence from './model-cadence.js';
+import Cadence from './models/model-cadence.js';
 import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js'; 
-import CircleOfFifths from './model-circle-of-fifth.js'; 
+import CircleOfFifths from './models/model-circle-of-fifth.js'; 
 import Markdown from '@educandu/educandu/components/markdown.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
-import UpperFiveModulation from './model-upper-five-modulation.js';
-import LowerFiveModulation from './model-lower-five-modulation.js';
-import CircleOfFifthsLinear from './model-circle-of-fifth-linear.js';
-import ParalelismusDiminished from './model-paralelismus-diminished.js';
+import UpperFiveModulation from './models/model-upper-five-modulation.js';
+import LowerFiveModulation from './models/model-lower-five-modulation.js';
+import CircleOfFifthsLinear from './models/model-circle-of-fifth-linear.js';
+import ParalelismusDiminished from './models/model-paralelismus-diminished.js';
 
 const { TextArea } = Input;
 
@@ -22,15 +22,16 @@ const initialValue = () => {
   const abc = CircleOfFifthsLinear.getDefaultOptions();
   const m4 = CircleOfFifthsLinear.getVoices();
   // const m5 = Cadence.getVoices();
-  const test = LowerFiveModulation.getDefaultOptions('C');
+  const test = LowerFiveModulation.getDefaultOptions('Dm');
   test.changeMode = true;
   const m6 = LowerFiveModulation.getVoices(test);
-  const devOpt = ParalelismusDiminished.getDefaultOptions('G');
-  devOpt.transposeValues = [1, 1, -1];
-  devOpt.numberOfSections = 1;
-  const m7 = ParalelismusDiminished.getVoices(devOpt);
-  const m8 = Cadence.getVoices(Cadence.getDefaultOptions('Em'));
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m6]);
+  const zick = ParalelismusDiminished.getDefaultOptions('C');
+  zick.numberOfSections = 2;
+  const m7 = ParalelismusDiminished.getVoices(zick);
+  const m8opt = Cadence.getDefaultOptions('F');
+  m8opt.transposeValues = [-1, -1, -1];
+  const m8 = Cadence.getVoices(m8opt);
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m7, m8]);
   return output;
 };
 

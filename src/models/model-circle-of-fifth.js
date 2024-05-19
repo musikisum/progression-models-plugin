@@ -1,4 +1,4 @@
-import ModelHelper from './model-helper.js';
+import ModelHelper from '../model-helper.js';
 
 function _getKeyObject(change) {
   switch (change) {      

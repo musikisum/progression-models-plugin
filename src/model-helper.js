@@ -45,10 +45,24 @@ const getMeta = (key, measure, tempo, length) => {
   return `X:1\n%%score [(1 2) 3]\nM:${measure}\nQ:${tempo}\nL:${length}\nK:${key}\n`;
 };
 
+const getSign = sign => {
+  switch (sign) {
+    case 1:
+      return '^';  
+    case -1:
+      return '_';
+    case 0:
+      return '';
+    default:
+      return sign;
+  }
+};
+ 
 const ModelHelper = {
   meta: getMeta,
   transposeOctave: transpose,
-  validateValue: validate
+  validateValue: validate,
+  getSign
 };
 
 export default ModelHelper;

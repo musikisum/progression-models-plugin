@@ -1,13 +1,23 @@
 import ModelHelper from '../model-helper.js';
 
 function _getKeyObject(change) {
-  switch (change) {      
+  switch (change) {
+    case 'Eb':
+      return { key: 'Eb', t: 2, accidentals: [[0, 0, 0, 0, -1, -1, 0, -1], [-1, -1, 0, 0, 0, 0, 0, 0], [-1, 0, 0, -1, 0, -1, -1, -1]] };
+    case 'Cm':
+      return { key: 'Cm', t: 0, accidentals: [[-1, -1, 0, 0, 0, 0, '=', 0], [0, 0, 0, -1, 0, 0, 0, -1], [0, -1, -1, 0, -1, 0, 0, 0]] };
+    case 'Bb':
+      return { key: 'Bb', t: -1, accidentals: [[0, 0, 0, 0, -1, -1, 0, -1], [0, -1, 0, 0, 0, 0, 0, 0], [-1, 0, 0, 0, 0, -1, 0, -1]] }; 
     case 'Gm':
       return { key: 'Gm', t: 4, accidentals: [[-1, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, -1, -1, 0, 0, -1], [0, -1, 0, 0, -1, 0, 0, 0]] };
+    case 'F':
+      return { key: 'F', t: 3, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, -1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, -1, 0, 0]] };
     case 'Dm':
       return { key: 'Dm', t: 1, accidentals: [[0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, -1, 0, 0, -1, 0, 0, 0]] };
     case 'E':
       return { key: 'E', t: 2, accidentals: [[1, 1, 1, 1, 0, 0, 1, 0], [0, 0, 0, 1, 1, 1, 1, 1], [0, 1, 1, 0, 1, 0, 0, 0]] };
+    case 'C#m':
+        return { key: 'C#m', t: 0, accidentals: [[0, 0, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 0, 0, 1, 0], [1, 1, 0, 0, 0, 1, 1, 1]] };
     case 'A':
       return { key: 'A', t: -2, accidentals: [[1, 1, 0, 0, 0, 0, 1, 0], [0, 0, 0, 1, 1, 0, 0, 1], [0, 1, 1, 0, 1, 0, 0, 0]] };
     case 'F#m':

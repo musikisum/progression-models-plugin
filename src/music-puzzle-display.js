@@ -19,7 +19,7 @@ const initialValue = () => {
   const m1 = Cadence.getVoices(Cadence.getDefaultOptions('Cm'));
   const m2 = UpperFiveModulation.getVoices(UpperFiveModulation.getDefaultOptions('G')); 
   const m3 = CircleOfFifths.getVoices();
-  const m4 = CircleOfFifthsLinear.getVoices(CircleOfFifthsLinear.getDefaultOptions('E'));
+  const m4 = CircleOfFifthsLinear.getVoices(CircleOfFifthsLinear.getDefaultOptions('Bb'));
   const test = LowerFiveModulation.getDefaultOptions('Dm');
   test.changeMode = true;
   const m6 = LowerFiveModulation.getVoices(test);
@@ -29,7 +29,7 @@ const initialValue = () => {
   const m8opt = Cadence.getDefaultOptions('F');
   m8opt.transposeValues = [-1, -1, -1];
   const m8 = Cadence.getVoices(m8opt);
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m1]);
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m4]);
   return output;
 };
 

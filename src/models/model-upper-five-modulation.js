@@ -3,15 +3,15 @@ import ModelHelper from '../model-helper.js';
 function _getKeyObject(change) {
   switch (change) {      
     case 'Dm':
-      return { key: 'Dm', t: 1, accidentals: [['_', '', '', '', '', ''], ['', '^', '', '', '^', ''], ['', '', '', '', '', '']] };
+      return { key: 'Dm', t: 1, accidentals: [[-1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] };
     case 'G':
-      return { key: 'G', t: -3, accidentals: [['', '', '', '', '', ''], ['', '^', '', '', '^', ''], ['', '', '', '', '', '']] };
+      return { key: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] };
     case 'Gm':
-      return { key: 'Gm', t: -3, accidentals: [['_', '', '', '', '', '_'], ['', '^', '', '', '^', ''], ['', '', '', '', '', '']] };
+      return { key: 'Gm', t: -3, accidentals: [[-1, 0, 0, 0, 0, -1], [0, 1, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] };
     case 'Am':
-      return { key: 'Am', t: -2, accidentals: [['', '', '', '', '', ''], ['', '^', '', '', '^', ''], ['', '', '', '^', '', '']] };
+      return { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 0], [0, 0, 0, 1, 0, 0]] };
     default:
-      return { key: 'C', t: 0, accidentals: [['', '', '', '', '', ''], ['', '', '', '', '', ''], ['', '', '', '', '', '']] };
+      return { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] };
   }
 }
 
@@ -37,15 +37,15 @@ const getVoices = (upperFifthModulationOptions) => {
 
     const abcVoices = ['', '', ''];
     for (let index = 0; index < options.voicesLength; index += 1) {
-      abcVoices[voiceArr[0]-1] += keyObject.accidentals[0][index];
+      abcVoices[voiceArr[0]-1] += ModelHelper.getSign(keyObject.accidentals[0][index]);
       abcVoices[voiceArr[0]-1] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[0][index] + keyObject.t));
       abcVoices[voiceArr[0]-1] += options.measure[index];
 
-      abcVoices[voiceArr[1]-1] += keyObject.accidentals[1][index];
+      abcVoices[voiceArr[1]-1] += ModelHelper.getSign(keyObject.accidentals[1][index]);
       abcVoices[voiceArr[1]-1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[1][index] + keyObject.t));
       abcVoices[voiceArr[1]-1] += options.measure[index];
       
-      abcVoices[voiceArr[2]-1] += keyObject.accidentals[2][index];
+      abcVoices[voiceArr[2]-1] += ModelHelper.getSign(keyObject.accidentals[2][index]);
       abcVoices[voiceArr[2]-1] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[2][index] + keyObject.t));
       abcVoices[voiceArr[2]-1] += options.measure[index];  
     }

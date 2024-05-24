@@ -1,17 +1,43 @@
 import ModelHelper from '../model-helper.js';
 
 function _getKeyObject(change) {
-  switch (change) {      
-    case 'Dm':
-      return { key: 'Gm', t: 1, accidentals: [[0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, -1, 0, 0, -1], [0, 0, 0, 1, 0, 0, 0, 0]] };
-    case 'G':
-      return { key: 'C', t: -3, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]] };
+  switch (change) {
+    case 'Ab':
+      return { key: 'Ab', t: -2, accidentals: [[0, -1, 0, -1, -1, -1, 0, -1], [-1, -1, -1, -1, 0, -1, -1, 0], [-1, -1, 0, 0, -1, -1, 0, -1]] };
+    case 'Fm':
+      return { key: 'Fm', t: 3, accidentals: [[-1, 0, 0, 0, -1, -1, '=', -1], [0, 0, -1, -1, -1, 0, 0, -1], [0, 0, 0, '=', -1, 0, 0, -1]] };
+    case 'Eb':
+      return { key: 'Eb', t: 2, accidentals: [[0, 0, 0, -1, -1, -1, 0, -1], [-1, -1, -1, -1, 0, -1, -1, 0], [-1, -1, 0, 0, -1, 0, 0, -1]] };
+    case 'Cm':
+      return { key: 'Cm', t: 0, accidentals: [[-1, 0, 0, 0, 0, 0, '=', 0], [0, 0, -1, -1, -1, 0, 0, -1], [0, 0, 0, '=', 0, 0, 0, 0]] };
+    case 'Bb':
+      return { key: 'Bb', t: -1, accidentals: [[0, 0, 0, -1, -1, -1, 0, -1], [-1, -1, -1, -1, 0, 0, 0, 0], [-1, 0, 0, 0, -1, -1, -1, -1]] };
     case 'Gm':
-      return { key: 'Cm', t: -3, accidentals: [[-1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, -1, 0, 0, -1], [0, 0, 0, 0, 0, 0, 0, 0]] };
+      return { key: 'Gm', t: -3, accidentals: [[-1, 0, 0, 0, 0, 0, '=', 0], [0, 0, '=', '=', -1, 0, 0, -1], [0, 0, 0, '=', 0, 0, 0, 0]] };
+    case 'F':
+      return { key: 'F', t: 3, accidentals: [[0, 0, 0, 0, -1, -1, 0, -1], [0, 0, -1, -1, 0, 0, 0, 0], [0, 0, 0, 0, -1, 0, 0, -1]] };
+    case 'Dm':
+      return { key: 'Dm', t: 1, accidentals: [[0, 0, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', -1, 0, 0, -1], [0, 0, 0, 1, 0, 0, 0, 0]] };
+    case 'E':
+      return { key: 'E', t: 2, accidentals: [[1, 1, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 1, 0, 0, 1], [0, 0, 0, 1, 0, 0, 0, 0]] };
+    case 'C#m':
+      return { key: 'C#m', t: 0, accidentals: [[0, 1, 0, 1, 1, 1, 1, 1], [1, 1, '=', '=', 0, 1, 1, 0], [1, 1, 0, 1, 1, 1, 1, 1]] };
+    case 'A':
+      return { key: 'A', t: -2, accidentals: [[1, 0, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 1, 0, 0, 1], [0, 0, 0, 1, 0, 0, 0, 0]] };
+    case 'F#m':
+      return { key: 'F#m', t: 3, accidentals: [[0, 1, 0, 1, 0, 0, 1, 0], [1, 1, '=', '=', 0, 1, 1, 0], [1, 1, 0, 1, 0, 1, 1, 0]] };
+    case 'D':
+      return { key: 'D', t: 1, accidentals: [[1, 0, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0]] };
+    case 'Bm':
+      return { key: 'Bm', t: 2, accidentals: [[0, 1, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0]] };
+    case 'G':
+      return { key: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, '=', '=', 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]] };
+    case 'Em':
+      return { key: 'Em', t: 2, accidentals: [[0, 1, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0]] };
     case 'Am':
-      return { key: 'Dm', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0]] };
+      return { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0]] };
     default:
-      return { key: 'F', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, -1, -1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]] };
+      return { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, -1, -1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]] };
   }
 }
 
@@ -33,15 +59,15 @@ const getVoices = lowerFifthModulationOptions => {
   const [v1, v2, v3] = options.transposeValues;
   const voiceArr = options.voiceArrangement;
   const keyObject = _getKeyObject(options.key);
-  const flatValues = ['Gm', 'C', 'Cm', 'F'];
+  const flatValues = ['C', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
 
   if(lowerFifthModulationOptions.changeMode) {
     if (flatValues.includes(keyObject.key)) {
-      keyObject.accidentals[1][4] = keyObject.accidentals[1][4] === '_' ? '' : '_';
-      keyObject.accidentals[1][7] = keyObject.accidentals[1][7] === '_' ? '' : '_';  
+      keyObject.accidentals[1][4] = keyObject.accidentals[1][4] === -1 ? 0 : -1;
+      keyObject.accidentals[1][7] = keyObject.accidentals[1][7] === -1 ? 0 : -1;  
     } else {
-      keyObject.accidentals[1][4] = keyObject.accidentals[1][4] === '^' ? '' : '^';
-      keyObject.accidentals[1][7] = keyObject.accidentals[1][7] === '^' ? '' : '^'; 
+      keyObject.accidentals[1][4] = keyObject.accidentals[1][4] === 1 ? 0 : 1;
+      keyObject.accidentals[1][7] = keyObject.accidentals[1][7] === 1 ? 0 : 1; 
     }
   }
 

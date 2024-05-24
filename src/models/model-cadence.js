@@ -2,6 +2,10 @@ import ModelHelper from '../model-helper.js';
 
 function _getKeyObject(change) {
   switch (change) {
+    case 'Ab':
+      return { key: 'Ab', t: -2, accidentals: [[0, -1, 0, 0], [-1, -1, 0, -1], [0, -1, -1, -1]] };  
+    case 'Fm':
+      return { key: 'Fm', t: 3, accidentals: [[-1, 0, 0, -1], [0, 0, '=', 0], [-1, -1, 0, 0]] };
     case 'Eb':
       return { key: 'Eb', t: 2, accidentals: [[0, 0, 0, 0], [-1, -1, 0, -1], [0, -1, -1, -1]] };  
     case 'Cm':

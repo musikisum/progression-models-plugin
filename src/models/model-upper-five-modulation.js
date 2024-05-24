@@ -3,33 +3,32 @@ import ModelHelper from '../model-helper.js';
 function _getKeyObject(change) {
   switch (change) {      
     case 'Dm':
-      return { key: 'Dm', t: 1, accidentals: [[-1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] };
+      return { key: 'Dm', t: 1, accidentals: [[0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] };
     case 'G':
-      return { key: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] };
+      return { key: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 1], [0, 1, 0, 0, 1, 0], [0, 0, 1, 0, 0, 0]] };
     case 'Gm':
-      return { key: 'Gm', t: -3, accidentals: [[-1, 0, 0, 0, 0, -1], [0, 1, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] };
+      return { key: 'Gm', t: -3, accidentals: [[-1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] };
     case 'Am':
       return { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 0], [0, 0, 0, 1, 0, 0]] };
     default:
-      return { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] };
+      return { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] };
   }
 }
 
-const getOptions = (change) => {
+const getOptions = change => {
   return {
-    key: change || 'C',  
+    key: change || 'C',
     voicesLength: 6,
     measure: [' | ', ' ', ' | ', ' ', ' | ', ' '],
-    transposeValues: [0, 0, -1],
+    transposeValues: [0, 0, 0],
     voiceArrangement: [1, 2, 3],
-    isFinal: false,
-    isBegin: false
+    changeMode: false
   }
 }
 
-const getVoices = (upperFifthModulationOptions) => {
+const getVoices = upperFifthModulationOptions => {
 
-    const voices = [[12, 11, 11, 10, 10, 9], [7, 6, 7, 7, 6, 7], [3, 3, 2, 1, 4, 0]];
+    const voices = [[9, 8, 8, 7, 7, 6], [4, 3, 4, 4, 3, 4], [0, 0, -1, -2, 1, -3]];
     const options = upperFifthModulationOptions || getOptions();
     const [v1, v2, v3] = options.transposeValues;
     const voiceArr = options.voiceArrangement;

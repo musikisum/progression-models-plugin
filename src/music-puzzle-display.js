@@ -15,23 +15,25 @@ import ParalelismusDiminished from './models/model-paralelismus-diminished.js';
 const { TextArea } = Input;
 
 const initialValue = () => {
-  // const co = Cadence.getDefaultOptions();
-  // const m1 = Cadence.getVoices(Cadence.getDefaultOptions('Cm'));
-  // const m2 = UpperFiveModulation.getVoices(UpperFiveModulation.getDefaultOptions('G'));
-  const test1 = CircleOfFifths.getDefaultOptions('E');
-  console.log(test1); 
-  const m3 = CircleOfFifths.getVoices();
-  const m4 = CircleOfFifthsLinear.getVoices();
-  // const test = LowerFiveModulation.getDefaultOptions('Dm');
-  // test.changeMode = true;
-  // const m6 = LowerFiveModulation.getVoices(test);
+  // const co = Cadence.getDefaultOptions('C');
+  // co.isFinal = true;
+  // const m1 = Cadence.getVoices(co);
+  // const m2do = UpperFiveModulation.getDefaultOptions('Dm');
+  // const m2 = UpperFiveModulation.getVoices(m2do);
+  // const test1 = CircleOfFifths.getDefaultOptions('C');
+  // test1.transposeValues = [1, 1, 0];
+  // const m3 = CircleOfFifths.getVoices(test1);
+  // const m4 = CircleOfFifthsLinear.getVoices();
+  const m6gdf = LowerFiveModulation.getDefaultOptions('Fm');
+  m6gdf.changeMode = true;
+  const m6 = LowerFiveModulation.getVoices(m6gdf);
   // const zick = ParalelismusDiminished.getDefaultOptions('C');
   // zick.numberOfSections = 2;
   // const m7 = ParalelismusDiminished.getVoices(zick);
   // const m8opt = Cadence.getDefaultOptions('F');
   // m8opt.transposeValues = [-1, -1, -1];
   // const m8 = Cadence.getVoices(m8opt);
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m3]);
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m6]);
   return output;
 };
 

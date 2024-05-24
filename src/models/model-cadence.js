@@ -37,7 +37,7 @@ function _getKeyObject(change) {
   }
 }
 
-const getOptions = (change) => {
+const getOptions = change => {
   return {
     key: change || 'C',
     voicesLength: 4,
@@ -46,10 +46,10 @@ const getOptions = (change) => {
     voiceArrangement: [1, 2, 3],
     isFinal: false,
     isBegin: false
-  }
-}
+  };
+};
 
-const getVoices = (cadenceOptions) => {
+const getVoices = cadenceOptions => {
   const voices = [[9, 8, 8, 9], [7, 7, 6, 7], [2, 3, 4, 0]];
   const options = cadenceOptions ?? getOptions();
   options.isFinal && (voices[0] = [9, 8, 8, 7]);
@@ -72,7 +72,7 @@ const getVoices = (cadenceOptions) => {
   } 
 
   return abcVoices;
-}
+};
 
 const getStaff = () => {
   return ['x | x x | x]', 'x | x x | x]', 'x | x x | x]'];

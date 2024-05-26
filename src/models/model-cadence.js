@@ -59,20 +59,20 @@ const getVoices = cadenceOptions => {
   options.isFinal && (voices[0] = [9, 8, 8, 7]);
   options.isBegin && (voices[2] = [0, 3, 4, 0]);
   const [v1, v2, v3] = options.transposeValues;
-  const voiceArr = options.voiceArrangement;
+  const voiceArr = options.voiceArrangement; // [2, 3, 1] => [1, 2, 0]
   const keyObject = _getKeyObject(options.key);
   
   const abcVoices = ['', '', ''];
-  for (let index = 0; index < options.voicesLength; index += 1) {
-    abcVoices[voiceArr[0]-1] += ModelHelper.getSign(keyObject.accidentals[0][index]);
-    abcVoices[voiceArr[0]-1] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[0][index] + keyObject.t));
-    abcVoices[voiceArr[0]-1] += options.measure[index];
-    abcVoices[voiceArr[1]-1] += ModelHelper.getSign(keyObject.accidentals[1][index]);
-    abcVoices[voiceArr[1]-1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[1][index] + keyObject.t));
-    abcVoices[voiceArr[1]-1] += options.measure[index];    
-    abcVoices[voiceArr[2]-1] += ModelHelper.getSign(keyObject.accidentals[2][index]);
-    abcVoices[voiceArr[2]-1] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[2][index] + keyObject.t));
-    abcVoices[voiceArr[2]-1] += options.measure[index];  
+  for (let index = 0; index < options.voicesLength; index += 1) { 
+    abcVoices[0] += ModelHelper.getSign(keyObject.accidentals[0][index]);
+    abcVoices[0] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[voiceArr[0] - 1][index] + keyObject.t));
+    abcVoices[0] += options.measure[index];
+    abcVoices[1] += ModelHelper.getSign(keyObject.accidentals[1][index]);
+    abcVoices[1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[voiceArr[1] - 1][index] + keyObject.t));
+    abcVoices[1] += options.measure[index];    
+    abcVoices[2] += ModelHelper.getSign(keyObject.accidentals[2][index]);
+    abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[voiceArr[2] - 1][index] + keyObject.t));
+    abcVoices[2] += options.measure[index];  
   } 
 
   return abcVoices;

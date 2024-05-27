@@ -12,6 +12,8 @@ import { swapItemsAt, removeItemAt, ensureIsExcluded, moveItem } from '@educandu
 
 import Cadence from './models/model-cadence.js';
 import ModelComposition from './model-composition.js'; 
+import CircleOfFifthsLinear from './models/model-circle-of-fifths-linear.js';
+import CircleOfFifths from './models/model-circle-of-fifths.js';
 
 export default function MusicPuzzleEditor({ content, onContentChanged }) {
 
@@ -31,26 +33,26 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   };
 
   const [changedVoices, setChangedVoices] = useState();
-  const [abcResult, setAbcResult] = useState(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices()]));
+  const [abcResult, setAbcResult] = useState(ModelComposition.abcOutput('C', 'C', 120, '1/2', [CircleOfFifths.getVoices()]));
 
   useEffect(() => {
-    const opt = Cadence.getDefaultOptions();
-    const [v1, v2, v3] = opt.transposeValues;
+    const opt = CircleOfFifths.getDefaultOptions();
+    const [upper, middle, lower] = opt.transposeValues;
     const voiceArrangement = voiceDraggers.reduce((akku, vd) => {
       const result = akku + vd.voiceIndex.toString();
       return result;
     }, '');
     const mapObj = {
-      '012': [v1, v2, v3],
-      '102': [v1, v2 - 1, v3],
-      '021': [v1, v2, v3],
-      '120': [v1, v2, v3],
-      '201': [v1 + 1, v2 - 1, v3],
-      '210': [v1 + 1, v2, v3]
+      '012': [upper, middle, lower],
+      '102': [upper, middle - 1, lower],
+      '021': [upper, middle, lower],
+      '120': [upper, middle, lower - 1],
+      '201': [upper + 1, middle - 1, lower],
+      '210': [upper + 1, middle, lower]
     };
     opt.transposeValues = mapObj[voiceArrangement];
     opt.voiceArrangement = [voiceDraggers[0].voiceIndex + 1, voiceDraggers[1].voiceIndex + 1, voiceDraggers[2].voiceIndex + 1];
-    setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
+    setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [CircleOfFifths.getVoices(opt)]));
   }, [voiceDraggers]);
 
   return (

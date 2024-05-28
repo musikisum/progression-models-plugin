@@ -1,8 +1,72 @@
 .EP_Educandu_Example_Display {}
 
-.EP_Educandu_Example_Display-time {
-  font-style: italic;
-  margin-top: @edu-page-content-padding;
-}
+.EP_Educandu_Example_Editor {
 
-.EP_Educandu_Example_Editor {}
+  .container {
+    padding: 20px;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: -8px; /* Negative margin for gutters */
+  }
+
+  .col {
+    padding: 8px; /* Padding for gutters */
+    box-sizing: border-box;
+  }
+
+  .left {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    width: 50%;
+  }
+  
+  .col-3 {
+    flex: 1;
+  }
+  
+  .col-6 {
+    flex: 2;
+  }
+
+  .right {
+    width: 50%; /* Adjust the width to prevent stretching */
+  }
+
+  /* Mobile view */
+  @media (max-width: 768px) {
+    .left, .right {
+      width: 100%; /* Take full width on small screens */
+    }
+
+    .left .col-3, .left .col-6 {
+      width: 100%; /* Ensure columns stack vertically on small screens */
+    }
+  }
+
+  .box {
+    padding: 20px;
+    text-align: center;
+    color: white;
+  }
+
+  .red {
+    background-color: #ff4d4f;
+  }
+
+  .blue {
+    background-color: #40a9ff;
+  }
+
+  .green {
+    background-color: #73d13d;
+  }
+
+  .orange {
+    background-color: #ffa940;
+  }
+}

@@ -1,6 +1,6 @@
 import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
-import { Form, Button, Dropdown, Space } from 'antd';
+import { Form, Button, Dropdown, Space, Radio, Switch } from 'antd';
 import VoiceSwitch from './components/voice-switch.js';
 import { keys, getVoiceDraggers } from './music-puzzle-editor-defaults.js';
 import React, { useState, useEffect, useId } from 'react';
@@ -20,6 +20,13 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   const [voiceDraggers, setvoiceDraggers] = useState(getVoiceDraggers('Stimme')) ;
 
   const [key, setKey] = useState('C');
+  const [radioValue, setRadioValue] = useState(0);
+  const [checked, setChecked] = useState(true);
+
+  const toggleChecked = () => {
+    setChecked(!checked);
+  };
+
   const menuProps = {
     keys,
     onClick: event => setKey(event.key)
@@ -55,6 +62,11 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
   }, [voiceDraggers]);
 
+  const onRadioChange = (e) => {
+    console.log('radio checked', e.target.value);
+    setRadioValue(e.target.value);
+  };
+
   return (
     <div className="EP_Educandu_Example_Editor">
       <Form labelAlign="left" style={{ width: '100%' }}>
@@ -65,8 +77,26 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
             </Dropdown>
           </div>
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-            <Button style={{ width: 'fit-content' }}><ArrowUpOutlined /></Button>
-            <Button style={{ width: 'fit-content' }}><ArrowDownOutlined /></Button>
+            <Space direction="vertical">
+              <Button type="primary" size="small" onClick={toggleChecked}>
+                {checked ? 'Violinschlüssel' : 'Bassschlüssel'}
+              </Button>  
+              <Button type="primary" size="small" onClick={toggleChecked}>
+                {checked ? 'Violinschlüssel' : 'Bassschlüssel'}
+              </Button>
+              <Button type="primary" size="small" onClick={toggleChecked}>
+                {checked ? 'Violinschlüssel' : 'Bassschlüssel'}
+              </Button>  
+            </Space>
+          </div>
+          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+            <Radio.Group onChange={onRadioChange} value={radioValue}>
+              <Space direction="vertical">
+                <Radio value={0}>Stimme 1</Radio>
+                <Radio value={1}>Stimme 2</Radio>
+                <Radio value={2}>Stimme 3</Radio>
+              </Space>
+            </Radio.Group>
           </div>
           <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
             <Button style={{ width: 'fit-content' }}><ArrowUpOutlined /></Button>

@@ -36,7 +36,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   const [abcResult, setAbcResult] = useState(ModelComposition.abcOutput('C', 'C', 120, '1/2', [CircleOfFifths.getVoices()]));
 
   useEffect(() => {
-    const opt = CircleOfFifths.getDefaultOptions();
+    const opt = Cadence.getDefaultOptions();
     const [upper, middle, lower] = opt.transposeValues;
     const voiceArrangement = voiceDraggers.reduce((akku, vd) => {
       const result = akku + vd.voiceIndex.toString();
@@ -52,7 +52,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     };
     opt.transposeValues = mapObj[voiceArrangement];
     opt.voiceArrangement = [voiceDraggers[0].voiceIndex + 1, voiceDraggers[1].voiceIndex + 1, voiceDraggers[2].voiceIndex + 1];
-    setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [CircleOfFifths.getVoices(opt)]));
+    setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
   }, [voiceDraggers]);
 
   return (

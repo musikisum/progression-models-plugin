@@ -15,12 +15,11 @@ import ParalelismusDiminished from './models/model-paralelismus-diminished.js';
 const { TextArea } = Input;
 
 const initialValue = () => {
-  // const co = Cadence.getDefaultOptions('C');
-  // co.isFinal = true;
-  // const m1 = Cadence.getVoices(co);
+  const co = Cadence.getDefaultOptions('G');
+  co.transposeValues = [-1, -1, -2];
+  co.isFinal = true;
+  const m1 = Cadence.getVoices(co);
   const m2do = UpperFiveModulation.getDefaultOptions();
-  m2do.voiceArrangement = [2, 1, 3];
-  m2do.transposeValues = [-1, 0, 0];
   const m2 = UpperFiveModulation.getVoices(m2do);
   const test1 = CircleOfFifths.getDefaultOptions('C');
   const m3 = CircleOfFifths.getVoices(test1);
@@ -34,7 +33,7 @@ const initialValue = () => {
   // const m8opt = Cadence.getDefaultOptions('F');
   // m8opt.transposeValues = [-1, -1, -1];
   // const m8 = Cadence.getVoices(m8opt);
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m2]);
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m2, m1]);
   return output;
 };
 

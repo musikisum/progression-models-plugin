@@ -46,50 +46,48 @@ const getOptions = change => {
     key: change || 'C',
     voicesLength: 6,
     measure: [' | ', ' ', ' | ', ' ', ' | ', ' '],
-    transposeValues: [0, 0, 0],
+    transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     changeMode: false
-  }
-}
+  };
+};
 
 const getVoices = upperFifthModulationOptions => {
 
-    const voices = [[9, 8, 8, 7, 7, 6], [4, 3, 4, 4, 3, 4], [0, 0, -1, -2, 1, -3]];
-    const options = upperFifthModulationOptions || getOptions();
-    const [v1, v2, v3] = options.transposeValues;
-    const voiceArr = options.voiceArrangement;
-    const keyObject = _getKeyObject(options.key);
+  const voices = [[9, 8, 8, 7, 7, 6], [4, 3, 4, 4, 3, 4], [0, 0, -1, -2, 1, -3]];
+  const options = upperFifthModulationOptions || getOptions();
+  const [v1, v2, v3] = options.transposeValues;
+  const voiceArr = options.voiceArrangement;
+  const keyObject = _getKeyObject(options.key);
 
-    const abcVoices = ['', '', ''];
-    for (let index = 0; index < options.voicesLength; index += 1) {
-      abcVoices[voiceArr[0]-1] += ModelHelper.getSign(keyObject.accidentals[0][index]);
-      abcVoices[voiceArr[0]-1] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[0][index] + keyObject.t));
-      abcVoices[voiceArr[0]-1] += options.measure[index];
-
-      abcVoices[voiceArr[1]-1] += ModelHelper.getSign(keyObject.accidentals[1][index]);
-      abcVoices[voiceArr[1]-1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[1][index] + keyObject.t));
-      abcVoices[voiceArr[1]-1] += options.measure[index];
-      
-      abcVoices[voiceArr[2]-1] += ModelHelper.getSign(keyObject.accidentals[2][index]);
-      abcVoices[voiceArr[2]-1] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[2][index] + keyObject.t));
-      abcVoices[voiceArr[2]-1] += options.measure[index];  
-    }
-    return abcVoices;
+  const abcVoices = ['', '', ''];
+  for (let index = 0; index < options.voicesLength; index += 1) {
+    abcVoices[0] += ModelHelper.getSign(keyObject.accidentals[voiceArr[0] - 1][index]);
+    abcVoices[0] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[voiceArr[0] - 1][index] + keyObject.t));
+    abcVoices[0] += options.measure[index];
+    abcVoices[1] += ModelHelper.getSign(keyObject.accidentals[voiceArr[1] - 1][index]);
+    abcVoices[1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[voiceArr[1] - 1][index] + keyObject.t));
+    abcVoices[1] += options.measure[index];    
+    abcVoices[2] += ModelHelper.getSign(keyObject.accidentals[voiceArr[2] - 1][index]);
+    abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[voiceArr[2] - 1][index] + keyObject.t));
+    abcVoices[2] += options.measure[index];  
   }
+  return abcVoices;
+};
 
-  const getStaff = () => {
-    return ['x | x x | x x | x', 'x | x x | x x | x', 'x | x x | x x | x '];
-  }
+const getStaff = () => {
+  return ['x | x x | x x | x', 'x | x x | x x | x', 'x | x x | x x | x '];
+};
 
-  const getExample = () => {
-    return ['', '', '']; 
-  }
+const getExample = () => {
+  return ['', '', '']; 
+};
 
-  const UpperFiveModulation = {
-    getDefaultOptions: getOptions,
-    getVoices: getVoices,
-    getEmptyStaff: getStaff,
-    getMusicWxample: getExample
-  }
-  
-  export default UpperFiveModulation;
+const UpperFiveModulation = {
+  getDefaultOptions: getOptions,
+  getVoices,
+  getEmptyStaff: getStaff,
+  getMusicWxample: getExample
+};
+
+export default UpperFiveModulation;

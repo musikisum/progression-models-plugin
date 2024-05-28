@@ -63,13 +63,13 @@ const getVoices = fifthsCircleLinearOptions => {
 
   const abcVoices = ['', '', ''];
   for (let index = 0; index < options.voicesLength; index += 1) {
-    abcVoices[0] += ModelHelper.getSign(keyObject.accidentals[0][index]);
+    abcVoices[0] += ModelHelper.getSign(keyObject.accidentals[voiceArr[0] - 1][index]);
     abcVoices[0] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[voiceArr[0] - 1][index] + keyObject.t));
     abcVoices[0] += options.measure[index];
-    abcVoices[1] += ModelHelper.getSign(keyObject.accidentals[1][index]);
+    abcVoices[1] += ModelHelper.getSign(keyObject.accidentals[voiceArr[1] - 1][index]);
     abcVoices[1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[voiceArr[1] - 1][index] + keyObject.t));
     abcVoices[1] += options.measure[index];
-    abcVoices[2] += ModelHelper.getSign(keyObject.accidentals[2][index]);
+    abcVoices[2] += ModelHelper.getSign(keyObject.accidentals[voiceArr[2] - 1][index]);
     abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[voiceArr[2] - 1][index] + keyObject.t));
     abcVoices[2] += options.measure[index];  
   }

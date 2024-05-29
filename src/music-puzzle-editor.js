@@ -17,7 +17,10 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
 
   const [key, setKey] = useState('C');
   const [radioValue, setRadioValue] = useState(0);
+  const [modelOptions, setModelOptions] = useState(Cadence.getDefaultOptions);
   const [checked, setChecked] = useState([true, true, false]);
+  const [changedVoices, setChangedVoices] = useState();
+  const [abcResult, setAbcResult] = useState(ModelComposition.abcOutput('C', 'C', 120, '1/2', [CircleOfFifths.getVoices()]));
 
   const toggleChecked = (index) => {
     setChecked(prevState => {
@@ -28,7 +31,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   };
 
   const menuProps = {
-    keys,
+    items: keys,
     onClick: event => setKey(event.key)
   };
 
@@ -39,8 +42,17 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     onContentChanged({ ...content, ...newContentValues });
   };
 
-  const [changedVoices, setChangedVoices] = useState();
-  const [abcResult, setAbcResult] = useState(ModelComposition.abcOutput('C', 'C', 120, '1/2', [CircleOfFifths.getVoices()]));
+  const onArrowButtonClick = (e, direction) => {
+    const opt = { ...modelOptions };
+    const voice = radioValue;
+    if(direction === 'up') {
+      opt.transposeValues[voice] += 1;
+    } else {
+      opt.transposeValues[voice] -= 1;
+    }
+    setModelOptions(opt);
+    setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
+  };
 
   useEffect(() => {
     const opt = Cadence.getDefaultOptions();
@@ -59,10 +71,11 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     };
     opt.transposeValues = mapObj[voiceArrangement];
     opt.voiceArrangement = [voiceDraggers[0].voiceIndex + 1, voiceDraggers[1].voiceIndex + 1, voiceDraggers[2].voiceIndex + 1];
+    setModelOptions(opt);
     setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
   }, [voiceDraggers]);
 
-  const onRadioChange = (e) => {
+  const onRadioChange = (e) => {    
     setRadioValue(e.target.value);
   };
 
@@ -75,14 +88,14 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
             <div className="col left">
               <div className="row">
                 <div className="box col col-3 red">
-                  <Dropdown menu={{ menuProps, }} placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
+                  <Dropdown menu={menuProps} placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
                     <Button>{key}</Button>
                   </Dropdown>
                 </div>
                 <div className="col col-6 blue">
                   <div className="box">
-                    <Button style={{ width: 'fit-content' }}><ArrowUpOutlined /></Button>
-                    <Button style={{ width: 'fit-content' }}><ArrowDownOutlined /></Button>
+                    <Button style={{ width: 'fit-content' }} onClick={(e) => onArrowButtonClick(e, 'up')}><ArrowUpOutlined /></Button>
+                    <Button style={{ width: 'fit-content' }} onClick={onArrowButtonClick}><ArrowDownOutlined /></Button>
                   </div>
                   <div className="box">
                     <Radio.Group onChange={onRadioChange} value={radioValue}>
@@ -112,50 +125,6 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
         </div>
       </Form>
     </div>
-
-    // <div className="EP_Educandu_Example_Editor">
-    //   <Form labelAlign="left" style={{ width: '100%' }}>
-    //     <div style={{ display: 'flex', width: '100% !important' }}>
-    //       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-    //         <Dropdown menu={menuProps} placement="bottomLeft">
-    //           <Button>{key}</Button>
-    //         </Dropdown>
-    //       </div>
-    //       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-    //         <Space direction="vertical">
-    //           <Button type="primary" size="small" onClick={toggleChecked}>
-    //             {checked ? 'Violinschlüssel' : 'Bassschlüssel'}
-    //           </Button>  
-    //           <Button type="primary" size="small" onClick={toggleChecked}>
-    //             {checked ? 'Violinschlüssel' : 'Bassschlüssel'}
-    //           </Button>
-    //           <Button type="primary" size="small" onClick={toggleChecked}>
-    //             {checked ? 'Violinschlüssel' : 'Bassschlüssel'}
-    //           </Button>  
-    //         </Space>
-    //       </div>
-    //       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-    //         <Radio.Group onChange={onRadioChange} value={radioValue}>
-    //           <Space direction="vertical">
-    //             <Radio value={0}>Stimme 1</Radio>
-    //             <Radio value={1}>Stimme 2</Radio>
-    //             <Radio value={2}>Stimme 3</Radio>
-    //           </Space>
-    //         </Radio.Group>
-    //       </div>
-    //       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-    //         <Button style={{ width: 'fit-content' }}><ArrowUpOutlined /></Button>
-    //         <Button style={{ width: 'fit-content' }}><ArrowDownOutlined /></Button>
-    //       </div>
-    //       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-    //         <VoiceSwitch switchButtons={voiceDraggers} setSwitchButtons={setvoiceDraggers} />
-    //       </div>
-    //       <div style={{ flexGrow: 4 }}>
-    //         { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
-    //       </div>
-    //     </div>
-    //   </Form>
-    // </div>
   );
 }
 

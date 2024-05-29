@@ -22,7 +22,6 @@ function ItemPanel({
 
 ItemPanel.propTypes = {
   canDeleteLastItem: PropTypes.bool,
-  children: PropTypes.node.isRequired,
   header: PropTypes.string,
   index: PropTypes.number,
   dragHandleProps: PropTypes.object,
@@ -38,7 +37,6 @@ ItemPanel.propTypes = {
 
 ItemPanel.defaultProps = {
   canDeleteLastItem: false,
-  extraActionButtons: [],
   header: '',
   index: 0,
   dragHandleProps: null,

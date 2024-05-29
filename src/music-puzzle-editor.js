@@ -1,18 +1,14 @@
 import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
-import { Form, Button, Dropdown, Space, Radio, Switch, Row, Col } from 'antd';
+import { Form, Button, Dropdown, Space, Radio } from 'antd';
 import VoiceSwitch from './components/voice-switch.js';
 import { keys, getVoiceDraggers } from './music-puzzle-editor-defaults.js';
-import React, { useState, useEffect, useId } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
-import { FORM_ITEM_LAYOUT } from '@educandu/educandu/domain/constants.js';
-import MarkdownInput from '@educandu/educandu/components/markdown-input.js';
 import { sectionEditorProps } from '@educandu/educandu/ui/default-prop-types.js';
-import { swapItemsAt, removeItemAt, ensureIsExcluded, moveItem } from '@educandu/educandu/utils/array-utils.js';
 
 import Cadence from './models/model-cadence.js';
 import ModelComposition from './model-composition.js'; 
-import CircleOfFifthsLinear from './models/model-circle-of-fifths-linear.js';
 import CircleOfFifths from './models/model-circle-of-fifths.js';
 
 export default function MusicPuzzleEditor({ content, onContentChanged }) {
@@ -78,30 +74,17 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
             {/* Linke Hälfte: Container mit drei Spalten */}
             <div className="col left">
               <div className="row">
-                <div className="col col-3">
-                    <div className="box red">
-                      <Dropdown menu={menuProps} placement="bottomLeft">
-                        <Button>{key}</Button>
-                      </Dropdown>  
-                    </div>
+                <div className="box col col-3 red">
+                  <Dropdown menu={{ menuProps, }} placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
+                    <Button>{key}</Button>
+                  </Dropdown>
                 </div>
-                <div className="col col-6">
-                  <div className="box blue">
-                    <Space direction="vertical">
-                     <Button type="primary" size="small" onClick={() => toggleChecked(0)}>
-                      {checked[0] ? 'Violinschlüssel' : 'Bassschlüssel'}
-                     </Button>  
-                     <Button type="primary" size="small" onClick={() => toggleChecked(1)}>
-                      {checked[1] ? 'Violinschlüssel' : 'Bassschlüssel'}
-                     </Button>
-                     <Button type="primary" size="small" onClick={() => toggleChecked(2)}>
-                      {checked[2] ? 'Violinschlüssel' : 'Bassschlüssel'}
-                     </Button>  
-                    </Space>
+                <div className="col col-6 blue">
+                  <div className="box">
+                    <Button style={{ width: 'fit-content' }}><ArrowUpOutlined /></Button>
+                    <Button style={{ width: 'fit-content' }}><ArrowDownOutlined /></Button>
                   </div>
-                </div>
-                <div className="col col-3">
-                  <div className="box green">
+                  <div className="box">
                     <Radio.Group onChange={onRadioChange} value={radioValue}>
                       <Space direction="vertical">
                         <Radio value={0}>Stimme 1</Radio>
@@ -109,6 +92,12 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
                         <Radio value={2}>Stimme 3</Radio>
                       </Space>
                     </Radio.Group>
+                  </div>
+                  {/*  */}
+                </div>
+                <div className="col col-3 green">
+                  <div className='box'>
+                    <VoiceSwitch switchButtons={voiceDraggers} setSwitchButtons={setvoiceDraggers} />
                   </div>
                 </div>
               </div>
@@ -120,9 +109,9 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
               </div>
             </div>
           </div>
-      </div>
-    </Form>
-  </div>
+        </div>
+      </Form>
+    </div>
 
     // <div className="EP_Educandu_Example_Editor">
     //   <Form labelAlign="left" style={{ width: '100%' }}>

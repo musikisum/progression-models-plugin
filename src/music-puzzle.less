@@ -16,6 +16,9 @@
   .col {
     padding: 8px; /* Padding for gutters */
     box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
   }
 
   .left {
@@ -30,11 +33,13 @@
   }
   
   .col-6 {
+
     flex: 2;
   }
 
   .right {
     width: 50%; /* Adjust the width to prevent stretching */
+    padding: 0;
   }
 
   /* Mobile view */
@@ -68,5 +73,6 @@
 
   .orange {
     background-color: #ffa940;
+    width: 100%;
   }
 }

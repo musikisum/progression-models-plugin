@@ -55,7 +55,15 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   };
 
   useEffect(() => {
-    const opt = Cadence.getDefaultOptions();
+    const opt = { ...modelOptions};
+    opt.key = key;
+    setModelOptions(opt);
+    setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+
+  useEffect(() => {
+    const opt = { ...modelOptions };
     const [upper, middle, lower] = opt.transposeValues;
     const voiceArrangement = voiceDraggers.reduce((akku, vd) => {
       const result = akku + vd.voiceIndex.toString();
@@ -117,7 +125,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
             </div>
             {/* Rechte Hälfte: ABC-Anzeige */}
             <div className="col right">
-              <div className="box orange">
+              <div className="box .w100">
                 { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
               </div>
             </div>

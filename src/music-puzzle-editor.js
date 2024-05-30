@@ -95,17 +95,18 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
             {/* Linke Hälfte: Container mit drei Spalten */}
             <div className="col left">
               <div className="row">
-                <div className="box col col-3 red">
+                <div className="col">
                   <Dropdown menu={menuProps} placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
                     <Button>{key}</Button>
                   </Dropdown>
+                  <div>Tonart</div>
                 </div>
-                <div className="col col-6 blue">
-                  <div className="box">
+                <div className="col">
+                  <div>
                     <Button style={{ width: 'fit-content' }} onClick={(e) => onArrowButtonClick(e, 'up')}><ArrowUpOutlined /></Button>
                     <Button style={{ width: 'fit-content' }} onClick={onArrowButtonClick}><ArrowDownOutlined /></Button>
                   </div>
-                  <div className="box">
+                  <div className="col">
                     <Radio.Group onChange={onRadioChange} value={radioValue}>
                       <Space direction="vertical">
                         <Radio value={0}>Stimme 1</Radio>
@@ -116,10 +117,8 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
                   </div>
                   {/*  */}
                 </div>
-                <div className="col col-3 green">
-                  <div className='box'>
-                    <VoiceSwitch switchButtons={voiceDraggers} setSwitchButtons={setvoiceDraggers} />
-                  </div>
+                <div className="col">
+                  <VoiceSwitch switchButtons={voiceDraggers} setSwitchButtons={setvoiceDraggers} />
                 </div>
               </div>
             </div>

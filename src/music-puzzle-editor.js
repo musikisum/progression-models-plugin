@@ -93,15 +93,20 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
         <div className='container'>
           <div className="left">
             <div className='innerContainer'>
-              <div className='item'>
+              <div className='item-1'>
+                <div className='label'>Tonart</div>
                 <Dropdown menu={menuProps} placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
-                  <Button>{key}</Button>
+                  <div className='buttons'>
+                    <Button>{key}</Button>
+                  </div>
                 </Dropdown>
-                <div>Tonart</div>
               </div>
-              <div className='item'>
-                <Button style={{ width: 'fit-content' }} onClick={(e) => onArrowButtonClick(e, 'up')}><ArrowUpOutlined /></Button>
-                <Button style={{ width: 'fit-content' }} onClick={onArrowButtonClick}><ArrowDownOutlined /></Button>
+              <div className='item-2'>
+              <div className='label'>Transposition (8)</div>
+                <div className='buttons'>
+                  <Button className='button' onClick={(e) => onArrowButtonClick(e, 'up')}><ArrowUpOutlined /></Button>
+                  <Button className='button' onClick={onArrowButtonClick}><ArrowDownOutlined /></Button>
+                </div>
                 <Radio.Group onChange={onRadioChange} value={radioValue}>
                   <Space direction="vertical">
                     <Radio value={0}>Stimme 1</Radio>
@@ -110,8 +115,9 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
                   </Space>
                 </Radio.Group>
               </div>
-              <div className='item'>
-                <VoiceSwitch switchButtons={voiceDraggers} setSwitchButtons={setvoiceDraggers} />
+              <div className='item-3'>
+                <div className='label'>Stimmtausch</div>
+                <VoiceSwitch style={{ margin: '16px 0' }} switchButtons={voiceDraggers} setSwitchButtons={setvoiceDraggers} />
               </div>
             </div>
           </div>

@@ -4,50 +4,42 @@
 
   .container {
     padding: 20px;
-  }
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-around;
-    background-color: #f7f7f7;
-  }
-  .col {
     box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
+    width: 100%;
+    display: flex; 
+    justify-content: space-between;
   }
   .left {
-    width: 48%;
-    flex: 1 1 auto;
-    border: 1px solid gray;
-    border-radius: '6px';
+    flex: 0 1 49%; 
+    border: 1px gray solid; 
+    border-radius: 12px; 
+    padding: 20px;
   }
   .right {
-    width: 48%;
-    padding: 0;
-    border: 1px solid gray;
-    border-radius: '6px';
+    flex: 0 1 49%; 
+    border: 1px gray solid; 
+    border-radius: 12px; 
+    padding: 20px;
   }
-  .left + .right {
-    margin-left: 1%;
+  .innerContainer {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex; 
+    justify-content: space-between;
+  }
+  .item {
+    flex: 0 0 30%;
+    border: 1px gray solid; 
+    border-radius: 12px;
   }
 
   /* Mobile view */
   @media (max-width: 768px) {
-    .left, .right {
-      width: 100%; /* Take full width on small screens */
+    .container {
+      display: block;
     }
-    .left .left {
-      width: 100%; /* Ensure columns stack vertically on small screens */
+    .right {
+      margin-top: 2%;
     }
-  }
-
-  .box {
-    padding: 20px;
-    text-align: center;
-  }
-  .w100 {
-    width: 100%;
   }
 }

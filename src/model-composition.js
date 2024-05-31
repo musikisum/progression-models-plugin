@@ -7,7 +7,7 @@ function splitAtVerticalBarIndex(voice, barIndex) {
   for (let i = 0; i < parts.length; i += barIndex) {
     chunks.push(parts.slice(i, i + barIndex).join(' | '));
   }
-  return chunks.join(" |\n") + " |";
+  return `${chunks.join(' |\n')  } |`;
 }
 
 // creates an array with playable abc.js strings from arrays with model voices 

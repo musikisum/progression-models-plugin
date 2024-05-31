@@ -90,43 +90,34 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   return (
     <div className="EP_Educandu_Example_Editor">
       <Form labelAlign="left" style={{ width: '100%' }}>
-        <div className="container">
-          <div className="row">
-            {/* Linke Hälfte: Container mit drei Spalten */}
-            <div className="col left">
-              <div className="row">
-                <div className="col">
-                  <Dropdown menu={menuProps} placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
-                    <Button>{key}</Button>
-                  </Dropdown>
-                  <div>Tonart</div>
-                </div>
-                <div className="col">
-                  <div>
-                    <Button style={{ width: 'fit-content' }} onClick={(e) => onArrowButtonClick(e, 'up')}><ArrowUpOutlined /></Button>
-                    <Button style={{ width: 'fit-content' }} onClick={onArrowButtonClick}><ArrowDownOutlined /></Button>
-                  </div>
-                  <div className="col">
-                    <Radio.Group onChange={onRadioChange} value={radioValue}>
-                      <Space direction="vertical">
-                        <Radio value={0}>Stimme 1</Radio>
-                        <Radio value={1}>Stimme 2</Radio>
-                        <Radio value={2}>Stimme 3</Radio>
-                      </Space>
-                    </Radio.Group>
-                  </div>
-                  {/*  */}
-                </div>
-                <div className="col">
-                  <VoiceSwitch switchButtons={voiceDraggers} setSwitchButtons={setvoiceDraggers} />
-                </div>
+        <div className='container'>
+          <div className="left">
+            <div className='innerContainer'>
+              <div className='item'>
+                <Dropdown menu={menuProps} placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
+                  <Button>{key}</Button>
+                </Dropdown>
+                <div>Tonart</div>
+              </div>
+              <div className='item'>
+                <Button style={{ width: 'fit-content' }} onClick={(e) => onArrowButtonClick(e, 'up')}><ArrowUpOutlined /></Button>
+                <Button style={{ width: 'fit-content' }} onClick={onArrowButtonClick}><ArrowDownOutlined /></Button>
+                <Radio.Group onChange={onRadioChange} value={radioValue}>
+                  <Space direction="vertical">
+                    <Radio value={0}>Stimme 1</Radio>
+                    <Radio value={1}>Stimme 2</Radio>
+                    <Radio value={2}>Stimme 3</Radio>
+                  </Space>
+                </Radio.Group>
+              </div>
+              <div className='item'>
+                <VoiceSwitch switchButtons={voiceDraggers} setSwitchButtons={setvoiceDraggers} />
               </div>
             </div>
-            {/* Rechte Hälfte: ABC-Anzeige */}
-            <div className="col right">
-              <div className="box .w100">
-                { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
-              </div>
+          </div>
+          <div className="right">
+            <div>
+              { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
             </div>
           </div>
         </div>

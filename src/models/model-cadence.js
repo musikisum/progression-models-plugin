@@ -59,7 +59,7 @@ const getVoices = cadenceOptions => {
   options.isFinal && (voices[0] = [9, 8, 8, 7]);
   options.isBegin && (voices[2] = [0, 3, 4, 0]);
   const [v1, v2, v3] = options.transposeValues;
-  const voiceArr = options.voiceArrangement; // [2, 3, 1] => [1, 2, 0]
+  const voiceArr = options.voiceArrangement;
   const keyObject = _getKeyObject(options.key);
   
   const abcVoices = ['', '', ''];

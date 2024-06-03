@@ -6,17 +6,18 @@ import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js'; 
 import CircleOfFifths from './models/model-circle-of-fifths.js'; 
 import Markdown from '@educandu/educandu/components/markdown.js';
-import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
+import FiveSixConsecutive from './models/model-five-six-consecutive.js';
 import UpperFiveModulation from './models/model-upper-five-modulation.js';
 import LowerFiveModulation from './models/model-lower-five-modulation.js';
 import CircleOfFifthsLinear from './models/model-circle-of-fifths-linear.js';
 import ParalelismusDiminished from './models/model-paralelismus-diminished.js';
+import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
 
 const { TextArea } = Input;
 
 const initialValue = () => {
-  const co = Cadence.getDefaultOptions('G');
-  co.transposeValues = [-1, -1, -2];
+  const co = Cadence.getDefaultOptions('Em');
+  co.transposeValues = [0, 0, -1];
   co.isFinal = true;
   const m1 = Cadence.getVoices(co);
   const m2do = UpperFiveModulation.getDefaultOptions();
@@ -33,7 +34,8 @@ const initialValue = () => {
   // const m8opt = Cadence.getDefaultOptions('F');
   // m8opt.transposeValues = [-1, -1, -1];
   // const m8 = Cadence.getVoices(m8opt);
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m2, m1]);
+  const m8 = FiveSixConsecutive.getVoices(FiveSixConsecutive.getDefaultOptions('Em')); 
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m8, m1]);
   return output;
 };
 

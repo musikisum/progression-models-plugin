@@ -2,6 +2,12 @@ import ModelHelper from '../model-helper.js';
 
 function _getKeyObject(change) {
   switch (change) {
+    case 'A':
+    case 'F#m':
+      return { key: 'A', t: -2, accidentals: [[0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1], [0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0], [1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1]] };  
+    case 'D':
+    case 'Bm':
+      return { key: 'D', t: 1, accidentals: [[0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1], [0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0], [1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0]] };  
     case 'G':
     case 'Em':
       return { key: 'G', t: 4, accidentals: [[0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0], [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]] };  
@@ -17,15 +23,17 @@ const getOptions = change => {
     measure: [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '],
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
-    partLength: 6
+    partLength: 6,
+    partToBegin: 1
   };
 };
 
-const getVoices = cadenceOptions => {
+const getVoices = modelOptions => {
   const voices = [[4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9], [1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7], [-1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5]];
-  const options = cadenceOptions ?? getOptions();
+  const options = modelOptions ?? getOptions();
   const [v1, v2, v3] = options.transposeValues;
-  const voiceArr = options.voiceArrangement; // [2, 3, 1] => [1, 2, 0]
+  options.voicesLength = options.partLength * 2; 
+  const voiceArr = options.voiceArrangement;
   const keyObject = _getKeyObject(options.key);
   
   const abcVoices = ['', '', ''];
@@ -41,6 +49,7 @@ const getVoices = cadenceOptions => {
     abcVoices[2] += options.measure[index];  
   } 
 
+  console.log(abcVoices);
   return abcVoices;
 };
 

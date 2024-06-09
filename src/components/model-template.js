@@ -13,12 +13,16 @@ import CircleOfFifths from '../models/model-circle-of-fifths.js';
 
 export default function ModelTemplate({ modelInfo }) {
 
+function name(model) {
+  return {
+    voiceArrangementIndices: [0, 1, 2],
+    key: 'C',
+  }
+}
+
   const content = modelInfo.content;
   const onContentChanged = modelInfo.onContentChanged;
 
-  const [voiceDraggers, setvoiceDraggers] = useState(getVoiceDraggers('Stimme')) ;
-
-  const [key, setKey] = useState('C');
   const [radioValue, setRadioValue] = useState(0);
   const [modelOptions, setModelOptions] = useState(Cadence.getDefaultOptions);
   const [checked, setChecked] = useState([true, true, false]);

@@ -31,7 +31,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   };
 
   const menuProps = {
-    items: keys,
+    items: keys, // Cadence.getModelKeys()
     onClick: event => setKey(event.key)
   };
 
@@ -97,7 +97,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
                 <div className='label'>Tonart</div>
                 <Dropdown menu={menuProps} placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
                   <div className='buttons'>
-                    <Button>{key}</Button>
+                    <Button>{key}</Button>                  
                   </div>
                 </Dropdown>
               </div>

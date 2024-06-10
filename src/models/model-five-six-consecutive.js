@@ -19,8 +19,6 @@ function getModelKeys() {
   return Object.keys(_keyObj);
 }
 
-const _providePartBegin = [0, 0, 2, 4, 6, 8, 10];
-
 const getOptions = change => {
   return {
     key: change || 'C',
@@ -57,7 +55,7 @@ const getVoices = modelOptions => {
   }
   // implement partlength & partToBegin
   const abcVoices = ['', '', ''];
-  const x = _providePartBegin[options.partToBegin];
+  const x = [0, 0, 2, 4, 6, 8, 10][options.partToBegin];
   const y = options.partLength * 2;
   if((12 - x) >= y) {
     abcVoices[0] = aVoice.slice(x, x + y);

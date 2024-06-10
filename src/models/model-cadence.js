@@ -48,7 +48,7 @@ const getVoices = cadenceOptions => {
   options.isBegin && (voices[2] = [0, 3, 4, 0]);
   const [v1, v2, v3] = options.transposeValues;
   const voiceArr = options.voiceArrangement;
-  const keyObject = _getKeyObject(options.key, _keyObj);
+  const keyObject = _getKeyObject(options.key);
   
   const abcVoices = ['', '', ''];
   for (let index = 0; index < voicesLength; index += 1) { 

@@ -1,4 +1,101 @@
 musikisum/educandu-plugin-music-puzzle:
   name:
-    en: Music Puzzle
-    de: Musik-Puzzle
+    en: Voice-Models
+    de: Satzmodelle
+  C:
+    en: C major (C)
+    de: C-Dur (C)
+  Am: 
+    en: A minor (Am)
+    de: a-Moll (Am)
+  G:
+    en: G major (G)
+    de: G-Dur (G)
+  Em:
+    en: E minor (Em)
+    de: e-Moll (Em)
+  D:
+    en: D major (D)
+    de: D-Dur (D)
+  Bm:
+    en: B minor (Bm)
+    de: h-Moll (Bm)
+  A:
+    en: A major (A)
+    de: A-Dur (A)
+  F#m:
+    en: F sharp minor (F#m)
+    de: fis-Moll (F#m)
+  E:
+    en: E major (E)
+    de: E-Dur (E)
+  C#m:
+    en: C sharp minor (C#m)
+    de: cis-Moll (C#m)
+  B:
+    en: B major (B)
+    de: H-Dur (B)
+  G#m: 
+    en: G sharp minor (G#m)
+    de: gis-Moll (G#m)
+  F#:
+    en: F sharp major (F#)
+    de: Fis-Dur (F#)
+  D#m:
+    en: D sharp minor (D#m)
+    de: dis-Moll (D#m)
+  F:
+    en: F major (F)
+    de: F-Dur (F)
+  Dm:
+    en: D minor (Dm)
+    de: d-Moll (Dm)
+  Bb:
+    en: B flat major (Bb)
+    de: B-Dur (Bb)
+  Gm:
+    en: G minor (Gm)
+    de: g-Moll (Gm)
+  Eb:
+    en: E flat major (Eb)
+    de: Es-Dur (Eb)
+  Cm:
+    en: C minor (Cm)
+    de: c-Moll (Cm)
+  Ab:
+    en: A flat major (Ab)
+    de: As-Dur (Ab)
+  Fm:
+    en: F minor (Fm)
+    de: f-Moll (Fm)
+  Db:
+    en: D flat (Db)
+    de: Des-Dur (Db)
+  Bbm:
+    en: B flat minor (Bbm)
+    de: b-Moll (Bbm)
+  Gb: 
+    en: G flat major (Gb)
+    de: Ges-Dur (Gb)
+  Ebm:
+    en: E flat minor (Ebm)
+    de: es-Moll (Ebm)
+  v1:
+    en: 1. voice
+    de: 1. Stimme
+  v2:
+    en: 2. voice
+    de: 2. Stimme
+  v3:
+    en: 3. voice
+    de: 3. Stimme
+  os:
+    en: upper voice
+    de: Oberstimme
+  ms: 
+    en: middle voice
+    de: Mittelstimme
+  us:
+    en: lower voice
+    de: Unterstimme
+    

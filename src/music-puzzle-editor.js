@@ -13,6 +13,9 @@ import CircleOfFifths from './models/model-circle-of-fifths.js';
 
 export default function MusicPuzzleEditor({ content, onContentChanged }) {
 
+  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { text } = content;
+
   const [voiceDraggers, setvoiceDraggers] = useState(getVoiceDraggers('Stimme')) ;
 
   const [key, setKey] = useState('C');
@@ -30,13 +33,20 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     });
   };
 
+  const modelKeys = Cadence.getModelKeys().reduce((akku, current) =>{
+    const obj = {};
+    obj.key = current;
+    obj.label = t(current);
+    akku.push(obj);
+    return akku;
+  }, []); 
+
   const menuProps = {
-    items: keys, // Cadence.getModelKeys()
+    items: modelKeys, // keys
     onClick: event => setKey(event.key)
   };
 
-  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
-  const { text } = content;
+
 
   const updateContent = newContentValues => {
     onContentChanged({ ...content, ...newContentValues });

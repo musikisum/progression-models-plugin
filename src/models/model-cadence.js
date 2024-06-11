@@ -19,7 +19,7 @@ const _keyObj = {
   'Cm': { key: 'Cm', t: 0, accidentals: [[-1, 0, 0, -1], [0, 0, '=', 0], [-1, 0, 0, 0]] },
   'Ab': { key: 'Ab', t: -2, accidentals: [[0, -1, 0, 0], [-1, -1, 0, -1], [0, -1, -1, -1]] },  
   'Fm': { key: 'Fm', t: 3, accidentals: [[-1, 0, 0, -1], [0, 0, '=', 0], [-1, -1, 0, 0]] }
-}
+};
 
 function _getKeyObject(change) {  
   return _keyObj[change ?? 'C'];
@@ -31,7 +31,7 @@ function getModelKeys() {
 
 const getOptions = change => {
   return {
-    key: change || 'C', //to delete, if dropdown
+    key: change,
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     isFinal: false,

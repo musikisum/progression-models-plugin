@@ -34,11 +34,9 @@ const initialValue = () => {
   // const m8opt = Cadence.getDefaultOptions('F');
   // m8opt.transposeValues = [-1, -1, -1];
   // const m8 = Cadence.getVoices(m8opt);
-  const m8Opt = FiveSixConsecutive.getDefaultOptions('C');
-  m8Opt.partLength = 6;
-  m8Opt.partToBegin = 4;
+  const m8Opt = FiveSixConsecutive.getDefaultOptions('Ab');
   const m8 = FiveSixConsecutive.getVoices(m8Opt); 
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m8, m1]);
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m8]);
   return output;
 };
 

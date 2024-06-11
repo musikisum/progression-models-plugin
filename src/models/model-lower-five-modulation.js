@@ -86,7 +86,7 @@ const LowerFiveModulation = {
   getVoices,
   getModelKeys,
   getEmptyStaff: getStaff,
-  getMusicWxample: getExample
+  getMusicExample: getExample
 };
   
 export default LowerFiveModulation;

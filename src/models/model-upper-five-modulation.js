@@ -33,8 +33,7 @@ const getOptions = change => {
   return {
     key: change || 'C',
     transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    changeMode: false
+    voiceArrangement: [1, 2, 3]
   };
 };
 
@@ -75,7 +74,7 @@ const UpperFiveModulation = {
   getVoices,
   getModelKeys,
   getEmptyStaff: getStaff,
-  getMusicWxample: getExample
+  getMusicExample: getExample
 };
 
 export default UpperFiveModulation;

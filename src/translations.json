@@ -108,17 +108,17 @@
       "en": "E flat minor (Ebm)",
       "de": "es-Moll (Ebm)"
     },
-    "vdl1": {
-      "en": "voice 1",
-      "de": "Stimme 1"
+    "v1": {
+      "en": "1. voice",
+      "de": "1. Stimme"
     },
-    "vdl2": {
-      "en": "voice 2",
-      "de": "Stimme 2"
+    "v2": {
+      "en": "2. voice",
+      "de": "2. Stimme"
     },
-    "vdl3": {
-      "en": "voice 3",
-      "de": "Stimme 3"
+    "v3": {
+      "en": "3. voice",
+      "de": "3. Stimme"
     },
     "os": {
       "en": "upper voice",

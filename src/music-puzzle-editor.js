@@ -18,15 +18,15 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   const defaultVoiceDraggers = [
     {
       key: 'voice1',
-      text: t('vdl1'),
+      text: t('v1'),
       voiceIndex: 0
     }, {
       key: 'voice2',
-      text: t('vdl2'),
+      text: t('v2'),
       voiceIndex: 1
     }, {
       key: 'voice3',
-      text: t('vdl3'),
+      text: t('v3'),
       voiceIndex: 2
     }
   ];
@@ -57,6 +57,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   const [voiceDraggers, setvoiceDraggers] = useState(defaultVoiceDraggers);
   const [modelOptions, setModelOptions] = useState(Cadence.getDefaultOptions);
   const [abcResult, setAbcResult] = useState(ModelComposition.abcOutput('C', 'C', 120, '1/2', [CircleOfFifths.getVoices()]));
+  
   const menuProps = { items: modelKeys, onClick: event => setKey(event.key) };
 
   const updateContent = newContentValues => {

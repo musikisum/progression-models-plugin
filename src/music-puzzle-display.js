@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js'; 
 import CircleOfFifths from './models/model-circle-of-fifths.js'; 
 import Markdown from '@educandu/educandu/components/markdown.js';
+import SevenSixStepwiseUp from './models/model-seven-six-stewise-up.js'
 import FiveSixConsecutive from './models/model-five-six-consecutive.js';
 import UpperFiveModulation from './models/model-upper-five-modulation.js';
 import LowerFiveModulation from './models/model-lower-five-modulation.js';
@@ -36,7 +37,9 @@ const initialValue = () => {
   // const m8 = Cadence.getVoices(m8opt);
   const m8Opt = FiveSixConsecutive.getDefaultOptions('Ab');
   const m8 = FiveSixConsecutive.getVoices(m8Opt); 
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m8]);
+  const m9Opt = SevenSixStepwiseUp.getDefaultOptions('C');
+  const m9 = SevenSixStepwiseUp.getVoices(m9Opt);
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m9]);
   return output;
 };
 

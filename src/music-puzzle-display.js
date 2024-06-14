@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js'; 
 import CircleOfFifths from './models/model-circle-of-fifths.js'; 
 import Markdown from '@educandu/educandu/components/markdown.js';
-import SevenSixStepwiseUp from './models/model-seven-six-stewise-up.js'
+import Parallelismus from './models/model-parallelismus.js';
 import FiveSixConsecutive from './models/model-five-six-consecutive.js';
 import UpperFiveModulation from './models/model-upper-five-modulation.js';
 import LowerFiveModulation from './models/model-lower-five-modulation.js';
@@ -17,8 +17,8 @@ import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js
 const { TextArea } = Input;
 
 const initialValue = () => {
-  const co = Cadence.getDefaultOptions('Bb');
-  co.transposeValues = [0, 0, -1];
+  const co = Cadence.getDefaultOptions('Em');
+  co.transposeValues = [-1, -1, -1];
   co.isFinal = true;
   const m1 = Cadence.getVoices(co);
   const m2do = UpperFiveModulation.getDefaultOptions();
@@ -27,7 +27,7 @@ const initialValue = () => {
   const m3 = CircleOfFifths.getVoices(test1);
   // const m4 = CircleOfFifthsLinear.getVoices();
   // const m6gdf = LowerFiveModulation.getDefaultOptions('Fm');
-  // m6gdf.changeMode = true;
+  // m6gdf.changeMode = true; 
   // const m6 = LowerFiveModulation.getVoices(m6gdf);
   const zick = ParalelismusDiminished.getDefaultOptions('F#m');
   zick.numberOfSections = 3;
@@ -37,9 +37,11 @@ const initialValue = () => {
   // const m8 = Cadence.getVoices(m8opt);
   const m8Opt = FiveSixConsecutive.getDefaultOptions('Ab');
   const m8 = FiveSixConsecutive.getVoices(m8Opt); 
-  const m9Opt = SevenSixStepwiseUp.getDefaultOptions('C');
-  const m9 = SevenSixStepwiseUp.getVoices(m9Opt);
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m9]);
+  const m9Opt = Parallelismus.getDefaultOptions('Am');
+  m9Opt.partLength = 2;
+  m9Opt.syncopation = false;
+  const m9 = Parallelismus.getVoices(m9Opt);
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m9, m1]);
   return output;
 };
 

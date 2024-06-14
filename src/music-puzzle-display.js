@@ -6,13 +6,15 @@ import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js'; 
 import CircleOfFifths from './models/model-circle-of-fifths.js'; 
 import Markdown from '@educandu/educandu/components/markdown.js';
-import Parallelismus from './models/model-parallelismus.js';
+import ParallelismusUp from './models/model-parallelismus-up.js';
+import ParallelismusDown from './models/model-parallelismus-down.js';
 import FiveSixConsecutive from './models/model-five-six-consecutive.js';
 import UpperFiveModulation from './models/model-upper-five-modulation.js';
 import LowerFiveModulation from './models/model-lower-five-modulation.js';
 import CircleOfFifthsLinear from './models/model-circle-of-fifths-linear.js';
 import ParalelismusDiminished from './models/model-paralelismus-diminished.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
+import ParallismusDown from './models/model-parallelismus-down.js';
 
 const { TextArea } = Input;
 
@@ -37,11 +39,14 @@ const initialValue = () => {
   // const m8 = Cadence.getVoices(m8opt);
   const m8Opt = FiveSixConsecutive.getDefaultOptions('Ab');
   const m8 = FiveSixConsecutive.getVoices(m8Opt); 
-  const m9Opt = Parallelismus.getDefaultOptions('Am');
+  const m9Opt = ParallelismusUp.getDefaultOptions('Am');
   m9Opt.partLength = 2;
-  m9Opt.syncopation = false;
-  const m9 = Parallelismus.getVoices(m9Opt);
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m9, m1]);
+  const m9 = ParallelismusUp.getVoices(m9Opt);
+  const m10Opt = ParallismusDown.getDefaultOptions('C');
+  m10Opt.syncopation = false;
+  m10Opt.partLength = 2;
+  const m10 = ParallelismusDown.getVoices(m10Opt); 
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m10, m1]);
   return output;
 };
 

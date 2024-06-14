@@ -1,13 +1,13 @@
 import ModelHelper from '../model-helper.js';
 
 const _keyObj = {
-  C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
-  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] }
+  C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
+  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] }
 };
 
 const _keyObjShort = {
   C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
-  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] }
+  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] }
 };
 
 function _getKeyObject(change) {  
@@ -28,35 +28,35 @@ const getOptions = change => {
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     syncopation: true,
-    partLength: 3
+    partLength: 3,
   };
 };
 
 function _AdjustOptions(options) {
   switch(options.partLength) {
     case 1:
-      options.voices = [[2, 5], [4, 3], [0, 3]];
+      options.voices = [[9, 8], [7, 6], [7, 4]];
       options.measure = [' | ', ' '];
       options._voicesLength = 2;
       break;
     case 2:
       if(options.syncopation) {
-        options.voices = [[2, 5, 5, 4], [4, 4, 3, 6], [0, 3, 3, 2]];
+        options.voices = [[9, 8, 8, 7], [7, 7, 6, 5], [7, 4, 4, 5]];
         options.measure = [' | ', ' ', ' | ', ' '];     
         options._voicesLength = 4;  
       } else {
-        options.voices = [[4, 5, 6, 7], [2, 3, 4, 5], [0, 3, 2, 5]]; 
+        options.voices = [[9, 8, 7, 6], [7, 6, 5, 4], [7, 4, 5, 2]]; 
         options.measure = [' | ', ' ', ' | ', ' '];
         options._voicesLength = 4;
       }      
       break; 
     default:
       if(options.syncopation) {
-        options.voices = [[2, 5, 5, 5, 4, 7, 7, 7, 6, 9], [4, 4, 3, 6, 6, 6, 5, 8, 8, 7], [0, 3, 3, 2, 2, 5, 5, 4, 4, 7]];
+        options.voices = [[9, 8, 8, 7, 7, 6, 6, 5, 5, 4], [7, 7, 6, 6, 5, 5, 4, 4, 3, 2], [7, 4, 4, 5, 5, 2, 2, 3, 3, 0]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
         options._voicesLength = 10;
       } else {
-        options.voices = [[4, 5, 6, 7, 8, 9], [2, 3, 4, 5, 6, 7], [0, 3, 2, 5, 4, 7]];
+        options.voices = [[9, 8, 7, 6, 5, 4], [7, 6, 5, 4, 3, 2], [7, 4, 5, 2, 3, 0]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' '];
         options._voicesLength = 6;
       }      
@@ -98,7 +98,7 @@ const getExample = () => {
   return ['', '', '']; 
 };
 
-const Parallismus = {
+const ParallismusDown = {
   getDefaultOptions: getOptions,
   getVoices,
   getModelKeys,
@@ -106,4 +106,4 @@ const Parallismus = {
   getMusicExample: getExample
 };
 
-export default Parallismus;
+export default ParallismusDown;

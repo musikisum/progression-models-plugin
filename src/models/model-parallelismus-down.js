@@ -41,9 +41,9 @@ function _AdjustOptions(options) {
       break;
     case 2:
       if(options.syncopation) {
-        options.voices = [[9, 8, 8, 7], [7, 7, 6, 5], [7, 4, 4, 5]];
-        options.measure = [' | ', ' ', ' | ', ' '];     
-        options._voicesLength = 4;  
+        options.voices = [[9, 8, 8, 7, 7, 6], [7, 7, 6, 6, 5, 4], [7, 4, 4, 5, 5, 2]];
+        options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' '];     
+        options._voicesLength = 6;  
       } else {
         options.voices = [[9, 8, 7, 6], [7, 6, 5, 4], [7, 4, 5, 2]]; 
         options.measure = [' | ', ' ', ' | ', ' '];

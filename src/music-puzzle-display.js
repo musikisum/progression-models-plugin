@@ -43,10 +43,10 @@ const initialValue = () => {
   m9Opt.partLength = 2;
   const m9 = ParallelismusUp.getVoices(m9Opt);
   const m10Opt = ParallismusDown.getDefaultOptions('C');
-  m10Opt.syncopation = false;
+  m10Opt.syncopation = true;
   m10Opt.partLength = 2;
   const m10 = ParallelismusDown.getVoices(m10Opt); 
-  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m10, m1]);
+  const output = ModelComposition.abcOutput('C', 'C', 120, '1/2', [m9, m10]);
   return output;
 };
 

@@ -4,7 +4,7 @@ const _keyObj = {
   'E': { key: 'E', t: 2, accidentals: [[1, 1, 1, 1], [0, 0, 1, 0], [1, 0, 0, 0]] },  
   'C#m': { key: 'C#m', t: 0, accidentals: [[0, 1, 1, 0], [1, 1, 1, 1], [0, 1, 1, 1]] },
   'A': { key: 'A', t: -2, accidentals: [[1, 0, 0, 1], [0, 0, 1, 0], [1, 0, 0, 0]] },  
-  'F#m': { key: 'F#m', t: 3, accidentals: [[0, 1, 1, 0], [1, 1, 1, 1], [0, 0, 1, 0]] },
+  'F#m': { key: 'F#m', t: 3, accidentals: [[0, 1, 1, 0], [1, 1, 1, 1], [0, 0, 1, 1]] },
   'D': { key: 'D', t: 1, accidentals: [[1, 0, 0, 1], [0, 0, 1, 0], [1, 0, 0, 0]] },  
   'Bm': { key: 'Bm', t: -1, accidentals: [[0, 1, 1, 0], [0, 0, 1, 0], [0, 0, 1, 0]] },
   'G': { key: 'G', t: 4, accidentals: [[0, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 0]] },
@@ -22,7 +22,7 @@ const _keyObj = {
 };
 
 function _getKeyObject(change) {  
-  return _keyObj[change ?? 'C'];
+  return _keyObj[change];
 }
 
 function getModelKeys() {
@@ -31,7 +31,7 @@ function getModelKeys() {
 
 const getOptions = change => {
   return {
-    key: change,
+    key: change ?? 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     isFinal: false,

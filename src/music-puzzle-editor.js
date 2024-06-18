@@ -98,8 +98,8 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     setModelOptions(opt);
     setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
   }, [voiceDraggers]);
-
-  return (
+  
+  const renderModel = () => (
     <div className="EP_Educandu_Example_Editor">
       <Form labelAlign="left" style={{ width: '100%' }}>
         <div className='container'>
@@ -141,6 +141,10 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
         </div>
       </Form>
     </div>
+  );
+
+  return (
+    <React.Fragment>{renderModel()}</React.Fragment>
   );
 }
 

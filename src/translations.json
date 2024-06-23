@@ -131,6 +131,18 @@
     "us": {
       "en": "lower voice",
       "de": "Unterstimme"
+    },
+    "addModel": {
+      "en": "Add model",
+      "de": "Modell hinzufügen"
+    },
+    "cadence": {
+      "en": "Cadence",
+      "de": "Kadenz"
+    },
+    "circleOfFifths": {
+      "en": "Circle of fifths",
+      "de": "Quintfallsequenz"
     }
   }
 }

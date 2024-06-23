@@ -57,12 +57,42 @@ const getSign = sign => {
       return sign;
   }
 };
+
+const updateTransposeValues = (voiceArr, model) => {
+  const dtv = model.getDefaultOptions().transposeValues;
+  const mapObj = {
+    '012': [dtv[0], dtv[1], dtv[2]],
+    '102': [dtv[0], dtv[1] - 1, dtv[2]],
+    '021': [dtv[0], dtv[1], dtv[2]],
+    '120': [dtv[0], dtv[1], dtv[2] - 1],
+    '201': [dtv[0] + 1, dtv[1] - 1, dtv[2]],
+    '210': [dtv[0] + 1, dtv[1], dtv[2]]
+  };
+  return mapObj[voiceArr];
+}
+
+const modelTemplates = {
+  cadence: {
+    key: 'C',
+    transposeValues: [0, 0, -1],
+    voiceArrangement: [1, 2, 3],
+    isFinal: false,
+    isBegin: false
+  },
+  circleOfFifths:  {
+    key: 'C',
+    transposeValues: [0, 0, 0],
+    voiceArrangement: [1, 2, 3]
+  }
+}
  
 const ModelHelper = {
   meta: getMeta,
   transposeOctave: transpose,
   validateValue: validate,
-  getSign
+  getSign,
+  updateTransposeValues,
+  getModelTemplate: modelName => modelTemplates[modelName]
 };
 
 export default ModelHelper;

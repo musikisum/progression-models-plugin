@@ -32,15 +32,15 @@ class MusicPuzzleInfo {
 
   getDefaultContent() {
     return {
-      text: '',
-      width: 100
+      models: []
     };
   }
 
   validateContent(content) {
     const schema = joi.object({
-      text: joi.string().allow('').required(),
-      width: joi.number().min(0).max(100).required()
+      // text: joi.string().allow('').required(),
+      // width: joi.number().min(0).max(100).required(),
+      models: joi.array().required()
     });
 
     joi.attempt(content, schema, { abortEarly: false, convert: false, noDefaults: true });

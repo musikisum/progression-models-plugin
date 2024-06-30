@@ -31,6 +31,7 @@ function getModelKeys() {
 
 const getOptions = change => {
   return {
+    name: 'FiveSixConsecutive',
     key: change || 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],

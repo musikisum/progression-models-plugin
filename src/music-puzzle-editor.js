@@ -1,19 +1,19 @@
 import AbcSnippet from './abc-snippet.js';
-import { useTranslation } from 'react-i18next';
-import { Form, Button, Dropdown, Space, Radio } from 'antd';
-import VoiceSwitch from './components/voice-switch.js';
-import React, { useState, useEffect } from 'react';
-import { ArrowUpOutlined, ArrowDownOutlined, PlusOutlined } from '@ant-design/icons';
-import { sectionEditorProps } from '@educandu/educandu/ui/default-prop-types.js';
-import ModelComposition from './model-composition.js'; 
-import CircleOfFifths from './models/model-circle-of-fifths.js';
-import ModelProvider from './models/model-provider.js';
 import ModelHelper from './model-helper.js';
+import { useTranslation } from 'react-i18next';
+import React, { useState, useEffect } from 'react';
+import ModelComposition from './model-composition.js'; 
+import VoiceSwitch from './components/voice-switch.js';
+import ModelProvider from './models/model-provider.js';
+import { Form, Button, Dropdown, Space, Radio } from 'antd';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
+import { sectionEditorProps } from '@educandu/educandu/ui/default-prop-types.js';
+import { ArrowUpOutlined, ArrowDownOutlined, PlusOutlined } from '@ant-design/icons';
 
 export default function MusicPuzzleEditor({ content, onContentChanged }) {
 
-  const Cadence = ModelProvider.getModel('Cadence'); 
+  const Cadence = ModelProvider.getModel('Cadence');
+  const CircleOfFifths = ModelProvider.getModel('CircleOfFifths'); 
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const { models } = content;
@@ -80,17 +80,17 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
 
   console.log(models);
 
-  const onArrowButtonClick = (e, direction) => {
-    const opt = { ...modelOptions };
-    const voice = radioValue;
-    if(direction === 'up') {
-      opt.transposeValues[voice] += 1;
-    } else {
-      opt.transposeValues[voice] -= 1;
-    }
-    setModelOptions(opt);
-    setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
-  };
+  // const onArrowButtonClick = (e, direction) => {
+  //   const opt = { ...modelOptions };
+  //   const voice = radioValue;
+  //   if(direction === 'up') {
+  //     opt.transposeValues[voice] += 1;
+  //   } else {
+  //     opt.transposeValues[voice] -= 1;
+  //   }
+  //   setModelOptions(opt);
+  //   setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
+  // };
 
   useEffect(() => {
     const opt = { ...modelOptions };
@@ -113,22 +113,67 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   }, [voiceDraggers]);
 
   const renderModel = () => (    
-    <div className='container'>
+    <>
+    { models.map((model, index) => <div className='container' key={index}>
+          <div className="left">
+            <div className='innerContainer'>
+              <div className='item-1'>
+                <div className='label'>Tonart</div>
+                <Dropdown menu={
+                    { items: ModelProvider.getModel(model.name).getModelKeys(), onClick: event => console.log(event) }
+                  } placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
+                  <div className='buttons'>
+                    <Button>{models[0].key}</Button>                  
+                  </div>
+                </Dropdown>
+              </div>
+              <div className='item-2'>
+                <div className='label'>Transposition (8)</div>
+                <div className='buttons'>
+                  <Button className='button' onClick={(e) => console.log(e)}><ArrowUpOutlined /></Button>
+                  <Button className='button' onClick={(e) => console.log(e)}><ArrowDownOutlined /></Button>
+                </div>
+                <Radio.Group onChange={onRadioChange} value={radioValue}>
+                  <Space direction="vertical">
+                    <Radio value={0}>{t('os')}</Radio>
+                    <Radio value={1}>{t('ms')}</Radio>
+                    <Radio value={2}>{t('us')}</Radio>
+                  </Space>
+                </Radio.Group>
+              </div>
+              <div className='item-3'>
+                <div className='label'>Stimmtausch</div>
+                <VoiceSwitch style={{ margin: '16px 0' }} switchButtons={voiceDraggers} setSwitchButtons={setvoiceDraggers} />
+              </div>
+            </div>
+          </div>
+          <div className="right">
+            <div>
+              <AbcSnippet playableABC={ModelComposition.abcOutput('C', 'C', 120, '1/2', [ModelProvider.getModel(model.name).getVoices()])} />
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+      {/* <div className='container'>
       <div className="left">
         <div className='innerContainer'>
           <div className='item-1'>
             <div className='label'>Tonart</div>
-            <Dropdown menu={menuProps} placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
+            <Dropdown menu={
+              { items: ModelProvider.getModel(models[1].name).getModelKeys(), onClick: event => console.log(event) }
+            } placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
               <div className='buttons'>
-                <Button>{key}</Button>                  
+                <Button>{models[1].key}</Button>                  
               </div>
             </Dropdown>
           </div>
           <div className='item-2'>
             <div className='label'>Transposition (8)</div>
             <div className='buttons'>
-              <Button className='button' onClick={(e) => onArrowButtonClick(e, 'up')}><ArrowUpOutlined /></Button>
-              <Button className='button' onClick={onArrowButtonClick}><ArrowDownOutlined /></Button>
+              <Button className='button' onClick={(e) => console.log(e)}><ArrowUpOutlined /></Button>
+              <Button className='button' onClick={(e) => console.log(e)}><ArrowDownOutlined /></Button>
             </div>
             <Radio.Group onChange={onRadioChange} value={radioValue}>
               <Space direction="vertical">
@@ -146,11 +191,12 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
       </div>
       <div className="right">
         <div>
-          { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
+          <AbcSnippet playableABC={ModelComposition.abcOutput('C', 'C', 120, '1/2', [ModelProvider.getModel(models[1].name).getVoices()])} />
         </div>
       </div>
-    </div>
-  );
+    </div> */}
+  </>
+);
 
   return (
     <div className="EP_Educandu_Example_Editor">

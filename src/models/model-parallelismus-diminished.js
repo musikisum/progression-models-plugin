@@ -29,6 +29,7 @@ function getModelKeys() {
 
 const getOptions = change => {
   return {
+    name: 'ParallelismusDiminished',
     key: change || 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
@@ -88,7 +89,7 @@ const getExample = () => {
   return ['', '', '']; 
 };
 
-const ParalelismusDiminished = {
+const ParallelismusDiminished = {
   getDefaultOptions: getOptions,
   getVoices,
   getModelKeys,
@@ -96,4 +97,4 @@ const ParalelismusDiminished = {
   getMusicExample: getExample
 };
   
-export default ParalelismusDiminished;
+export default ParallelismusDiminished;

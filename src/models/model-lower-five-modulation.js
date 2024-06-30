@@ -31,6 +31,7 @@ function getModelKeys() {
 
 const getOptions = change => {
   return {
+    name: 'LowerFiveModulation',
     key: change || 'F',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],

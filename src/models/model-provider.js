@@ -6,7 +6,7 @@ import FiveSixConsecutive from './model-five-six-consecutive.js';
 import UpperFiveModulation from './model-upper-five-modulation.js';
 import LowerFiveModulation from './model-lower-five-modulation.js';
 import CircleOfFifthsLinear from './model-circle-of-fifths-linear.js';
-import ParalelismusDiminished from './model-paralelismus-diminished.js';
+import ParallelismusDiminished from './model-parallelismus-diminished.js';
 
 const models = {
   Cadence,
@@ -17,7 +17,7 @@ const models = {
   UpperFiveModulation,
   LowerFiveModulation,
   CircleOfFifthsLinear,
-  ParalelismusDiminished
+  ParallelismusDiminished
 };
 
 const ModelProvider = { 

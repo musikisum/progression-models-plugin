@@ -12,7 +12,7 @@ import FiveSixConsecutive from './models/model-five-six-consecutive.js';
 import UpperFiveModulation from './models/model-upper-five-modulation.js';
 import LowerFiveModulation from './models/model-lower-five-modulation.js';
 import CircleOfFifthsLinear from './models/model-circle-of-fifths-linear.js';
-import ParalelismusDiminished from './models/model-paralelismus-diminished.js';
+import ParalelismusDiminished from './models/model-parallelismus-diminished.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
 import ParallismusDown from './models/model-parallelismus-down.js';
 

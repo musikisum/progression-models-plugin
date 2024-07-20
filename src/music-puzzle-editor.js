@@ -5,18 +5,20 @@ import React, { useState, useEffect } from 'react';
 import ModelComposition from './model-composition.js'; 
 import VoiceSwitch from './components/voice-switch.js';
 import ModelProvider from './models/model-provider.js';
-import { Form, Button, Dropdown, Space, Radio } from 'antd';
+import { Form, Button, Dropdown, Space, Radio, Select } from 'antd';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { sectionEditorProps } from '@educandu/educandu/ui/default-prop-types.js';
 import { ArrowUpOutlined, ArrowDownOutlined, PlusOutlined } from '@ant-design/icons';
+// import FormItem from 'antd/es/form/FormItem/index.js';
 
 export default function MusicPuzzleEditor({ content, onContentChanged }) {
 
-  const Cadence = ModelProvider.getModel('Cadence');
-  const CircleOfFifths = ModelProvider.getModel('CircleOfFifths'); 
+  const Cadence = ModelProvider.getModel('cadence');
+  const CircleOfFifths = ModelProvider.getModel('circleOfFifths');
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const { models } = content;
+  console.log(models);
 
   const defaultVoiceDraggers = [
     {
@@ -77,8 +79,6 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     newModels.push(modelTemplate);
     updateContent({ models: newModels});
   }
-
-  console.log(models);
 
   // const onArrowButtonClick = (e, direction) => {
   //   const opt = { ...modelOptions };
@@ -202,14 +202,23 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     <div className="EP_Educandu_Example_Editor">
       <Form labelAlign="left" style={{ width: '100%' }}>
         {renderModel()}
-        <Button type="primary" icon={<PlusOutlined />} onClick={handleAddModelButtonClick}>
-          {t('addModel')}
-        </Button>
-        <Dropdown menu={modelMenuProps} placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
-          <div className='buttons'>
-            <Button>{t(selectedModel)}</Button>                  
-          </div>
-        </Dropdown>
+        <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+          <Button type="primary" icon={<PlusOutlined />} onClick={handleAddModelButtonClick}>
+            {t('addModel')}
+          </Button>
+          <Select defaultValue="cadence" onChange={e => setSelectedModel(e)} options={[
+              {
+                value: 'cadence',
+                label: t('cadence')
+              },
+              {
+                value: 'circleOfFifths',
+                label: t('circleOfFifths')
+              }
+            ]}
+          >            
+          </Select>
+        </div>
       </Form>      
     </div>
   );

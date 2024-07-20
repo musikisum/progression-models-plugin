@@ -73,6 +73,7 @@ const updateTransposeValues = (voiceArr, model) => {
 
 const modelTemplates = {
   cadence: {
+    name: 'cadence',
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
@@ -80,6 +81,7 @@ const modelTemplates = {
     isBegin: false
   },
   circleOfFifths:  {
+    name: 'circleOfFifths',
     key: 'C',
     transposeValues: [0, 0, 0],
     voiceArrangement: [1, 2, 3]

@@ -9,15 +9,15 @@ import CircleOfFifthsLinear from './model-circle-of-fifths-linear.js';
 import ParallelismusDiminished from './model-parallelismus-diminished.js';
 
 const models = {
-  Cadence,
-  CircleOfFifths,
-  ParallelismusUp,
-  ParallelismusDown,
-  FiveSixConsecutive,
-  UpperFiveModulation,
-  LowerFiveModulation,
-  CircleOfFifthsLinear,
-  ParallelismusDiminished
+  cadence: Cadence,
+  circleOfFifths: CircleOfFifths,
+  parallelismusUp: ParallelismusUp,
+  parallelismusDown: ParallelismusDown,
+  fiveSixConsecutive: FiveSixConsecutive,
+  upperFiveModulation: UpperFiveModulation,
+  lowerFiveModulation: LowerFiveModulation,
+  circleOfFifthsLinear: CircleOfFifthsLinear,
+  parallelismusDiminished: ParallelismusDiminished
 };
 
 const ModelProvider = { 

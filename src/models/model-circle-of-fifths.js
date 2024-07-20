@@ -31,7 +31,7 @@ function getModelKeys() {
 
 const getOptions = change => {
   return {
-    name: 'CircleOfFifths',
+    name: 'circleOfFifths',
     key: change || 'C',
     transposeValues: [0, 0, 0],
     voiceArrangement: [1, 2, 3],

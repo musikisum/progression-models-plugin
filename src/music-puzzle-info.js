@@ -34,8 +34,8 @@ class MusicPuzzleInfo {
   getDefaultContent() {
     return {
       models: [
-        ModelProvider.getModel('Cadence').getDefaultOptions(),
-        ModelProvider.getModel('CircleOfFifths').getDefaultOptions(),
+        ModelProvider.getModel('cadence').getDefaultOptions(),
+        ModelProvider.getModel('circleOfFifths').getDefaultOptions(),
       ]
     };
   }

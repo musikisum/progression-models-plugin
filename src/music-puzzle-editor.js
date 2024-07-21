@@ -17,8 +17,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   const CircleOfFifths = ModelProvider.getModel('circleOfFifths');
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
-  const { models } = content;
-  console.log(models);
+  const { modelTemplates } = content;
 
   const defaultVoiceDraggers = [
     {
@@ -55,7 +54,6 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   ]; 
 
   const [key, setKey] = useState('C');
-  const [radioValue, setRadioValue] = useState(0);
   const [voiceDraggers, setvoiceDraggers] = useState(defaultVoiceDraggers);
   const [modelOptions, setModelOptions] = useState(Cadence.getDefaultOptions);
   const [abcResult, setAbcResult] = useState(ModelComposition.abcOutput('C', 'C', 120, '1/2', [CircleOfFifths.getVoices()]));
@@ -67,17 +65,31 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     onContentChanged({ ...content, ...newContentValues });
   };
 
-  const onRadioChange = e => {    
-    setRadioValue(e.target.value);
+  // Der Key wird geändert, aber die abcNotation noch nicht 
+  const changeModelTemplateKey = (e, index) => {
+    const newModelTemplates = cloneDeep(modelTemplates);
+    const modelTemplateToUpdate = newModelTemplates[index];
+    modelTemplateToUpdate.key = e;
+    newModelTemplates[index] = modelTemplateToUpdate;
+    updateContent({ modelTemplates: newModelTemplates }); 
+  }
+
+  const onRadioChange = (e, index) => { 
+    const newModelTemplates = cloneDeep(modelTemplates);
+    const modelTemplateToUpdate = newModelTemplates[index];
+    modelTemplateToUpdate.radioValue = e.target.value;
+    newModelTemplates[index] = modelTemplateToUpdate;
+    updateContent({ modelTemplates: newModelTemplates }); 
   };
 
   const [selectedModel, setSelectedModel] = useState('cadence');
 
   const handleAddModelButtonClick = e => {
+    console.log('jetzt handleAddModelButtonClick');
     const modelTemplate = ModelHelper.getModelTemplate(selectedModel);
-    const newModels = cloneDeep(models);
-    newModels.push(modelTemplate);
-    updateContent({ models: newModels});
+    const newModelTemplates = cloneDeep(modelTemplates);
+    newModelTemplates.push(modelTemplate);
+    updateContent({ modelTemplates: newModelTemplates});
   }
 
   // const onArrowButtonClick = (e, direction) => {
@@ -112,20 +124,19 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
   }, [voiceDraggers]);
 
-  const renderModel = () => (    
+  const renderModel = () => (
     <>
-    { models.map((model, index) => <div className='container' key={index}>
+    { modelTemplates.map((modelTemplate, index) => <div className='container' key={index}>
           <div className="left">
             <div className='innerContainer'>
               <div className='item-1'>
                 <div className='label'>Tonart</div>
-                <Dropdown menu={
-                    { items: ModelProvider.getModel(model.name).getModelKeys(), onClick: event => console.log(event) }
-                  } placement="bottomLeft" arrow={{ pointAtCenter: true, }}>
-                  <div className='buttons'>
-                    <Button>{models[0].key}</Button>                  
-                  </div>
-                </Dropdown>
+                <Select 
+                  style={{width: '60%'}} 
+                  defaultValue={modelTemplate.key} 
+                  options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(key => ({ value: key, label: key }))}
+                  onChange={(e) => changeModelTemplateKey(e, index)}
+                />                   
               </div>
               <div className='item-2'>
                 <div className='label'>Transposition (8)</div>
@@ -133,7 +144,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
                   <Button className='button' onClick={(e) => console.log(e)}><ArrowUpOutlined /></Button>
                   <Button className='button' onClick={(e) => console.log(e)}><ArrowDownOutlined /></Button>
                 </div>
-                <Radio.Group onChange={onRadioChange} value={radioValue}>
+                <Radio.Group onChange={(e) => onRadioChange(e, index)} value={modelTemplate.radioValue}>
                   <Space direction="vertical">
                     <Radio value={0}>{t('os')}</Radio>
                     <Radio value={1}>{t('ms')}</Radio>
@@ -149,7 +160,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
           </div>
           <div className="right">
             <div>
-              <AbcSnippet playableABC={ModelComposition.abcOutput('C', 'C', 120, '1/2', [ModelProvider.getModel(model.name).getVoices()])} />
+              <AbcSnippet playableABC={ModelComposition.abcOutput('C', 'C', 120, '1/2', [ModelProvider.getModel(modelTemplate.name).getVoices()])} />
             </div>
           </div>
         </div>

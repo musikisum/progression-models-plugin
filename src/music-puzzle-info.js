@@ -4,7 +4,6 @@ import { ClockCircleOutlined } from '@ant-design/icons';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { couldAccessUrlFromRoom } from '@educandu/educandu/utils/source-utils.js';
 import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-markdown.js';
-import ModelProvider from './models/model-provider.js';
 
 class MusicPuzzleInfo {
   static dependencies = [GithubFlavoredMarkdown];
@@ -33,10 +32,7 @@ class MusicPuzzleInfo {
 
   getDefaultContent() {
     return {
-      models: [
-        ModelProvider.getModel('cadence').getDefaultOptions(),
-        ModelProvider.getModel('circleOfFifths').getDefaultOptions(),
-      ]
+      modelTemplates: []
     };
   }
   
@@ -44,7 +40,7 @@ class MusicPuzzleInfo {
     const schema = joi.object({
       // text: joi.string().allow('').required(),
       // width: joi.number().min(0).max(100).required(),
-      models: joi.array().required()
+      modelTemplates: joi.array().required()
     });
 
     joi.attempt(content, schema, { abortEarly: false, convert: false, noDefaults: true });

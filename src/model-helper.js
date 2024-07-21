@@ -77,6 +77,7 @@ const modelTemplates = {
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    radioValue: 0,
     isFinal: false,
     isBegin: false
   },
@@ -84,7 +85,8 @@ const modelTemplates = {
     name: 'circleOfFifths',
     key: 'C',
     transposeValues: [0, 0, 0],
-    voiceArrangement: [1, 2, 3]
+    voiceArrangement: [1, 2, 3],
+    radioValue: 0
   }
 }
  

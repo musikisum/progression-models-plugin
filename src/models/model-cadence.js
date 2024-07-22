@@ -30,14 +30,11 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  return {
-    name: 'cadence',
-    key: change ?? 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    isFinal: false,
-    isBegin: false
-  };
+  const modelTemplate = ModelHelper.getModelTemplate('cadence');
+  if(change) {
+    modelTemplate.key = change;
+  }
+  return modelTemplate;
 };
 
 const getVoices = cadenceOptions => {

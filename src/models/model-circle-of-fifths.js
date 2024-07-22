@@ -30,12 +30,11 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  return {
-    name: 'circleOfFifths',
-    key: change || 'C',
-    transposeValues: [0, 0, 0],
-    voiceArrangement: [1, 2, 3],
-  };
+  const modelTemplate = ModelHelper.getModelTemplate('circleOfFifths');
+  if(change) {
+    modelTemplate.key = change;
+  }
+  return modelTemplate;
 };
 
 const getVoices = circleOfFifthsOptions => {

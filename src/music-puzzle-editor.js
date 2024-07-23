@@ -9,12 +9,8 @@ import { Form, Button, Space, Radio, Select } from 'antd';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { sectionEditorProps } from '@educandu/educandu/ui/default-prop-types.js';
 import { ArrowUpOutlined, ArrowDownOutlined, PlusOutlined } from '@ant-design/icons';
-// import FormItem from 'antd/es/form/FormItem/index.js';
 
 export default function MusicPuzzleEditor({ content, onContentChanged }) {
-
-  const Cadence = ModelProvider.getModel('cadence');
-  const CircleOfFifths = ModelProvider.getModel('circleOfFifths');
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const { modelTemplates } = content;
@@ -35,37 +31,12 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     }
   ];
 
-  const modelKeys = Cadence.getModelKeys().reduce((akku, current) =>{
-    const obj = {};
-    obj.key = current;
-    obj.label = t(current);
-    akku.push(obj);
-    return akku;
-  }, []); 
-  
-  const modelNames = [
-    {
-      key: 'cadence',
-      label: t('cadence')
-    },{
-      key: 'circleOfFifths',
-      label: t('circleOfFifths')
-    }
-  ]; 
-
-  const [key, setKey] = useState('C');
   const [voiceDraggers, setvoiceDraggers] = useState(defaultVoiceDraggers);
-  const [modelOptions, setModelOptions] = useState(Cadence.getDefaultOptions);
-  
-  const [abcResult, setAbcResult] = useState(ModelComposition.abcOutput('C', 'C', 120, '1/2', [CircleOfFifths.getVoices()]));
-  // const menuProps = { items: modelKeys, onClick: event => setKey(event.key) };
-  // const modelMenuProps = { items: modelNames, onClick: event => setSelectedModel(event.key) };
 
   const updateContent = newContentValues => {
     onContentChanged({ ...content, ...newContentValues });
   };
 
-  // Der Key wird geändert, aber die abcNotation noch nicht 
   const changeModelTemplateKey = (e, index) => {
     const newModelTemplates = cloneDeep(modelTemplates);
     const modelTemplateToUpdate = newModelTemplates[index];
@@ -105,15 +76,16 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   };
 
   useEffect(() => {    
-    const opt = { ...modelOptions };
-    const voiceArrangement = voiceDraggers.reduce((akku, vd) => {
-      const result = akku + vd.voiceIndex.toString();
-      return result;
-    }, '');   
-    opt.transposeValues = ModelHelper.updateTransposeValues(voiceArrangement, Cadence);
-    opt.voiceArrangement = [voiceDraggers[0].voiceIndex + 1, voiceDraggers[1].voiceIndex + 1, voiceDraggers[2].voiceIndex + 1];
-    setModelOptions(opt);
-    setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
+    console.log('useEffect for voiceDraggers');
+    // const opt = { ...modelOptions };
+    // const voiceArrangement = voiceDraggers.reduce((akku, vd) => {
+    //   const result = akku + vd.voiceIndex.toString();
+    //   return result;
+    // }, '');   
+    // opt.transposeValues = ModelHelper.updateTransposeValues(voiceArrangement, Cadence);
+    // opt.voiceArrangement = [voiceDraggers[0].voiceIndex + 1, voiceDraggers[1].voiceIndex + 1, voiceDraggers[2].voiceIndex + 1];
+    // setModelOptions(opt);
+    // setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
   }, [voiceDraggers]);
 
   const renderModel = () => (

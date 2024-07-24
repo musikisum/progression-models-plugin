@@ -15,24 +15,6 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const { modelTemplates } = content;
 
-  const defaultVoiceDraggers = [
-    {
-      key: 'voice1',
-      text: t('v1'),
-      voiceIndex: 0
-    }, {
-      key: 'voice2',
-      text: t('v2'),
-      voiceIndex: 1
-    }, {
-      key: 'voice3',
-      text: t('v3'),
-      voiceIndex: 2
-    }
-  ];
-
-  const [voiceDraggers, setvoiceDraggers] = useState(defaultVoiceDraggers);
-
   const updateContent = newContentValues => {
     onContentChanged({ ...content, ...newContentValues });
   };
@@ -66,27 +48,17 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const [selectedModel, setSelectedModel] = useState('cadence');
+  const [selectedModel, setSelectedModel] = useState();
 
   const handleAddModelButtonClick = () => {
+    if(!selectedModel) {
+      return;
+    }
     const modelTemplate = ModelHelper.getModelTemplate(selectedModel);
     const newModelTemplates = cloneDeep(modelTemplates);
     newModelTemplates.push(modelTemplate);
     updateContent({ modelTemplates: newModelTemplates });
   };
-
-  useEffect(() => {    
-    console.log('useEffect for voiceDraggers');
-    // const opt = { ...modelOptions };
-    // const voiceArrangement = voiceDraggers.reduce((akku, vd) => {
-    //   const result = akku + vd.voiceIndex.toString();
-    //   return result;
-    // }, '');   
-    // opt.transposeValues = ModelHelper.updateTransposeValues(voiceArrangement, Cadence);
-    // opt.voiceArrangement = [voiceDraggers[0].voiceIndex + 1, voiceDraggers[1].voiceIndex + 1, voiceDraggers[2].voiceIndex + 1];
-    // setModelOptions(opt);
-    // setAbcResult(ModelComposition.abcOutput('C', 'C', 120, '1/2', [Cadence.getVoices(opt)]));
-  }, [voiceDraggers]);
 
   const renderModel = () => (
     <React.Fragment>
@@ -119,7 +91,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
               </div>
               <div className='item-3'>
                 <div className='label'>Stimmtausch</div>
-                <VoiceSwitch style={{ margin: '16px 0' }} switchButtons={voiceDraggers} setSwitchButtons={setvoiceDraggers} />
+                <VoiceSwitch style={{ margin: '16px 0' }} modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
               </div>
             </div>
           </div>

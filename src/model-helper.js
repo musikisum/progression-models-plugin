@@ -1,3 +1,5 @@
+import ModelProvider from "./models/model-provider.js";
+
 const diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
 
 // Transpose a single tone in octaves up or down.  
@@ -58,7 +60,8 @@ const getSign = sign => {
   }
 };
 
-const updateTransposeValues = (voiceArr, model) => {
+const updateTransposeValues = (voiceArr, modelName) => {
+  const model = ModelProvider.getModel(modelName);
   const dtv = model.getDefaultOptions().transposeValues;
   const mapObj = {
     '012': [dtv[0], dtv[1], dtv[2]],

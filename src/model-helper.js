@@ -81,8 +81,10 @@ const modelTemplates = {
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    isFinal: false,
-    isBegin: false
+    addProps: { 
+      isFinal: false,
+      isBegin: false
+    }
   },
   circleOfFifths:  {
     name: 'circleOfFifths',

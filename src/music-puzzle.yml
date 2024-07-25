@@ -107,4 +107,10 @@ musikisum/educandu-plugin-music-puzzle:
   circleOfFifths:
     en: Circle of fifths
     de: Quintfallsequenz
+  isFinal:
+    en: final Cadence (PAK)
+    de: Schlusskadenz
+  isBegin:
+    en: initial Cadence
+    de: Anfangskadenz
     

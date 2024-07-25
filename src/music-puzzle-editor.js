@@ -1,12 +1,12 @@
+import React, { useState } from 'react';
 import AbcSnippet from './abc-snippet.js';
 import ModelHelper from './model-helper.js';
 import { useTranslation } from 'react-i18next';
-import React, { useState, useEffect } from 'react';
 import ModelComposition from './model-composition.js'; 
 import VoiceSwitch from './components/voice-switch.js';
 import ModelProvider from './models/model-provider.js';
-import { Form, Button, Space, Radio, Select } from 'antd';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
+import { Form, Button, Space, Radio, Select, Checkbox } from 'antd';
 import { sectionEditorProps } from '@educandu/educandu/ui/default-prop-types.js';
 import { ArrowUpOutlined, ArrowDownOutlined, PlusOutlined } from '@ant-design/icons';
 
@@ -48,17 +48,29 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const [selectedModel, setSelectedModel] = useState();
+  const [selectedModel, setSelectedModel] = useState('cadence');
 
   const handleAddModelButtonClick = () => {
+    console.log('jetzt!')
     if(!selectedModel) {
+      console.log('und ex...');
       return;
     }
     const modelTemplate = ModelHelper.getModelTemplate(selectedModel);
     const newModelTemplates = cloneDeep(modelTemplates);
     newModelTemplates.push(modelTemplate);
+    console.log(modelTemplate);
     updateContent({ modelTemplates: newModelTemplates });
   };
+
+  const onCheckboxChange = (e, index, propIndex) => {
+    const newModelTemplates = cloneDeep(modelTemplates);
+    const modelTemplateToUpdate = newModelTemplates[index];
+    const keyValuePairs = Object.entries(modelTemplateToUpdate.addProps);
+    modelTemplateToUpdate.addProps[keyValuePairs[propIndex][0]] = e.target.checked;
+    newModelTemplates[index] = modelTemplateToUpdate;
+    updateContent({ modelTemplates: newModelTemplates });
+  }
 
   const renderModel = () => (
     <React.Fragment>
@@ -69,11 +81,20 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
               <div className='item-1'>
                 <div className='label'>Tonart</div>
                 <Select 
-                  style={{ width: '60%' }} 
                   defaultValue={modelTemplate.key} 
                   options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(key => ({ value: key, label: key }))}
                   onChange={e => changeModelTemplateKey(e, index)}
-                  />                   
+                  />
+                <div>
+                  { modelTemplate?.addProps ? (
+                      Object.entries(modelTemplate.addProps).map(([key, value], propIndex) => (
+                        <Checkbox className='addPropItem' key={`prop${propIndex}`} checked={value} onChange={e => onCheckboxChange(e, index, propIndex)}>
+                          {t(key)}
+                        </Checkbox>
+                      ))
+                    ) : (null)                  
+                  }
+                </div>                  
               </div>
               <div className='item-2'>
                 <div className='label'>Transposition (8)</div>

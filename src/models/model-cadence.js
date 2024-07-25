@@ -42,8 +42,8 @@ const getVoices = cadenceOptions => {
   const measure = [' | ', ' ', ' | ', ' '];
   const voices = [[9, 8, 8, 9], [7, 7, 6, 7], [2, 3, 4, 0]];
   const options = cadenceOptions ?? getOptions();
-  options.isFinal && (voices[0] = [9, 8, 8, 7]);
-  options.isBegin && (voices[2] = [0, 3, 4, 0]);
+  options.addProps['isFinal'] && (voices[0] = [9, 8, 8, 7]);
+  options.addProps['isBegin'] && (voices[2] = [0, 3, 4, 0]);
   const [v1, v2, v3] = options.transposeValues;
   const voiceArr = options.voiceArrangement;
   const keyObject = _getKeyObject(options.key);

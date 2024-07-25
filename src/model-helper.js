@@ -92,6 +92,15 @@ const modelTemplates = {
     transposeValues: [0, 0, 0],
     voiceArrangement: [1, 2, 3],
     radioValue: 0
+  },
+  circleOfFifthsLinear: {
+    name: 'circleOfFifthsLinear',
+    key: 'C',
+    transposeValues: [0, 0, -1],
+    voiceArrangement: [1, 2, 3],
+    addProps: {
+      lastBassNoteUp: false
+    }
   }
 }
  

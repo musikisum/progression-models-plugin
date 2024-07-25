@@ -30,13 +30,11 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  return {
-    name: 'CircleOfFifthsLinear',
-    key: change || 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    lastBassNoteUp: false
-  };
+  const modelTemplate = ModelHelper.getModelTemplate('CircleOfFifthsLinear');
+  if(change) {
+    modelTemplate.key = change;
+  }
+  return modelTemplate;
 };
 
 const getVoices = fifthsCircleLinearOptions => {
@@ -44,7 +42,7 @@ const getVoices = fifthsCircleLinearOptions => {
   const measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
   const voices = [[9, 9, 8, 8, 7, 7, 6, 7], [4, 3, 3, 2, 2, 1, 1, 2], [0, -2, -1, -3, -2, -4, -3, -7]];
   const options = fifthsCircleLinearOptions ?? getOptions();
-  options.lastBassNoteUp && (voices[2][7] = 0);
+  options.addProps['lastBassNoteUp'] && (voices[2][7] = 0);
   const [v1, v2, v3] = options.transposeValues;
   const voiceArr = options.voiceArrangement;
   const keyObject = _getKeyObject(options.key);

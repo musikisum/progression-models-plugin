@@ -113,4 +113,9 @@ musikisum/educandu-plugin-music-puzzle:
   isBegin:
     en: initial Cadence
     de: Anfangskadenz
-    
+  lastBassNoteUp:
+    en: ending ↑
+    de: Abschluss ↑
+  circleOfFifthsLinear:
+    en: Circle of Fifths (Alternative)
+    de: Quintfallsequenz (Alternative)

@@ -48,21 +48,6 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const [selectedModel, setSelectedModel] = useState('cadence');
-
-  const handleAddModelButtonClick = () => {
-    console.log('jetzt!')
-    if(!selectedModel) {
-      console.log('und ex...');
-      return;
-    }
-    const modelTemplate = ModelHelper.getModelTemplate(selectedModel);
-    const newModelTemplates = cloneDeep(modelTemplates);
-    newModelTemplates.push(modelTemplate);
-    console.log(modelTemplate);
-    updateContent({ modelTemplates: newModelTemplates });
-  };
-
   const onCheckboxChange = (e, index, propIndex) => {
     const newModelTemplates = cloneDeep(modelTemplates);
     const modelTemplateToUpdate = newModelTemplates[index];
@@ -71,6 +56,18 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     newModelTemplates[index] = modelTemplateToUpdate;
     updateContent({ modelTemplates: newModelTemplates });
   }
+
+  const [selectedModel, setSelectedModel] = useState('cadence');
+
+  const handleAddModelButtonClick = () => {
+    if(!selectedModel) {
+      return;
+    }
+    const modelTemplate = ModelHelper.getModelTemplate(selectedModel);
+    const newModelTemplates = cloneDeep(modelTemplates);
+    newModelTemplates.push(modelTemplate);
+    updateContent({ modelTemplates: newModelTemplates });
+  };
 
   const renderModel = () => (
     <React.Fragment>
@@ -153,6 +150,10 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
               {
                 value: 'circleOfFifths',
                 label: t('circleOfFifths')
+              },
+              {
+                value: 'circleOfFifthsLinear',
+                label: t('circleOfFifthsLinear')
               }
             ]}
             />

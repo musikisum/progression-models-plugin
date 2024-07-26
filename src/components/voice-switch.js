@@ -18,7 +18,7 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
       return akku;
     }, []);
     return switchButtons;
-  }
+  };
 
   const droppableIdRef = useRef(useId());
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');

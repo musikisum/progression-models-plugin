@@ -5,8 +5,9 @@ import { useTranslation } from 'react-i18next';
 import ModelComposition from './model-composition.js'; 
 import VoiceSwitch from './components/voice-switch.js';
 import ModelProvider from './models/model-provider.js';
+import AddProperties from './components/addProperties.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
-import { Form, Button, Space, Radio, Select, Checkbox } from 'antd';
+import { Form, Button, Space, Radio, Select } from 'antd';
 import { sectionEditorProps } from '@educandu/educandu/ui/default-prop-types.js';
 import { ArrowUpOutlined, ArrowDownOutlined, PlusOutlined } from '@ant-design/icons';
 
@@ -48,15 +49,6 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const onCheckboxChange = (e, index, propIndex) => {
-    const newModelTemplates = cloneDeep(modelTemplates);
-    const modelTemplateToUpdate = newModelTemplates[index];
-    const keyValuePairs = Object.entries(modelTemplateToUpdate.addProps);
-    modelTemplateToUpdate.addProps[keyValuePairs[propIndex][0]] = e.target.checked;
-    newModelTemplates[index] = modelTemplateToUpdate;
-    updateContent({ modelTemplates: newModelTemplates });
-  }
-
   const [selectedModel, setSelectedModel] = useState('cadence');
 
   const handleAddModelButtonClick = () => {
@@ -64,6 +56,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
       return;
     }
     const modelTemplate = ModelHelper.getModelTemplate(selectedModel);
+    console.log(modelTemplate);
     const newModelTemplates = cloneDeep(modelTemplates);
     newModelTemplates.push(modelTemplate);
     updateContent({ modelTemplates: newModelTemplates });
@@ -83,15 +76,8 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
                   onChange={e => changeModelTemplateKey(e, index)}
                   />
                 <div>
-                  { modelTemplate?.addProps ? (
-                      Object.entries(modelTemplate.addProps).map(([key, value], propIndex) => (
-                        <Checkbox className='addPropItem' key={`prop${propIndex}`} checked={value} onChange={e => onCheckboxChange(e, index, propIndex)}>
-                          {t(key)}
-                        </Checkbox>
-                      ))
-                    ) : (null)                  
-                  }
-                </div>                  
+                  <AddProperties index={index} modelTemplates={modelTemplates} cloneDeep={cloneDeep} updateContent={updateContent} />
+                </div>                 
               </div>
               <div className='item-2'>
                 <div className='label'>Transposition (8)</div>
@@ -140,6 +126,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
             {t('addModel')}
           </Button>
           <Select
+            style={{ width: '200px' }}
             defaultValue="cadence"
             onChange={e => setSelectedModel(e)}
             options={[
@@ -154,6 +141,10 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
               {
                 value: 'circleOfFifthsLinear',
                 label: t('circleOfFifthsLinear')
+              },
+              {
+                value: 'fiveSixConsecutive',
+                label: t('fiveSixConsecutive')
               }
             ]}
             />

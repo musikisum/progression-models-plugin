@@ -30,14 +30,11 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  return {
-    name: 'FiveSixConsecutive',
-    key: change || 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    partLength: 6,
-    partToBegin: 1
-  };
+  const modelTemplate = ModelHelper.getModelTemplate('fiveSixConsecutive');
+  if(change) {
+    modelTemplate.key = change;
+  }
+  return modelTemplate;
 };
 
 const getVoices = modelOptions => {
@@ -49,7 +46,7 @@ const getVoices = modelOptions => {
   const voiceArr = options.voiceArrangement;
   const keyObject = _getKeyObject(options.key);
   
-  let [aVoice, bVoice, cVoice] = [[], [], []];
+  const [aVoice, bVoice, cVoice] = [[], [], []];
   for (let index = 0; index < voicesLength; index += 1) { 
     let aSign = ModelHelper.getSign(keyObject.accidentals[voiceArr[0] - 1][index]);
     aSign += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[voiceArr[0] - 1][index] + keyObject.t));

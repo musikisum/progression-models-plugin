@@ -116,6 +116,18 @@ musikisum/educandu-plugin-music-puzzle:
   lastBassNoteUp:
     en: ending ↑
     de: Abschluss ↑
+  isDeceptiv:
+    en: deceptiv
+    de: Trugschluss
   circleOfFifthsLinear:
     en: Circle of Fifths (Alternative)
     de: Quintfallsequenz (Alternative)
+  fiveSixConsecutive:
+    en: "5-6 Side Motion"
+    de: "5-6-Seitenbewegung"
+  partLength:
+    en: "Number"
+    de: "Anzahl"
+  partToBegin:
+    en: "Begin"
+    de: "Anfang"

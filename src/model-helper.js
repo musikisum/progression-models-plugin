@@ -1,8 +1,9 @@
-import ModelProvider from "./models/model-provider.js";
+import ModelProvider from './models/model-provider.js';
 
+// Provide the abc.js tone names for c1 to b2.
 const diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
 
-// Transpose a single tone in octaves up or down.  
+// Replace a number for octave transposition up or down in a abc.js sign.  
 const transpose = (number, tone) => {
   switch (number) {
     case -3:
@@ -47,6 +48,7 @@ const getMeta = (key, measure, tempo, length) => {
   return `X:1\n%%score [(1 2) 3]\nM:${measure}\nQ:${tempo}\nL:${length}\nK:${key}\n`;
 };
 
+// Method to replace an half tone number to a abc.js sign.
 const getSign = sign => {
   switch (sign) {
     case 1:
@@ -72,7 +74,7 @@ const updateTransposeValues = (voiceArr, modelName) => {
     '210': [dtv[0] + 1, dtv[1], dtv[2]]
   };
   return mapObj[voiceArr];
-}
+};
 
 const modelTemplates = {
   cadence: {
@@ -83,7 +85,8 @@ const modelTemplates = {
     radioValue: 0,
     addProps: { 
       isFinal: false,
-      isBegin: false
+      isBegin: false,
+      isDeceptiv: false
     }
   },
   circleOfFifths:  {
@@ -101,8 +104,18 @@ const modelTemplates = {
     addProps: {
       lastBassNoteUp: false
     }
+  },
+  fiveSixConsecutive: {
+    name: 'fiveSixConsecutive',
+    key: 'C',
+    transposeValues: [0, 0, -1],
+    voiceArrangement: [1, 2, 3],
+    addProps: {
+      partLength: 6,
+      partToBegin: 1
+    }
   }
-}
+};
  
 const ModelHelper = {
   meta: getMeta,

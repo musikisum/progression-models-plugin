@@ -46,7 +46,7 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
 
   const handleItemMove = (fromIndex, toIndex) => {
     const newOrder = moveItem(switchButtons, fromIndex, toIndex);
-    const voiceArrangement = switchButtons.reduce((akku, vd) => {
+    const voiceArrangement = newOrder.reduce((akku, vd) => {
       const result = akku + vd.voiceIndex.toString();
       return result;
     }, '');    

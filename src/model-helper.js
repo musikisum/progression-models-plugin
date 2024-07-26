@@ -65,6 +65,8 @@ const getSign = sign => {
 const updateTransposeValues = (voiceArr, modelName) => {
   const model = ModelProvider.getModel(modelName);
   const dtv = model.getDefaultOptions().transposeValues;
+  console.log('va:', voiceArr, 'tv:', dtv);
+  //cadence: 0,0,-1
   const mapObj = {
     '012': [dtv[0], dtv[1], dtv[2]],
     '102': [dtv[0], dtv[1] - 1, dtv[2]],
@@ -73,7 +75,9 @@ const updateTransposeValues = (voiceArr, modelName) => {
     '201': [dtv[0] + 1, dtv[1] - 1, dtv[2]],
     '210': [dtv[0] + 1, dtv[1], dtv[2]]
   };
-  return mapObj[voiceArr];
+  const returnValue = mapObj[voiceArr];
+  console.log('rv:', returnValue)
+  return returnValue;
 };
 
 const modelTemplates = {

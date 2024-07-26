@@ -62,9 +62,10 @@ const getVoices = modelOptions => {
     cVoice.push(cSign);  
   }
   // implement partlength & partToBegin
+  console.log('options', options)
   const abcVoices = ['', '', ''];
-  const x = [0, 0, 2, 4, 6, 8, 10][options.partToBegin];
-  const y = options.partLength * 2;
+  const x = [0, 0, 2, 4, 6, 8, 10][options.addProps['partToBeginValues'][0]];
+  const y = options.addProps['partLengthValues'][0] * 2;
   if((12 - x) >= y) {
     abcVoices[0] = aVoice.slice(x, x + y);
     abcVoices[1] = bVoice.slice(x, x + y);

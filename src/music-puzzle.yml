@@ -125,9 +125,9 @@ musikisum/educandu-plugin-music-puzzle:
   fiveSixConsecutive:
     en: "5-6 Side Motion"
     de: "5-6-Seitenbewegung"
-  partLength:
+  partLengthValues:
     en: "Number"
     de: "Anzahl"
-  partToBegin:
+  partToBeginValues:
     en: "Begin"
     de: "Anfang"

@@ -115,8 +115,8 @@ const modelTemplates = {
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     addProps: {
-      partLength: 6,
-      partToBegin: 1
+      partLengthValues: [6, 6],
+      partToBeginValues: [1, 5]
     }
   }
 };

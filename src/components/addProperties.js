@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ModelHelper from '../model-helper.js';
 import { Checkbox, InputNumber } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
-  const addProps = modelTemplates[index].addProps;
+  const modelTemplate = modelTemplates[index];
+  const addProps = modelTemplate.addProps;
 
   function addPropValueIsBool(addPropValue) {
-    return !(typeof addPropValue === 'number' && Number.isFinite(addPropValue));
+    return !Array.isArray(addPropValue);
   }
 
   const onCheckboxChange = (e, propIndex) => {
@@ -21,12 +23,11 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const onInputNumberChange = (value, propIndex) => {
+  const onInputNumberChange = (number, propIndex) => {
     const newModelTemplates = cloneDeep(modelTemplates);
     const modelTemplateToUpdate = newModelTemplates[index];
-    const keyValuePairs = Object.entries(modelTemplateToUpdate.addProps);
-    modelTemplateToUpdate.addProps[keyValuePairs[propIndex][0]] = value;
-    console.log(modelTemplateToUpdate);
+    const keys = Object.keys(modelTemplateToUpdate.addProps);
+    modelTemplateToUpdate.addProps[keys[index]][0] = number;
     newModelTemplates[index] = modelTemplateToUpdate;
     updateContent({ modelTemplates: newModelTemplates });
   };
@@ -51,9 +52,9 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
           style={{ width: '50px', marginRight: '6px' }}            
           className='addPropItem' 
           min={1} 
-          max={value} 
-          defaultValue={value} 
-          onChange={e => onInputNumberChange(e, index, propIndex)}
+          max={value[1]} 
+          defaultValue={value[0]} 
+          onChange={number => onInputNumberChange(number, propIndex)}
           />
         <span>{t(key)}</span>
       </div>

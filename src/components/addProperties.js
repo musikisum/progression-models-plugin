@@ -63,7 +63,7 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
   return (
     <div>
       {
-        Object.entries(addProps).map(([key, value], propIndex) => {
+        addProps && Object.entries(addProps).map(([key, value], propIndex) => {
           if(addPropValueIsBool(value)) {
             return getCheck(key, value, propIndex);
           }

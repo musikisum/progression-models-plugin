@@ -41,7 +41,7 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
   
   const dragAndDropItems = switchButtons.map((sb, index) => ({
     key: sb.key,
-    render: ({ dragHandleProps, isDragged, isOtherDragged }) => renderVoiceLabels({ sb, index, dragHandleProps, isDragged, isOtherDragged })
+    render: ({ dragHandleProps, isDragged, isOtherDragged }) => renderVoiceLabels({sb, index, dragHandleProps, isDragged, isOtherDragged })
   }));
 
   const handleItemMove = (fromIndex, toIndex) => {

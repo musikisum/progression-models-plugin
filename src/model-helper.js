@@ -116,7 +116,7 @@ const modelTemplates = {
     voiceArrangement: [1, 2, 3],
     addProps: {
       partLengthValues: [6, 6],
-      partToBeginValues: [1, 5]
+      partToBeginValues: [1, 6]
     }
   }
 };

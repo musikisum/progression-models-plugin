@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ModelHelper from '../model-helper.js';
 import { Checkbox, InputNumber } from 'antd';
 import { useTranslation } from 'react-i18next';
 
@@ -27,7 +26,7 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
     const newModelTemplates = cloneDeep(modelTemplates);
     const modelTemplateToUpdate = newModelTemplates[index];
     const keys = Object.keys(modelTemplateToUpdate.addProps);
-    modelTemplateToUpdate.addProps[keys[index]][0] = number;
+    modelTemplateToUpdate.addProps[keys[propIndex]][0] = number;
     newModelTemplates[index] = modelTemplateToUpdate;
     updateContent({ modelTemplates: newModelTemplates });
   };

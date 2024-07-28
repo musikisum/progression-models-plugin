@@ -33,14 +33,16 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
 
   function getCheck(key, value, propIndex) {
     return (
-      <Checkbox 
-        className='addPropItem' 
-        key={`prop${propIndex}`} 
-        checked={value} 
-        onChange={e => onCheckboxChange(e, propIndex)}
-        >
-        {t(key)}
-      </Checkbox>
+      <div>
+        <Checkbox 
+          className='addPropItem' 
+          key={`prop${propIndex}`} 
+          checked={value} 
+          onChange={e => onCheckboxChange(e, propIndex)}
+          >
+          {t(key)}
+        </Checkbox>
+      </div>
     );
   }
 
@@ -48,7 +50,6 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
     return (
       <div key={`prop${propIndex}`}>
         <InputNumber
-          style={{ width: '50px', marginRight: '6px' }}            
           className='addPropItem' 
           min={1} 
           max={value[1]} 
@@ -61,7 +62,7 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
   }
 
   return (
-    <div>
+    <div style={{display: 'block'}}>
       {
         addProps && Object.entries(addProps).map(([key, value], propIndex) => {
           if(addPropValueIsBool(value)) {

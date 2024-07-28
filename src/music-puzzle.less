@@ -30,7 +30,7 @@
     width: 100%;
     height: 100%;
     display: flex; 
-    justify-content: space-around;
+    justify-content: flex-start;
     display: flex;
     flex-wrap: wrap;
   }
@@ -39,47 +39,49 @@
   }
   .buttons {
     display: flex;
-    justify-content: center;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    justify-content: left;
+    padding-bottom: 10px;
+    min-width: 140px;
   }
   .button {
     width: fit-content;
     margin: 0 4px;
   }
-  .item-1 {
-    border: 1px gray solid; 
-    text-align: center;
-    align-items: stretch;
-    flex: 0 1 35%; 
-  }
-  .item-2 {
-    border: 1px gray solid; 
-    text-align: center;
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    flex: 0 1 35%;
-  }
-  .item-3 {
-    flex: 0 0 30%;
-    border: 1px gray solid; 
-    text-align: center;
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-  }
   .addPropItem {
+    padding: 0;
     margin-top: 10px;
+    margin-left: 0 !important;
+    min-width: 140px;
+  }
+
+  .gutter-example .ant-row > div {
+    background: transparent;
+    border: 0;
+  }
+  .gutter-box {
+    padding: 5px 0;
+    min-height: 180px;
   }
 
   /* Mobile view */
+  @media (max-width: 990px) {
+    .gutter-box {
+      padding-bottom: 10px;
+      border-bottom: 1px solid gray;
+    }
+  }  
   @media (max-width: 768px) {
     .container {
       display: block;
     }
     .right {
       margin-top: 2%;
+    }
+  }  
+  @media (max-width: 575px) {
+    .gutter-box { 
+      margin-bottom: 10px;
+      min-height: 0;
     }
   }
 }

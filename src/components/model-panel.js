@@ -9,11 +9,13 @@ import ModelComposition from '../model-composition.js';
 import ModelProvider from '../models/model-provider.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
-import { Button, Collapse, Tooltip, Select, Radio, Space } from 'antd';
+import { Button, Collapse, Tooltip, Select, Radio, Space, Row, Col, Typography } from 'antd';
 import DeleteIcon from '@educandu/educandu/components/icons/general/delete-icon.js';
 import MoveUpIcon from '@educandu/educandu/components/icons/general/move-up-icon.js';
 import MoveDownIcon from '@educandu/educandu/components/icons/general/move-down-icon.js';
 import { confirmDeleteItem } from '@educandu/educandu/components/confirmation-dialogs.js';
+
+const { Text } = Typography;
 
 function ModelPanel({
   index,
@@ -67,37 +69,42 @@ function ModelPanel({
   const renderModel = () => (
     <div className='container' key={index}>
       <div className="left">
-        <div className='innerContainer'>
-          <div className='item-1'>
-            <div className='label'>Tonart</div>
+        <Row gutter={32} type='flex' justify='space-arround'>
+          <Col className='gutter-row'  xs={24} sm={12} md={12} lg={8}>
+            <div className='gutter-box'>
+            <Text strong style={{display: 'block', marginBottom: '10px'}}>Tonart</Text>
             <Select 
+              style={{width: '100px'}}
               defaultValue={modelTemplate.key} 
               options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(key => ({ value: key, label: key }))}
               onChange={e => changeModelTemplateKey(e, index)}
               />
-            <div>
               <AddProperties index={index} modelTemplates={modelTemplates} cloneDeep={cloneDeep} updateContent={updateContent} />
-            </div>                 
-          </div>
-          <div className='item-2'>
-            <div className='label'>Transposition (8)</div>
-            <div className='buttons'>
-              <Button className='button' onClick={() => onArrowButtonClick('up', index)}><ArrowUpOutlined /></Button>
-              <Button className='button' onClick={() => onArrowButtonClick('down', index)}><ArrowDownOutlined /></Button>
             </div>
-            <Radio.Group onChange={e => onRadioChange(e, index)} value={modelTemplate.radioValue}>
-              <Space direction="vertical">
-                <Radio value={0}>{t('os')}</Radio>
-                <Radio value={1}>{t('ms')}</Radio>
-                <Radio value={2}>{t('us')}</Radio>
-              </Space>
-            </Radio.Group>
-          </div>
-          <div className='item-3'>
-            <div className='label'>Stimmtausch</div>
-            <VoiceSwitch style={{ margin: '16px 0' }} modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
-          </div>
-        </div>
+          </Col>
+          <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
+            <div className='gutter-box'>
+              <Text strong style={{display: 'block', marginBottom: '10px'}}>Transposition (8)</Text>
+              <div className='buttons'>
+                <Button className='button' onClick={() => onArrowButtonClick('up', index)}><ArrowUpOutlined /></Button>
+                <Button className='button' onClick={() => onArrowButtonClick('down', index)}><ArrowDownOutlined /></Button>
+              </div>
+              <Radio.Group onChange={e => onRadioChange(e, index)} value={modelTemplate.radioValue}>
+                <Space direction="vertical">
+                  <Radio value={0}>{t('os')}</Radio>
+                  <Radio value={1}>{t('ms')}</Radio>
+                  <Radio value={2}>{t('us')}</Radio>
+                </Space>
+              </Radio.Group>
+            </div>    
+          </Col>             
+          <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
+            <div className='gutter-box'>
+              <Text strong style={{display: 'block', marginBottom: '10px'}}>Stimmtausch</Text>
+              <VoiceSwitch style={{ margin: '16px 0' }} modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
+            </div>
+          </Col> 
+        </Row>
       </div>
       <div className="right">
         <div>

@@ -82,11 +82,14 @@ const updateTransposeValues = (voiceArr, modelName) => {
 
 const modelTemplates = {
   cadence: {
+    modelKey: '',
     name: 'cadence',
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
+    customDescription: "",
+    showDescription: false,
     addProps: { 
       isFinal: false,
       isBegin: false,
@@ -94,26 +97,35 @@ const modelTemplates = {
     }
   },
   circleOfFifths:  {
+    modelKey: '',
     name: 'circleOfFifths',
     key: 'C',
     transposeValues: [0, 0, 0],
     voiceArrangement: [1, 2, 3],
-    radioValue: 0
+    radioValue: 0,
+    customDescription: "",
+    showDescription: false
   },
   circleOfFifthsLinear: {
+    modelKey: '',
     name: 'circleOfFifthsLinear',
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    customDescription: "",
+    showDescription: false,
     addProps: {
       lastBassNoteUp: false
     }
   },
   fiveSixConsecutive: {
+    modelKey: '',
     name: 'fiveSixConsecutive',
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    customDescription: "",
+    showDescription: false,
     addProps: {
       partLengthValues: [6, 6],
       partToBeginValues: [1, 6]

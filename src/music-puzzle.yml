@@ -131,3 +131,9 @@ musikisum/educandu-plugin-music-puzzle:
   partToBeginValues:
     en: "Begin"
     de: "Anfang"
+  showDescription:
+    en: "Description"
+    de: "Beschreibung"
+  defaultDescriptionCadence:
+    en: "Hi guy!"
+    de: "Dies ist eine Default-Beschreibung der Kadenz aus kontrapunktischer Sicht."

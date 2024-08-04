@@ -33,10 +33,9 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
 
   function getCheck(key, value, propIndex) {
     return (
-      <div>
+      <div key={`prop${propIndex}`}>
         <Checkbox 
-          className='addPropItem' 
-          key={`prop${propIndex}`} 
+          className='addPropItem'           
           checked={value} 
           onChange={e => onCheckboxChange(e, propIndex)}
           >

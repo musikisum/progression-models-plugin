@@ -5,15 +5,16 @@ import AbcSnippet from '../abc-snippet.js';
 import VoiceSwitch from './voice-switch.js';
 import { useTranslation } from 'react-i18next';
 import AddProperties from './addProperties.js';
+import ModelDescription from './model-description.js';
 import ModelComposition from '../model-composition.js';
 import ModelProvider from '../models/model-provider.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
-import { Button, Collapse, Tooltip, Select, Radio, Space, Row, Col, Typography } from 'antd';
 import DeleteIcon from '@educandu/educandu/components/icons/general/delete-icon.js';
 import MoveUpIcon from '@educandu/educandu/components/icons/general/move-up-icon.js';
 import MoveDownIcon from '@educandu/educandu/components/icons/general/move-down-icon.js';
 import { confirmDeleteItem } from '@educandu/educandu/components/confirmation-dialogs.js';
+import { Button, Collapse, Tooltip, Select, Radio, Space, Row, Col, Typography, Checkbox } from 'antd';
 
 const { Text } = Typography;
 
@@ -66,60 +67,79 @@ function ModelPanel({
     updateContent({ modelTemplates: newModelTemplates }); 
   };
 
+  const onShowDescriptionChange = (e, index) => {
+    const newModelTemplates = cloneDeep(modelTemplates);
+    const modelTemplateToUpdate = newModelTemplates[index];
+    modelTemplateToUpdate.showDescription = e.target.checked;
+    newModelTemplates[index] = modelTemplateToUpdate;
+    updateContent({ modelTemplates: newModelTemplates });
+  };  
+
   const renderModel = () => (
-    <div className='container' key={index}>
-      <div className="left">
-        <Row gutter={32} type='flex' justify='space-arround'>
-          <Col className='gutter-row'  xs={24} sm={12} md={12} lg={8}>
-            <div className='gutter-box'>
-            <Text strong style={{display: 'block', marginBottom: '10px'}}>Tonart</Text>
-            <Select 
-              style={{width: '100px'}}
-              defaultValue={modelTemplate.key} 
-              options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(key => ({ value: key, label: key }))}
-              onChange={e => changeModelTemplateKey(e, index)}
-              />
-              <AddProperties index={index} modelTemplates={modelTemplates} cloneDeep={cloneDeep} updateContent={updateContent} />
-            </div>
-          </Col>
-          <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
-            <div className='gutter-box'>
-              <Text strong style={{display: 'block', marginBottom: '10px'}}>Transposition (8)</Text>
-              <div className='buttons'>
-                <Button className='button' onClick={() => onArrowButtonClick('up', index)}><ArrowUpOutlined /></Button>
-                <Button className='button' onClick={() => onArrowButtonClick('down', index)}><ArrowDownOutlined /></Button>
+    <div>
+      <div className='container' key={index}>
+        <div className="left">
+          <Row gutter={32} type='flex' justify='space-arround'>
+            <Col className='gutter-row'  xs={24} sm={12} md={12} lg={8}>
+              <div className='gutter-box'>
+              <Text strong style={{display: 'block', marginBottom: '10px'}}>Tonart</Text>
+              <Select 
+                style={{width: '100px'}}
+                defaultValue={modelTemplate.key} 
+                options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(key => ({ value: key, label: key }))}
+                onChange={e => changeModelTemplateKey(e, index)}
+                />
+                <AddProperties index={index} modelTemplates={modelTemplates} cloneDeep={cloneDeep} updateContent={updateContent} />
+                <Checkbox 
+                  className='addPropItem'           
+                  checked={modelTemplate.showDescription} 
+                  onChange={e => onShowDescriptionChange(e, index)}
+                  >
+                  {t('showDescription')}
+              </Checkbox>
               </div>
-              <Radio.Group onChange={e => onRadioChange(e, index)} value={modelTemplate.radioValue}>
-                <Space direction="vertical">
-                  <Radio value={0}>{t('os')}</Radio>
-                  <Radio value={1}>{t('ms')}</Radio>
-                  <Radio value={2}>{t('us')}</Radio>
-                </Space>
-              </Radio.Group>
-            </div>    
-          </Col>             
-          <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
-            <div className='gutter-box'>
-              <Text strong style={{display: 'block', marginBottom: '10px'}}>Stimmtausch</Text>
-              <VoiceSwitch style={{ margin: '16px 0' }} modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
-            </div>
-          </Col> 
-        </Row>
-      </div>
-      <div className="right">
-        <div>
-          <AbcSnippet 
-            playableABC={
-              ModelComposition.abcOutput('C', 'C', 120, '1/2', [
-                ModelProvider
-                  .getModel(modelTemplate.name)
-                  .getVoices(modelTemplate)
-              ])
-            }
-            />
+            </Col>
+            <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
+              <div className='gutter-box'>
+                <Text strong style={{display: 'block', marginBottom: '10px'}}>Transposition (8)</Text>
+                <div className='buttons'>
+                  <Button className='button' onClick={() => onArrowButtonClick('up', index)}><ArrowUpOutlined /></Button>
+                  <Button className='button' onClick={() => onArrowButtonClick('down', index)}><ArrowDownOutlined /></Button>
+                </div>
+                <Radio.Group onChange={e => onRadioChange(e, index)} value={modelTemplate.radioValue}>
+                  <Space direction="vertical">
+                    <Radio value={0}>{t('os')}</Radio>
+                    <Radio value={1}>{t('ms')}</Radio>
+                    <Radio value={2}>{t('us')}</Radio>
+                  </Space>
+                </Radio.Group>
+              </div>    
+            </Col>             
+            <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
+              <div className='gutter-box'>
+                <Text strong style={{display: 'block', marginBottom: '10px'}}>Stimmtausch</Text>
+                <VoiceSwitch style={{ margin: '16px 0' }} modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
+              </div>
+            </Col> 
+          </Row>
         </div>
+        <div className="right">
+          <div>
+            <AbcSnippet 
+              playableABC={
+                ModelComposition.abcOutput('C', 'C', 120, '1/2', [
+                  ModelProvider
+                    .getModel(modelTemplate.name)
+                    .getVoices(modelTemplate)
+                ])
+              }
+              />
+          </div>
+        </div>      
       </div>
-    </div>);
+      <ModelDescription modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
+    </div>
+  );
 
   const handleActionButtonWrapperClick = (event, actionButton) => {
     if (actionButton.disabled) {

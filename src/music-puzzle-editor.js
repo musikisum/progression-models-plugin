@@ -27,6 +27,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
       return;
     }
     const modelTemplate = ModelHelper.getModelTemplate(selectedModel);
+    modelTemplate.modelKey = uniqueId.create();
     console.log(modelTemplate);
     const newModelTemplates = cloneDeep(modelTemplates);
     newModelTemplates.push(modelTemplate);
@@ -54,7 +55,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   };
 
   const dragAndDropItems = modelTemplates.map((modelTemplate, index, arr) => ({
-    key: uniqueId.create(),
+    key: modelTemplate.modelKey,
     render: ({ dragHandleProps, isDragged, isOtherDragged }) => 
       <ModelPanel 
         index={index}

@@ -38,40 +38,32 @@ function ModelPanel({
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const header = t(modelTemplate.name);
 
-  const changeModelTemplateKey = (e, index) => {
+  const changeModelTemplateKey = e => {
     const newModelTemplates = cloneDeep(modelTemplates);
-    const modelTemplateToUpdate = newModelTemplates[index];
-    modelTemplateToUpdate.key = e;
-    newModelTemplates[index] = modelTemplateToUpdate;
+    newModelTemplates[index].key = e;
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const onArrowButtonClick = (direction, index) => {
+  const onArrowButtonClick = direction => {
     const newModelTemplates = cloneDeep(modelTemplates);
-    const modelTemplateToUpdate = newModelTemplates[index];
-    const voice = modelTemplateToUpdate.radioValue;
+    const voice = newModelTemplates[index].radioValue;
     if(direction === 'up') {
-      modelTemplateToUpdate.transposeValues[voice] += 1;
+      newModelTemplates[index].transposeValues[voice] += 1;
     } else {
-      modelTemplateToUpdate.transposeValues[voice] -= 1;
+      newModelTemplates[index].transposeValues[voice] -= 1;
     }
-    newModelTemplates[index] = modelTemplateToUpdate;
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const onRadioChange = (e, index) => { 
+  const onRadioChange = e => { 
     const newModelTemplates = cloneDeep(modelTemplates);
-    const modelTemplateToUpdate = newModelTemplates[index];
-    modelTemplateToUpdate.radioValue = e.target.value;
-    newModelTemplates[index] = modelTemplateToUpdate;
+    newModelTemplates[index].radioValue = e.target.value;
     updateContent({ modelTemplates: newModelTemplates }); 
   };
 
-  const onShowDescriptionChange = (e, index) => {
+  const onShowDescriptionChange = e => {
     const newModelTemplates = cloneDeep(modelTemplates);
-    const modelTemplateToUpdate = newModelTemplates[index];
-    modelTemplateToUpdate.showDescription = e.target.checked;
-    newModelTemplates[index] = modelTemplateToUpdate;
+    newModelTemplates[index].showDescription = e.target.checked;
     updateContent({ modelTemplates: newModelTemplates });
   };  
 
@@ -80,15 +72,15 @@ function ModelPanel({
       <div className='container' key={index}>
         <div className="left">
           <Row gutter={32} type='flex' justify='space-arround'>
-            <Col className='gutter-row'  xs={24} sm={12} md={12} lg={8}>
+            <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
-              <Text strong style={{display: 'block', marginBottom: '10px'}}>Tonart</Text>
-              <Select 
-                style={{width: '100px'}}
-                defaultValue={modelTemplate.key} 
-                options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(key => ({ value: key, label: key }))}
-                onChange={e => changeModelTemplateKey(e, index)}
-                />
+                <Text strong style={{ display: 'block', marginBottom: '10px' }}>Tonart</Text>
+                <Select 
+                  style={{ width: '100px' }}
+                  defaultValue={modelTemplate.key} 
+                  options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(key => ({ value: key, label: key }))}
+                  onChange={e => changeModelTemplateKey(e, index)}
+                  />
                 <AddProperties index={index} modelTemplates={modelTemplates} cloneDeep={cloneDeep} updateContent={updateContent} />
                 <Checkbox 
                   className='addPropItem'           
@@ -96,12 +88,12 @@ function ModelPanel({
                   onChange={e => onShowDescriptionChange(e, index)}
                   >
                   {t('showDescription')}
-              </Checkbox>
+                </Checkbox>
               </div>
             </Col>
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
-                <Text strong style={{display: 'block', marginBottom: '10px'}}>Transposition (8)</Text>
+                <Text strong style={{ display: 'block', marginBottom: '10px' }}>Transposition (8)</Text>
                 <div className='buttons'>
                   <Button className='button' onClick={() => onArrowButtonClick('up', index)}><ArrowUpOutlined /></Button>
                   <Button className='button' onClick={() => onArrowButtonClick('down', index)}><ArrowDownOutlined /></Button>
@@ -117,7 +109,7 @@ function ModelPanel({
             </Col>             
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
-                <Text strong style={{display: 'block', marginBottom: '10px'}}>Stimmtausch</Text>
+                <Text strong style={{ display: 'block', marginBottom: '10px' }}>Stimmtausch</Text>
                 <VoiceSwitch style={{ margin: '16px 0' }} modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
               </div>
             </Col> 
@@ -249,7 +241,10 @@ ModelPanel.propTypes = {
   onDelete: PropTypes.func,
   onExtraActionButtonClick: PropTypes.func,
   onMoveDown: PropTypes.func,
-  onMoveUp: PropTypes.func
+  onMoveUp: PropTypes.func,
+  modelTemplates: PropTypes.array,
+  modelTemplate: PropTypes.object,
+  updateContent: PropTypes.func
 };
 
 ModelPanel.defaultProps = {
@@ -264,7 +259,10 @@ ModelPanel.defaultProps = {
   onDelete: null,
   onExtraActionButtonClick: () => {},
   onMoveDown: null,
-  onMoveUp: null
+  onMoveUp: null,
+  modelTemplates: [],
+  updateContent: null,
+  modelTemplate: { name: null }
 };
 
 export default ModelPanel;

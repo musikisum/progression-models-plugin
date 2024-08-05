@@ -28,7 +28,6 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     }
     const modelTemplate = ModelHelper.getModelTemplate(selectedModel);
     modelTemplate.modelKey = uniqueId.create();
-    console.log(modelTemplate);
     const newModelTemplates = cloneDeep(modelTemplates);
     newModelTemplates.push(modelTemplate);
     updateContent({ modelTemplates: newModelTemplates });
@@ -37,7 +36,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   const handleItemMove = (fromIndex, toIndex) => {
     const newModelTemplates = moveItem(modelTemplates, fromIndex, toIndex);
     updateContent({ modelTemplates: newModelTemplates });
-  }
+  };
 
   const handleDeleteModel = index => {
     const newModelTemplates = removeItemAt(modelTemplates, index);
@@ -57,30 +56,30 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   const dragAndDropItems = modelTemplates.map((modelTemplate, index, arr) => ({
     key: modelTemplate.modelKey,
     render: ({ dragHandleProps, isDragged, isOtherDragged }) => 
-      <ModelPanel 
+      (<ModelPanel 
         index={index}
         dragHandleProps={dragHandleProps}
         isDragged={isDragged} 
         isOtherDragged={isOtherDragged} 
         itemsCount={arr.length}
-        canDeleteLastItem={true}
+        canDeleteLastItem
         onMoveUp={handleMoveModelUp}
         onMoveDown={handleMoveModelDown}
         onDelete={handleDeleteModel}
         modelTemplates={modelTemplates}
         modelTemplate={modelTemplate}
         updateContent={updateContent}  
-        />
+        />)
   }));
 
   return (
     <div className="EP_Educandu_Example_Editor">
       <Form labelAlign="left" style={{ width: '100%' }}>
-      <DragAndDropContainer
-        droppableId={droppableIdRef.current} 
-        items={dragAndDropItems} 
-        onItemMove={handleItemMove}  
-        />
+        <DragAndDropContainer
+          droppableId={droppableIdRef.current} 
+          items={dragAndDropItems} 
+          onItemMove={handleItemMove}
+          />
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           <Button type="primary" icon={<PlusOutlined />} onClick={handleAddModelButtonClick}>
             {t('addModel')}

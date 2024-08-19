@@ -37,6 +37,7 @@ function ModelPanel({
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const header = t(modelTemplate.name);
+  console.log(modelTemplate)
 
   const changeModelTemplateKey = e => {
     const newModelTemplates = cloneDeep(modelTemplates);
@@ -74,7 +75,7 @@ function ModelPanel({
           <Row gutter={32} type='flex' justify='space-arround'>
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
-                <Text strong style={{ display: 'block', marginBottom: '10px' }}>Tonart</Text>
+                <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('key')}</Text>
                 <Select 
                   style={{ width: '100px' }}
                   defaultValue={modelTemplate.key} 
@@ -109,7 +110,7 @@ function ModelPanel({
             </Col>             
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
-                <Text strong style={{ display: 'block', marginBottom: '10px' }}>Stimmtausch</Text>
+                <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('ve')}</Text>
                 <VoiceSwitch style={{ margin: '16px 0' }} modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
               </div>
             </Col> 

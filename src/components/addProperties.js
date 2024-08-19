@@ -10,34 +10,36 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
   const addProps = modelTemplate.addProps;
 
   function addPropValueIsBool(addPropValue) {
-    return !Array.isArray(addPropValue);
+    return typeof addPropValue[0] === 'boolean';
   }
 
-  const onCheckboxChange = (e, propIndex) => {
-    const newModelTemplates = cloneDeep(modelTemplates);
-    const modelTemplateToUpdate = newModelTemplates[index];
-    const keyValuePairs = Object.entries(modelTemplateToUpdate.addProps);
-    modelTemplateToUpdate.addProps[keyValuePairs[propIndex][0]] = e.target.checked;
-    newModelTemplates[index] = modelTemplateToUpdate;
-    updateContent({ modelTemplates: newModelTemplates });
-  };
-
-  const onInputNumberChange = (number, propIndex) => {
+  const onChange = (e, propIndex) => {
     const newModelTemplates = cloneDeep(modelTemplates);
     const modelTemplateToUpdate = newModelTemplates[index];
     const keys = Object.keys(modelTemplateToUpdate.addProps);
-    modelTemplateToUpdate.addProps[keys[propIndex]][0] = number;
+    const value = typeof e === 'number' ? e : e.target.checked;
+    modelTemplateToUpdate.addProps[keys[propIndex]][0] = value;
     newModelTemplates[index] = modelTemplateToUpdate;
     updateContent({ modelTemplates: newModelTemplates });
   };
+
+  // const onInputNumberChange = (number, propIndex) => {
+  //   const newModelTemplates = cloneDeep(modelTemplates);
+  //   const modelTemplateToUpdate = newModelTemplates[index];
+  //   const keys = Object.keys(modelTemplateToUpdate.addProps);
+  //   modelTemplateToUpdate.addProps[keys[propIndex]][0] = number;
+  //   newModelTemplates[index] = modelTemplateToUpdate;
+  //   updateContent({ modelTemplates: newModelTemplates });
+  // };
 
   function getCheck(key, value, propIndex) {
     return (
       <div key={`prop${propIndex}`}>
         <Checkbox 
           className='addPropItem'           
-          checked={value} 
-          onChange={e => onCheckboxChange(e, propIndex)}
+          checked={value[0]} 
+          disabled={value[1]}
+          onChange={e => onChange(e, propIndex)}
           >
           {t(key)}
         </Checkbox>
@@ -47,15 +49,15 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
 
   function getNumber(key, value, propIndex) {
     return (
-      <div key={`prop${propIndex}`}>
+      <div key={`prop${propIndex}`} style={{marginTop: '6px'}}>
+        <span>{t(key)}</span>
         <InputNumber
           className='addPropItem' 
           min={1} 
           max={value[1]} 
           defaultValue={value[0]} 
-          onChange={number => onInputNumberChange(number, propIndex)}
-          />
-        <span>{t(key)}</span>
+          onChange={e => onChange(e, propIndex)}
+          />        
       </div>
     );                      
   }

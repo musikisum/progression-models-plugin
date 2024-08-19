@@ -91,9 +91,9 @@ const modelTemplates = {
     customDescription: "",
     showDescription: false,
     addProps: { 
-      isFinal: false,
-      isBegin: false,
-      isDeceptiv: false
+      isFinal: [false, false],
+      isBegin: [false, false],
+      isDeceptiv: [false, false]
     }
   },
   circleOfFifths:  {
@@ -104,7 +104,11 @@ const modelTemplates = {
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
     customDescription: "",
-    showDescription: false
+    showDescription: false,
+    addProps: {
+      partLengthValues: [4, 4],
+      partToBeginValues: [1, 4]
+    }
   },
   circleOfFifthsLinear: {
     modelKey: '',
@@ -115,7 +119,7 @@ const modelTemplates = {
     customDescription: "",
     showDescription: false,
     addProps: {
-      lastBassNoteUp: false
+      lastBassNoteUp: [false, false]
     }
   },
   fiveSixConsecutive: {
@@ -130,8 +134,21 @@ const modelTemplates = {
       partLengthValues: [6, 6],
       partToBeginValues: [1, 6]
     }
+  },
+  lowerFiveModulation: {
+    modelKey: '',
+    name: 'lowerFiveModulation',
+    key: 'C',
+    transposeValues: [0, 0, -1],
+    voiceArrangement: [1, 2, 3],
+    customDescription: "",
+    chkbDisabled: false,
+    showDescription: false,
+    addProps: {
+      changeMode: [false, false]
+    }
   }
-};
+}
  
 const ModelHelper = {
   meta: getMeta,

@@ -2,6 +2,75 @@ musikisum/educandu-plugin-music-puzzle:
   name:
     en: Voice-Models
     de: Satzmodelle
+  key: 
+    en: Key (Begin)
+    de: Tonart (Beginn)
+  ve:
+    en: Voice exchange
+    de: Stimmtausch
+  v1:
+    en: voice 1
+    de: 1. Stimme
+  v2:
+    en: voice 2
+    de: 2. Stimme
+  v3:
+    en: voice 3
+    de: 3. Stimme
+  os:
+    en: upper voice
+    de: Oberstimme
+  ms: 
+    en: middle voice
+    de: Mittelstimme
+  us:
+    en: lower voice
+    de: Unterstimme
+  addModel:
+    en: Add model
+    de: Modell hinzufügen
+  cadence:
+    en: Cadence
+    de: Kadenz
+  circleOfFifths:
+    en: Circle of fifths
+    de: Quintfallsequenz
+  isFinal:
+    en: final Cadence (PAK)
+    de: Schlusskadenz
+  isBegin:
+    en: initial Cadence
+    de: Anfangskadenz
+  lastBassNoteUp:
+    en: ending ↑
+    de: Abschluss ↑
+  isDeceptiv:
+    en: deceptiv
+    de: Trugschluss
+  circleOfFifthsLinear:
+    en: Circle of Fifths (Inversions)
+    de: Quintfallsequenz (Umkehrungen)
+  fiveSixConsecutive:
+    en: "5-6 Side Motion"
+    de: "5-6-Seitenbewegung"
+  partLengthValues:
+    en: "Number"
+    de: "Anzahl"
+  partToBeginValues:
+    en: "Begin"
+    de: "Anfang"
+  showDescription:
+    en: "Description"
+    de: "Beschreibung"
+  defaultDescriptionCadence:
+    en: "Hi guy!"
+    de: "Dies ist eine Default-Beschreibung der Kadenz aus kontrapunktischer Sicht."
+  lowerFiveModulation:
+    en: "Lower Quint Modulation"
+    de: "Unterquintmodulation"
+  changeMode:
+    en: Change Mode
+    de: Tonartwechsel
   C:
     en: C major (C)
     de: C-Dur (C)
@@ -80,60 +149,3 @@ musikisum/educandu-plugin-music-puzzle:
   Ebm:
     en: E flat minor (Ebm)
     de: es-Moll (Ebm)
-  v1:
-    en: voice 1
-    de: 1. Stimme
-  v2:
-    en: voice 2
-    de: 2. Stimme
-  v3:
-    en: voice 3
-    de: 3. Stimme
-  os:
-    en: upper voice
-    de: Oberstimme
-  ms: 
-    en: middle voice
-    de: Mittelstimme
-  us:
-    en: lower voice
-    de: Unterstimme
-  addModel:
-    en: Add model
-    de: Modell hinzufügen
-  cadence:
-    en: Cadence
-    de: Kadenz
-  circleOfFifths:
-    en: Circle of fifths
-    de: Quintfallsequenz
-  isFinal:
-    en: final Cadence (PAK)
-    de: Schlusskadenz
-  isBegin:
-    en: initial Cadence
-    de: Anfangskadenz
-  lastBassNoteUp:
-    en: ending ↑
-    de: Abschluss ↑
-  isDeceptiv:
-    en: deceptiv
-    de: Trugschluss
-  circleOfFifthsLinear:
-    en: Circle of Fifths (Inversions)
-    de: Quintfallsequenz (Umkehrungen)
-  fiveSixConsecutive:
-    en: "5-6 Side Motion"
-    de: "5-6-Seitenbewegung"
-  partLengthValues:
-    en: "Number"
-    de: "Anzahl"
-  partToBeginValues:
-    en: "Begin"
-    de: "Anfang"
-  showDescription:
-    en: "Description"
-    de: "Beschreibung"
-  defaultDescriptionCadence:
-    en: "Hi guy!"
-    de: "Dies ist eine Default-Beschreibung der Kadenz aus kontrapunktischer Sicht."

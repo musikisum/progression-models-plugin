@@ -22,7 +22,7 @@ const _keyObj = {
 };
 
 function _getKeyObject(change) {  
-  return _keyObj[change ?? 'C'];
+  return _keyObj[change];
 }
 
 function getModelKeys() {
@@ -30,13 +30,11 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  return {
-    name: 'LowerFiveModulation',
-    key: change || 'F',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    changeMode: false
-  };
+  const modelTemplate = ModelHelper.getModelTemplate('lowerFiveModulation');
+  if(change) {
+    modelTemplate.key = change;
+  }
+  return modelTemplate;
 };
 
 const getVoices = lowerFifthModulationOptions => {
@@ -46,17 +44,37 @@ const getVoices = lowerFifthModulationOptions => {
   const options = lowerFifthModulationOptions || getOptions();
   const [v1, v2, v3] = options.transposeValues;
   const voiceArr = options.voiceArrangement;
+  const changeMode = options.addProps['changeMode'][0];
   const keyObject = _getKeyObject(options.key);
-  const flatValues = ['C', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
 
-  if(lowerFifthModulationOptions.changeMode) {
-    if (flatValues.includes(keyObject.key)) {
-      keyObject.accidentals[1][4] = keyObject.accidentals[1][4] === -1 ? 0 : -1;
-      keyObject.accidentals[1][7] = keyObject.accidentals[1][7] === -1 ? 0 : -1;  
-    } else {
-      keyObject.accidentals[1][4] = keyObject.accidentals[1][4] === 1 ? 0 : 1;
-      keyObject.accidentals[1][7] = keyObject.accidentals[1][7] === 1 ? 0 : 1; 
-    }
+  switch (options.key) {
+    case 'Cm':
+    case 'Gm':
+    case 'Dm':
+      keyObject.accidentals[1][4] = changeMode ? 0 : -1;
+      keyObject.accidentals[1][7] = changeMode ? 0 : -1;
+      break;
+    case 'C':
+    case 'G':
+    case 'D':
+      keyObject.accidentals[1][4] = changeMode ? -1 : 0;
+      keyObject.accidentals[1][7] = changeMode ? -1 : 0;
+      break;
+    case 'Am':
+    case 'Em':
+    case 'Bm':
+    case 'F#m':
+      keyObject.accidentals[1][4] = changeMode ? 1 : 0;
+      keyObject.accidentals[1][7] = changeMode ? 1 : 0;
+      break;
+    case 'A':
+    case 'E':
+      keyObject.accidentals[1][4] = changeMode ? 0 : 1;
+      keyObject.accidentals[1][7] = changeMode ? 0 : 1;
+      break;
+    default:
+      console.log('disable checkbox');      
+      break;
   }
 
   const abcVoices = ['', '', ''];
@@ -71,6 +89,7 @@ const getVoices = lowerFifthModulationOptions => {
     abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[voiceArr[2] - 1][index] + keyObject.t));
     abcVoices[2] += measure[index];  
   }
+
   return abcVoices;
 };
 

@@ -4,7 +4,7 @@ import ModelProvider from './models/model-provider.js';
 const diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
 
 // Replace a number for octave transposition up or down in a abc.js sign.  
-const transpose = (number, tone) => {
+const transposeOctave = (number, tone) => {
   switch (number) {
     case -3:
       return `${tone},,,`;
@@ -24,7 +24,7 @@ const transpose = (number, tone) => {
 };
 
 // Composes abc.js characters for values outside the valid range of the diatonic scale.
-const validate = index => {
+const validateValue = index => {
   let value = '';
   let diatonicIndex = index;
   if (diatonicIndex < 0) {
@@ -44,7 +44,7 @@ const validate = index => {
 };
 
 // Provides meta informations for an abc.js header of a phrase model combination in a key and a measure.
-const getMeta = (key, measure, tempo, length) => {
+const meta = (key, measure, tempo, length) => {
   return `X:1\n%%score [(1 2) 3]\nM:${measure}\nQ:${tempo}\nL:${length}\nK:${key}\n`;
 };
 
@@ -80,6 +80,70 @@ const updateTransposeValues = (voiceArr, modelName) => {
   return returnValue;
 };
 
+const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure) => {
+  const [va1, va2, va3] = voiceArr;
+  const abcVoices = ['', '', ''];
+  for (let index = 0; index < voicesLength; index += 1) { 
+    abcVoices[0] += getSign(keyObject.accidentals[va1 - 1][index]);
+    abcVoices[0] += transposeOctave(transposeValues[0], validateValue(voices[va1 - 1][index] + keyObject.t));
+    abcVoices[0] += measure[index];
+    abcVoices[1] += getSign(keyObject.accidentals[va2 - 1][index]);
+    abcVoices[1] += transposeOctave(transposeValues[1], validateValue(voices[va2 - 1][index] + keyObject.t));
+    abcVoices[1] += measure[index];    
+    abcVoices[2] += getSign(keyObject.accidentals[va3 - 1][index]);
+    abcVoices[2] += transposeOctave(transposeValues[2], validateValue(voices[va3 - 1][index] + keyObject.t));
+    abcVoices[2] += measure[index];  
+  } 
+  return abcVoices;
+}
+
+const getBeginAtHelperArr = voiceLength => {
+  const helpArr = [];
+  helpArr.push(0);
+  for (let index = 0; index < voiceLength; index++) {
+    helpArr.push(index * 2);    
+  }
+  return helpArr;
+}
+
+const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, addProps) => {
+  const [va1, va2, va3] = voiceArr;
+  const [aVoice, bVoice, cVoice] = [[], [], []];
+  for (let index = 0; index < voicesLength; index += 1) { 
+    let aSign = getSign(keyObject.accidentals[va1 - 1][index]);
+    aSign += transposeOctave(transposeValues[0], validateValue(voices[va1 - 1][index] + keyObject.t));
+    aSign += measure[index];
+    aVoice.push(aSign);
+    let bSign = getSign(keyObject.accidentals[va2 - 1][index]);
+    bSign += transposeOctave(transposeValues[1], validateValue(voices[va2 - 1][index] + keyObject.t));
+    bSign += measure[index];    
+    bVoice.push(bSign);
+    let cSign = getSign(keyObject.accidentals[va3 - 1][index]);
+    cSign += transposeOctave(transposeValues[2], validateValue(voices[va3 - 1][index] + keyObject.t));
+    cSign += measure[index];
+    cVoice.push(cSign);  
+  }
+  // implement partlength & partToBegin
+  const abcVoices = ['', '', ''];
+  const x = getBeginAtHelperArr(voicesLength)[addProps['partToBeginValues'][0]];
+  const y = addProps['partLengthValues'][0] * 2;
+  if((voicesLength - x) >= y) {
+    abcVoices[0] = aVoice.slice(x, x + y);
+    abcVoices[1] = bVoice.slice(x, x + y);
+    abcVoices[2] = cVoice.slice(x, x + y);
+  } else {
+    abcVoices[0] = aVoice.slice(x);
+    abcVoices[1] = bVoice.slice(x);
+    abcVoices[2] = cVoice.slice(x);
+  }
+  if(addProps['resolveLastDissonance']) {
+    console.log('0:', abcVoices[0])
+    console.log('1:', abcVoices[1])
+    console.log('2:', abcVoices[2])
+  }
+  return abcVoices;
+}
+
 const modelTemplates = {
   cadence: {
     modelKey: '',
@@ -107,7 +171,8 @@ const modelTemplates = {
     showDescription: false,
     addProps: {
       partLengthValues: [4, 4],
-      partToBeginValues: [1, 4]
+      partToBeginValues: [1, 4],
+      resolveLastDissonance: [false, false]
     }
   },
   circleOfFifthsLinear: {
@@ -119,7 +184,9 @@ const modelTemplates = {
     customDescription: "",
     showDescription: false,
     addProps: {
-      lastBassNoteUp: [false, false]
+      lastBassNoteUp: [false, false],
+      partLengthValues: [4, 4],
+      partToBeginValues: [1, 4]
     }
   },
   fiveSixConsecutive: {
@@ -151,12 +218,14 @@ const modelTemplates = {
 }
  
 const ModelHelper = {
-  meta: getMeta,
-  transposeOctave: transpose,
-  validateValue: validate,
+  meta,
+  transposeOctave,
+  validateValue,
   getSign,
   updateTransposeValues,
-  getModelTemplate: modelName => modelTemplates[modelName]
+  getModelTemplate: modelName => modelTemplates[modelName],
+  getVoices,
+  getVoicesWithLengthModifications
 };
 
 export default ModelHelper;

@@ -69,8 +69,8 @@ musikisum/educandu-plugin-music-puzzle:
     en: "Lower Quint Modulation"
     de: "Unterquintmodulation"
   changeMode:
-    en: Change Mode
-    de: Tonartwechsel
+    en: chromatic
+    de: chromatisch
   C:
     en: C major (C)
     de: C-Dur (C)

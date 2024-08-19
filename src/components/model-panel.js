@@ -77,7 +77,7 @@ function ModelPanel({
               <div className='gutter-box'>
                 <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('key')}</Text>
                 <Select 
-                  style={{ width: '100px' }}
+                  style={{ minWidth: '100px' }}
                   defaultValue={modelTemplate.key} 
                   options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(key => ({ value: key, label: key }))}
                   onChange={e => changeModelTemplateKey(e, index)}

@@ -40,26 +40,18 @@ const getOptions = change => {
 const getVoices = fifthsCircleLinearOptions => {
   const voicesLength = 8;
   const measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
-  const voices = [[9, 9, 8, 8, 7, 7, 6, 7], [4, 3, 3, 2, 2, 1, 1, 2], [0, -2, -1, -3, -2, -4, -3, -7]];
+  const voices = [[11, 10, 10, 9, 9, 8, 8, 9], [9, 9, 8, 8, 7, 7, 6, 7], [0, -2, -1, -3, -2, -4, -3, -7]];
   const options = fifthsCircleLinearOptions ?? getOptions();
   options.addProps['lastBassNoteUp'] && (voices[2][7] = 0);
-  const [v1, v2, v3] = options.transposeValues;
-  const voiceArr = options.voiceArrangement;
-  const keyObject = _getKeyObject(options.key);
-
-  const abcVoices = ['', '', ''];
-  for (let index = 0; index < voicesLength; index += 1) {
-    abcVoices[0] += ModelHelper.getSign(keyObject.accidentals[voiceArr[0] - 1][index]);
-    abcVoices[0] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[voiceArr[0] - 1][index] + keyObject.t));
-    abcVoices[0] += measure[index];
-    abcVoices[1] += ModelHelper.getSign(keyObject.accidentals[voiceArr[1] - 1][index]);
-    abcVoices[1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[voiceArr[1] - 1][index] + keyObject.t));
-    abcVoices[1] += measure[index];
-    abcVoices[2] += ModelHelper.getSign(keyObject.accidentals[voiceArr[2] - 1][index]);
-    abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[voiceArr[2] - 1][index] + keyObject.t));
-    abcVoices[2] += measure[index];  
-  }
-  return abcVoices;
+  return ModelHelper.getVoicesWithLengthModifications(
+    options.transposeValues, 
+    options.voiceArrangement, 
+    voices, 
+    _getKeyObject(options.key), 
+    voicesLength, 
+    measure, 
+    options.addProps
+  );
 };
 
 const getStaff = () => {

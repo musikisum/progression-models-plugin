@@ -93,8 +93,8 @@
       "de": "Unterquintmodulation"
     },
     "changeMode": {
-      "en": "Change Mode",
-      "de": "Tonartwechsel"
+      "en": "chromatic",
+      "de": "chromatisch"
     },
     "C": {
       "en": "C major (C)",

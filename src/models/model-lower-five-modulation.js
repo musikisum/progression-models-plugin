@@ -42,8 +42,6 @@ const getVoices = lowerFifthModulationOptions => {
   const measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
   const voices = [[9, 8, 8, 7, 10, 10, 9, 10], [7, 7, 6, 6, 5, 4, 4, 5], [0, 4, 4, 2, 3, 0, 0, 3]];
   const options = lowerFifthModulationOptions || getOptions();
-  const [v1, v2, v3] = options.transposeValues;
-  const voiceArr = options.voiceArrangement;
   const changeMode = options.addProps['changeMode'][0];
   const keyObject = _getKeyObject(options.key);
 
@@ -73,24 +71,18 @@ const getVoices = lowerFifthModulationOptions => {
       keyObject.accidentals[1][7] = changeMode ? 0 : 1;
       break;
     default:
-      console.log('disable checkbox');      
+      console.log('TODO: disable checkbox');      
       break;
   }
 
-  const abcVoices = ['', '', ''];
-  for (let index = 0; index < voicesLength; index += 1) {
-    abcVoices[0] += ModelHelper.getSign(keyObject.accidentals[voiceArr[0] - 1][index]);
-    abcVoices[0] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[voiceArr[0] - 1][index] + keyObject.t));
-    abcVoices[0] += measure[index];
-    abcVoices[1] += ModelHelper.getSign(keyObject.accidentals[voiceArr[1] - 1][index]);
-    abcVoices[1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[voiceArr[1] - 1][index] + keyObject.t));
-    abcVoices[1] += measure[index];
-    abcVoices[2] += ModelHelper.getSign(keyObject.accidentals[voiceArr[2] - 1][index]);
-    abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[voiceArr[2] - 1][index] + keyObject.t));
-    abcVoices[2] += measure[index];  
-  }
-
-  return abcVoices;
+  return ModelHelper.getVoices(
+    options.transposeValues, 
+    options.voiceArrangement, 
+    voices, 
+    keyObject, 
+    voicesLength, 
+    measure
+  );
 };
 
 const getStaff = () => {

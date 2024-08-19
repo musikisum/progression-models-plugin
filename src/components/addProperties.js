@@ -36,7 +36,8 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
     return (
       <div key={`prop${propIndex}`}>
         <Checkbox 
-          className='addPropItem'           
+          className='addPropItem'  
+          style={{ minWidth: '100px' }}         
           checked={value[0]} 
           disabled={value[1]}
           onChange={e => onChange(e, propIndex)}
@@ -53,6 +54,7 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
         <span>{t(key)}</span>
         <InputNumber
           className='addPropItem' 
+          style={{ minWidth: '100px' }}
           min={1} 
           max={value[1]} 
           defaultValue={value[0]} 

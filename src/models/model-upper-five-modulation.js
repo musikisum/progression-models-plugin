@@ -22,7 +22,7 @@ const _keyObj = {
 };
 
 function _getKeyObject(change) {  
-  return _keyObj[change ?? 'C'];
+  return _keyObj[change];
 }
 
 function getModelKeys() {
@@ -30,12 +30,11 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  return {
-    name: 'UpperFiveModulation',
-    key: change || 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3]
-  };
+  const modelTemplate = ModelHelper.getModelTemplate('upperFiveModulation');
+  if(change) {
+    modelTemplate.key = change;
+  }
+  return modelTemplate;
 };
 
 const getVoices = upperFifthModulationOptions => {
@@ -43,23 +42,52 @@ const getVoices = upperFifthModulationOptions => {
   const measure = [' | ', ' ', ' | ', ' ', ' | ', ' '];
   const voices = [[9, 8, 8, 7, 7, 6], [4, 3, 4, 4, 3, 4], [0, 0, -1, -2, 1, -3]];
   const options = upperFifthModulationOptions || getOptions();
-  const [v1, v2, v3] = options.transposeValues;
-  const voiceArr = options.voiceArrangement;
+  const changeMode = options.addProps['changeMode'][0];
+  const begin65 = options.addProps['begin65'][0];
   const keyObject = _getKeyObject(options.key);
 
-  const abcVoices = ['', '', ''];
-  for (let index = 0; index < voicesLength; index += 1) {
-    abcVoices[0] += ModelHelper.getSign(keyObject.accidentals[voiceArr[0] - 1][index]);
-    abcVoices[0] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[voiceArr[0] - 1][index] + keyObject.t));
-    abcVoices[0] += measure[index];
-    abcVoices[1] += ModelHelper.getSign(keyObject.accidentals[voiceArr[1] - 1][index]);
-    abcVoices[1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[voiceArr[1] - 1][index] + keyObject.t));
-    abcVoices[1] += measure[index];    
-    abcVoices[2] += ModelHelper.getSign(keyObject.accidentals[voiceArr[2] - 1][index]);
-    abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[voiceArr[2] - 1][index] + keyObject.t));
-    abcVoices[2] += measure[index];  
+  
+  switch (options.key) {
+    case 'C':
+    case 'F':
+    case 'B':
+      keyObject.accidentals[0][5] = changeMode ? -1 : 0;
+      keyObject.accidentals[2][2] = changeMode ? -1 : 0;
+      break;
+    case 'Am':
+    case 'Dm':
+    case 'Gm':
+    case 'Em':
+    case 'Bm':
+      keyObject.accidentals[0][5] = changeMode ? 1 : 0;
+      keyObject.accidentals[2][2] = changeMode ? 1 : 0;
+      break;
+    case 'Cm':
+    case 'Fm':
+      keyObject.accidentals[0][5] = changeMode ? 0 : -1;
+      keyObject.accidentals[2][2] = changeMode ? 0 : -1;
+      break;
+    case 'G':
+    case 'D':
+    case 'A':
+    case 'E':
+      keyObject.accidentals[0][5] = changeMode ? 0 : 1;
+      keyObject.accidentals[2][2] = changeMode ? 0 : 1;
+      break;
+    default:
+      console.log('TODO: disable checkbox');      
+      break;
   }
-  return abcVoices;
+
+  return ModelHelper.getVoices(
+    options.transposeValues, 
+    options.voiceArrangement, 
+    voices, 
+    keyObject, 
+    voicesLength, 
+    measure,
+    begin65
+  );
 };
 
 const getStaff = () => {

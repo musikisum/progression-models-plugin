@@ -1,4 +1,5 @@
 import ModelProvider from './models/model-provider.js';
+import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
 // Provide the abc.js tone names for c1 to b2.
 const diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
@@ -48,7 +49,7 @@ const meta = (key, measure, tempo, length) => {
   return `X:1\n%%score [(1 2) 3]\nM:${measure}\nQ:${tempo}\nL:${length}\nK:${key}\n`;
 };
 
-// Method to replace an half tone number to a abc.js sign.
+// Replace an number, represent a cromatic half tone, to an abc.js sign.
 const getSign = sign => {
   switch (sign) {
     case 1:
@@ -62,6 +63,7 @@ const getSign = sign => {
   }
 };
 
+// Handle voice exchanges 
 const updateTransposeValues = (voiceArr, modelName) => {
   const model = ModelProvider.getModel(modelName);
   const dtv = model.getDefaultOptions().transposeValues;
@@ -80,7 +82,29 @@ const updateTransposeValues = (voiceArr, modelName) => {
   return returnValue;
 };
 
-const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure) => {
+// Change the beginning of the upper five modulation to a 5-6 consecutive.
+const add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
+  const specialIssues = ['C#m', 'F#m', 'Eb', 'Ab']; //Hier entstehen noch Fehler!
+  const index = voiceArr.indexOf(voiceIndex);
+  const modVoice = abcVoices[index];
+  const [firstElem, ...rest] = modVoice.split('|');
+  const tone = firstElem.trim().charAt(0);
+  let octaveModifications, sign;
+  if (specialIssues.indexOf(keyObject.key) < 0) {
+    sign = '';
+    octaveModifications = firstElem.trim().slice(1);
+  } else {
+    // sign = firstElem.trim().charAt(1);
+    // octaveModifications = firstElem.trim().slice(2);
+  }
+  const nextTone = diatonicScale[diatonicScale.indexOf(tone) + 1];
+  const newFirstElem = `${nextTone}${sign}${octaveModifications}/ ${tone}${sign}${octaveModifications}/ | ${rest.join('|')}`;
+  abcVoices[index] = newFirstElem;
+  return abcVoices;
+}
+
+// Create the abc string representation of a voice model 
+const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, begin65) => {
   const [va1, va2, va3] = voiceArr;
   const abcVoices = ['', '', ''];
   for (let index = 0; index < voicesLength; index += 1) { 
@@ -93,10 +117,18 @@ const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, m
     abcVoices[2] += getSign(keyObject.accidentals[va3 - 1][index]);
     abcVoices[2] += transposeOctave(transposeValues[2], validateValue(voices[va3 - 1][index] + keyObject.t));
     abcVoices[2] += measure[index];  
-  } 
-  return abcVoices;
+  }
+
+  // Modification of the Beginning of the upper five modulation
+  let modifiedAbcVoices;
+  if (begin65) {
+    modifiedAbcVoices = add56Consecutive(2, voiceArr, cloneDeep(abcVoices), keyObject);
+  }
+
+  return modifiedAbcVoices ?? abcVoices;
 }
 
+// Create an array to terminate sections of a voice model
 const getBeginAtHelperArr = voiceLength => {
   const helpArr = [];
   helpArr.push(0);
@@ -106,6 +138,7 @@ const getBeginAtHelperArr = voiceLength => {
   return helpArr;
 }
 
+// Create the abc string representation of a voice model with modifications of the length
 const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, addProps) => {
   const [va1, va2, va3] = voiceArr;
   const [aVoice, bVoice, cVoice] = [[], [], []];
@@ -144,6 +177,7 @@ const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, key
   return abcVoices;
 }
 
+// Model templates to create a voice model
 const modelTemplates = {
   cadence: {
     modelKey: '',
@@ -171,8 +205,7 @@ const modelTemplates = {
     showDescription: false,
     addProps: {
       partLengthValues: [4, 4],
-      partToBeginValues: [1, 4],
-      resolveLastDissonance: [false, false]
+      partToBeginValues: [1, 4]
     }
   },
   circleOfFifthsLinear: {
@@ -214,7 +247,22 @@ const modelTemplates = {
     addProps: {
       changeMode: [false, false]
     }
+  },
+  upperFiveModulation: {
+    modelKey: '',
+    name: 'upperFiveModulation',
+    key: 'C',
+    transposeValues: [0, 0, -1],
+    voiceArrangement: [1, 2, 3],
+    customDescription: "",
+    chkbDisabled: false,
+    showDescription: false,
+    addProps: {
+      changeMode: [false, false],
+      begin65: [false, false]
+    }
   }
+  
 }
  
 const ModelHelper = {

@@ -92,6 +92,14 @@
       "en": "Lower Quint Modulation",
       "de": "Unterquintmodulation"
     },
+    "upperFiveModulation": {
+      "en": "Upper Quint Modulation",
+      "de": "Oberquintmodulation"
+    },
+    "begin65": {
+      "en": "Begin 6-5",
+      "de": "6-5-Anfang"
+    },
     "changeMode": {
       "en": "chromatic",
       "de": "chromatisch"

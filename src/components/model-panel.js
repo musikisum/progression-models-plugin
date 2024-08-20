@@ -37,7 +37,6 @@ function ModelPanel({
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const header = t(modelTemplate.name);
-  console.log(modelTemplate)
 
   const changeModelTemplateKey = e => {
     const newModelTemplates = cloneDeep(modelTemplates);

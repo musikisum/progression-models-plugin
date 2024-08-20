@@ -51,23 +51,29 @@ musikisum/educandu-plugin-music-puzzle:
     en: Circle of Fifths (Inversions)
     de: Quintfallsequenz (Umkehrungen)
   fiveSixConsecutive:
-    en: "5-6 Side Motion"
-    de: "5-6-Seitenbewegung"
+    en: 5-6 Side Motion
+    de: 5-6-Seitenbewegung
   partLengthValues:
-    en: "Number"
-    de: "Anzahl"
+    en: Number
+    de: Anzahl
   partToBeginValues:
-    en: "Begin"
-    de: "Anfang"
+    en: Begin
+    de: Anfang
   showDescription:
-    en: "Description"
-    de: "Beschreibung"
+    en: Description
+    de: Beschreibung
   defaultDescriptionCadence:
-    en: "Hi guy!"
-    de: "Dies ist eine Default-Beschreibung der Kadenz aus kontrapunktischer Sicht."
+    en: Hi guy!
+    de: Dies ist eine Default-Beschreibung der Kadenz aus kontrapunktischer Sicht.
   lowerFiveModulation:
-    en: "Lower Quint Modulation"
-    de: "Unterquintmodulation"
+    en: Lower Quint Modulation
+    de: Unterquintmodulation
+  upperFiveModulation:
+    en: Upper Quint Modulation
+    de: Oberquintmodulation
+  begin65:
+    en: Begin 6-5
+    de: 6-5-Anfang
   changeMode:
     en: chromatic
     de: chromatisch

@@ -116,6 +116,10 @@
       "en": "Parallelism down",
       "de": "Parallelismus abwärts"
     },
+    "parallelismusUp": {
+      "en": "Parallelism up",
+      "de": "Parallelismus aufwärts"
+    },
     "syncopation": {
       "en": "Syncopations",
       "de": "Synkopen"

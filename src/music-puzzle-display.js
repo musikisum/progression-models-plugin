@@ -21,7 +21,7 @@ export default function MusicPuzzleDisplay({ content }) {
         akku.push(modelVoices);
         return akku;
       }, []);
-        const playableABC = ModelComposition.abcOutput('C', 'C', '1/2=80', '1/2', modelVoicesOfModels, 6);
+        const playableABC = ModelComposition.abcOutput('C', 'C', '1/4=120', '1/2', modelVoicesOfModels, 6);
         setAbcResult(playableABC);
     }    
   });

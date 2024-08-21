@@ -284,8 +284,21 @@ const modelTemplates = {
     customDescription: "",
     showDescription: false,
     addProps: {
-      syncopation: [false, false],
-      numberOfSections: [3, 3]
+      numberOfSections: [3, 3],
+      syncopation: [false, false]
+    }
+  },
+  parallelismusUp: {
+    modelKey: '',
+    name: 'parallelismusUp',
+    key: 'C',
+    transposeValues: [0, 0, -1],
+    voiceArrangement: [1, 2, 3],
+    customDescription: "",
+    showDescription: false,
+    addProps: {
+      numberOfSections: [3, 3],
+      syncopation: [false, false]
     }
   }  
 }

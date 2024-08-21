@@ -11,11 +11,11 @@ const _keyObjShort = {
 };
 
 function _getKeyObject(change) {  
-  return _keyObj[change ?? 'C'];
+  return _keyObj[change];
 }
 
 function _getKeyObjectShort(change) {  
-  return _keyObjShort[change ?? 'C'];
+  return _keyObjShort[change];
 }
 
 function getModelKeys() {
@@ -23,72 +23,77 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  return {
-    name: 'ParallelismusUp',
-    key: change || 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    syncopation: true,
-    partLength: 3,
-  };
+  const modelTemplate = ModelHelper.getModelTemplate('parallelismusUp');
+  if(change) {
+    modelTemplate.key = change;
+  }
+  return modelTemplate;
 };
 
 function _AdjustOptions(options) {
-  switch(options.partLength) {
+  switch(options.addProps['numberOfSections'][0]) {
     case 1:
       options.voices = [[2, 5], [4, 3], [0, 3]];
       options.measure = [' | ', ' '];
-      options._voicesLength = 2;
+      options.voicesLength = 2;
+      options.addProps['syncopation'] = [false, true];
       break;
     case 2:
-      if(options.syncopation) {
+      if(options.addProps['syncopation'][0]) {
         options.voices = [[2, 5, 5, 5, 4, 7], [4, 4, 3, 6, 6, 5], [0, 3, 3, 2, 2, 5]];
         options.measure = [' | ', ' ', ' | ', ' ', '|', ''];     
-        options._voicesLength = 6;   
+        options.voicesLength = 6;
+        options.addProps['syncopation'][1] = false; 
       } else {
         options.voices = [[4, 5, 6, 7], [2, 3, 4, 5], [0, 3, 2, 5]]; 
         options.measure = [' | ', ' ', ' | ', ' '];
-        options._voicesLength = 4;
+        options.voicesLength = 4;
+        options.addProps['syncopation'][1] = false;
       }      
       break; 
     default:
-      if(options.syncopation) {
+      if(options.addProps['syncopation'][0]) {
         options.voices = [[2, 5, 5, 5, 4, 7, 7, 7, 6, 9], [4, 4, 3, 6, 6, 6, 5, 8, 8, 7], [0, 3, 3, 2, 2, 5, 5, 4, 4, 7]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
-        options._voicesLength = 10;
+        options.voicesLength = 10;
+        options.addProps['syncopation'][1] = false;
       } else {
         options.voices = [[4, 5, 6, 7, 8, 9], [2, 3, 4, 5, 6, 7], [0, 3, 2, 5, 4, 7]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' '];
-        options._voicesLength = 6;
+        options.voicesLength = 6;
+        options.addProps['syncopation'][1] = false;
       }      
       break;
   }
   return options;
 }
 
-const getVoices = sevenSixStewiseUpOptions => {
-  const options = _AdjustOptions(sevenSixStewiseUpOptions || getOptions());
-  const voicesLength = options._voicesLength;
-  const syncopation = options.syncopation;
-  const measure = options.measure;
-  const voices = options.voices;
-  const keyObject = syncopation ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
-  const [v1, v2, v3] = options.transposeValues;
-  const voiceArr = options.voiceArrangement;
-
-  const abcVoices = ['', '', ''];
-  for (let index = 0; index < voicesLength; index += 1) {
-    abcVoices[0] += ModelHelper.getSign(keyObject.accidentals[voiceArr[0] - 1][index]);
-    abcVoices[0] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[voiceArr[0] - 1][index] + keyObject.t));
-    abcVoices[0] += measure[index];
-    abcVoices[1] += ModelHelper.getSign(keyObject.accidentals[voiceArr[1] - 1][index]);
-    abcVoices[1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[voiceArr[1] - 1][index] + keyObject.t));
-    abcVoices[1] += measure[index];    
-    abcVoices[2] += ModelHelper.getSign(keyObject.accidentals[voiceArr[2] - 1][index]);
-    abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[voiceArr[2] - 1][index] + keyObject.t));
-    abcVoices[2] += measure[index];  
+const someKeys = [];
+const modifyLastChordSectionEndings = (keyObject, key) => {
+  if (key === 'Dm' || key === 'Gm' || key === 'Cm' || key === 'Fm' || key === 'A' || key === 'E') {
+    keyObject.accidentals[1][5] = 0;
+  } else if (key === 'Bm' || key === 'F#m' || key === 'C#m') {
+    keyObject.accidentals[1][5] = 1;
+  } else {
+    keyObject.accidentals[1][5] = -1;
   }
-  return abcVoices;
+} 
+
+const getVoices = parallelismusUpOptions => {
+  const options = _AdjustOptions(parallelismusUpOptions || getOptions());
+  const keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
+  if (someKeys.indexOf(options.key) >= 0) {
+    modifyLastChordSectionEndings(keyObject, options.key);
+  }
+
+  return ModelHelper.getVoices(
+    options.transposeValues,
+    options.voiceArrangement, 
+    options.voices, 
+    keyObject, 
+    options.voicesLength, 
+    options.measure
+  );
 };
 
 const getStaff = () => {

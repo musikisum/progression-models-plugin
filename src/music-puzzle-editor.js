@@ -106,6 +106,10 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
                 label: t('fiveSixConsecutive')
               },
               {
+                value: 'parallelismusDiminished',
+                label: t('parallelismusDiminished')
+              },
+              {
                 value: 'upperFiveModulation',
                 label: t('upperFiveModulation')
               },

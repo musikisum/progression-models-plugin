@@ -82,23 +82,26 @@ const updateTransposeValues = (voiceArr, modelName) => {
   return returnValue;
 };
 
-// Change the beginning of the upper five modulation to a 5-6 consecutive.
+// Hack to change the beginning of the upper five modulation to a 5-6 consecutive.
 const add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
-  const specialIssues = ['C#m', 'F#m', 'Eb', 'Ab']; //Hier entstehen noch Fehler!
+  const specialIssues = ['C#m', 'F#m', 'Eb', 'Ab'];
   const index = voiceArr.indexOf(voiceIndex);
   const modVoice = abcVoices[index];
   const [firstElem, ...rest] = modVoice.split('|');
-  const tone = firstElem.trim().charAt(0);
-  let octaveModifications, sign;
+  let octaveModifications, firstSign, secondSign, tone;
   if (specialIssues.indexOf(keyObject.key) < 0) {
-    sign = '';
+    firstSign = '';
+    secondSign = '';
+    tone = firstElem.trim().charAt(0);
     octaveModifications = firstElem.trim().slice(1);
   } else {
-    // sign = firstElem.trim().charAt(1);
-    // octaveModifications = firstElem.trim().slice(2);
+    firstSign = firstElem.trim().charAt(0) === '^' ? '^' : '';
+    secondSign  = firstElem.trim().charAt(0);
+    tone = firstElem.trim().charAt(1);
+    octaveModifications = firstElem.trim().slice(2);
   }
   const nextTone = diatonicScale[diatonicScale.indexOf(tone) + 1];
-  const newFirstElem = `${nextTone}${sign}${octaveModifications}/ ${tone}${sign}${octaveModifications}/ | ${rest.join('|')}`;
+  const newFirstElem = `${firstSign}${nextTone}${octaveModifications}/ ${secondSign}${tone}${octaveModifications}/ | ${rest.join('|')}`;
   abcVoices[index] = newFirstElem;
   return abcVoices;
 }
@@ -242,7 +245,6 @@ const modelTemplates = {
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     customDescription: "",
-    chkbDisabled: false,
     showDescription: false,
     addProps: {
       changeMode: [false, false]
@@ -255,14 +257,24 @@ const modelTemplates = {
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     customDescription: "",
-    chkbDisabled: false,
     showDescription: false,
     addProps: {
       changeMode: [false, false],
       begin65: [false, false]
     }
-  }
-  
+  },
+  parallelismusDiminished: {
+    modelKey: '',
+    name: 'parallelismusDiminished',
+    key: 'C',
+    transposeValues: [0, 0, -1],
+    voiceArrangement: [1, 2, 3],
+    customDescription: "",
+    showDescription: false,
+    addProps: {
+      numberOfSections: [3, 3]
+    }
+  }  
 }
  
 const ModelHelper = {

@@ -77,6 +77,12 @@ musikisum/educandu-plugin-music-puzzle:
   changeMode:
     en: chromatic
     de: chromatisch
+  parallelismusDiminished:
+    en: Parallelism (chrom.)
+    de: Parallelismus (chrom.)
+  numberOfSections:
+    en: Sections
+    de: Abschnitte
   C:
     en: C major (C)
     de: C-Dur (C)

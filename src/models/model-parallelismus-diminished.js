@@ -20,21 +20,20 @@ const _keyObj = {
 };
 
 function _getKeyObject(change) {  
-  return _keyObj[change ?? 'C'];
+  return _keyObj[change];
 }
 
 function getModelKeys() {
   return Object.keys(_keyObj);
 }
 
+
 const getOptions = change => {
-  return {
-    name: 'ParallelismusDiminished',
-    key: change || 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    numberOfSections: 3
-  };
+  const modelTemplate = ModelHelper.getModelTemplate('parallelismusDiminished');
+  if(change) {
+    modelTemplate.key = change;
+  }
+  return modelTemplate;
 };
 
 const getVoices = upperFifthModulationOptions => {
@@ -42,13 +41,11 @@ const getVoices = upperFifthModulationOptions => {
   const measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
   const voices = [[9, 8, 8, 7, 7, 6 , 6, 5, 5, 4, 4, 3], [7, 7, 6, 6, 5, 5, 4, 4, 3, 3, 2 , 1], [7, 3, 4, 5, 0, 1, 2, 3, -2, -1, 0, 1]];
   const options = upperFifthModulationOptions || getOptions();
-  const [v1, v2, v3] = options.transposeValues;
-  const voiceArr = options.voiceArrangement;
   const keyObject = _getKeyObject(options.key);
-  if (options.numberOfSections === 1) {
+  if (options.addProps['numberOfSections'][0] === 1) {
     voicesLength = 4;
     voices[1][3] = 5;
-  } else if (options.numberOfSections === 2) {
+  } else if (options.addProps['numberOfSections'][0] === 2) {
     voicesLength = 8;
     voices[1][7] = 3;      
   } else {
@@ -66,19 +63,15 @@ const getVoices = upperFifthModulationOptions => {
     options.key === 'G#m' && (keyObject.accidentals[1][3] = 1);
     options.key === 'Cm' && (keyObject.accidentals[1][3] = -1);
   }
-  const abcVoices = ['', '', ''];
-  for (let index = 0; index < voicesLength; index += 1) {
-    abcVoices[0] += ModelHelper.getSign(keyObject.accidentals[voiceArr[0] - 1][index]);
-    abcVoices[0] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[voiceArr[0] - 1][index] + keyObject.t));
-    abcVoices[0] += measure[index];
-    abcVoices[1] += ModelHelper.getSign(keyObject.accidentals[voiceArr[1] - 1][index]);
-    abcVoices[1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[voiceArr[1] - 1][index] + keyObject.t));
-    abcVoices[1] += measure[index];
-    abcVoices[2] += ModelHelper.getSign(keyObject.accidentals[voiceArr[2] - 1][index]);
-    abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[voiceArr[2] - 1][index] + keyObject.t));
-    abcVoices[2] += measure[index];  
-  }
-  return abcVoices;
+
+  return ModelHelper.getVoices(
+    options.transposeValues,
+    options.voiceArrangement,
+    voices,
+    keyObject,
+    voicesLength,
+    measure
+  )
 };
 
 const getStaff = () => {

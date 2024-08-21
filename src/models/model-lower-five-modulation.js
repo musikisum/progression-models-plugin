@@ -51,12 +51,14 @@ const getVoices = lowerFifthModulationOptions => {
     case 'Dm':
       keyObject.accidentals[1][4] = changeMode ? 0 : -1;
       keyObject.accidentals[1][7] = changeMode ? 0 : -1;
+      options.addProps['changeMode'][1] = false;
       break;
     case 'C':
     case 'G':
     case 'D':
       keyObject.accidentals[1][4] = changeMode ? -1 : 0;
       keyObject.accidentals[1][7] = changeMode ? -1 : 0;
+      options.addProps['changeMode'][1] = false;
       break;
     case 'Am':
     case 'Em':
@@ -64,14 +66,16 @@ const getVoices = lowerFifthModulationOptions => {
     case 'F#m':
       keyObject.accidentals[1][4] = changeMode ? 1 : 0;
       keyObject.accidentals[1][7] = changeMode ? 1 : 0;
+      options.addProps['changeMode'][1] = false;
       break;
     case 'A':
     case 'E':
       keyObject.accidentals[1][4] = changeMode ? 0 : 1;
       keyObject.accidentals[1][7] = changeMode ? 0 : 1;
+      options.addProps['changeMode'][1] = false;
       break;
-    default:
-      console.log('TODO: disable checkbox');      
+    default:      
+      options.addProps['changeMode'][1] = true;      
       break;
   }
 

@@ -112,6 +112,14 @@
       "en": "Sections",
       "de": "Abschnitte"
     },
+    "parallelismusDown": {
+      "en": "Parallelism down",
+      "de": "Parallelismus abwärts"
+    },
+    "syncopation": {
+      "en": "Syncopations",
+      "de": "Synkopen"
+    },
     "C": {
       "en": "C major (C)",
       "de": "C-Dur (C)"

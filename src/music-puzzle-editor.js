@@ -110,6 +110,10 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
                 label: t('parallelismusDiminished')
               },
               {
+                value: 'parallelismusDown',
+                label: t('parallelismusDown')
+              },
+              {
                 value: 'upperFiveModulation',
                 label: t('upperFiveModulation')
               },

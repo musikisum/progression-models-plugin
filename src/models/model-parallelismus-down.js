@@ -2,20 +2,36 @@ import ModelHelper from '../model-helper.js';
 
 const _keyObj = {
   C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
-  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] }
+  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
+  F: { key: 'F', t: 3, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, 0, 0, -1, 0, 0]] },
+  Dm: { key: 'Dm', t: 1, accidentals: [[0, 0, 0, 0, 0, 0, 0, -1, 0, 0], [0, 0, 0, 0, -1, -1, 0, 0, 0, 0], [0, 0, 0, -1, 0, 0, 0, 0, 0, 0]] },
+  Bb: { key: 'Bb', t: -1, accidentals: [[0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0], [-1, -1, 0, 0, 0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, 0, 0, -1, 0, 0]] },
+  Gm: { key: 'Gm', t: -3, accidentals: [[0, 0, 0, 0, 0, 0, 0, -1, 0, 0], [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], [0, 0, 0, -1, 0, -1, 0, 0, 0, 0]] },
+  Eb: { key: 'Eb', t: 2, accidentals: [[0, 0, 0, -1, 0, 0, 0, 0, 0, -1, 0], [-1, -1, 0, 0, 0, 0, -1, -1, -1, 0], [-1, -1, 0, 0, 0, 0, 0, -1, 0, -1]] },
+  Cm: { key: 'Cm', t: 0, accidentals: [[-1, 0, 0, 0, 0, -1, 0, -1, 0, 0], [0, 0, -1, -1, -1, -1, 0, 0, 0, -1], [0, 0, 0, -1, 0, -1, 0, 0, 0, -1]] } ,
+  Ab: { key: 'Ab', t: -2, accidentals: [[0, -1, 0, -1, 0, 0, 0, 0, 0, -1, 0], [-1, -1, 0, 0, 0, 0, -1, -1, -1, 0], [-1, -1, 0, 0, 0, 0, 0, -1, 0, -1]] },
+  Fm: { key: 'Fm', t: 3, accidentals: [[-1, 0, 0, 0, 0, -1, 0, -1, 0, 0], [0, 0, -1, -1, -1, -1, 0, 0, -1, -1], [0, 0, 0, -1, 0, -1, 0, -1, 0, 0]] }  
 };
 
 const _keyObjShort = {
   C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
-  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] }
+  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
+  F: { key: 'F', t: 3, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, -1, 0], [0, 0, 0, 0, -1, 0]] },
+  Dm: { key: 'Dm', t: 1, accidentals: [[0, 0, 0, 0, -1, 0], [0, 0, -1, 0, 0, 0], [0, 0, -1, 0, 0, 0]] },
+  Bb: { key: 'Bb', t: -1, accidentals: [[0, 0, -1, 0, 0, 0], [-1, 0, 0, 0, -1, 0], [0, 0, 0, 0, -1, 0]] },
+  Gm: { key: 'Gm', t: -3, accidentals: [[-1, 0, 0, 0, -1, 0], [0, 0, -1, 0, 0, -1], [0, 0, -1, -1, 0, 0]] },
+  Eb: { key: 'Eb', t: 2, accidentals: [[0, 0, -1, 0, 0, -1], [-1, 0, 0, -1, -1, 0], [-1, -1, 0, 0, -1, 0]] },
+  Cm: { key: 'Cm', t: 0, accidentals: [[-1, 0, 0, -1, -1, 0], [0, -1, -1, 0, 0, 0], [0, 0, -1, -1, 0, 0]] },
+  Ab: { key: 'Ab', t: -2, accidentals: [[0, -1, -1, 0, 0, -1], [-1, 0, 0, -1, -1, 0], [-1, -1, 0, 0, -1, -1]] },
+  Fm: { key: 'Fm', t: 3, accidentals: [[-1, 0, 0, -1, -1, 0], [0, -1, -1, 0, -1, -1], [0, 0, -1, -1, -1, 0]] }
 };
 
 function _getKeyObject(change) {  
-  return _keyObj[change ?? 'C'];
+  return _keyObj[change];
 }
 
 function _getKeyObjectShort(change) {  
-  return _keyObjShort[change ?? 'C'];
+  return _keyObjShort[change];
 }
 
 function getModelKeys() {
@@ -23,72 +39,64 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  return {
-    name: 'ParallelismusDown',
-    key: change || 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    syncopation: true,
-    partLength: 3,
-  };
+  const modelTemplate = ModelHelper.getModelTemplate('parallelismusDown');
+  if(change) {
+    modelTemplate.key = change;
+  }
+  return modelTemplate;
 };
 
 function _AdjustOptions(options) {
-  switch(options.partLength) {
+  switch(options.addProps['numberOfSections'][0]) {
     case 1:
       options.voices = [[9, 8], [7, 6], [7, 4]];
       options.measure = [' | ', ' '];
-      options._voicesLength = 2;
+      options.voicesLength = 2;
+      options.addProps['syncopation'] = [false, true];
       break;
     case 2:
-      if(options.syncopation) {
+      if(options.addProps['syncopation'][0]) {
         options.voices = [[9, 8, 8, 7, 7, 6], [7, 7, 6, 6, 5, 4], [7, 4, 4, 5, 5, 2]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' '];     
-        options._voicesLength = 6;  
+        options.voicesLength = 6;
+        options.addProps['syncopation'][1] = false;
+        // Hier muss auch noch das Vorzeichen des Schlussakkords angepasst werden
       } else {
         options.voices = [[9, 8, 7, 6], [7, 6, 5, 4], [7, 4, 5, 2]]; 
         options.measure = [' | ', ' ', ' | ', ' '];
-        options._voicesLength = 4;
+        options.voicesLength = 4;
+        options.addProps['syncopation'][1] = false;
       }      
       break; 
     default:
-      if(options.syncopation) {
+      if(options.addProps['syncopation'][0]) {
         options.voices = [[9, 8, 8, 7, 7, 6, 6, 5, 5, 4], [7, 7, 6, 6, 5, 5, 4, 4, 3, 2], [7, 4, 4, 5, 5, 2, 2, 3, 3, 0]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
-        options._voicesLength = 10;
+        options.voicesLength = 10;
+        options.addProps['syncopation'][1] = false;
       } else {
         options.voices = [[9, 8, 7, 6, 5, 4], [7, 6, 5, 4, 3, 2], [7, 4, 5, 2, 3, 0]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' '];
-        options._voicesLength = 6;
+        options.voicesLength = 6;
+        options.addProps['syncopation'][1] = false;
       }      
       break;
   }
   return options;
 }
 
-const getVoices = sevenSixStewiseUpOptions => {
-  const options = _AdjustOptions(sevenSixStewiseUpOptions || getOptions());
-  const voicesLength = options._voicesLength;
-  const syncopation = options.syncopation;
-  const measure = options.measure;
-  const voices = options.voices;
-  const keyObject = syncopation ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
-  const [v1, v2, v3] = options.transposeValues;
-  const voiceArr = options.voiceArrangement;
+const getVoices = parallelismusDownOptions => {
+  const options = _AdjustOptions(parallelismusDownOptions || getOptions());
+  const keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
 
-  const abcVoices = ['', '', ''];
-  for (let index = 0; index < voicesLength; index += 1) {
-    abcVoices[0] += ModelHelper.getSign(keyObject.accidentals[voiceArr[0] - 1][index]);
-    abcVoices[0] += ModelHelper.transposeOctave(v1, ModelHelper.validateValue(voices[voiceArr[0] - 1][index] + keyObject.t));
-    abcVoices[0] += measure[index];
-    abcVoices[1] += ModelHelper.getSign(keyObject.accidentals[voiceArr[1] - 1][index]);
-    abcVoices[1] += ModelHelper.transposeOctave(v2, ModelHelper.validateValue(voices[voiceArr[1] - 1][index] + keyObject.t));
-    abcVoices[1] += measure[index];    
-    abcVoices[2] += ModelHelper.getSign(keyObject.accidentals[voiceArr[2] - 1][index]);
-    abcVoices[2] += ModelHelper.transposeOctave(v3, ModelHelper.validateValue(voices[voiceArr[2] - 1][index] + keyObject.t));
-    abcVoices[2] += measure[index];  
-  }
-  return abcVoices;
+  return ModelHelper.getVoices(
+    options.transposeValues,
+    options.voiceArrangement, 
+    options.voices, 
+    keyObject, 
+    options.voicesLength, 
+    options.measure
+  );
 };
 
 const getStaff = () => {

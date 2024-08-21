@@ -274,6 +274,19 @@ const modelTemplates = {
     addProps: {
       numberOfSections: [3, 3]
     }
+  },
+  parallelismusDown: {
+    modelKey: '',
+    name: 'parallelismusDown',
+    key: 'C',
+    transposeValues: [0, 0, -1],
+    voiceArrangement: [1, 2, 3],
+    customDescription: "",
+    showDescription: false,
+    addProps: {
+      syncopation: [false, false],
+      numberOfSections: [3, 3]
+    }
   }  
 }
  

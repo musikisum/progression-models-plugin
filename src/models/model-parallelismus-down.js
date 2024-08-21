@@ -1,27 +1,31 @@
 import ModelHelper from '../model-helper.js';
 
 const _keyObj = {
+  G: { key: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
+  Em: { key: 'Em', t: 2, accidentals: [[0, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
   C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
   Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
   F: { key: 'F', t: 3, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, 0, 0, -1, 0, 0]] },
   Dm: { key: 'Dm', t: 1, accidentals: [[0, 0, 0, 0, 0, 0, 0, -1, 0, 0], [0, 0, 0, 0, -1, -1, 0, 0, 0, 0], [0, 0, 0, -1, 0, 0, 0, 0, 0, 0]] },
-  Bb: { key: 'Bb', t: -1, accidentals: [[0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0], [-1, -1, 0, 0, 0, 0, 0, 0, -1, 0], [0, 0, 0, 0, 0, 0, 0, -1, 0, 0]] },
-  Gm: { key: 'Gm', t: -3, accidentals: [[0, 0, 0, 0, 0, 0, 0, -1, 0, 0], [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], [0, 0, 0, -1, 0, -1, 0, 0, 0, 0]] },
+  Bb: { key: 'Bb', t: -1, accidentals: [[0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0], [-1, -1, 0, 0, 0, 0, 0, 0, -1, 0], [-1, 0, 0, 0, 0, 0, 0, -1, 0, -1]] },
+  Gm: { key: 'Gm', t: -3, accidentals: [[-1, 0, 0, 0, 0, 0, 0, -1, 0, 0], [0, 0, 0, 0, -1, -1, 0, 0, 0, -1], [0, 0, 0, -1, 0, -1, 0, 0, 0, 0]] },
   Eb: { key: 'Eb', t: 2, accidentals: [[0, 0, 0, -1, 0, 0, 0, 0, 0, -1, 0], [-1, -1, 0, 0, 0, 0, -1, -1, -1, 0], [-1, -1, 0, 0, 0, 0, 0, -1, 0, -1]] },
-  Cm: { key: 'Cm', t: 0, accidentals: [[-1, 0, 0, 0, 0, -1, 0, -1, 0, 0], [0, 0, -1, -1, -1, -1, 0, 0, 0, -1], [0, 0, 0, -1, 0, -1, 0, 0, 0, -1]] } ,
+  Cm: { key: 'Cm', t: 0, accidentals: [[-1, 0, 0, 0, 0, -1, 0, -1, 0, 0], [0, 0, -1, -1, -1, -1, 0, 0, 0, -1], [0, 0, 0, -1, 0, -1, 0, 0, 0, 0]] } ,
   Ab: { key: 'Ab', t: -2, accidentals: [[0, -1, 0, -1, 0, 0, 0, 0, 0, -1, 0], [-1, -1, 0, 0, 0, 0, -1, -1, -1, 0], [-1, -1, 0, 0, 0, 0, 0, -1, 0, -1]] },
   Fm: { key: 'Fm', t: 3, accidentals: [[-1, 0, 0, 0, 0, -1, 0, -1, 0, 0], [0, 0, -1, -1, -1, -1, 0, 0, -1, -1], [0, 0, 0, -1, 0, -1, 0, -1, 0, 0]] }  
 };
 
 const _keyObjShort = {
+  G: { key: 'G', t: -3, accidentals: [[0, 0, 0, 1, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
+  Em: { key: 'Em', t: 2, accidentals: [[0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
   C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
   Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
   F: { key: 'F', t: 3, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, -1, 0], [0, 0, 0, 0, -1, 0]] },
   Dm: { key: 'Dm', t: 1, accidentals: [[0, 0, 0, 0, -1, 0], [0, 0, -1, 0, 0, 0], [0, 0, -1, 0, 0, 0]] },
-  Bb: { key: 'Bb', t: -1, accidentals: [[0, 0, -1, 0, 0, 0], [-1, 0, 0, 0, -1, 0], [0, 0, 0, 0, -1, 0]] },
+  Bb: { key: 'Bb', t: -1, accidentals: [[0, 0, -1, 0, 0, 0], [-1, 0, 0, 0, -1, 0], [-1, 0, 0, 0, -1, -1]] },
   Gm: { key: 'Gm', t: -3, accidentals: [[-1, 0, 0, 0, -1, 0], [0, 0, -1, 0, 0, -1], [0, 0, -1, -1, 0, 0]] },
-  Eb: { key: 'Eb', t: 2, accidentals: [[0, 0, -1, 0, 0, -1], [-1, 0, 0, -1, -1, 0], [-1, -1, 0, 0, -1, 0]] },
-  Cm: { key: 'Cm', t: 0, accidentals: [[-1, 0, 0, -1, -1, 0], [0, -1, -1, 0, 0, 0], [0, 0, -1, -1, 0, 0]] },
+  Eb: { key: 'Eb', t: 2, accidentals: [[0, 0, -1, 0, 0, -1], [-1, 0, 0, -1, -1, 0], [-1, -1, 0, 0, -1, -1]] },
+  Cm: { key: 'Cm', t: 0, accidentals: [[-1, 0, 0, -1, -1, 0], [0, -1, -1, 0, 0, -1], [0, 0, -1, -1, 0, 0]] },
   Ab: { key: 'Ab', t: -2, accidentals: [[0, -1, -1, 0, 0, -1], [-1, 0, 0, -1, -1, 0], [-1, -1, 0, 0, -1, -1]] },
   Fm: { key: 'Fm', t: 3, accidentals: [[-1, 0, 0, -1, -1, 0], [0, -1, -1, 0, -1, -1], [0, 0, -1, -1, -1, 0]] }
 };
@@ -60,7 +64,6 @@ function _AdjustOptions(options) {
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' '];     
         options.voicesLength = 6;
         options.addProps['syncopation'][1] = false;
-        // Hier muss auch noch das Vorzeichen des Schlussakkords angepasst werden
       } else {
         options.voices = [[9, 8, 7, 6], [7, 6, 5, 4], [7, 4, 5, 2]]; 
         options.measure = [' | ', ' ', ' | ', ' '];
@@ -85,9 +88,21 @@ function _AdjustOptions(options) {
   return options;
 }
 
+const someKeys = ['Dm', 'Gm', 'Cm', 'Fm', 'Eb', 'Ab'];
+const signHackforSomeKeys = (keyObject, key) => {
+  if (key === 'Dm' || key === 'Gm' || key === 'Cm' || key === 'Fm') {
+    keyObject.accidentals[1][5] = 0;
+  } else {
+    keyObject.accidentals[1][5] = -1;
+  }
+} 
+
 const getVoices = parallelismusDownOptions => {
   const options = _AdjustOptions(parallelismusDownOptions || getOptions());
   const keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
+  if (someKeys.indexOf(options.key) >= 0) {
+    signHackforSomeKeys(keyObject);
+  }
 
   return ModelHelper.getVoices(
     options.transposeValues,

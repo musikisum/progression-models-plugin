@@ -10,8 +10,8 @@ const templates = {
     customDescription: "",
     showDescription: false,
     addProps: { 
-      isFinal: [false, false],
       isBegin: [false, false],
+      isFinal: [false, false],
       isDeceptiv: [false, false]
     }
   },

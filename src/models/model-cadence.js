@@ -39,54 +39,59 @@ const getOptions = change => {
   return modelTemplate;
 };
 
-const setDecptiveCadenceAccidential = keyObject => {
+const setAccidentials = (keyObject, isBegin, isFinal, isDeceptiv) => {
   switch (keyObject.key) {
-    case 'Dm':
-      keyObject.accidentals[2] = [0, 0, 0, -1];
-      break;
     case 'Gm':
-      keyObject.accidentals[0] = [-1, 0, 0, 0];
-      keyObject.accidentals[2] = [-1, 0, 0, -1];
-      break;
     case 'Cm':
-      keyObject.accidentals[0] = [-1, 0, 0, 0];
-      keyObject.accidentals[2] = [-1, 0, 0, -1];
     case 'Fm':
-      keyObject.accidentals[0] = [-1, 0, 0, 0];
-      keyObject.accidentals[2] = [-1, -1, 0, -1];
-      break;
-    case 'Ab':
-      keyObject.accidentals[0] = [0, -1, 0, -1];
-      keyObject.accidentals[2] = [0, -1, -1, 0];
-      break;
-    case 'Eb':
-      keyObject.accidentals[0] = [0, 0, 0, -1];
-      keyObject.accidentals[2] = [0, -1, -1, 0];
+      keyObject.accidentals[0][3] = isFinal || isDeceptiv ? 0 : -1;
+      keyObject.accidentals[2][0] = isBegin ? 0 : -1;
       break;
     case 'Bb':
-      keyObject.accidentals[2] = [0, -1, 0, 0];
-      break; 
-    case 'D':
-      keyObject.accidentals[0] = [1, 0, 0, 0];
-      break; 
-    case 'A':
-      keyObject.accidentals[0] = [1, 0, 0, 0];
-      keyObject.accidentals[2] = [1, 0, 0, 1];
+    case 'Ab':
+    case 'Eb':
+      keyObject.accidentals[0][3] = isFinal || isDeceptiv ? -1 : 0;
+      keyObject.accidentals[2][0] = isBegin ? -1 : 0;
       break;
+    case 'D':
+    case 'A':
     case 'E':
-      keyObject.accidentals[0] = [1, 1, 0, 0];
-      keyObject.accidentals[2] = [1, 0, 0, 1];
+      keyObject.accidentals[0][3] = isFinal || isDeceptiv ? 0 : 1;
+      keyObject.accidentals[2][0] = isBegin ? 0 : 1;
       break;
     case 'C#m':
-      keyObject.accidentals[0] = [0, 1, 1, 1];
-      keyObject.accidentals[2] = [0, 1, 1, 0];
-      break;
     case 'F#m':
-      keyObject.accidentals[0] = [0, 1, 0, 1];
-      keyObject.accidentals[2] = [0, 0, 1, 0];
+      keyObject.accidentals[0][3] = isFinal || isDeceptiv ? 1 : 0;
+      keyObject.accidentals[2][0] = isBegin ? 1 : 0;
       break;
     default:
-      console.log('This Case should never be!')
+      break
+  }
+};
+
+const setAccidentialsForDeceptiveBassModification = (keyObject, isDeceptive) => {
+  switch (keyObject.key) {
+    case 'Dm':
+    case 'Gm':
+    case 'Cm':
+    case 'Fm':
+      keyObject.accidentals[2][3] = isDeceptive ? -1 : 0;
+      break;
+    case 'Ab':
+    case 'Eb':
+    case 'Bb':
+      keyObject.accidentals[2][3] = isDeceptive ? 0 : -1;
+      break;
+    case 'C#m':
+    case 'F#m':
+      keyObject.accidentals[2][3] = isDeceptive ? 0 : 1;
+      break;
+    case 'A':
+    case 'E':
+      keyObject.accidentals[2][3] = isDeceptive ? 1 : 0;
+      break
+    default:
+      break;
   }
 };
 
@@ -95,19 +100,25 @@ const getVoices = cadenceOptions => {
   const measure = [' | ', ' ', ' | ', ' '];
   const voices = [[9, 8, 8, 9], [7, 7, 6, 7], [2, 3, 4, 0]];
   const options = cadenceOptions ?? getOptions();
-  let keyObject = cloneDeep(_getKeyObject(options.key));
-  console.log('first:', keyObject)
-  options.addProps['isFinal'][0] && (voices[0] = [9, 8, 8, 7]);
-  options.addProps['isBegin'][0] && (voices[2] = [0, 3, 4, 0]);
-  if(options.addProps['isDeceptiv'][0]) {
-    voices[0] = [9, 8, 8, 7];
-    voices[2] = [2, 3, 4, 5];
-    setDecptiveCadenceAccidential(keyObject);
-    options.addProps['isFinal'][0] = false;
-    options.addProps['isBegin'][0] = false;
-  } else {
-    keyObject = _getKeyObject(options.key);
+  let keyObject = _getKeyObject(options.key);
+
+  const isBegin = options.addProps['isBegin'][0];
+  const isFinal = options.addProps['isFinal'][0];
+  const isDeceptive = options.addProps['isDeceptiv'][0];
+  if(isBegin) {
+    voices[2][0] = 0;
   }
+  if (isFinal) {
+    voices[0][3] = 7;
+    voices[2][3] = 0;
+  }
+  if (isDeceptive) {
+    voices[0][3] = 7;
+    voices[2][3] = 5;
+  }
+  setAccidentials(keyObject, isBegin, isFinal, isDeceptive);
+  setAccidentialsForDeceptiveBassModification(keyObject, isDeceptive);
+
   return ModelHelper.getVoices(
     options.transposeValues, 
     options.voiceArrangement, 

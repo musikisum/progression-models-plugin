@@ -36,11 +36,11 @@ musikisum/educandu-plugin-music-puzzle:
     en: Circle of fifths
     de: Quintfallsequenz
   isFinal:
-    en: final Cadence (PAK)
-    de: Schlusskadenz
+    en: Octave (end)
+    de: Oktavlage (Schluss)
   isBegin:
-    en: initial Cadence
-    de: Anfangskadenz
+    en: Root position (Begin)
+    de: Grundstellung (Anfang)
   lastBassNoteUp:
     en: ending ↑
     de: Abschluss ↑

@@ -1,5 +1,4 @@
 import ModelProvider from './models/model-provider.js';
-import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
 // Provide the abc.js tone names for c1 to b2.
 const diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
@@ -103,13 +102,12 @@ const add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
   const nextTone = diatonicScale[diatonicScale.indexOf(tone) + 1];
   const newFirstElem = `${firstSign}${nextTone}${octaveModifications}/ ${secondSign}${tone}${octaveModifications}/ | ${rest.join('|')}`;
   abcVoices[index] = newFirstElem;
-  return abcVoices;
 }
 
 // Create the abc string representation of a voice model 
 const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, begin65) => {
   const [va1, va2, va3] = voiceArr;
-  const abcVoices = ['', '', ''];
+  let abcVoices = ['', '', ''];
   for (let index = 0; index < voicesLength; index += 1) { 
     abcVoices[0] += getSign(keyObject.accidentals[va1 - 1][index]);
     abcVoices[0] += transposeOctave(transposeValues[0], validateValue(voices[va1 - 1][index] + keyObject.t));
@@ -122,13 +120,11 @@ const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, m
     abcVoices[2] += measure[index];  
   }
 
-  // Modification of the Beginning of the upper five modulation
-  let modifiedAbcVoices;
+  // Begin of the upper five modulation with 6-5 motion
   if (begin65) {
-    modifiedAbcVoices = add56Consecutive(2, voiceArr, cloneDeep(abcVoices), keyObject);
+    add56Consecutive(2, voiceArr, abcVoices, keyObject);
   }
-
-  return modifiedAbcVoices ?? abcVoices;
+  return abcVoices;
 }
 
 // Create an array to terminate sections of a voice model
@@ -179,129 +175,6 @@ const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, key
   }
   return abcVoices;
 }
-
-// Model templates to create a voice model
-const modelTemplates = {
-  cadence: {
-    modelKey: '',
-    name: 'cadence',
-    key: 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    radioValue: 0,
-    customDescription: "",
-    showDescription: false,
-    addProps: { 
-      isFinal: [false, false],
-      isBegin: [false, false],
-      isDeceptiv: [false, false]
-    }
-  },
-  circleOfFifths:  {
-    modelKey: '',
-    name: 'circleOfFifths',
-    key: 'C',
-    transposeValues: [0, 0, 0],
-    voiceArrangement: [1, 2, 3],
-    radioValue: 0,
-    customDescription: "",
-    showDescription: false,
-    addProps: {
-      partLengthValues: [4, 4],
-      partToBeginValues: [1, 4]
-    }
-  },
-  circleOfFifthsLinear: {
-    modelKey: '',
-    name: 'circleOfFifthsLinear',
-    key: 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    customDescription: "",
-    showDescription: false,
-    addProps: {
-      lastBassNoteUp: [false, false],
-      partLengthValues: [4, 4],
-      partToBeginValues: [1, 4]
-    }
-  },
-  fiveSixConsecutive: {
-    modelKey: '',
-    name: 'fiveSixConsecutive',
-    key: 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    customDescription: "",
-    showDescription: false,
-    addProps: {
-      partLengthValues: [6, 6],
-      partToBeginValues: [1, 6]
-    }
-  },
-  lowerFiveModulation: {
-    modelKey: '',
-    name: 'lowerFiveModulation',
-    key: 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    customDescription: "",
-    showDescription: false,
-    addProps: {
-      changeMode: [false, false]
-    }
-  },
-  upperFiveModulation: {
-    modelKey: '',
-    name: 'upperFiveModulation',
-    key: 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    customDescription: "",
-    showDescription: false,
-    addProps: {
-      changeMode: [false, false],
-      begin65: [false, false]
-    }
-  },
-  parallelismusDiminished: {
-    modelKey: '',
-    name: 'parallelismusDiminished',
-    key: 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    customDescription: "",
-    showDescription: false,
-    addProps: {
-      numberOfSections: [3, 3]
-    }
-  },
-  parallelismusDown: {
-    modelKey: '',
-    name: 'parallelismusDown',
-    key: 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    customDescription: "",
-    showDescription: false,
-    addProps: {
-      numberOfSections: [3, 3],
-      syncopation: [false, false]
-    }
-  },
-  parallelismusUp: {
-    modelKey: '',
-    name: 'parallelismusUp',
-    key: 'C',
-    transposeValues: [0, 0, -1],
-    voiceArrangement: [1, 2, 3],
-    customDescription: "",
-    showDescription: false,
-    addProps: {
-      numberOfSections: [3, 3],
-      syncopation: [false, false]
-    }
-  }  
-}
  
 const ModelHelper = {
   meta,
@@ -309,7 +182,6 @@ const ModelHelper = {
   validateValue,
   getSign,
   updateTransposeValues,
-  getModelTemplate: modelName => modelTemplates[modelName],
   getVoices,
   getVoicesWithLengthModifications
 };

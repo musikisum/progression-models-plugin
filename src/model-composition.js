@@ -23,7 +23,7 @@ const getComposition = (key, measure, tempo, defaultLength, modelVoices, barsPer
     splittetVoices = unsplittetVoices.map(voice => splitAtVerticalBarIndex(voice, barsPerLine));
   }
   const voices = splittetVoices ?? unsplittetVoices;
-
+  // Mit Regex noch 2 halbe Noten gegen eine Ganze austauschen:
   return `${ModelHelper.meta(key, measure, tempo, defaultLength)}V:1\n${voices[0]}\nV:2\n${voices[1]}\nV:3 bass\n${voices[2]}`;
 };
 

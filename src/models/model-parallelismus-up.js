@@ -1,4 +1,5 @@
 import ModelHelper from '../model-helper.js';
+import ModelTemplates from '../model-templates.js';
 
 const _keyObj = {
   C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
@@ -23,7 +24,7 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  const modelTemplate = ModelHelper.getModelTemplate('parallelismusUp');
+  const modelTemplate = ModelTemplates.getModelTemplate('parallelismusUp');
   if(change) {
     modelTemplate.key = change;
   }

@@ -1,7 +1,7 @@
 import { Form, Button, Select } from 'antd';
-import ModelHelper from './model-helper.js';
 import { useTranslation } from 'react-i18next';
 import { PlusOutlined } from '@ant-design/icons';
+import ModelTemplates from './model-templates.js';
 import ModelPanel from './components/model-panel.js';
 import React, { useState, useId, useRef } from 'react';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
@@ -26,7 +26,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     if(!selectedModel) {
       return;
     }
-    const modelTemplate = ModelHelper.getModelTemplate(selectedModel);
+    const modelTemplate = ModelTemplates.getModelTemplate(selectedModel);
     modelTemplate.modelKey = uniqueId.create();
     const newModelTemplates = cloneDeep(modelTemplates);
     newModelTemplates.push(modelTemplate);

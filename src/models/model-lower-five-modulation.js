@@ -1,4 +1,5 @@
 import ModelHelper from '../model-helper.js';
+import ModelTemplates from '../model-templates.js';
 
 const _keyObj = {
   'E': { key: 'E', t: 2, accidentals: [[1, 1, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 1, 0, 0, 1], [0, 0, 0, 1, 0, 0, 0, 0]] },
@@ -30,7 +31,7 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  const modelTemplate = ModelHelper.getModelTemplate('lowerFiveModulation');
+  const modelTemplate = ModelTemplates.getModelTemplate('lowerFiveModulation');
   if(change) {
     modelTemplate.key = change;
   }

@@ -1,6 +1,5 @@
 import ModelHelper from '../model-helper.js';
 import ModelTemplates from '../model-templates.js';
-import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
 const _keyObj = {  
   'E': { key: 'E', t: 2, accidentals: [[1, 1, 0, 1], [0, 0, 1, 0], [1, 0, 0, 0]] },  

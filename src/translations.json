@@ -40,6 +40,10 @@
       "en": "Add model",
       "de": "Modell hinzufügen"
     },
+    "initialCadence": {
+      "en": "Cadence (Begin)",
+      "de": "Initialkadenz"
+    },
     "cadence": {
       "en": "Cadence",
       "de": "Kadenz"
@@ -123,6 +127,10 @@
     "syncopation": {
       "en": "Syncopations",
       "de": "Synkopen"
+    },
+    "chromatic": {
+      "en": "with D-t",
+      "de": "mit D-t"
     },
     "C": {
       "en": "C major (C)",

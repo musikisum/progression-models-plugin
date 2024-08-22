@@ -90,6 +90,10 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
             onChange={e => setSelectedModel(e)}
             options={[
               {
+                value: 'initialCadence',
+                label: t('initialCadence')
+              },
+              {
                 value: 'cadence',
                 label: t('cadence')
               },

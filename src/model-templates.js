@@ -15,6 +15,17 @@ const templates = {
       isDeceptiv: [false, false]
     }
   },
+  initialCadence: {
+    modelKey: '',
+    name: 'initialCadence',
+    key: 'C',
+    transposeValues: [1, 1, 0],
+    voiceArrangement: [1, 2, 3],
+    radioValue: 0,
+    customDescription: "",
+    showDescription: false,
+    addProps: {}
+  },
   circleOfFifths:  {
     modelKey: '',
     name: 'circleOfFifths',
@@ -35,6 +46,7 @@ const templates = {
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    radioValue: 0,
     customDescription: "",
     showDescription: false,
     addProps: {
@@ -49,6 +61,7 @@ const templates = {
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    radioValue: 0,
     customDescription: "",
     showDescription: false,
     addProps: {
@@ -62,6 +75,7 @@ const templates = {
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    radioValue: 0,
     customDescription: "",
     showDescription: false,
     addProps: {
@@ -74,6 +88,7 @@ const templates = {
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    radioValue: 0,
     customDescription: "",
     showDescription: false,
     addProps: {
@@ -87,6 +102,7 @@ const templates = {
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    radioValue: 0,
     customDescription: "",
     showDescription: false,
     addProps: {
@@ -99,6 +115,7 @@ const templates = {
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    radioValue: 0,
     customDescription: "",
     showDescription: false,
     addProps: {
@@ -112,10 +129,12 @@ const templates = {
     key: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
+    radioValue: 0,
     customDescription: "",
     showDescription: false,
     addProps: {
       numberOfSections: [3, 3],
+      chromatic: [false, false],
       syncopation: [false, false]
     }
   }  

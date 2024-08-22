@@ -29,6 +29,9 @@ musikisum/educandu-plugin-music-puzzle:
   addModel:
     en: Add model
     de: Modell hinzufügen
+  initialCadence:
+    en: Cadence (Begin)
+    de: Initialkadenz
   cadence:
     en: Cadence
     de: Kadenz
@@ -92,6 +95,9 @@ musikisum/educandu-plugin-music-puzzle:
   syncopation:
     en: Syncopations
     de: Synkopen
+  chromatic:
+    en: with D-t
+    de: mit D-t
   C:
     en: C major (C)
     de: C-Dur (C)

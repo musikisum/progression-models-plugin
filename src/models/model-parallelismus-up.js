@@ -2,13 +2,17 @@ import ModelHelper from '../model-helper.js';
 import ModelTemplates from '../model-templates.js';
 
 const _keyObj = {
-  C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
-  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] }
+  C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
+  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
+  F: { key: 'F', t: -4, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, -1, 0, 0, 0, 0, 0, 0, 0], [0, -1, 0, 0, 0, 0, 0, 0, 0, 0]] },
+  Dm: { key: 'Dm', t: 1, accidentals: [[0, -1, 0, -1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, -1, 0, 0, 0], [0, 0, 0, 0, 0, -1, 0, 0, 0, 0]] }
 };
 
 const _keyObjShort = {
   C: { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
-  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 0]] }
+  Am: { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
+  F: { key: 'F', t: -4, accidentals: [[0, 0, 0, 0, 0, 0], [0, -1, 0, 0, 0, 0], [0, -1, 0, 0, 0, 0]] },
+  Dm: { key: 'Dm', t: 1, accidentals: [[0, -1, 0, 0, 0, 0], [0, 0, 0, -1, 0, 0], [0, 0, 0, -1, 0, 0]] }
 };
 
 function _getKeyObject(change) {  
@@ -82,10 +86,27 @@ const modifyLastChordSectionEndings = (keyObject, key) => {
 
 const getVoices = parallelismusUpOptions => {
   const options = _AdjustOptions(parallelismusUpOptions || getOptions());
-  const keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
-  if (someKeys.indexOf(options.key) >= 0) {
-    modifyLastChordSectionEndings(keyObject, options.key);
+  const withSyncopations = options.addProps['syncopation'][0];
+  const keyObject = withSyncopations ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
+  const chromatic = options.addProps['chromatic'][0];
+  if (!keyObject.key.includes('m')) {
+    // for major Mode
+    if (!withSyncopations) {
+      keyObject.accidentals[1][2] = chromatic ? 1 : 0;
+    } else {
+      keyObject.accidentals[0][4] = chromatic ? 1 : 0;
+    }
+  } else {
+    // for minor Mode
+    if (!withSyncopations) {
+      keyObject.accidentals[1][4] = chromatic ? 1 : 0;
+    } else {
+      keyObject.accidentals[0][8] = chromatic ? 1 : 0;
+    }    
   }
+  // if (someKeys.indexOf(options.key) >= 0) {
+  //   modifyLastChordSectionEndings(keyObject, options.key);
+  // }
 
   return ModelHelper.getVoices(
     options.transposeValues,

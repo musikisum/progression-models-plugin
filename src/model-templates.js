@@ -93,7 +93,8 @@ const templates = {
     showDescription: false,
     addProps: {
       changeMode: [false, false],
-      begin65: [false, false]
+      begin65: [false, false],
+      prinner: [false, false]
     }
   },
   parallelismusDiminished: {

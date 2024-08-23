@@ -1,4 +1,5 @@
 import ModelProvider from './models/model-provider.js';
+import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
 // Provide the abc.js tone names for c1 to b2.
 const diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
@@ -105,7 +106,7 @@ const add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
 }
 
 // Create the abc string representation of a voice model 
-const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, begin65) => {
+const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, begin65, prinner) => {
   const [va1, va2, va3] = voiceArr;
   let abcVoices = ['', '', ''];
   for (let index = 0; index < voicesLength; index += 1) { 
@@ -121,8 +122,20 @@ const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, m
   }
 
   // Begin of the upper five modulation with 6-5 motion
-  if (begin65) {
-    add56Consecutive(2, voiceArr, abcVoices, keyObject);
+  begin65 && add56Consecutive(2, voiceArr, abcVoices, keyObject);
+  if (prinner) {
+    abcVoices = abcVoices.reduce((akku, elem, index) => {
+      const str = elem.split(' ');
+      str.splice(2, 1);        
+      if (index < 2) {
+        str.splice(3, 2);
+      } else {
+        str.splice(3, 1);
+        str.splice(4, 1);
+      }
+      akku.push(str.join(' '));
+      return akku;
+    }, []);
   }
   return abcVoices;
 }

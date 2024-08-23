@@ -78,7 +78,7 @@ function _AdjustOptions(options) {
         options.measure = [' | ', ' ', ' | ', ' ', '|', ''];     
         options.voicesLength = 6;
         options.addProps['syncopation'][1] = false; 
-        options.addProps['chromatic'][1] = false;
+        options.addProps['chromatic'] = [false, true];
       } else { // without syncopations
         options.voices = [[4, 5, 6, 7], [2, 3, 4, 5], [0, 3, 2, 5]]; 
         options.measure = [' | ', ' ', ' | ', ' '];
@@ -107,14 +107,18 @@ function _AdjustOptions(options) {
   return options;
 }
 
-const someKeys = [];
-const modifyLastChordSectionEndings = (keyObject, key) => {
-  if (key === 'Dm' || key === 'Gm' || key === 'Cm' || key === 'Fm' || key === 'A' || key === 'E') {
-    keyObject.accidentals[1][5] = 0;
-  } else if (key === 'Bm' || key === 'F#m' || key === 'C#m') {
-    keyObject.accidentals[1][5] = 1;
-  } else {
-    keyObject.accidentals[1][5] = -1;
+const modifyLastChordSectionEndings = (options, keyObject, key) => {
+  switch (key) {
+    case 'Dm':
+    case 'Gm':
+      (options.voicesLength === 6) && (keyObject.accidentals[1][5] = -1);
+      break; 
+    case 'D': 
+    case 'G': 
+      (options.voicesLength === 6) && (keyObject.accidentals[1][5] = 0);
+    break;
+    default:
+      break;
   }
 } 
 
@@ -123,6 +127,7 @@ const getVoices = parallelismusUpOptions => {
   const withSyncopations = options.addProps['syncopation'][0];
   const keyObject = withSyncopations ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
   
+  // Set accidentals for reduction of model length
   const chromatic = options.addProps['chromatic'][0];
   const isNatural = ['Eb', 'Ab', 'Cm', 'Fm'];
   if (!keyObject.key.includes('m')) {
@@ -140,7 +145,7 @@ const getVoices = parallelismusUpOptions => {
     // for minor Mode
     if (!withSyncopations) { // without syncopation
       keyObject.accidentals[1][4] = chromatic ? 
-      (!isNatural.includes(keyObject.key) ? -1 : '=') : // with chromatic
+      (!isNatural.includes(keyObject.key) ? 1 : '=') : // with chromatic
       (!isNatural.includes(keyObject.key) ? 0 : -1); // without chromatic
     } else { // with syncopations
       keyObject.accidentals[0][8] = chromatic ? 
@@ -148,9 +153,11 @@ const getVoices = parallelismusUpOptions => {
       (!isNatural.includes(keyObject.key) ? 0 : -1); // without chromatic
     }    
   }
-  // if (someKeys.indexOf(options.key) >= 0) {
-  //   modifyLastChordSectionEndings(keyObject, options.key);
-  // }
+
+  // Set accidentals for second voice ending in first reduction of model length
+  if (options.addProps['numberOfSections'][0] === 2) {
+    modifyLastChordSectionEndings(options, keyObject, options.key);
+  }
 
   return ModelHelper.getVoices(
     options.transposeValues,

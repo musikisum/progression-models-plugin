@@ -14,7 +14,7 @@ import DeleteIcon from '@educandu/educandu/components/icons/general/delete-icon.
 import MoveUpIcon from '@educandu/educandu/components/icons/general/move-up-icon.js';
 import MoveDownIcon from '@educandu/educandu/components/icons/general/move-down-icon.js';
 import { confirmDeleteItem } from '@educandu/educandu/components/confirmation-dialogs.js';
-import { Button, Collapse, Tooltip, Select, Radio, Space, Row, Col, Typography, Checkbox } from 'antd';
+import { Button, Collapse, Tooltip, Select, Radio, Space, Row, Col, Typography, Checkbox, Tag } from 'antd';
 
 const { Text } = Typography;
 
@@ -110,6 +110,7 @@ function ModelPanel({
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
                 <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('ve')}</Text>
+                <div className='dadLabel'>Bitte ziehen ...</div>
                 <VoiceSwitch style={{ margin: '16px 0' }} modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
               </div>
             </Col> 

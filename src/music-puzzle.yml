@@ -74,6 +74,9 @@ musikisum/educandu-plugin-music-puzzle:
   upperFiveModulation:
     en: Upper Quint Modulation
     de: Oberquintmodulation
+  prinner:
+    en: Prinner
+    de: Prinner
   begin65:
     en: Begin 6-5
     de: 6-5-Anfang

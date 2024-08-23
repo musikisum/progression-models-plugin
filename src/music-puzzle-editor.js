@@ -106,6 +106,10 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
                 label: t('circleOfFifthsLinear')
               },
               {
+                value: 'fauxbourdon',
+                label: t('fauxbourdon')
+              },
+              {
                 value: 'fiveSixConsecutive',
                 label: t('fiveSixConsecutive')
               },

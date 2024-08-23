@@ -168,10 +168,13 @@ const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, key
     cSign += measure[index];
     cVoice.push(cSign);  
   }
+
   // implement partlength & partToBegin
   const abcVoices = ['', '', ''];
-  const x = getBeginAtHelperArr(voicesLength)[addProps['partToBeginValues'][0]];
+  const helpArr = getBeginAtHelperArr(voicesLength);
+  const x = helpArr[addProps['partToBeginValues'][0]];
   const y = addProps['partLengthValues'][0] * 2;
+  console.log('x:', x, 'y:', y)
   if((voicesLength - x) >= y) {
     abcVoices[0] = aVoice.slice(x, x + y);
     abcVoices[1] = bVoice.slice(x, x + y);
@@ -181,11 +184,7 @@ const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, key
     abcVoices[1] = bVoice.slice(x);
     abcVoices[2] = cVoice.slice(x);
   }
-  if(addProps['resolveLastDissonance']) {
-    console.log('0:', abcVoices[0])
-    console.log('1:', abcVoices[1])
-    console.log('2:', abcVoices[2])
-  }
+  console.log(abcVoices)
   return abcVoices;
 }
  

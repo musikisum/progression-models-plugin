@@ -43,6 +43,7 @@ const getVoices = circleOfFifthsOptions => {
   const measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
   const voices = [[11, 12, 12, 11, 11, 10, 10, 9], [9, 9, 8, 8, 7, 7, 6, 7], [0, 3, -1, 2, -2, 1, -3, 0]];
   const options = circleOfFifthsOptions ?? getOptions();
+  
   return ModelHelper.getVoicesWithLengthModifications(
     options.transposeValues, 
     options.voiceArrangement, 

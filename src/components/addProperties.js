@@ -9,10 +9,6 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
   const modelTemplate = modelTemplates[index];
   const addProps = modelTemplate.addProps;
 
-  function addPropValueIsBool(addPropValue) {
-    return typeof addPropValue[0] === 'boolean';
-  }
-
   const onChange = (e, propIndex) => {
     const newModelTemplates = cloneDeep(modelTemplates);
     const modelTemplateToUpdate = newModelTemplates[index];
@@ -22,15 +18,6 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
     newModelTemplates[index] = modelTemplateToUpdate;
     updateContent({ modelTemplates: newModelTemplates });
   };
-
-  // const onInputNumberChange = (number, propIndex) => {
-  //   const newModelTemplates = cloneDeep(modelTemplates);
-  //   const modelTemplateToUpdate = newModelTemplates[index];
-  //   const keys = Object.keys(modelTemplateToUpdate.addProps);
-  //   modelTemplateToUpdate.addProps[keys[propIndex]][0] = number;
-  //   newModelTemplates[index] = modelTemplateToUpdate;
-  //   updateContent({ modelTemplates: newModelTemplates });
-  // };
 
   function getCheck(key, value, propIndex) {
     return (
@@ -57,7 +44,8 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
           style={{ minWidth: '100px' }}
           min={1} 
           max={value[1]} 
-          defaultValue={value[0]} 
+          defaultValue={value[0]}
+          disabled={value?.[2] ?? false} 
           onChange={e => onChange(e, propIndex)}
           />        
       </div>
@@ -68,7 +56,7 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
     <div style={{display: 'block'}}>
       {
         addProps && Object.entries(addProps).map(([key, value], propIndex) => {
-          if(addPropValueIsBool(value)) {
+          if(typeof value[0] === 'boolean') {
             return getCheck(key, value, propIndex);
           }
           return getNumber(key, value, propIndex);

@@ -38,6 +38,12 @@ musikisum/educandu-plugin-music-puzzle:
   circleOfFifths:
     en: Circle of fifths
     de: Quintfallsequenz
+  fauxbourdon:
+    en: Fauxbourdon Model
+    de: Fauxbourdon-Satz
+  chromaticBass:
+    en: Chromatic
+    de: Chromatik
   isFinal:
     en: Octave (end)
     de: Oktavlage (Schluss)

@@ -1,5 +1,16 @@
 // Model templates to create a voice model
 const templates = {
+  initialCadence: {
+    modelKey: '',
+    name: 'initialCadence',
+    key: 'C',
+    transposeValues: [1, 1, 0],
+    voiceArrangement: [1, 2, 3],
+    radioValue: 0,
+    customDescription: "",
+    showDescription: false,
+    addProps: {}
+  },
   cadence: {
     modelKey: '',
     name: 'cadence',
@@ -14,17 +25,6 @@ const templates = {
       isFinal: [false, false],
       isDeceptiv: [false, false]
     }
-  },
-  initialCadence: {
-    modelKey: '',
-    name: 'initialCadence',
-    key: 'C',
-    transposeValues: [1, 1, 0],
-    voiceArrangement: [1, 2, 3],
-    radioValue: 0,
-    customDescription: "",
-    showDescription: false,
-    addProps: {}
   },
   circleOfFifths:  {
     modelKey: '',
@@ -53,6 +53,21 @@ const templates = {
       lastBassNoteUp: [false, false],
       partLengthValues: [4, 4],
       partToBeginValues: [1, 4]
+    }
+  },
+  fauxbourdon: {
+    modelKey: '',
+    name: 'fauxbourdon',
+    key: 'C',
+    transposeValues: [2, 1, 0],
+    voiceArrangement: [1, 2, 3],
+    radioValue: 0,
+    customDescription: "",
+    showDescription: false,
+    addProps: {
+      numberOfSections: [3, 3],
+      syncopation: [false, false],
+      chromaticBass: [false, false]
     }
   },
   fiveSixConsecutive: {

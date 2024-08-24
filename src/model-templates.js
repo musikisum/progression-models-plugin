@@ -59,7 +59,7 @@ const templates = {
     modelKey: '',
     name: 'fauxbourdon',
     key: 'C',
-    transposeValues: [2, 1, 0],
+    transposeValues: [1, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
     customDescription: "",

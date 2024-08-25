@@ -53,7 +53,7 @@ const _keyObjLamento = {
   'G': { key: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0]] },
   'Em': { key: 'Em', t: -5, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]] },
   'C': { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]] },
-  'Am': { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]] },
+  'Am': { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 1], [0, 1, '=', 1, '=', 0, 1, 0]] },
   'F': { key: 'F', t: -4, accidentals: [[0, 0, 0, 0, -1, -1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, -1]] },
   'Dm': { key: 'Dm', t: -6, accidentals: [[-1, -1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, -1], [0, 0, 0, -1, 0, 0, 0, 0]] },
   'Bb': { key: 'Bb', t: -1, accidentals: [[0, 0, 0, 0, -1, -1, 0, 0, 0], [0, 0, 0, -1, 0, 0, 0, 0], [-1, 0, 0, 0, 0, 0, 0, -1]] },
@@ -71,6 +71,11 @@ function _getKeyObject(change) {
 function _getKeyObjectShort(change) {  
   return _keyObjShort[change];
 }
+
+function _getKeyObjectLamento(change) {  
+  return _keyObjLamento[change];
+}
+
 
 function getModelKeys() {
   return Object.keys(_keyObj);
@@ -136,17 +141,27 @@ function _AdjustOptions(options) {
 }
 
 function _AdjustLamento(options, _lamentoKeys) {
-  
+  switch(1) {
+    case 1:
+      options.voices = [[5, 5, 4, 4, 3, 3, 2, 1], [9, 8, 8, 7, 7, 6, 7, 6], [7, 6, 6, 5, 5, 4, 3, 4]];
+      options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
+      options.voicesLength = 8;
+      options.addProps['numberOfSections'][2] = true;
+      break;
+  }
 }
 
 const getVoices = fauxbourdonOptions => {
   const options = _AdjustOptions(fauxbourdonOptions || getOptions());
   let keyObject;
-  if (options.addProps['chromaticBass'][0] === true && options.addProps['chromaticBass'][1] === true) {
-    keyObject = _AdjustLamento(options, _keyObjLamento(options.key));
+  if (options.addProps['chromaticBass'][0] === true && options.addProps['chromaticBass'][1] === false) {
+    keyObject = _getKeyObjectLamento(options.key);
+    _AdjustLamento(options, keyObject);
   } else {
     keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
+    options.addProps['chromaticBass'][0] = false;
   }
+
 
   return ModelHelper.getVoices(
     options.transposeValues, 

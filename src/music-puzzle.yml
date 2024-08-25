@@ -39,8 +39,8 @@ musikisum/educandu-plugin-music-puzzle:
     en: Circle of fifths
     de: Quintfallsequenz
   fauxbourdon:
-    en: Fauxbourdon Model
-    de: Fauxbourdon-Satz
+    en: Fauxbourdon (7-6)
+    de: Fauxbourdon (7-6)
   chromaticBass:
     en: Lamento Bass
     de: Lamentobass
@@ -60,8 +60,11 @@ musikisum/educandu-plugin-music-puzzle:
     en: Circle of Fifths (Inversions)
     de: Quintfallsequenz (Umkehrungen)
   fiveSixConsecutive:
-    en: 5-6 Side Motion
-    de: 5-6-Seitenbewegung
+    en: Fauxbourdon (5-6)
+    de: Fauxbourdon (5-6)
+  diatonic:
+    en: diatonic
+    de: diatonisch
   partLengthValues:
     en: Number
     de: Anzahl

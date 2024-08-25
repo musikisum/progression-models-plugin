@@ -81,7 +81,8 @@ const templates = {
     showDescription: false,
     addProps: {
       partLengthValues: [6, 6],
-      partToBeginValues: [1, 6]
+      partToBeginValues: [1, 6],
+      diatonic: [false, false]
     }
   },
   lowerFiveModulation: {

@@ -1,5 +1,4 @@
 import ModelProvider from './models/model-provider.js';
-import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
 // Provide the abc.js tone names for c1 to b2.
 const diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
@@ -45,8 +44,9 @@ const validateValue = index => {
 };
 
 // Provides meta informations for an abc.js header of a phrase model combination in a key and a measure.
-const meta = (key, measure, tempo, length) => {
-  return `X:1\n%%score [(1 2) 3]\nM:${measure}\nQ:${tempo}\nL:${length}\nK:${key}\n`;
+const meta = (key, measure, tempo, length, stretchLast) => {
+  const test = stretchLast ? '\n%%stretchlast 1' : '';
+  return `X:1\n%%score [(1 2) 3]\n%%measurenb 0${test}\nM:${measure}\nQ:${tempo}\nL:${length}\nK:${key}\n`;
 };
 
 // Replace an number, represent a cromatic half tone, to an abc.js sign.

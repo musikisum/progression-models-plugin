@@ -1,10 +1,10 @@
-import { Input } from 'antd';
 import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js';
 import ModelProvider from './models/model-provider.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
+import Collapse, { COLLAPSIBLE_COLOR } from "@educandu/educandu/components/collapsible.js";
 
 export default function MusicPuzzleDisplay({ content }) {
 
@@ -14,7 +14,7 @@ export default function MusicPuzzleDisplay({ content }) {
   const { modelTemplates } = content;
 
   const [abcResult, setAbcResult] = useState(''); 
-  const [descriptions, setDescriptions] = useState();
+  const [descriptionParts, setDescriptionParts] = useState([]);
 
   useEffect(() => {
     if(modelTemplates.length > 0) {
@@ -31,7 +31,7 @@ export default function MusicPuzzleDisplay({ content }) {
       }
       const playableABC = ModelComposition.abcOutput('C', 'C', '1/4=120', '1/2', voices, 6);
       setAbcResult(playableABC);
-      setDescriptions(descriptions);
+      setDescriptionParts(descriptions);
     }    
   }, []);
 
@@ -40,10 +40,19 @@ export default function MusicPuzzleDisplay({ content }) {
       <div className={`u-horizontally-centered u-width-${content.width}`}>
         { abcResult && <AbcSnippet playableABC={abcResult} /> }
       </div>
-      <div>
-        <p>Beschreibung:</p>
-        {descriptions && descriptions.join(' || ')}
-      </div>
+      <div className='spacer' />
+      { descriptionParts.length && 
+        <Collapse 
+          collapsible="icon" 
+          title={t('descriptionTitle')} 
+          defaultActiveKey="panel">
+            <ol className='smallFontSize'>
+              { descriptionParts.map(description => {
+                return <li>{description}</li>
+              }) }
+            </ol>
+        </Collapse>
+      }
     </div>
   );
 }

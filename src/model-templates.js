@@ -44,7 +44,7 @@ const templates = {
     modelKey: '',
     name: 'circleOfFifthsLinear',
     key: 'C',
-    transposeValues: [0, 0, -1],
+    transposeValues: [0, 0, 0],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
     customDescription: "",

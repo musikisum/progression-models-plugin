@@ -188,3 +188,6 @@ musikisum/educandu-plugin-music-puzzle:
   Ebm:
     en: E flat minor (Ebm)
     de: es-Moll (Ebm)
+  descriptionTitle:
+    en: Description of the voice models used
+    de: Beschreibung der verwendeten Satzmodelle

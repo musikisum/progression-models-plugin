@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Collapse } from 'antd';
 import PropTypes from 'prop-types';
@@ -29,10 +28,9 @@ function ModelDescription({
 
   const handleTextChanged = event => {
     const newModelTemplates = cloneDeep(modelTemplates);
-    const newDescription = event.target.value;
-    newModelTemplates[modelIndex].customDescription = newDescription;
+    newModelTemplates[modelIndex].customDescription = event.target.value;;
     updateContent({ modelTemplates: newModelTemplates });
-    setText(newDescription);
+    setText(event.target.value);
   };
 
   return (

@@ -1,8 +1,10 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Collapse } from 'antd';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
+import MarkdownInput from '@educandu/educandu/components/markdown-input.js';
 
 const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`; 
 
@@ -11,8 +13,28 @@ function ModelDescription({
   modelTemplates,
   updateContent
 }) {  
+  
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+
   const modelTemplate = modelTemplates[modelIndex];
+
+  const [text, setText] = useState();
+
+  useEffect(() => {
+    const modelDescription = !modelTemplate.customDescription 
+    ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)
+    : modelTemplate.customDescription;
+    setText(modelDescription);
+  }, []); 
+
+  const handleTextChanged = event => {
+    const newModelTemplates = cloneDeep(modelTemplates);
+    const newDescription = event.target.value;
+    newModelTemplates[modelIndex].customDescription = newDescription;
+    updateContent({ modelTemplates: newModelTemplates });
+    setText(newDescription);
+  };
+
   return (
     <React.Fragment> 
       { modelTemplate.showDescription ? 
@@ -21,11 +43,7 @@ function ModelDescription({
             key="panel"
             header={<div className="ItemPanel-header">{t('showDescription')}</div>}
             >
-            <div className="ItemPanel-contentWrapper">
-              { !modelTemplate.customDescription 
-                ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)
-                : modelTemplate.customDescription}
-            </div>
+          <MarkdownInput value={text} onChange={handleTextChanged} />
           </Collapse.Panel>
         </Collapse> : null}
     </React.Fragment> 

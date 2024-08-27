@@ -1,3 +1,18 @@
+// Avalable voice model names
+const getAvailableModels = [
+  'initialCadence', 
+  'cadence', 
+  'circleOfFifths',
+  'circleOfFifthsLinear',
+  'fauxbourdon',
+  'fiveSixConsecutive',
+  'parallelismusDown',
+  'parallelismusUp',
+  'parallelismusDiminished',
+  'upperFiveModulation',
+  'lowerFiveModulation'
+];
+
 // Model templates to create a voice model
 const templates = {
   initialCadence: {
@@ -159,7 +174,8 @@ const templates = {
 }
  
 const ModelTemplates = {
-  getModelTemplate: modelName => templates[modelName]
+  getModelTemplate: modelName => templates[modelName],
+  getAvailableModels
 };
 
 export default ModelTemplates;

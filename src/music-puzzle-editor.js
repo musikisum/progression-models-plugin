@@ -1,36 +1,18 @@
-import { Form, Button, Select } from 'antd';
-import { useTranslation } from 'react-i18next';
-import { PlusOutlined } from '@ant-design/icons';
-import ModelTemplates from './model-templates.js';
+import { Form } from 'antd';
+import React, { useId, useRef } from 'react';
+import Inspector from './components/inspector.js'
 import ModelPanel from './components/model-panel.js';
-import React, { useState, useId, useRef } from 'react';
-import uniqueId from '@educandu/educandu/utils/unique-id.js';
-import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { sectionEditorProps } from '@educandu/educandu/ui/default-prop-types.js';
 import DragAndDropContainer from '@educandu/educandu/components/drag-and-drop-container.js';
 import { swapItemsAt, removeItemAt, moveItem } from '@educandu/educandu/utils/array-utils.js';
 
 export default function MusicPuzzleEditor({ content, onContentChanged }) {
 
-  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const { modelTemplates } = content;
   const droppableIdRef = useRef(useId());
 
   const updateContent = newContentValues => {
     onContentChanged({ ...content, ...newContentValues });
-  };
-
-  const [selectedModel, setSelectedModel] = useState('cadence');
-
-  const handleAddModelButtonClick = () => {
-    if(!selectedModel) {
-      return;
-    }
-    const modelTemplate = ModelTemplates.getModelTemplate(selectedModel);
-    modelTemplate.modelKey = uniqueId.create();
-    const newModelTemplates = cloneDeep(modelTemplates);
-    newModelTemplates.push(modelTemplate);
-    updateContent({ modelTemplates: newModelTemplates });
   };
 
   const handleItemMove = (fromIndex, toIndex) => {
@@ -80,63 +62,8 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
           items={dragAndDropItems} 
           onItemMove={handleItemMove}
           />
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-          <Button type="primary" icon={<PlusOutlined />} onClick={handleAddModelButtonClick}>
-            {t('addModel')}
-          </Button>
-          <Select
-            style={{ width: '200px' }}
-            defaultValue="cadence"
-            onChange={e => setSelectedModel(e)}
-            options={[
-              {
-                value: 'initialCadence',
-                label: t('initialCadence')
-              },
-              {
-                value: 'cadence',
-                label: t('cadence')
-              },
-              {
-                value: 'circleOfFifths',
-                label: t('circleOfFifths')
-              },
-              {
-                value: 'circleOfFifthsLinear',
-                label: t('circleOfFifthsLinear')
-              },
-              {
-                value: 'fauxbourdon',
-                label: t('fauxbourdon')
-              },
-              {
-                value: 'fiveSixConsecutive',
-                label: t('fiveSixConsecutive')
-              },
-              {
-                value: 'parallelismusDiminished',
-                label: t('parallelismusDiminished')
-              },
-              {
-                value: 'parallelismusDown',
-                label: t('parallelismusDown')
-              },
-              {
-                value: 'parallelismusUp',
-                label: t('parallelismusUp')
-              },
-              {
-                value: 'upperFiveModulation',
-                label: t('upperFiveModulation')
-              },
-              {
-                value: 'lowerFiveModulation',
-                label: t('lowerFiveModulation')
-              }
-            ]}
-            />
-        </div>
-      </Form>      
+      </Form>
+      <Inspector content={content} updateContent={updateContent} />    
     </div>
   );
 }

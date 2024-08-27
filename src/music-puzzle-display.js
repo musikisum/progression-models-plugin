@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js';
 import ModelProvider from './models/model-provider.js';
+import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
 import Collapse, { COLLAPSIBLE_COLOR } from "@educandu/educandu/components/collapsible.js";
 
@@ -41,14 +42,14 @@ export default function MusicPuzzleDisplay({ content }) {
         { abcResult && <AbcSnippet playableABC={abcResult} /> }
       </div>
       <div className='spacer' />
-      { descriptionParts.length && 
+      { (descriptionParts.length !== 0) && 
         <Collapse 
           collapsible="icon" 
           title={t('descriptionTitle')} 
           defaultActiveKey="panel">
             <ol className='smallFontSize'>
-              { descriptionParts.map(description => {
-                return <li>{description}</li>
+              { descriptionParts.map((description) => {
+                return <li key={uniqueId.create()}>{description}</li>
               }) }
             </ol>
         </Collapse>

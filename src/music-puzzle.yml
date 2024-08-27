@@ -38,6 +38,9 @@ musikisum/educandu-plugin-music-puzzle:
   circleOfFifths:
     en: Circle of fifths
     de: Quintfallsequenz
+  bassReverse:
+    en: Bass ↓ ↑
+    de: Bass ↓ ↑
   fauxbourdon:
     en: Fauxbourdon (7-6)
     de: Fauxbourdon (7-6)

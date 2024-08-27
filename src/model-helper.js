@@ -67,8 +67,6 @@ const getSign = sign => {
 const updateTransposeValues = (voiceArr, modelName) => {
   const model = ModelProvider.getModel(modelName);
   const dtv = model.getDefaultOptions().transposeValues;
-  console.log('va:', voiceArr, 'tv:', dtv);
-  //cadence: 0,0,-1
   const mapObj = {
     '012': [dtv[0], dtv[1], dtv[2]],
     '102': [dtv[0], dtv[1] - 1, dtv[2]],
@@ -78,7 +76,6 @@ const updateTransposeValues = (voiceArr, modelName) => {
     '210': [dtv[0] + 1, dtv[1], dtv[2]]
   };
   const returnValue = mapObj[voiceArr];
-  console.log('rv:', returnValue)
   return returnValue;
 };
 
@@ -174,7 +171,6 @@ const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, key
   const helpArr = getBeginAtHelperArr(voicesLength);
   const x = helpArr[addProps['partToBeginValues'][0]];
   const y = addProps['partLengthValues'][0] * 2;
-  console.log('x:', x, 'y:', y)
   if((voicesLength - x) >= y) {
     abcVoices[0] = aVoice.slice(x, x + y);
     abcVoices[1] = bVoice.slice(x, x + y);
@@ -184,7 +180,6 @@ const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, key
     abcVoices[1] = bVoice.slice(x);
     abcVoices[2] = cVoice.slice(x);
   }
-  console.log(abcVoices)
   return abcVoices;
 }
  

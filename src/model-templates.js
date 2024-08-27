@@ -37,22 +37,23 @@ const templates = {
     showDescription: false,
     addProps: {
       partLengthValues: [4, 4],
-      partToBeginValues: [1, 4]
+      partToBeginValues: [1, 4],
+      bassReverse: [false, false]
     }
   },
   circleOfFifthsLinear: {
     modelKey: '',
     name: 'circleOfFifthsLinear',
     key: 'C',
-    transposeValues: [0, 0, 0],
+    transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
     customDescription: "",
     showDescription: false,
     addProps: {
-      lastBassNoteUp: [false, false],
       partLengthValues: [4, 4],
-      partToBeginValues: [1, 4]
+      partToBeginValues: [1, 4],
+      lastBassNoteUp: [false, false]
     }
   },
   fauxbourdon: {

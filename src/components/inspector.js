@@ -1,14 +1,14 @@
-import { Button, Select } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
+import { Button, Select, InputNumber } from 'antd';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
 function Inspector({ content, updateContent }) {
 
-  const { modelTemplates } = content;
+  const { modelTemplates, measuresPerLine } = content;
   const [selectedModel, setSelectedModel] = useState('cadence');
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
 
@@ -23,7 +23,7 @@ function Inspector({ content, updateContent }) {
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const getSelectOptions = () => {
+  const getOptionsForModelSelect = () => {
     const options = ModelTemplates.getAvailableModels.reduce((akku, modelName) => {
       const modelOption = {
         value: modelName,
@@ -33,20 +33,32 @@ function Inspector({ content, updateContent }) {
       return akku;
     }, []);
     return options;
-  }
+  };
+
+  const onMeasureNumberChange = number => {
+    updateContent({ measuresPerLine: number });
+  };
   
   return (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-      <Button type="primary" icon={<PlusOutlined />} onClick={handleAddModelButtonClick}>
+      <Button className='inspectorElement' type="primary" icon={<PlusOutlined />} onClick={handleAddModelButtonClick}>
         {t('addModel')}
       </Button>
       <Select
-        style={{ width: '200px' }}
+        className='inspectorElement'
+        style={{ width: '200px'}}
         defaultValue="cadence"
         onChange={e => setSelectedModel(e)}
-        options={getSelectOptions()}
+        options={getOptionsForModelSelect()}
         />
-    </div>
+      <InputNumber 
+        style={{ width: 60 }}
+        min={2} 
+        max={10} 
+        defaultValue={measuresPerLine}
+        onChange={e => onMeasureNumberChange(e)}
+        />
+    </div> 
   )
 }
 

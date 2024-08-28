@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import { Collapse } from 'antd';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import React, { useState, useEffect } from 'react';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import MarkdownInput from '@educandu/educandu/components/markdown-input.js';
 
@@ -59,4 +59,3 @@ ModelDescription.defaultProps = {
   updateContent: null
 };
 export default ModelDescription;
-

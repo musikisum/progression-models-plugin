@@ -4,23 +4,24 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { Button, Collapse, Tooltip } from 'antd';
 
-function ItemPanel({
+function ArrowPanel({
   index,
   voiceLabel,
   dragHandleProps,
   isDragged,
   isOtherDragged
 }) {
+  
   const { t } = useTranslation();
 
   return (
-    <div className={classNames('ItemPanel', { 'is-dragged': isDragged, 'is-other-dragged': isOtherDragged })} {...dragHandleProps}>
+    <div className={classNames('ArrowPanel', { 'is-dragged': isDragged, 'is-other-dragged': isOtherDragged })} {...dragHandleProps}>
       {voiceLabel.text}
     </div>
   );
 }
 
-ItemPanel.propTypes = {
+ArrowPanel.propTypes = {
   canDeleteLastItem: PropTypes.bool,
   header: PropTypes.string,
   index: PropTypes.number,
@@ -35,7 +36,7 @@ ItemPanel.propTypes = {
   voiceLabel: PropTypes.object.isRequired
 };
 
-ItemPanel.defaultProps = {
+ArrowPanel.defaultProps = {
   canDeleteLastItem: false,
   header: '',
   index: 0,
@@ -49,4 +50,4 @@ ItemPanel.defaultProps = {
   onMoveUp: null
 };
 
-export default ItemPanel;
+export default ArrowPanel;

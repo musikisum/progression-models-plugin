@@ -1,3 +1,4 @@
+@import "@educandu/educandu/styles/greys.less";
 @import "@educandu/educandu/styles/global-variables.less";
 
 .EP_Educandu_Example_Display {
@@ -5,8 +6,7 @@
   .smallFontSize {
     font-size: @edu-font-size-sm;
   }
-
-  .spacer {
+  .vSpacer {
     height: @edu-content-padding * 2;
   }
 
@@ -24,7 +24,7 @@
   }
   .left {
     flex: 0 1 49%; 
-    border: 1px gray solid; 
+    border: 1px @grey-7 solid; 
     border-radius: 12px; 
     padding: 20px;
     display: flex;
@@ -33,7 +33,7 @@
   }
   .right {
     flex: 0 1 49%; 
-    border: 1px gray solid; 
+    border: 1px @grey-7 solid; 
     border-radius: 12px; 
     padding: 20px;
   }
@@ -66,7 +66,7 @@
     width: fit-content;
     margin: 0 4px;
   }
-  .addPropItem {
+  .modelPropItem {
     padding: 0;
     margin-top: 10px;
     margin-left: 0 !important;
@@ -82,11 +82,19 @@
     min-height: 180px;
   }
 
+  .inspectorElement {
+    margin-right: @edu-content-padding;
+  }
+  .inspectorInputNumber {
+    min-width: 75px;
+    margin-right: @edu-content-padding;
+  }
+
   /* Mobile view */
   @media (max-width: 990px) {
     .gutter-box {
       padding-bottom: 10px;
-      border-bottom: 1px solid gray;
+      border-bottom: 1px @grey-7 solid;
     }
   }  
   @media (max-width: 768px) {

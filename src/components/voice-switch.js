@@ -1,4 +1,4 @@
-import ItemPanel from './item-panel.js';
+import ArrowPanel from './arrow-panel.js';
 import ModelHelper from '../model-helper.js';
 import React, { useRef, useId } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +29,7 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
 
   function renderVoiceLabels({ sb, index, dragHandleProps, isDragged, isOtherDragged }) {
     return (
-      <ItemPanel
+      <ArrowPanel
         index={index}
         voiceLabel={sb}
         dragHandleProps={dragHandleProps}

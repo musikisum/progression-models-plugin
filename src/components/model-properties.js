@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Checkbox, InputNumber } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
+function ModelProperties({ index, modelTemplates, cloneDeep, updateContent }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const modelTemplate = modelTemplates[index];
@@ -23,7 +23,7 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
     return (
       <div key={`prop${propIndex}`}>
         <Checkbox 
-          className='addPropItem'  
+          className='modelPropItem'  
           style={{ minWidth: '100px' }}         
           checked={value[0]} 
           disabled={value[1]}
@@ -40,7 +40,7 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
       <div key={`prop${propIndex}`} style={{marginTop: '6px'}}>
         <span>{t(key)}</span>
         <InputNumber
-          className='addPropItem' 
+          className='modelPropItem' 
           style={{ minWidth: '100px' }}
           min={1} 
           max={value[1]} 
@@ -66,18 +66,18 @@ function AddProperties({ index, modelTemplates, cloneDeep, updateContent }) {
   );
 }
 
-AddProperties.propTypes = {
+ModelProperties.propTypes = {
   index: PropTypes.number,
   modelTemplates: PropTypes.array,
   cloneDeep: PropTypes.func,
   updateContent: PropTypes.func
 };
 
-AddProperties.defaultProps = {
+ModelProperties.defaultProps = {
   index: null,
   modelTemplates: [],
   cloneDeep: null,
   updateContent: null
 };
 
-export default AddProperties;
+export default ModelProperties;

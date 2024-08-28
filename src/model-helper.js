@@ -43,12 +43,6 @@ const validateValue = index => {
   return result;
 };
 
-// Provides meta informations for an abc.js header of a phrase model combination in a key and a measure.
-const meta = (key, measure, tempo, length, stretchLast) => {
-  const test = stretchLast ? '\n%%stretchlast 1' : '';
-  return `X:1\n%%score [(1 2) 3]\n%%measurenb 0${test}\nM:${measure}\nQ:${tempo}\nL:${length}\nK:${key}\n`;
-};
-
 // Replace an number, represent a cromatic half tone, to an abc.js sign.
 const getSign = sign => {
   switch (sign) {
@@ -104,7 +98,7 @@ const add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
 
 // Create the abc string representation of a voice model 
 const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, begin65, prinner) => {
-  const [va1, va2, va3] = voiceArr;
+  const [va1, va2, va3] = voiceArr; // Contains the voice numbers 1, 2 and 3
   let abcVoices = ['', '', ''];
   for (let index = 0; index < voicesLength; index += 1) { 
     abcVoices[0] += getSign(keyObject.accidentals[va1 - 1][index]);
@@ -137,7 +131,7 @@ const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, m
   return abcVoices;
 }
 
-// Create an array to terminate sections of a voice model
+// Create an array to terminate start sections of a voice model
 const getBeginAtHelperArr = voiceLength => {
   const helpArr = [];
   helpArr.push(0);
@@ -184,7 +178,6 @@ const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, key
 }
  
 const ModelHelper = {
-  meta,
   transposeOctave,
   validateValue,
   getSign,

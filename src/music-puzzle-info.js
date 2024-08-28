@@ -30,8 +30,9 @@ class MusicPuzzleInfo {
     return (await import('./music-puzzle-editor.js')).default;
   }
 
-  getDefaultContent() {
-    return {
+  getDefaultContent() {   
+    return  {
+      measuresPerLine: 6,
       modelTemplates: []
     };
   }
@@ -40,7 +41,9 @@ class MusicPuzzleInfo {
     const schema = joi.object({
       // text: joi.string().allow('').required(),
       // width: joi.number().min(0).max(100).required(),
+      measuresPerLine: joi.number().min(2).max(10).required(),
       modelTemplates: joi.array().required()
+
     });
 
     joi.attempt(content, schema, { abortEarly: false, convert: false, noDefaults: true });

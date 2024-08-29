@@ -2244,6 +2244,11 @@ abbrev@1, abbrev@^1.0.0:
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
 
+abc-transpose@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/abc-transpose/-/abc-transpose-1.0.5.tgz#ba50a311586a821147d36939769c34a6e6f18ff9"
+  integrity sha512-caNJrbsEvnnoIx+wrVbLN+Ez0Af4hrJEH0j6nILBiqmOelSwZvppqhSvyTHKs+bUpy2HnzBswNz+YSlywgz3mw==
+
 abcjs@^6.2.3:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/abcjs/-/abcjs-6.2.3.tgz#37c18f03b9c00ecfb87a246ed07a238247b53892"

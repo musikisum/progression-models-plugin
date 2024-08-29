@@ -12,8 +12,8 @@ export default function MusicPuzzleDisplay({ content }) {
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`;
 
-  const { modelTemplates, measuresPerLine } = content;
-
+  const { modelTemplates, measuresPerLine, measure } = content;
+ 
   const [abcResult, setAbcResult] = useState(''); 
   const [descriptionParts, setDescriptionParts] = useState([]);
 
@@ -30,7 +30,7 @@ export default function MusicPuzzleDisplay({ content }) {
         modelTemplate.customDescription; 
         descriptions.push(text);        
       }
-      const playableABC = ModelComposition.abcOutput('C', 'C', '1/4=120', '1/2', voices, measuresPerLine );
+      const playableABC = ModelComposition.abcOutput('C', measure, '1/4=120', voices, measuresPerLine );
       setAbcResult(playableABC);
       setDescriptionParts(descriptions);
     }    

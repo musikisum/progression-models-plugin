@@ -100,7 +100,7 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
           <div>
             <AbcSnippet 
               playableABC={
-                ModelComposition.abcOutput('C', 'C', 120, '1/2', [
+                ModelComposition.abcOutput('C', 'C|', 120, [
                   ModelProvider
                     .getModel(modelTemplate.name)
                     .getVoices(modelTemplate)

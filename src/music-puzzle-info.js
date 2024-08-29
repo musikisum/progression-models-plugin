@@ -35,6 +35,7 @@ class MusicPuzzleInfo {
       width: 100,
       tempo: 120,
       measure: 'C|',
+      stretchLastLine: false,
       measuresPerLine: 6,
       modelTemplates: []
     };
@@ -45,6 +46,7 @@ class MusicPuzzleInfo {
       width: joi.number().min(0).max(100).required(),
       tempo: joi.number().min(10).max(180).multiple(10).required(),
       measure: joi.string().required(),
+      stretchLastLine: joi.boolean(),
       measuresPerLine: joi.number().min(2).max(10).required(),
       modelTemplates: joi.array().required()
 

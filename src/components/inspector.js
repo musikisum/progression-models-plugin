@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
-import { Button, Select, InputNumber } from 'antd';
+import { Button, Select, InputNumber, Checkbox } from 'antd';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
 function Inspector({ content, updateContent }) {
 
-  const { modelTemplates, measuresPerLine, measure, tempo } = content;
-  const [selectedModel, setSelectedModel] = useState('cadence');
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+
+  const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine } = content;
+  const [selectedModel, setSelectedModel] = useState('cadence');
 
   const handleAddModelButtonClick = () => {
     if(!selectedModel) {
@@ -33,6 +34,10 @@ function Inspector({ content, updateContent }) {
 
   const onMeasureNumberChange = number => {
     updateContent({ measuresPerLine: number });
+  };
+
+  const onStretchLastLineChange = event => {
+    updateContent({ stretchLastLine: event.target.checked });
   };
 
   const getOptionsForModelSelect = () => {
@@ -97,13 +102,21 @@ function Inspector({ content, updateContent }) {
         defaultValue={tempo ?? 120}
         onChange={e => onTempoNumberChange(e)}
         />
-      <InputNumber 
+      <InputNumber
+        className='inspectorElement' 
         style={{ width: 80 }}
         min={2} 
         max={10} 
         defaultValue={measuresPerLine}
         onChange={e => onMeasureNumberChange(e)}
         />
+      <Checkbox 
+        style={{ minWidth: '100px' }}         
+        checked={stretchLastLine} 
+        onChange={e => onStretchLastLineChange(e)}
+        >
+        {t('stretchLastLine')}
+      </Checkbox>
     </div> 
   )
 }

@@ -19,10 +19,10 @@ function removeEverySecondPipe(voice) {
 }
 
 // Provides meta informations for an abc.js header of a phrase model combination in a key and a measure.
-const getMeta = (key, measure, tempo, stretchLast) => {
+const getMeta = (key, measure, tempo, stretchLastLine) => {
   const metaResult = ['X:1'];
   metaResult.push('%%score [(1 2) 3]');
-  metaResult.push(`%%measurenb 0${stretchLast ? '\n%%stretchlast 1' : ''}`);
+  metaResult.push(`%%measurenb 0${stretchLastLine ? '\n%%stretchLast 1' : ''}`);
   metaResult.push(`M:${measure}`);
   metaResult.push(`L:${getGefaultLength(measure)}`);
   metaResult.push(`Q:1/4=${tempo}`);
@@ -42,7 +42,7 @@ const splitAtVerticalBarIndex = (voice, barIndex) => {
 }
 
 // creates an array with playable abc.js strings from arrays with model voices 
-const getComposition = (key, measure, tempo, modelVoices, barsPerLine, stretchLast) => {
+const getComposition = (key, measure, tempo, modelVoices, barsPerLine, stretchLastLine) => {
   const unsplittetVoices = modelVoices[0].map((_, index) => 
     modelVoices.reduce((combiVoice, modelVoice) => {
       return combiVoice + modelVoice[index];
@@ -54,7 +54,7 @@ const getComposition = (key, measure, tempo, modelVoices, barsPerLine, stretchLa
     splittetVoices = unsplittetVoices.map(voice => splitAtVerticalBarIndex(voice, barsPerLine));
   }
   const voices = splittetVoices ?? unsplittetVoices;
-  const abcResult = [getMeta(key, measure, tempo, stretchLast)];
+  const abcResult = [getMeta(key, measure, tempo, stretchLastLine)];
   if (measure === 'C') {
     voices[0] = removeEverySecondPipe(voices[0]);
     voices[1] = removeEverySecondPipe(voices[1]);

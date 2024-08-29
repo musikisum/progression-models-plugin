@@ -194,3 +194,6 @@ musikisum/educandu-plugin-music-puzzle:
   descriptionTitle:
     en: Description of the voice models used
     de: Beschreibung der verwendeten Satzmodelle
+  stretchLastLine:
+    en: stretch last line
+    de: letzte Zeile füllen

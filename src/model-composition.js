@@ -25,7 +25,7 @@ const getMeta = (key, measure, tempo, stretchLast) => {
   metaResult.push(`%%measurenb 0${stretchLast ? '\n%%stretchlast 1' : ''}`);
   metaResult.push(`M:${measure}`);
   metaResult.push(`L:${getGefaultLength(measure)}`);
-  metaResult.push(`Q:${tempo}`);
+  metaResult.push(`Q:1/4=${tempo}`);
   metaResult.push(`L:${length}`);
   metaResult.push(`K:${key}`);
   return metaResult.join('\n');;
@@ -50,11 +50,11 @@ const getComposition = (key, measure, tempo, modelVoices, barsPerLine, stretchLa
   );
   let splittetVoices;
   if(barsPerLine) {
+    barsPerLine = measure !== 'C' ? barsPerLine : barsPerLine * 2;
     splittetVoices = unsplittetVoices.map(voice => splitAtVerticalBarIndex(voice, barsPerLine));
   }
   const voices = splittetVoices ?? unsplittetVoices;
   const abcResult = [getMeta(key, measure, tempo, stretchLast)];
-  // Mit Regex noch 2 halbe Noten gegen eine Ganze austauschen:
   if (measure === 'C') {
     voices[0] = removeEverySecondPipe(voices[0]);
     voices[1] = removeEverySecondPipe(voices[1]);

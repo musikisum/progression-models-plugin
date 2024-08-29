@@ -20,9 +20,7 @@
     "type": "git",
     "url": "https://github.com/musikisum/music-puzzle-plugin"
   },
-  "dependencies": {
-    "abc-transpose": "^1.0.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@ant-design/icons": "5.0.1",
     "@educandu/dev-tools": "^11.6.0",

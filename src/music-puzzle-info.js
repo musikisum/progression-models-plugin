@@ -32,6 +32,8 @@ class MusicPuzzleInfo {
 
   getDefaultContent() {   
     return  {
+      width: 100,
+      tempo: 120,
       measure: 'C|',
       measuresPerLine: 6,
       modelTemplates: []
@@ -40,6 +42,8 @@ class MusicPuzzleInfo {
   
   validateContent(content) {
     const schema = joi.object({
+      width: joi.number().min(0).max(100).required(),
+      tempo: joi.number().min(10).max(180).multiple(10).required(),
       measure: joi.string().required(),
       measuresPerLine: joi.number().min(2).max(10).required(),
       modelTemplates: joi.array().required()

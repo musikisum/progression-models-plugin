@@ -12,7 +12,7 @@ export default function MusicPuzzleDisplay({ content }) {
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`;
 
-  const { modelTemplates, measuresPerLine, measure } = content;
+  const { modelTemplates, measuresPerLine, measure, tempo } = content;
  
   const [abcResult, setAbcResult] = useState(''); 
   const [descriptionParts, setDescriptionParts] = useState([]);
@@ -30,7 +30,7 @@ export default function MusicPuzzleDisplay({ content }) {
         modelTemplate.customDescription; 
         descriptions.push(text);        
       }
-      const playableABC = ModelComposition.abcOutput('C', measure, '1/4=120', voices, measuresPerLine );
+      const playableABC = ModelComposition.abcOutput('C', measure, tempo, voices, measuresPerLine );
       setAbcResult(playableABC);
       setDescriptionParts(descriptions);
     }    
@@ -39,21 +39,23 @@ export default function MusicPuzzleDisplay({ content }) {
   return (
     <div className='EP_Educandu_Example_Display'>
       <div className={`u-horizontally-centered u-width-${content.width}`}>
-        { abcResult && <AbcSnippet playableABC={abcResult} /> }
+        <div>
+          { abcResult && <AbcSnippet playableABC={abcResult} /> }
+        </div>      
+        <div className='vSpacer' />
+        { (descriptionParts.length !== 0) && 
+          <Collapse 
+            collapsible="icon" 
+            title={t('descriptionTitle')} 
+            defaultActiveKey="panel">
+              <ol className='smallFontSize'>
+                { descriptionParts.map((description) => {
+                  return <li key={uniqueId.create()}>{description}</li>
+                }) }
+              </ol>
+          </Collapse>
+        }
       </div>
-      <div className='vSpacer' />
-      { (descriptionParts.length !== 0) && 
-        <Collapse 
-          collapsible="icon" 
-          title={t('descriptionTitle')} 
-          defaultActiveKey="panel">
-            <ol className='smallFontSize'>
-              { descriptionParts.map((description) => {
-                return <li key={uniqueId.create()}>{description}</li>
-              }) }
-            </ol>
-        </Collapse>
-      }
     </div>
   );
 }

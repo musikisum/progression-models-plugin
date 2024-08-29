@@ -8,7 +8,7 @@ import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
 function Inspector({ content, updateContent }) {
 
-  const { modelTemplates, measuresPerLine, measure } = content;
+  const { modelTemplates, measuresPerLine, measure, tempo } = content;
   const [selectedModel, setSelectedModel] = useState('cadence');
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
 
@@ -23,13 +23,17 @@ function Inspector({ content, updateContent }) {
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const onMeasureNumberChange = number => {
-    updateContent({ measuresPerLine: number });
+  const onTempoNumberChange = number => {
+    updateContent({ tempo: number });
   };
 
   const setSelectedMeasure = event => {
     updateContent({ measure: event });
   }
+
+  const onMeasureNumberChange = number => {
+    updateContent({ measuresPerLine: number });
+  };
 
   const getOptionsForModelSelect = () => {
     const options = ModelTemplates.getAvailableModels.reduce((akku, modelName) => {
@@ -83,6 +87,15 @@ function Inspector({ content, updateContent }) {
         defaultValue={measure ?? 'C|'}
         onChange={e => setSelectedMeasure(e)}
         options={getOptionsForMeasureSelect()}
+        />
+      <InputNumber 
+        className='inspectorElement'
+        style={{ width: 80 }}
+        min={10}
+        max={180}
+        step={10}
+        defaultValue={tempo ?? 120}
+        onChange={e => onTempoNumberChange(e)}
         />
       <InputNumber 
         style={{ width: 80 }}

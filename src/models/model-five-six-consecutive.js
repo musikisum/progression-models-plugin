@@ -1,5 +1,6 @@
 import ModelHelper from '../model-helper.js';
 import ModelTemplates from '../model-templates.js';
+import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
 const _keyObj = {
   'E': { key: 'E', t: 2, accidentals: [[0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1], [1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0], [1, 0, 1, 1, '^^', 1, 1, 0, 1, 0, 1, 1]] },
@@ -45,11 +46,14 @@ const getVoices = modelOptions => {
   const options = modelOptions ?? getOptions();
   let keyObject = _getKeyObject(options.key);
   if (options.addProps['diatonic'][0]) {
+    keyObject = cloneDeep(_getKeyObject(options.key));
     keyObject.accidentals = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]; 
+  } else {
+    keyObject = _getKeyObject(options.key);
   }
 
   return ModelHelper.getVoicesWithLengthModifications(

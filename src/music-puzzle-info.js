@@ -39,6 +39,7 @@ class MusicPuzzleInfo {
       measure: 'C|',
       stretchLastLine: false,
       measuresPerLine: 6,
+      showDescription: false,
       modelTemplates: []
     };
   }
@@ -52,6 +53,7 @@ class MusicPuzzleInfo {
       measure: joi.string().required(),
       stretchLastLine: joi.boolean(),
       measuresPerLine: joi.number().min(2).max(10).required(),
+      showDescription: joi.boolean(),
       modelTemplates: joi.array().required()
 
     });

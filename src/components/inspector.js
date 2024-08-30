@@ -10,7 +10,7 @@ function Inspector({ content, updateContent }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
 
-  const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine, isTransposible, transposeValue } = content;
+  const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine, isTransposible, transposeValue, showDescription } = content;
   const [selectedModel, setSelectedModel] = useState('cadence');
 
   const handleAddModelButtonClick = () => {
@@ -42,6 +42,10 @@ function Inspector({ content, updateContent }) {
 
   const onStretchLastLineChange = event => {
     updateContent({ stretchLastLine: event.target.checked });
+  };
+
+  const onShowDescriptionChange = event => {
+    updateContent({ showDescription: event.target.checked });
   };
 
   const getOptionsForModelSelect = () => {
@@ -143,6 +147,13 @@ function Inspector({ content, updateContent }) {
         onChange={e => onStretchLastLineChange(e)}
         >
         {t('stretchLastLine')}
+      </Checkbox>
+      <Checkbox 
+        style={{ minWidth: '100px' }}      
+        checked={showDescription} 
+        onChange={e => onShowDescriptionChange(e)}
+        >
+        {'push'}
       </Checkbox>
     </div> 
   )

@@ -68,6 +68,7 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
                   />
                 <ModelProperties index={index} modelTemplates={modelTemplates} cloneDeep={cloneDeep} updateContent={updateContent} />
                 <Checkbox 
+                  style={{ marginTop: '9px'}}                  
                   className='addPropItem'           
                   checked={modelTemplate.showDescription} 
                   onChange={e => onShowDescriptionChange(e, index)}

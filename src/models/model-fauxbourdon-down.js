@@ -52,7 +52,7 @@ const _keyObjLamento = {
   'Bm': { key: 'Bm', t: -1, accidentals: [[0, 0, 1, 1, 0, 0, 0, 1], [0, 1, '=', 0, 0, 1, 0, 1], [0, 1, '=', 1, '=', 1, 1, 1]] },
   'G': { key: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 0, -1, 0], [0, 1, '=', 1, '=', 1, 0, 1], [0, 1, '=', 0, -1, 0, 1, 0]] },
   'Em': { key: 'Em', t: -5, accidentals: [[0, 0, 0, 0, 0, 0, 0, 1], [0, 1, '=', 0, 0, 1, 0, 1], [0, 1, '=', 1, '=', 0, 1, 0]] },
-  'C': { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, -1, 0], [0, 1, '=', 1, '=', 0, 0, 0], [0, 1, '=', 1, '=', 0, 1, 0]] },
+  'C': { key: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, -1, 0], [0, 1, '=', 1, '=', 0, 0, 0], [0, '=', -1, '=', -1, 0, 1, 0]] },
   'Am': { key: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, -1, 0, 0, 1, 0, 1], [0, 1, '=', 1, '=', 0, 1, 0]] },
   'F': { key: 'F', t: -4, accidentals: [[0, 0, 0, 0, -1, -1, -1, 0], [0, 1, '=', 1, '=', 0, 0, 0], [0, 0, -1, 0, -1, 0, 0, 0]] },
   'Dm': { key: 'Dm', t: -6, accidentals: [[-1, -1, 0, 0, 0, 0, 0, 0], [0, 0, -1, 0, 0, 1, 0, 1], [0, 1, '=', 0, -1, 0, 1, 0]] },
@@ -75,7 +75,6 @@ function _getKeyObjectShort(change) {
 function _getKeyObjectLamento(change) {  
   return _keyObjLamento[change];
 }
-
 
 function getModelKeys() {
   return Object.keys(_keyObj);

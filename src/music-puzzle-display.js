@@ -1,5 +1,6 @@
 import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
+import transpose from './components/transposer.js';
 import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js';
 import ModelProvider from './models/model-provider.js';
@@ -12,7 +13,7 @@ export default function MusicPuzzleDisplay({ content }) {
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`;
 
-  const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine } = content;
+  const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine, isTransposible, transposeValue } = content;
  
   const [abcResult, setAbcResult] = useState(''); 
   const [descriptionParts, setDescriptionParts] = useState([]);
@@ -31,7 +32,35 @@ export default function MusicPuzzleDisplay({ content }) {
         descriptions.push(text);        
       }
       const playableABC = ModelComposition.abcOutput('C', measure, tempo, voices, measuresPerLine, stretchLastLine );
-      setAbcResult(playableABC);
+      let transposedPlayableABC = null;
+      if (isTransposible) {
+        let trInSemitones;
+        switch (transposeValue) {
+          case 3:
+            trInSemitones = -3;
+            break;
+          case 2:
+            trInSemitones = 2;
+            break;
+          case 1:
+            trInSemitones = 7;
+            break;
+          case -1:
+            trInSemitones = 5;
+            break;
+          case -2:
+            trInSemitones = -2;
+            break;
+          case -3:
+            trInSemitones = 3;
+            break;
+          default:
+            trInSemitones = 0;
+            break;
+        }
+        transposedPlayableABC = transpose(playableABC, trInSemitones); 
+      }
+      setAbcResult(transposedPlayableABC ?? playableABC);
       setDescriptionParts(descriptions);
     }    
   }, []);

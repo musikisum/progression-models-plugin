@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
@@ -10,7 +10,7 @@ function Inspector({ content, updateContent }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
 
-  const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine } = content;
+  const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine, isTransposible, transposeValue } = content;
   const [selectedModel, setSelectedModel] = useState('cadence');
 
   const handleAddModelButtonClick = () => {
@@ -24,15 +24,19 @@ function Inspector({ content, updateContent }) {
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const onTempoNumberChange = number => {
+  const onKeyChange = key => {
+    updateContent({ transposeValue: key });
+  }
+
+  const onTempoChange = number => {
     updateContent({ tempo: number });
   };
 
-  const setSelectedMeasure = event => {
+  const onMeasureChange = event => {
     updateContent({ measure: event });
   }
 
-  const onMeasureNumberChange = number => {
+  const onNumberOfMaesuresChange = number => {
     updateContent({ measuresPerLine: number });
   };
 
@@ -68,6 +72,21 @@ function Inspector({ content, updateContent }) {
       }
     ];
   }
+
+  const getOptionsForKeySelect = () => {
+    const values = [3, 2, 1, 0, -1, -2, -3];
+    const options = values.reduce((akku, value) => {
+      const so = {
+        label: t(`Q${value}`),
+        value: value
+      } 
+      akku.push(so);
+      return akku;
+    }, []);
+    return options;
+  }
+
+
   
   return (
     <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
@@ -88,9 +107,17 @@ function Inspector({ content, updateContent }) {
         />
       <Select
         className='inspectorElement'
+        style={{ width: 120 }}
+        defaultValue={transposeValue}
+        disabled={!isTransposible}
+        onChange={e => onKeyChange(e)}
+        options={getOptionsForKeySelect()}
+        />
+      <Select
+        className='inspectorElement'
         style={{ width: 80 }}
         defaultValue={measure ?? 'C|'}
-        onChange={e => setSelectedMeasure(e)}
+        onChange={e => onMeasureChange(e)}
         options={getOptionsForMeasureSelect()}
         />
       <InputNumber 
@@ -100,7 +127,7 @@ function Inspector({ content, updateContent }) {
         max={180}
         step={10}
         defaultValue={tempo ?? 120}
-        onChange={e => onTempoNumberChange(e)}
+        onChange={e => onTempoChange(e)}
         />
       <InputNumber
         className='inspectorElement' 
@@ -108,7 +135,7 @@ function Inspector({ content, updateContent }) {
         min={2} 
         max={10} 
         defaultValue={measuresPerLine}
-        onChange={e => onMeasureNumberChange(e)}
+        onChange={e => onNumberOfMaesuresChange(e)}
         />
       <Checkbox 
         style={{ minWidth: '100px' }}         

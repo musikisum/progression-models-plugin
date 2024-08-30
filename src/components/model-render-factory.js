@@ -21,7 +21,12 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
   const changeModelTemplateKey = e => {
     const newModelTemplates = cloneDeep(modelTemplates);
     newModelTemplates[index].key = e;
-    updateContent({ modelTemplates: newModelTemplates });
+    const isTransposible = e === 'C' || e === 'Am';
+    if(index !== 0) {
+      updateContent({ modelTemplates: newModelTemplates });
+    } else {
+      updateContent({ modelTemplates: newModelTemplates, isTransposible: isTransposible });
+    }
   };
 
   const onArrowButtonClick = direction => {

@@ -45,7 +45,6 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
     updateContent({ width: value });
   };
 
-
   const dragAndDropItems = modelTemplates.map((modelTemplate, index, arr) => ({
     key: modelTemplate.modelKey,
     render: ({ dragHandleProps, isDragged, isOtherDragged }) => 

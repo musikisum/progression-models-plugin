@@ -263,6 +263,34 @@
     "stretchLastLine": {
       "en": "stretch last line",
       "de": "letzte Zeile füllen"
+    },
+    "Q3": {
+      "en": "3 fifths ↑",
+      "de": "3 Quinten ↑"
+    },
+    "Q2": {
+      "en": "2 fifths ↑",
+      "de": "2 Quinten ↑"
+    },
+    "Q1": {
+      "en": "1 fifths ↑",
+      "de": "1 Quinten ↑"
+    },
+    "Q-3": {
+      "en": "3 fifths ↓",
+      "de": "3 Quinten ↓"
+    },
+    "Q-2": {
+      "en": "2 fifths ↓",
+      "de": "2 Quinten ↓"
+    },
+    "Q-1": {
+      "en": "1 fifths ↓",
+      "de": "1 Quinten ↓"
+    },
+    "Q0": {
+      "en": "no tranposition",
+      "de": "keine Tranposition"
     }
   }
 }

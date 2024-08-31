@@ -1,6 +1,6 @@
 import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
-import transpose from './components/transposer.js';
+import Transposer from './components/transposer.js';
 import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js';
 import ModelProvider from './models/model-provider.js';
@@ -31,34 +31,10 @@ export default function MusicPuzzleDisplay({ content }) {
         modelTemplate.customDescription; 
         descriptions.push(text);        
       }
-      const playableABC = ModelComposition.abcOutput('C', measure, tempo, voices, measuresPerLine, stretchLastLine );
+      const playableABC = ModelComposition.abcOutput('C', measure, tempo, voices, measuresPerLine, stretchLastLine);
       let transposedPlayableABC = null;
       if (isTransposible) {
-        let trInSemitones;
-        switch (transposeValue) {
-          case 3:
-            trInSemitones = -3;
-            break;
-          case 2:
-            trInSemitones = 2;
-            break;
-          case 1:
-            trInSemitones = 7;
-            break;
-          case -1:
-            trInSemitones = 5;
-            break;
-          case -2:
-            trInSemitones = -2;
-            break;
-          case -3:
-            trInSemitones = 3;
-            break;
-          default:
-            trInSemitones = 0;
-            break;
-        }
-        transposedPlayableABC = transpose(playableABC, trInSemitones); 
+        transposedPlayableABC = Transposer.getTransposition(playableABC, transposeValue); 
       }
       setAbcResult(transposedPlayableABC ?? playableABC);
       setDescriptionParts(descriptions);

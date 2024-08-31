@@ -1,13 +1,41 @@
 import { transposeABC, INTERVALS } from 'abc-notation-transposition';
-
-const transpose = (abcNotation, halftones) => {
-  let transposedAbcNotation = null;
+ 
+const transpose = (abcNotation, transpositionValue) => {
+  let transposedPlayableABC = null;
+  let trInSemitones;
+  switch (transpositionValue) {
+    case 3:
+      trInSemitones = -3;
+      break;
+    case 2:
+      trInSemitones = 2;
+      break;
+    case 1:
+      trInSemitones = 7;
+      break;
+    case -1:
+      trInSemitones = 5;
+      break;
+    case -2:
+      trInSemitones = -2;
+      break;
+    case -3:
+      trInSemitones = 3;
+      break;
+    default:
+      trInSemitones = 0;
+      break;
+  }
   try {
-    transposedAbcNotation = transposeABC(abcNotation, halftones);
+    transposedPlayableABC = transposeABC(abcNotation, trInSemitones);
   } catch(error) {
     console.log(error.message);
   }   
-  return transposedAbcNotation ?? abcNotation;
+  return transposedPlayableABC ?? abcNotation;
 }
 
-export default transpose;
+const Transposer = {
+  getTransposition: (abc, transpositionValue) => transpose(abc, transpositionValue)
+};
+
+export default Transposer;

@@ -89,6 +89,26 @@
     min-width: 75px;
     margin-right: @edu-content-padding;
   }
+  .inspectorUnit {
+    margin-top: @edu-content-padding;
+    display: flex;
+    flex-direction: column; 
+    align-items: left;  
+  }
+  .inspectorUnit > :first-child {
+    display: block;
+    padding-bottom: 6px;
+    padding-left: 2px;
+    min-height: 30px;
+  }
+  .iu-checkBoxContainer {
+    margin-top: @edu-content-padding * 2;
+    display: flex;
+    flex-direction: column;
+  }
+  .iu-CheckBoxHorzontaLabel {
+    display: flex;
+  }
 
   /* Mobile view */
   @media (max-width: 990px) {

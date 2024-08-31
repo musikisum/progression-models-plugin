@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
-import { Button, Select, InputNumber, Checkbox } from 'antd';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
+import { Button, Select, InputNumber, Checkbox, Typography } from 'antd';
 
 function Inspector({ content, updateContent }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { Text } = Typography;
 
   const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine, isTransposible, transposeValue, showDescription } = content;
   const [selectedModel, setSelectedModel] = useState('cadence');
@@ -89,73 +90,92 @@ function Inspector({ content, updateContent }) {
     }, []);
     return options;
   }
-
-
   
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-      <Button 
-        className='inspectorElement'
-        style={{ width: 180 }}
-        type="primary" 
-        icon={<PlusOutlined />} 
-        onClick={handleAddModelButtonClick}>
-        {t('addModel')}
-      </Button>
-      <Select
-        className='inspectorElement'
-        style={{ width: 180 }}
-        defaultValue="cadence"
-        onChange={e => setSelectedModel(e)}
-        options={getOptionsForModelSelect()}
-        />
-      <Select
-        className='inspectorElement'
-        style={{ width: 120 }}
-        defaultValue={transposeValue}
-        disabled={!isTransposible}
-        onChange={e => onKeyChange(e)}
-        options={getOptionsForKeySelect()}
-        />
-      <Select
-        className='inspectorElement'
-        style={{ width: 80 }}
-        defaultValue={measure ?? 'C|'}
-        onChange={e => onMeasureChange(e)}
-        options={getOptionsForMeasureSelect()}
-        />
-      <InputNumber 
-        className='inspectorElement'
-        style={{ width: 80 }}
-        min={10}
-        max={180}
-        step={10}
-        defaultValue={tempo ?? 120}
-        onChange={e => onTempoChange(e)}
-        />
-      <InputNumber
-        className='inspectorElement' 
-        style={{ width: 80 }}
-        min={2} 
-        max={10} 
-        defaultValue={measuresPerLine}
-        onChange={e => onNumberOfMaesuresChange(e)}
-        />
-      <Checkbox 
-        style={{ minWidth: '100px' }}         
-        checked={stretchLastLine} 
-        onChange={e => onStretchLastLineChange(e)}
-        >
-        {t('stretchLastLine')}
-      </Checkbox>
-      <Checkbox 
-        style={{ minWidth: '100px' }}      
-        checked={showDescription} 
-        onChange={e => onShowDescriptionChange(e)}
-        >
-        {'push'}
-      </Checkbox>
-    </div> 
+    <div style={{ 
+      paddingTop: '30px', 
+      display: 'flex', 
+      flexDirection: 'row', 
+      alignItems: 'end', 
+      flexWrap: 'wrap',  
+      borderTop: '1px solid #bfbfbf' }}
+      >
+      <div className='inspectorUnit'>
+        <span className='iu-first'>&nbsp;</span>
+        <Button 
+          className='inspectorElement'
+          style={{ width: 180 }}
+          type="primary" 
+          icon={<PlusOutlined />} 
+          onClick={handleAddModelButtonClick}>
+          {t('addModel')}
+        </Button>
+      </div>
+      <div className='inspectorUnit'>
+        <Text className='iu-first'>Modell auswählen</Text>
+        <Select
+          className='inspectorElement'
+          style={{ width: 180 }}
+          defaultValue="cadence"
+          onChange={e => setSelectedModel(e)}
+          options={getOptionsForModelSelect()}
+          />
+      </div>
+      <div className='inspectorUnit'>
+        <Text className='iu-first'>Transponieren</Text>
+        <Select
+          className='inspectorElement'
+          style={{ width: 120 }}
+          defaultValue={transposeValue}
+          disabled={!isTransposible}
+          onChange={e => onKeyChange(e)}
+          options={getOptionsForKeySelect()}
+          />
+      </div>
+      <div className='inspectorUnit'>
+        <Text className='iu-first'>Taktart</Text>
+        <Select
+          className='inspectorElement'
+          style={{ width: 80 }}
+          defaultValue={measure ?? 'C|'}
+          onChange={e => onMeasureChange(e)}
+          options={getOptionsForMeasureSelect()}
+          />
+      </div>
+      <div className='inspectorUnit'>
+        <Text className='iu-first'>Tempo</Text>
+        <InputNumber 
+          className='inspectorElement'
+          style={{ width: 80 }}
+          min={10}
+          max={180}
+          step={10}
+          defaultValue={tempo ?? 120}
+          onChange={e => onTempoChange(e)}
+          />
+      </div>
+      <div className='inspectorUnit'>
+        <Text className='iu-first'>Takte / Zeile</Text>
+        <InputNumber
+          className='inspectorElement' 
+          style={{ width: 80 }}
+          min={2} 
+          max={10} 
+          defaultValue={measuresPerLine}
+          onChange={e => onNumberOfMaesuresChange(e)}
+          />
+      </div>
+      <div className='iu-checkBoxContainer'>
+        <div className='iu-CheckBoxHorzontaLabel'>
+          <Checkbox style={{ minWidth: '20px' }} checked={stretchLastLine} onChange={e => onStretchLastLineChange(e)} /> 
+          <Text style={{ display: 'block'}}>{t('stretchLastLine')}</Text>
+        </div>
+        <div className='iu-CheckBoxHorzontaLabel'>
+          <Checkbox style={{ minWidth: '20px' }} checked={showDescription} onChange={e => onShowDescriptionChange(e)} />
+          <Text style={{ display: 'block'}}>{t('showDescription')}</Text>
+        </div>
+      </div>       
+    </div>
   )
 }
 

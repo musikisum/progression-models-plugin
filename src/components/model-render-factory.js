@@ -12,7 +12,7 @@ import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { Button, Select, Radio, Space, Row, Col, Typography, Checkbox } from 'antd';
 
-const { Text } = Typography;
+const { Paragraph, Text } = Typography;
 
 export default function ModelRenderFactory({ index, modelTemplates, modelTemplate, updateContent }) {
 
@@ -51,6 +51,12 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
     newModelTemplates[index].showDescription = e.target.checked;
     updateContent({ modelTemplates: newModelTemplates });
   };  
+
+  const abc = ModelComposition.abcOutput('C', 'C|', 120, [
+    ModelProvider
+      .getModel(modelTemplate.name)
+      .getVoices(modelTemplate)
+  ])
   
   return (
     <div>
@@ -104,15 +110,10 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
         </div>
         <div className="right">
           <div>
-            <AbcSnippet 
-              playableABC={
-                ModelComposition.abcOutput('C', 'C|', 120, [
-                  ModelProvider
-                    .getModel(modelTemplate.name)
-                    .getVoices(modelTemplate)
-                ])
-              }
-              />
+            <Paragraph copyable={{ text: abc }}>copy abc</Paragraph>
+          </div>
+          <div>
+            <AbcSnippet playableABC={abc} />
           </div>
         </div>      
       </div>

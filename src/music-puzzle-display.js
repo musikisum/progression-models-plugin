@@ -1,3 +1,4 @@
+import { Typography } from "antd";
 import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
 import Transposer from './components/transposer.js';
@@ -11,6 +12,7 @@ import Collapse, { COLLAPSIBLE_COLOR } from "@educandu/educandu/components/colla
 export default function MusicPuzzleDisplay({ content }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { Paragraph, Text } = Typography;
   const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`;
 
   const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine, isTransposible, transposeValue, showDescription } = content;
@@ -46,7 +48,10 @@ export default function MusicPuzzleDisplay({ content }) {
       <div className={`u-horizontally-centered u-width-${content.width}`}>
         <div>
           { abcResult && <AbcSnippet playableABC={abcResult} /> }
-        </div>      
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <Paragraph copyable={{ text: abcResult }}>copy abc</Paragraph>
+        </div>
         <div className='vSpacer' />
         { (descriptionParts.length !== 0 && showDescription) && 
           <Collapse 

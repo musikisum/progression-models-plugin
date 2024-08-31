@@ -1,10 +1,10 @@
 import { Typography } from "antd";
 import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
+import ModelProvider from './model-provider.js';
 import Transposer from './components/transposer.js';
 import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js';
-import ModelProvider from './models/model-provider.js';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
 import Collapse, { COLLAPSIBLE_COLOR } from "@educandu/educandu/components/collapsible.js";
@@ -50,7 +50,11 @@ export default function MusicPuzzleDisplay({ content }) {
           { abcResult && <AbcSnippet playableABC={abcResult} /> }
         </div>
         <div style={{ textAlign: 'center' }}>
-          <Paragraph copyable={{ text: abcResult }}>copy abc</Paragraph>
+        { (modelTemplates.length !== 0) && <Paragraph 
+          className='svg-color' 
+          copyable={{ text: abcResult,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}>
+            {t('abcCopy')}
+        </Paragraph> }
         </div>
         <div className='vSpacer' />
         { (descriptionParts.length !== 0 && showDescription) && 

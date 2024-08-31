@@ -1,4 +1,4 @@
-import ModelProvider from './models/model-provider.js';
+import ModelProvider from './model-provider.js';
 
 // Provide the abc.js tone names for c1 to b2.
 const diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];

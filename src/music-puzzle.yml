@@ -20,6 +20,9 @@ musikisum/educandu-plugin-music-puzzle:
   os:
     en: upper voice
     de: Oberstimme
+  dragAndDrop:
+    en: drag & drop
+    de: Ziehen & Ablegen
   ms: 
     en: middle voice
     de: Mittelstimme
@@ -218,4 +221,13 @@ musikisum/educandu-plugin-music-puzzle:
   Q0:
     en: no tranposition 
     de: keine Tranposition
+  abcCopy:
+    en: copy abc code
+    de: ABC-Code kopieren
+  abcCopyTtBevore:
+    en: 'click here to copy'
+    de: 'Hier klicken'
+  abcCopyTtAfter:
+    en: 'abc code copied to clipboard'
+    de: 'ABC-Code erfolgreich in die Zwischenablage kopiert'
 

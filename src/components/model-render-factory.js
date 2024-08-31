@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import ModelProperties from './model-properties.js';
 import ModelDescription from './model-description.js';
 import ModelComposition from '../model-composition.js';
-import ModelProvider from '../models/model-provider.js';
+import ModelProvider from '../model-provider.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { Button, Select, Radio, Space, Row, Col, Typography, Checkbox } from 'antd';
@@ -101,8 +101,8 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
             </Col>             
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
-                <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('ve')}</Text>
-                <div className='dadLabel'>Bitte ziehen ...</div>
+                <Text strong style={{ display: 'block', marginBottom: '15px' }}>{t('ve')}</Text>
+                <div className='dadLabel'>{t('dragAndDrop')}</div>
                 <VoiceSwitch style={{ margin: '16px 0' }} modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
               </div>
             </Col> 
@@ -110,7 +110,11 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
         </div>
         <div className="right">
           <div>
-            <Paragraph copyable={{ text: abc }}>copy abc</Paragraph>
+            <Paragraph 
+              className='svg-color' 
+              copyable={{ text: abc,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}>
+                {t('abcCopy')}
+            </Paragraph>
           </div>
           <div>
             <AbcSnippet playableABC={abc} />

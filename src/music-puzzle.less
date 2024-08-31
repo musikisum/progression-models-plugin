@@ -9,6 +9,9 @@
   .vSpacer {
     height: @edu-content-padding * 2;
   }
+  .svg-color svg {
+    fill: @edu-primary-color-dark; 
+  }
 
 }
 
@@ -53,7 +56,7 @@
     padding-top: 20px;
   }
   .dadLabel {
-    min-height: 32px;
+    min-height: 26px;
   }
   .buttons {
     display: flex;
@@ -80,6 +83,9 @@
   .gutter-box {
     padding: 5px 0;
     min-height: 180px;
+  }
+  div.ArrowPanel {
+    padding-top: 8px;
   }
 
   .inspectorElement {
@@ -109,12 +115,15 @@
   .iu-CheckBoxHorzontaLabel {
     display: flex;
   }
+  .svg-color svg {
+    fill: @edu-primary-color-dark; 
+  }
 
   /* Mobile view */
   @media (max-width: 990px) {
     .gutter-box {
       padding-bottom: 10px;
-      border-bottom: 1px @grey-7 solid;
+      // border-bottom: 1px @grey-7 solid;
     }
   }  
   @media (max-width: 768px) {

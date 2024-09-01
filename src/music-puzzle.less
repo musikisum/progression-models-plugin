@@ -26,7 +26,9 @@
     flex-wrap: wrap;
   }
   .left {
+    box-sizing: border-box;
     flex: 0 1 49%; 
+    order: 1;
     border: 1px @grey-7 solid; 
     border-radius: 12px; 
     padding: 20px;
@@ -35,7 +37,9 @@
     flex-wrap: wrap;
   }
   .right {
+    box-sizing: border-box;
     flex: 0 1 49%; 
+    order: 2;
     border: 1px @grey-7 solid; 
     border-radius: 12px; 
     padding: 20px;
@@ -74,6 +78,10 @@
     margin-top: 10px;
     margin-left: 0 !important;
     min-width: 140px;
+  }
+  .modelPropertyLabel {
+    display: block;
+    padding-left: 6px;
   }
 
   .gutter-example .ant-row > div {
@@ -123,15 +131,18 @@
   @media (max-width: 990px) {
     .gutter-box {
       padding-bottom: 10px;
-      // border-bottom: 1px @grey-7 solid;
     }
   }  
   @media (max-width: 768px) {
     .container {
       display: block;
     }
-    .right {
+    .left {
       margin-top: 2%;
+      order: 2;
+    }
+    .right {
+      order: 1;
     }
   }  
   @media (max-width: 575px) {

@@ -60,7 +60,19 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
   
   return (
     <div>
-      <div className='container' key={index}>
+      <div className='container' key={index}>        
+        <div className="right">
+          <div>
+            <Paragraph 
+              className='svg-color' 
+              copyable={{ text: abc,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}>
+                {t('abcCopy')}
+            </Paragraph>
+          </div>
+          <div>
+            <AbcSnippet playableABC={abc} />
+          </div>
+        </div>
         <div className="left">
           <Row gutter={32} type='flex' justify='space-arround'>
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
@@ -107,19 +119,7 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
               </div>
             </Col> 
           </Row>
-        </div>
-        <div className="right">
-          <div>
-            <Paragraph 
-              className='svg-color' 
-              copyable={{ text: abc,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}>
-                {t('abcCopy')}
-            </Paragraph>
-          </div>
-          <div>
-            <AbcSnippet playableABC={abc} />
-          </div>
-        </div>      
+        </div>   
       </div>
       <ModelDescription modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
     </div>

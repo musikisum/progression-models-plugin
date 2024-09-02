@@ -58,7 +58,7 @@ function getModelKeys() {
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('parallelismusUp');
   if(change) {
-    modelTemplate.key = change;
+    modelTemplate.modelKey = change;
   }
   return modelTemplate;
 };
@@ -84,8 +84,8 @@ function _AdjustOptions(options) {
         options.measure = [' | ', ' ', ' | ', ' '];
         options.voicesLength = 4;
         options.addProps['syncopation'][1] = false;
-        options.addProps['chromatic'][1] = !options.key.includes('m') ? false : true;
-        options.key.includes('m') && (options.addProps['chromatic'][0] = false);
+        options.addProps['chromatic'][1] = !options.modelKey.includes('m') ? false : true;
+        options.modelKey.includes('m') && (options.addProps['chromatic'][0] = false);
       }      
       break; 
     default:
@@ -116,16 +116,16 @@ const modifyLastChordSectionEndings = (options, keyObject, key) => {
     case 'D': 
     case 'G': 
       (options.voicesLength === 6) && (keyObject.accidentals[1][5] = 0);
-    break;
+      break;
     default:
       break;
   }
-} 
+};
 
 const getVoices = parallelismusUpOptions => {
   const options = _AdjustOptions(parallelismusUpOptions || getOptions());
   const withSyncopations = options.addProps['syncopation'][0];
-  const keyObject = withSyncopations ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
+  const keyObject = withSyncopations ? _getKeyObject(options.modelKey) : _getKeyObjectShort(options.modelKey);
   
   // Set accidentals for reduction of model length
   const chromatic = options.addProps['chromatic'][0];
@@ -156,7 +156,7 @@ const getVoices = parallelismusUpOptions => {
 
   // Set accidentals for second voice ending in first reduction of model length
   if (options.addProps['numberOfSections'][0] === 2) {
-    modifyLastChordSectionEndings(options, keyObject, options.key);
+    modifyLastChordSectionEndings(options, keyObject, options.modelKey);
   }
 
   return ModelHelper.getVoices(

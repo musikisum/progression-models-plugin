@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { Button, Collapse, Tooltip } from 'antd';
 import ModelRenderFactory from './model-render-factory.js';
+import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import DeleteIcon from '@educandu/educandu/components/icons/general/delete-icon.js';
 import MoveUpIcon from '@educandu/educandu/components/icons/general/move-up-icon.js';
 import MoveDownIcon from '@educandu/educandu/components/icons/general/move-down-icon.js';
@@ -112,12 +113,12 @@ function ModelPanel({
         extra={renderActionButtons()}
         >
         <div className="ItemPanel-contentWrapper">
-          { <ModelRenderFactory 
-              index={index} 
-              modelTemplates={modelTemplates} 
-              modelTemplate={modelTemplate} 
-              updateContent={updateContent} 
-              /> }
+          <ModelRenderFactory 
+            index={index} 
+            modelTemplates={modelTemplates} 
+            modelTemplate={modelTemplate} 
+            updateContent={updateContent} 
+            />
         </div>
       </Collapse.Panel>
     </Collapse>

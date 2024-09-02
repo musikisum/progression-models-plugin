@@ -20,12 +20,12 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
 
   const changeModelTemplateKey = e => {
     const newModelTemplates = cloneDeep(modelTemplates);
-    newModelTemplates[index].key = e;
-    const isTransposible = e === 'C' || e === 'Am';
+    newModelTemplates[index].modelKey = e;
+    const transposible = e === 'C' || e === 'Am';
     if(index !== 0) {
       updateContent({ modelTemplates: newModelTemplates });
     } else {
-      updateContent({ modelTemplates: newModelTemplates, isTransposible: isTransposible });
+      updateContent({ modelTemplates: newModelTemplates, isTransposible: transposible });
     }
   };
 
@@ -56,7 +56,7 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
     ModelProvider
       .getModel(modelTemplate.name)
       .getVoices(modelTemplate)
-  ])
+  ]);
   
   return (
     <div>
@@ -65,8 +65,9 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
           <div>
             <Paragraph 
               className='svg-color' 
-              copyable={{ text: abc,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}>
-                {t('abcCopy')}
+              copyable={{ text: abc,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}
+              >
+              {t('abcCopy')}
             </Paragraph>
           </div>
           <div>
@@ -80,7 +81,7 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
                 <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('key')}</Text>
                 <Select 
                   style={{ minWidth: '100px' }}
-                  defaultValue={modelTemplate.key} 
+                  defaultValue={modelTemplate.modelKey} 
                   options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(key => ({ value: key, label: t(key) }))}
                   onChange={e => changeModelTemplateKey(e, index)}
                   />

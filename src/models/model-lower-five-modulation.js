@@ -33,7 +33,7 @@ function getModelKeys() {
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('lowerFiveModulation');
   if(change) {
-    modelTemplate.key = change;
+    modelTemplate.modelKey = change;
   }
   return modelTemplate;
 };
@@ -44,9 +44,9 @@ const getVoices = lowerFifthModulationOptions => {
   const voices = [[9, 8, 8, 7, 10, 10, 9, 10], [7, 7, 6, 6, 5, 4, 4, 5], [0, 4, 4, 2, 3, 0, 0, 3]];
   const options = lowerFifthModulationOptions || getOptions();
   const changeMode = options.addProps['changeMode'][0];
-  const keyObject = _getKeyObject(options.key);
+  const keyObject = _getKeyObject(options.modelKey);
 
-  switch (options.key) {
+  switch (options.modelKey) {
     case 'Cm':
     case 'Gm':
     case 'Dm':

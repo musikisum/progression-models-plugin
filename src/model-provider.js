@@ -26,6 +26,6 @@ const models = {
 
 const ModelProvider = { 
   getModel: modelName => models[modelName]
-}
+};
 
 export default ModelProvider;

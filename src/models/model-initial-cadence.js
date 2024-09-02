@@ -33,7 +33,7 @@ function getModelKeys() {
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('initialCadence');
   if(change) {
-    modelTemplate.key = change;
+    modelTemplate.modelKey = change;
   }
   return modelTemplate;
 };
@@ -43,7 +43,7 @@ const getVoices = cadenceOptions => {
   const measure = [' | ', ' ', ' | ', ' '];
   const voices = [[4, 3, 3, 2], [2, 1, 1, 0], [0, 0, -1, 0]];
   const options = cadenceOptions ?? getOptions();
-  let keyObject = _getKeyObject(options.key);
+  let keyObject = _getKeyObject(options.modelKey);
 
   return ModelHelper.getVoices(
     options.transposeValues, 

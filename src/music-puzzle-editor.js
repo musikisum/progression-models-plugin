@@ -46,7 +46,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   };
 
   const dragAndDropItems = modelTemplates.map((modelTemplate, index, arr) => ({
-    key: modelTemplate.modelKey,
+    key: modelTemplate.key,
     render: ({ dragHandleProps, isDragged, isOtherDragged }) => 
       (<ModelPanel 
         index={index}
@@ -77,8 +77,10 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
         <Form.Item>
           <Inspector content={content} updateContent={updateContent} />
         </Form.Item>
-        <Form.Item label={<Info tooltip={t('common:widthInfo')}>{t('common:width')}</Info>}
-            {...FORM_ITEM_LAYOUT}    >
+        <Form.Item
+          label={<Info tooltip={t('common:widthInfo')}>{t('common:width')}</Info>}
+          {...FORM_ITEM_LAYOUT}
+          >
           <ObjectWidthSlider value={width ?? 100} onChange={handleWidthChange} />
         </Form.Item>
       </Form>

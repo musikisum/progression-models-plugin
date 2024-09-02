@@ -33,7 +33,7 @@ function getModelKeys() {
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('cadence');
   if(change) {
-    modelTemplate.key = change;
+    modelTemplate.modelKey = change;
   }
   return modelTemplate;
 };
@@ -64,7 +64,7 @@ const setAccidentials = (keyObject, isBegin, isFinal, isDeceptiv) => {
       keyObject.accidentals[2][0] = isBegin ? 1 : 0;
       break;
     default:
-      break
+      break;
   }
 };
 
@@ -88,7 +88,7 @@ const setAccidentialsForDeceptiveBassModification = (keyObject, isDeceptive) => 
     case 'A':
     case 'E':
       keyObject.accidentals[2][3] = isDeceptive ? 1 : 0;
-      break
+      break;
     default:
       break;
   }
@@ -99,7 +99,7 @@ const getVoices = cadenceOptions => {
   const measure = [' | ', ' ', ' | ', ' '];
   const voices = [[9, 8, 8, 9], [7, 7, 6, 7], [2, 3, 4, 0]];
   const options = cadenceOptions ?? getOptions();
-  let keyObject = _getKeyObject(options.key);
+  let keyObject = _getKeyObject(options.modelKey);
 
   const isBegin = options.addProps['isBegin'][0];
   const isFinal = options.addProps['isFinal'][0];

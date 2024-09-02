@@ -83,7 +83,7 @@ function getModelKeys() {
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('fauxbourdon');
   if(change) {
-    modelTemplate.key = change;
+    modelTemplate.modelKey = change;
   }
   return modelTemplate;
 };
@@ -91,19 +91,19 @@ const getOptions = change => {
 function _AdjustOptions(options) {
   switch(options.addProps['numberOfSections'][0]) {
     case 1: 
-    if(options.addProps['syncopation'][0]) { // with syncopations
-      options.voices = [[5, 5, 4, 4], [9, 8, 8, 7], [7, 6, 6, 5]];
-      options.measure = [' | ', ' ', ' | ', ' '];
-      options.voicesLength = 4;
-      options.addProps['chromaticBass'] = [false, true];
-      options.addProps['numberOfSections'][2] = true;
-    } else { // without syncopations
-      options.voices = [[5, 4], [9, 8], [7, 6]];
-      options.measure = [' | ', ' '];
-      options.voicesLength = 2;
-      options.addProps['chromaticBass'] = [false, true];
-      options.addProps['numberOfSections'][2] = false;
-    }
+      if(options.addProps['syncopation'][0]) { // with syncopations
+        options.voices = [[5, 5, 4, 4], [9, 8, 8, 7], [7, 6, 6, 5]];
+        options.measure = [' | ', ' ', ' | ', ' '];
+        options.voicesLength = 4;
+        options.addProps['chromaticBass'] = [false, true];
+        options.addProps['numberOfSections'][2] = true;
+      } else { // without syncopations
+        options.voices = [[5, 4], [9, 8], [7, 6]];
+        options.measure = [' | ', ' '];
+        options.voicesLength = 2;
+        options.addProps['chromaticBass'] = [false, true];
+        options.addProps['numberOfSections'][2] = false;
+      }
       break;
     case 2:
       if(options.addProps['syncopation'][0]) { // with syncopations
@@ -140,20 +140,20 @@ function _AdjustOptions(options) {
 }
 
 function _AdjustLamento(options) {
-    options.voices = [[5, 5, 4, 4, 3, 3, 2, 1], [9, 8, 8, 7, 7, 6, 7, 6], [7, 6, 6, 5, 5, 4, 3, 4]];
-    options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
-    options.voicesLength = 8;
-    options.addProps['numberOfSections'][2] = true;
+  options.voices = [[5, 5, 4, 4, 3, 3, 2, 1], [9, 8, 8, 7, 7, 6, 7, 6], [7, 6, 6, 5, 5, 4, 3, 4]];
+  options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
+  options.voicesLength = 8;
+  options.addProps['numberOfSections'][2] = true;
 }
 
 const getVoices = fauxbourdonOptions => {
   const options = _AdjustOptions(fauxbourdonOptions || getOptions());
   let keyObject;
   if (options.addProps['chromaticBass'][0] === true && options.addProps['chromaticBass'][1] === false) {
-    keyObject = _getKeyObjectLamento(options.key);
+    keyObject = _getKeyObjectLamento(options.modelKey);
     _AdjustLamento(options);
   } else {
-    keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
+    keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.modelKey) : _getKeyObjectShort(options.modelKey);
     options.addProps['chromaticBass'][0] = false;
   }
 

@@ -33,7 +33,7 @@ function getModelKeys() {
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('circleOfFifths');
   if(change) {
-    modelTemplate.key = change;
+    modelTemplate.modelKey = change;
   }
   return modelTemplate;
 };
@@ -54,7 +54,7 @@ const getVoices = circleOfFifthsOptions => {
     options.transposeValues, 
     options.voiceArrangement, 
     voices, 
-    _getKeyObject(options.key), 
+    _getKeyObject(options.modelKey), 
     voicesLength, 
     measure, 
     options.addProps

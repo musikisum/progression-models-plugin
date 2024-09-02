@@ -16,24 +16,24 @@ const getAvailableModels = [
 // Model templates to create a voice model
 const templates = {
   initialCadence: {
-    modelKey: '',
+    key: '',
     name: 'initialCadence',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [1, 1, 0],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: {}
   },
   cadence: {
-    modelKey: '',
+    key: '',
     name: 'cadence',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: { 
       isBegin: [false, false],
@@ -42,13 +42,13 @@ const templates = {
     }
   },
   circleOfFifths:  {
-    modelKey: '',
+    key: '',
     name: 'circleOfFifths',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [0, 0, 0],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: {
       partLengthValues: [4, 4],
@@ -57,13 +57,13 @@ const templates = {
     }
   },
   circleOfFifthsLinear: {
-    modelKey: '',
+    key: '',
     name: 'circleOfFifthsLinear',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: {
       partLengthValues: [4, 4],
@@ -72,13 +72,13 @@ const templates = {
     }
   },
   fauxbourdon: {
-    modelKey: '',
+    key: '',
     name: 'fauxbourdon',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [1, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: {
       numberOfSections: [3, 3],
@@ -87,13 +87,13 @@ const templates = {
     }
   },
   fiveSixConsecutive: {
-    modelKey: '',
+    key: '',
     name: 'fiveSixConsecutive',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: {
       partLengthValues: [6, 6],
@@ -102,26 +102,26 @@ const templates = {
     }
   },
   lowerFiveModulation: {
-    modelKey: '',
+    key: '',
     name: 'lowerFiveModulation',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: {
       changeMode: [false, false]
     }
   },
   upperFiveModulation: {
-    modelKey: '',
+    key: '',
     name: 'upperFiveModulation',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: {
       changeMode: [false, false],
@@ -130,26 +130,26 @@ const templates = {
     }
   },
   parallelismusDiminished: {
-    modelKey: '',
+    key: '',
     name: 'parallelismusDiminished',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: {
       numberOfSections: [3, 3]
     }
   },
   parallelismusDown: {
-    modelKey: '',
+    key: '',
     name: 'parallelismusDown',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: {
       numberOfSections: [3, 3],
@@ -157,13 +157,13 @@ const templates = {
     }
   },
   parallelismusUp: {
-    modelKey: '',
+    key: '',
     name: 'parallelismusUp',
-    key: 'C',
+    modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
-    customDescription: "",
+    customDescription: '',
     showDescription: false,
     addProps: {
       numberOfSections: [3, 3],

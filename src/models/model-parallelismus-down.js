@@ -58,7 +58,7 @@ function getModelKeys() {
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('parallelismusDown');
   if(change) {
-    modelTemplate.key = change;
+    modelTemplate.modelKey = change;
   }
   return modelTemplate;
 };
@@ -102,21 +102,21 @@ function _AdjustOptions(options) {
 }
 
 const someKeys = ['Dm', 'Gm', 'Cm', 'Fm', 'Bm', 'F#m', 'C#m', 'Eb', 'Ab', 'A', 'E'];
-const modifyLastChordSectionEndings = (keyObject, key) => {
-  if (key === 'Dm' || key === 'Gm' || key === 'Cm' || key === 'Fm' || key === 'A' || key === 'E') {
+const modifyLastChordSectionEndings = (keyObject, modelKey) => {
+  if (modelKey === 'Dm' || modelKey === 'Gm' || modelKey === 'Cm' || modelKey === 'Fm' || modelKey === 'A' || modelKey === 'E') {
     keyObject.accidentals[1][5] = 0;
-  } else if (key === 'Bm' || key === 'F#m' || key === 'C#m') {
+  } else if (modelKey === 'Bm' || modelKey === 'F#m' || modelKey === 'C#m') {
     keyObject.accidentals[1][5] = 1;
   } else {
     keyObject.accidentals[1][5] = -1;
   }
-} 
+};
 
 const getVoices = parallelismusDownOptions => {
   const options = _AdjustOptions(parallelismusDownOptions || getOptions());
-  const keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.key) : _getKeyObjectShort(options.key);
-  if (someKeys.indexOf(options.key) >= 0) {
-    modifyLastChordSectionEndings(keyObject, options.key);
+  const keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.modelKey) : _getKeyObjectShort(options.modelKey);
+  if (someKeys.indexOf(options.modelKey) >= 0) {
+    modifyLastChordSectionEndings(keyObject, options.modelKey);
   }
 
   return ModelHelper.getVoices(

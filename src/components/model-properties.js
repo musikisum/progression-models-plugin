@@ -37,7 +37,7 @@ function ModelProperties({ index, modelTemplates, cloneDeep, updateContent }) {
 
   function getNumber(key, value, propIndex) {
     return (
-      <div key={`prop${propIndex}`} style={{marginTop: '6px'}}>
+      <div key={`prop${propIndex}`} style={{ marginTop: '6px' }}>
         <span>{t(key)}</span>
         <InputNumber
           className='modelPropItem' 
@@ -53,14 +53,16 @@ function ModelProperties({ index, modelTemplates, cloneDeep, updateContent }) {
   }
 
   return (
-    <div style={{display: 'block'}}>
+    <div style={{ display: 'block' }}>
       {
-        addProps && Object.entries(addProps).map(([key, value], propIndex) => {
-          if(typeof value[0] === 'boolean') {
-            return getCheck(key, value, propIndex);
-          }
-          return getNumber(key, value, propIndex);
-        })
+        addProps
+          ? Object.entries(addProps).map(([key, value], propIndex) => {
+            if(typeof value[0] === 'boolean') {
+              return getCheck(key, value, propIndex);
+            }
+            return getNumber(key, value, propIndex);
+          })
+          : null
       }
     </div>
   );

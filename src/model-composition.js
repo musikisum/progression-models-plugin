@@ -18,8 +18,8 @@ function removeEverySecondPipe(voice) {
   );
 }
 
-// Provides meta informations for an abc.js header of a phrase model combination in a key and a measure.
-const getMeta = (key, measure, tempo, stretchLastLine) => {
+// Provides meta informations for an abc.js header of a phrase model combination in a modelKey and a measure.
+const getMeta = (modelKey, measure, tempo, stretchLastLine) => {
   const metaResult = ['X:1'];
   metaResult.push('%%score [(1 2) 3]');
   metaResult.push(`%%measurenb 0${stretchLastLine ? '\n%%stretchLast 1' : ''}`);
@@ -27,7 +27,7 @@ const getMeta = (key, measure, tempo, stretchLastLine) => {
   metaResult.push(`L:${getGefaultLength(measure)}`);
   metaResult.push(`Q:1/4=${tempo}`);
   metaResult.push(`L:${length}`);
-  metaResult.push(`K:${key}`);
+  metaResult.push(`K:${modelKey}`);
   return metaResult.join('\n');;
 };
 
@@ -42,19 +42,19 @@ const splitAtVerticalBarIndex = (voice, barIndex) => {
 }
 
 // creates an array with playable abc.js strings from arrays with model voices 
-const getComposition = (key, measure, tempo, modelVoices, barsPerLine, stretchLastLine) => {
+const getComposition = (modelKey, measure, tempo, modelVoices, barsPerLine, stretchLastLine) => {
   const unsplittetVoices = modelVoices[0].map((_, index) => 
     modelVoices.reduce((combiVoice, modelVoice) => {
       return combiVoice + modelVoice[index];
     }, '')
   );
-  let splittetVoices;
+  let splittetVoices; let number;
   if(barsPerLine) {
-    barsPerLine = measure !== 'C' ? barsPerLine : barsPerLine * 2;
-    splittetVoices = unsplittetVoices.map(voice => splitAtVerticalBarIndex(voice, barsPerLine));
+    number = measure !== 'C' ? barsPerLine : barsPerLine * 2;
+    splittetVoices = unsplittetVoices.map(voice => splitAtVerticalBarIndex(voice, number));
   }
   const voices = splittetVoices ?? unsplittetVoices;
-  const abcResult = [getMeta(key, measure, tempo, stretchLastLine)];
+  const abcResult = [getMeta(modelKey, measure, tempo, stretchLastLine)];
   if (measure === 'C') {
     voices[0] = removeEverySecondPipe(voices[0]);
     voices[1] = removeEverySecondPipe(voices[1]);

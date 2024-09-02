@@ -79,7 +79,7 @@ const add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
   const index = voiceArr.indexOf(voiceIndex);
   const modVoice = abcVoices[index];
   const [firstElem, ...rest] = modVoice.split('|');
-  let octaveModifications, firstSign, secondSign, tone;
+  let octaveModifications; let firstSign; let secondSign; let tone;
   if (specialIssues.indexOf(keyObject.key) < 0) {
     firstSign = '';
     secondSign = '';
@@ -94,7 +94,7 @@ const add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
   const nextTone = diatonicScale[diatonicScale.indexOf(tone) + 1];
   const newFirstElem = `${firstSign}${nextTone}${octaveModifications}/ ${secondSign}${tone}${octaveModifications}/ | ${rest.join('|')}`;
   abcVoices[index] = newFirstElem;
-}
+};
 
 // Create the abc string representation of a voice model 
 const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, begin65, prinner) => {
@@ -129,17 +129,17 @@ const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, m
     }, []);
   }
   return abcVoices;
-}
+};
 
 // Create an array to terminate start sections of a voice model
 const getBeginAtHelperArr = voiceLength => {
   const helpArr = [];
   helpArr.push(0);
-  for (let index = 0; index < voiceLength; index++) {
+  for (let index = 0; index < voiceLength; index += 1) {
     helpArr.push(index * 2);    
   }
   return helpArr;
-}
+};
 
 // Create the abc string representation of a voice model with modifications of the length
 const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, addProps) => {
@@ -175,7 +175,7 @@ const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, key
     abcVoices[2] = cVoice.slice(x);
   }
   return abcVoices;
-}
+};
  
 const ModelHelper = {
   transposeOctave,

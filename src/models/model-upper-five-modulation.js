@@ -33,7 +33,7 @@ function getModelKeys() {
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('upperFiveModulation');
   if(change) {
-    modelTemplate.key = change;
+    modelTemplate.modelKey = change;
   }
   return modelTemplate;
 };
@@ -57,9 +57,9 @@ const getVoices = upperFifthModulationOptions => {
   // Set values for changing mode or 6-5 begin
   const changeMode = options.addProps['changeMode'][0];
   const begin65 = options.addProps['begin65'][0];
-  const keyObject = _getKeyObject(options.key);
+  const keyObject = _getKeyObject(options.modelKey);
   if(!prinner) {
-    switch (options.key) {
+    switch (options.modelKey) {
       case 'C':
       case 'F':
       case 'B':

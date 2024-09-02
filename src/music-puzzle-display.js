@@ -1,4 +1,4 @@
-import { Typography } from "antd";
+import { Typography } from 'antd';
 import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
 import ModelProvider from './model-provider.js';
@@ -6,8 +6,9 @@ import Transposer from './components/transposer.js';
 import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
+import Markdown from '@educandu/educandu/components/markdown.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
-import Collapse, { COLLAPSIBLE_COLOR } from "@educandu/educandu/components/collapsible.js";
+import Collapse, { COLLAPSIBLE_COLOR } from '@educandu/educandu/components/collapsible.js';
 
 export default function MusicPuzzleDisplay({ content }) {
 
@@ -28,9 +29,9 @@ export default function MusicPuzzleDisplay({ content }) {
         const modelTemplate = modelTemplates[index];
         const model = ModelProvider.getModel(modelTemplate.name);
         voices.push(model.getVoices(modelTemplate));
-        const text = modelTemplate.customDescription === '' ?
-        t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`) :
-        modelTemplate.customDescription; 
+        const text = modelTemplate.customDescription === ''
+          ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)
+          : modelTemplate.customDescription; 
         descriptions.push(text);        
       }
       const playableABC = ModelComposition.abcOutput('C', measure, tempo, voices, measuresPerLine, stretchLastLine);
@@ -47,28 +48,32 @@ export default function MusicPuzzleDisplay({ content }) {
     <div className='EP_Educandu_Example_Display'>
       <div className={`u-horizontally-centered u-width-${content.width}`}>
         <div>
-          { abcResult && <AbcSnippet playableABC={abcResult} /> }
+          { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
         </div>
         <div style={{ textAlign: 'center' }}>
-        { (modelTemplates.length !== 0) && <Paragraph 
-          className='svg-color' 
-          copyable={{ text: abcResult,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}>
+          { (modelTemplates.length !== 0) 
+          && <Paragraph 
+            className='svg-color' 
+            copyable={{ text: abcResult,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}
+            >
             {t('abcCopy')}
-        </Paragraph> }
+          </Paragraph> }
         </div>
         <div className='vSpacer' />
-        { (descriptionParts.length !== 0 && showDescription) && 
-          <Collapse 
+        { descriptionParts.length !== 0 && showDescription
+          ? <Collapse 
             collapsible="icon" 
             title={t('descriptionTitle')} 
-            defaultActiveKey="panel">
-              <ol className='smallFontSize'>
-                { descriptionParts.map((description) => {
-                  return <li key={uniqueId.create()}>{description}</li>
-                }) }
-              </ol>
+            defaultActiveKey="panel"
+            >
+            <Markdown renderAnchors className='u-horizontally-centered u-width-100'>
+              { descriptionParts.reduce((akku, description) => {
+                akku = `${akku}\n\n---\n\n${description}`;
+                return akku;
+              }, '')}
+            </Markdown>
           </Collapse>
-        }
+          : null}
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ function getModelKeys() {
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('fiveSixConsecutive');
   if(change) {
-    modelTemplate.key = change;
+    modelTemplate.modelKey = change;
   }
   return modelTemplate;
 };
@@ -44,16 +44,16 @@ const getVoices = modelOptions => {
   const measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
   const voices = [[4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9], [1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7], [-1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5]];
   const options = modelOptions ?? getOptions();
-  let keyObject = _getKeyObject(options.key);
+  let keyObject = _getKeyObject(options.modelKey);
   if (options.addProps['diatonic'][0]) {
-    keyObject = cloneDeep(_getKeyObject(options.key));
+    keyObject = cloneDeep(_getKeyObject(options.modelKey));
     keyObject.accidentals = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]; 
   } else {
-    keyObject = _getKeyObject(options.key);
+    keyObject = _getKeyObject(options.modelKey);
   }
 
   return ModelHelper.getVoicesWithLengthModifications(

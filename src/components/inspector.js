@@ -19,15 +19,15 @@ function Inspector({ content, updateContent }) {
       return;
     }
     const modelTemplate = ModelTemplates.getModelTemplate(selectedModel);
-    modelTemplate.modelKey = uniqueId.create();
+    modelTemplate.key = uniqueId.create();
     const newModelTemplates = cloneDeep(modelTemplates);
     newModelTemplates.push(modelTemplate);
     updateContent({ modelTemplates: newModelTemplates });
   };
 
-  const onKeyChange = key => {
-    updateContent({ transposeValue: key });
-  }
+  const onTransposeValueChange = value => {
+    updateContent({ transposeValue: value });
+  };
 
   const onTempoChange = number => {
     updateContent({ tempo: number });
@@ -35,7 +35,7 @@ function Inspector({ content, updateContent }) {
 
   const onMeasureChange = event => {
     updateContent({ measure: event });
-  }
+  };
 
   const onNumberOfMaesuresChange = number => {
     updateContent({ measuresPerLine: number });
@@ -54,7 +54,7 @@ function Inspector({ content, updateContent }) {
       const so = {
         value: modelName,
         label: t(modelName)
-      } 
+      }; 
       akku.push(so);
       return akku;
     }, []);
@@ -76,24 +76,23 @@ function Inspector({ content, updateContent }) {
         labe: ' 2/4'
       }
     ];
-  }
+  };
 
   const getOptionsForKeySelect = () => {
     const values = [3, 2, 1, 0, -1, -2, -3];
     const options = values.reduce((akku, value) => {
       const so = {
         label: t(`Q${value}`),
-        value: value
-      } 
+        value
+      }; 
       akku.push(so);
       return akku;
     }, []);
     return options;
-  }
+  };
   
   return (
-    <div style={{ 
-      paddingTop: '30px', 
+    <div style={{ paddingTop: '30px', 
       display: 'flex', 
       flexDirection: 'row', 
       alignItems: 'end', 
@@ -107,7 +106,8 @@ function Inspector({ content, updateContent }) {
           style={{ width: 180 }}
           type="primary" 
           icon={<PlusOutlined />} 
-          onClick={handleAddModelButtonClick}>
+          onClick={handleAddModelButtonClick}
+          >
           {t('addModel')}
         </Button>
       </div>
@@ -128,7 +128,7 @@ function Inspector({ content, updateContent }) {
           style={{ width: 120 }}
           defaultValue={transposeValue}
           disabled={!isTransposible}
-          onChange={e => onKeyChange(e)}
+          onChange={e => onTransposeValueChange(e)}
           options={getOptionsForKeySelect()}
           />
       </div>
@@ -168,11 +168,11 @@ function Inspector({ content, updateContent }) {
       <div className='iu-checkBoxContainer'>
         <div className='iu-CheckBoxHorzontaLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={stretchLastLine} onChange={e => onStretchLastLineChange(e)} /> 
-          <Text style={{ display: 'block'}}>{t('stretchLastLine')}</Text>
+          <Text style={{ display: 'block' }}>{t('stretchLastLine')}</Text>
         </div>
         <div className='iu-CheckBoxHorzontaLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={showDescription} onChange={e => onShowDescriptionChange(e)} />
-          <Text style={{ display: 'block'}}>{t('showDescription')}</Text>
+          <Text style={{ display: 'block' }}>{t('showDescription')}</Text>
         </div>
       </div>       
     </div>

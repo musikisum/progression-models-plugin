@@ -21,8 +21,8 @@ function ModelDescription({
 
   useEffect(() => {
     const modelDescription = !modelTemplate.customDescription 
-    ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)
-    : modelTemplate.customDescription;
+      ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)
+      : modelTemplate.customDescription;
     setText(modelDescription);
   }, []); 
 
@@ -33,19 +33,18 @@ function ModelDescription({
     setText(event.target.value);
   };
 
-  return (
-    <React.Fragment> 
-      { modelTemplate.showDescription ? 
-        <Collapse collapsible="icon" defaultActiveKey="panel" className='descriptionContainer'>
-          <Collapse.Panel
-            key="panel"
-            header={<div className="ItemPanel-header">{t('showDescription')}</div>}
-            >
+  return (<div> 
+    { modelTemplate.showDescription 
+      ? <Collapse collapsible="icon" defaultActiveKey="panel" className='descriptionContainer'>
+        <Collapse.Panel
+          key="panel"
+          header={<div className="ItemPanel-header">{t('showDescription')}</div>}
+          >
           <MarkdownInput value={text} onChange={handleTextChanged} />
-          </Collapse.Panel>
-        </Collapse> : null}
-    </React.Fragment> 
-  );
+        </Collapse.Panel>
+        </Collapse>
+      : null }    
+  </div>);
 }
 ModelDescription.propTypes = {
   modelIndex: PropTypes.number,

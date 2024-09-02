@@ -230,4 +230,7 @@ musikisum/educandu-plugin-music-puzzle:
   abcCopyTtAfter:
     en: 'abc code copied to clipboard'
     de: 'ABC-Code erfolgreich in die Zwischenablage kopiert'
+  displayLayout:
+    en: "Display settings:"
+    de: "Anzeige-Einstellungen:" 
 

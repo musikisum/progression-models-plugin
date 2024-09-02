@@ -19,37 +19,33 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
 
   const changeModelTemplateKey = e => {
-    const newModelTemplates = cloneDeep(modelTemplates);
-    newModelTemplates[index].modelKey = e;
+    modelTemplates[index].modelKey = e;
     const transposible = e === 'C' || e === 'Am';
     if(index !== 0) {
-      updateContent({ modelTemplates: newModelTemplates });
+      updateContent({ modelTemplates: modelTemplates });
     } else {
-      updateContent({ modelTemplates: newModelTemplates, isTransposible: transposible });
+      updateContent({ modelTemplates: modelTemplates, isTransposible: transposible });
     }
   };
 
   const onArrowButtonClick = direction => {
-    const newModelTemplates = cloneDeep(modelTemplates);
-    const voice = newModelTemplates[index].radioValue;
+    const voice = modelTemplates[index].radioValue;
     if(direction === 'up') {
-      newModelTemplates[index].transposeValues[voice] += 1;
+      modelTemplates[index].transposeValues[voice] += 1;
     } else {
-      newModelTemplates[index].transposeValues[voice] -= 1;
+      modelTemplates[index].transposeValues[voice] -= 1;
     }
-    updateContent({ modelTemplates: newModelTemplates });
+    updateContent({ modelTemplates: modelTemplates });
   };
 
   const onRadioChange = e => { 
-    const newModelTemplates = cloneDeep(modelTemplates);
-    newModelTemplates[index].radioValue = e.target.value;
-    updateContent({ modelTemplates: newModelTemplates }); 
+    modelTemplates[index].radioValue = e.target.value;
+    updateContent({ modelTemplates: modelTemplates }); 
   };
 
   const onShowDescriptionChange = e => {
-    const newModelTemplates = cloneDeep(modelTemplates);
-    newModelTemplates[index].showDescription = e.target.checked;
-    updateContent({ modelTemplates: newModelTemplates });
+    modelTemplates[index].showDescription = e.target.checked;
+    updateContent({ modelTemplates: modelTemplates });
   };  
 
   const abc = ModelComposition.abcOutput('C', 'C|', 120, [
@@ -57,7 +53,7 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
       .getModel(modelTemplate.name)
       .getVoices(modelTemplate)
   ]);
-  
+
   return (
     <div>
       <div className='container' key={index}>        

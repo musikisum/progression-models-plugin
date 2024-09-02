@@ -18,11 +18,10 @@ function Inspector({ content, updateContent }) {
     if(!selectedModel) {
       return;
     }
-    const modelTemplate = ModelTemplates.getModelTemplate(selectedModel);
+    const modelTemplate = cloneDeep(ModelTemplates.getModelTemplate(selectedModel));
     modelTemplate.key = uniqueId.create();
-    const newModelTemplates = cloneDeep(modelTemplates);
-    newModelTemplates.push(modelTemplate);
-    updateContent({ modelTemplates: newModelTemplates });
+    modelTemplates.push(modelTemplate)
+    updateContent({ modelTemplates: modelTemplates });
   };
 
   const onTransposeValueChange = value => {
@@ -92,80 +91,88 @@ function Inspector({ content, updateContent }) {
   };
   
   return (
-    <div style={{ paddingTop: '30px', 
-      display: 'flex', 
-      flexDirection: 'row', 
-      alignItems: 'end', 
-      flexWrap: 'wrap',  
-      borderTop: '1px solid #bfbfbf' }}
-      >
-      <div className='inspectorUnit'>
-        <span className='iu-first'>&nbsp;</span>
-        <Button 
-          className='inspectorElement'
-          style={{ width: 180 }}
-          type="primary" 
-          icon={<PlusOutlined />} 
-          onClick={handleAddModelButtonClick}
-          >
-          {t('addModel')}
-        </Button>
+    <div>
+      <div style={{ display: 'flex', 
+        flexDirection: 'row', 
+        alignItems: 'end', 
+        flexWrap: 'wrap' }}
+        >
+        <div className='inspectorUnit'>
+          <span className='iu-first'>&nbsp;</span>
+          <Button 
+            className='inspectorElement'
+            style={{ width: 180 }}
+            type="primary" 
+            icon={<PlusOutlined />} 
+            onClick={handleAddModelButtonClick}
+            >
+            {t('addModel')}
+          </Button>
+        </div>
+        <div className='inspectorUnit'>
+          <Text className='iu-first'>Modell auswählen</Text>
+          <Select
+            className='inspectorElement'
+            style={{ width: 180 }}
+            defaultValue="cadence"
+            onChange={e => setSelectedModel(e)}
+            options={getOptionsForModelSelect()}
+            />
+        </div>
+        <div className='inspectorUnit'>
+          <Text className='iu-first'>Transponieren</Text>
+          <Select
+            className='inspectorElement'
+            style={{ width: 120 }}
+            defaultValue={transposeValue}
+            disabled={!isTransposible}
+            onChange={e => onTransposeValueChange(e)}
+            options={getOptionsForKeySelect()}
+            />
+        </div>
+        <div className='inspectorUnit'>
+          <Text className='iu-first'>Taktart</Text>
+          <Select
+            className='inspectorElement'
+            style={{ width: 80 }}
+            defaultValue={measure ?? 'C|'}
+            onChange={e => onMeasureChange(e)}
+            options={getOptionsForMeasureSelect()}
+            />
+        </div>
+        <div className='inspectorUnit'>
+          <Text className='iu-first'>Tempo</Text>
+          <InputNumber 
+            className='inspectorElement'
+            style={{ width: 80 }}
+            min={10}
+            max={180}
+            step={10}
+            defaultValue={tempo ?? 120}
+            onChange={e => onTempoChange(e)}
+            />
+        </div>
+        <div className='inspectorUnit'>
+          <Text className='iu-first'>Takte / Zeile</Text>
+          <InputNumber
+            className='inspectorElement' 
+            style={{ width: 80 }}
+            min={2} 
+            max={10} 
+            defaultValue={measuresPerLine}
+            onChange={e => onNumberOfMaesuresChange(e)}
+            />
+        </div>
       </div>
-      <div className='inspectorUnit'>
-        <Text className='iu-first'>Modell auswählen</Text>
-        <Select
-          className='inspectorElement'
-          style={{ width: 180 }}
-          defaultValue="cadence"
-          onChange={e => setSelectedModel(e)}
-          options={getOptionsForModelSelect()}
-          />
-      </div>
-      <div className='inspectorUnit'>
-        <Text className='iu-first'>Transponieren</Text>
-        <Select
-          className='inspectorElement'
-          style={{ width: 120 }}
-          defaultValue={transposeValue}
-          disabled={!isTransposible}
-          onChange={e => onTransposeValueChange(e)}
-          options={getOptionsForKeySelect()}
-          />
-      </div>
-      <div className='inspectorUnit'>
-        <Text className='iu-first'>Taktart</Text>
-        <Select
-          className='inspectorElement'
-          style={{ width: 80 }}
-          defaultValue={measure ?? 'C|'}
-          onChange={e => onMeasureChange(e)}
-          options={getOptionsForMeasureSelect()}
-          />
-      </div>
-      <div className='inspectorUnit'>
-        <Text className='iu-first'>Tempo</Text>
-        <InputNumber 
-          className='inspectorElement'
-          style={{ width: 80 }}
-          min={10}
-          max={180}
-          step={10}
-          defaultValue={tempo ?? 120}
-          onChange={e => onTempoChange(e)}
-          />
-      </div>
-      <div className='inspectorUnit'>
-        <Text className='iu-first'>Takte / Zeile</Text>
-        <InputNumber
-          className='inspectorElement' 
-          style={{ width: 80 }}
-          min={2} 
-          max={10} 
-          defaultValue={measuresPerLine}
-          onChange={e => onNumberOfMaesuresChange(e)}
-          />
-      </div>
-      <div className='iu-checkBoxContainer'>
+      <div style={{ display: 'flex', 
+        flexDirection: 'row', 
+        alignItems: 'end', 
+        flexWrap: 'wrap',
+        marginTop: '30px' }}
+        >
+        <div className='iu-CheckBoxHorzontaLabel'>
+          <Text strong style={{ display: 'block' }}>{t('displayLayout')}</Text>
+        </div>
         <div className='iu-CheckBoxHorzontaLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={stretchLastLine} onChange={e => onStretchLastLineChange(e)} /> 
           <Text style={{ display: 'block' }}>{t('stretchLastLine')}</Text>
@@ -173,8 +180,8 @@ function Inspector({ content, updateContent }) {
         <div className='iu-CheckBoxHorzontaLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={showDescription} onChange={e => onShowDescriptionChange(e)} />
           <Text style={{ display: 'block' }}>{t('showDescription')}</Text>
-        </div>
-      </div>       
+        </div>   
+      </div>
     </div>
   )
 }

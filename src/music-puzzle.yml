@@ -81,8 +81,8 @@ musikisum/educandu-plugin-music-puzzle:
     en: Description
     de: Beschreibung
   defaultDescriptionCadence:
-    en: Hi guy!
-    de: Dies ist eine Default-Beschreibung der Kadenz aus kontrapunktischer Sicht.
+    en: TODO
+    de: "Die Kadenz als Satzmodell ist eine Schlusswendung aus drei Stimmen: 1. Der Tenorklausel, 2. der Sopranklausel und 3. der Bassklausel. Je nachdem, ob die Tenorklausel in der Finalis oder in der Oberterz zur Finalis endet, ist die Schlusswendung vollkommen oder unvollkommen. Wird die Bassklausel nicht in die Finalis, sondern in die Unterterz zur Finalis geführt, entsteht eine Form des ›Fuggir la Cadenza‹, die als Trugschluss bezeichent wird. Liegt die Tenorklausel im Bass, erklingt in der Dreistimmigkeit ein Quartsextklang, der früher gemieden worden ist und der deshalb heute als Satzfehler gilt." 
   lowerFiveModulation:
     en: Lower Quint Modulation
     de: Unterquintmodulation

@@ -2,7 +2,7 @@ musikisum/educandu-plugin-music-puzzle:
   name:
     en: Voice-Models
     de: Satzmodelle
-  key: 
+  modelKey: 
     en: Key (Begin)
     de: Tonart (Beginn)
   ve:

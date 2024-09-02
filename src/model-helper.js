@@ -80,7 +80,7 @@ const add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
   const modVoice = abcVoices[index];
   const [firstElem, ...rest] = modVoice.split('|');
   let octaveModifications; let firstSign; let secondSign; let tone;
-  if (specialIssues.indexOf(keyObject.key) < 0) {
+  if (specialIssues.indexOf(keyObject.modelKey) < 0) {
     firstSign = '';
     secondSign = '';
     tone = firstElem.trim().charAt(0);

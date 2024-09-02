@@ -82,7 +82,7 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
                 <Select 
                   style={{ minWidth: '100px' }}
                   defaultValue={modelTemplate.modelKey} 
-                  options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(key => ({ value: key, label: t(key) }))}
+                  options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(modelKey => ({ value: modelKey, label: t(modelKey) }))}
                   onChange={e => changeModelTemplateKey(e, index)}
                   />
                 <ModelProperties index={index} modelTemplates={modelTemplates} cloneDeep={cloneDeep} updateContent={updateContent} />

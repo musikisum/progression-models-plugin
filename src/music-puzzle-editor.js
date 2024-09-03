@@ -1,4 +1,4 @@
-import { Form } from 'antd';
+import { Divider, Form } from 'antd';
 import React, { useId, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Inspector from './components/inspector.js';
@@ -78,6 +78,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
           <Inspector content={content} updateContent={updateContent} />
         </Form.Item>
         <Form.Item
+          style={{ marginTop: '45px', paddingTop: '30px', borderTop: '1px #bfbfbf solid' }}
           label={<Info tooltip={t('common:widthInfo')}>{t('common:width')}</Info>}
           {...FORM_ITEM_LAYOUT}
           >

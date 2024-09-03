@@ -37,9 +37,13 @@ class MusicPuzzleInfo {
       transposeValue: 0,
       tempo: 120,
       measure: 'C|',
-      stretchLastLine: false,
       measuresPerLine: 6,
+      stretchLastLine: false,
       showDescription: false,
+      hideUpperSystem: false,
+      hideLowerSystem: false,
+      showExample: false,
+      emptyNoteSystems: false,
       modelTemplates: []
     };
   }
@@ -54,8 +58,11 @@ class MusicPuzzleInfo {
       stretchLastLine: joi.boolean(),
       measuresPerLine: joi.number().min(2).max(10).required(),
       showDescription: joi.boolean(),
+      hideUpperSystem: joi.boolean(),
+      hideLowerSystem: joi.boolean(),
+      showExample: joi.boolean(),
+      emptyNoteSystems: joi.boolean(),
       modelTemplates: joi.array().required()
-
     });
 
     joi.attempt(content, schema, { abortEarly: false, convert: false, noDefaults: true });

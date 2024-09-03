@@ -311,6 +311,22 @@
     "displayLayout": {
       "en": "Display settings:",
       "de": "Anzeige-Einstellungen:"
+    },
+    "hideUpperSystem": {
+      "en": "Mute upper voices",
+      "de": "Oberstimmen muten"
+    },
+    "hideLowerSystem": {
+      "en": "Mute Bass",
+      "de": "Bass muten"
+    },
+    "showExample": {
+      "en": "Replaye (example)",
+      "de": "Ersetzen (Beispiel)"
+    },
+    "emptyNoteSystems": {
+      "en": "Empty Systems",
+      "de": "Leere Systeme"
     }
   }
 }

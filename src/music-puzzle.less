@@ -96,6 +96,15 @@
     padding-top: 8px;
   }
 
+  .inspectorItemContainer {
+    display: flex; 
+    flex-direction: row; 
+    align-items: end; 
+    flex-wrap: wrap;
+  }
+  .inspectorItemContainer > div {
+    padding-top: 30px;
+  }
   .inspectorElement {
     margin-right: @edu-content-padding;
   }
@@ -104,7 +113,6 @@
     margin-right: @edu-content-padding;
   }
   .inspectorUnit {
-    margin-top: @edu-content-padding;
     display: flex;
     flex-direction: column; 
     align-items: left;  
@@ -115,8 +123,12 @@
     padding-left: 2px;
     min-height: 30px;
   }
-  .iu-CheckBoxHorzontaLabel {
+  .ui-checkBoxHorizontalLabel {
     display: flex;
+    margin-right: 15px;
+  }
+  .ui-displayLabel {
+    width: 180px;
     margin-right: 15px;
   }
   .svg-color svg {

@@ -10,8 +10,21 @@ function Inspector({ content, updateContent }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const { Text } = Typography;
-
-  const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine, isTransposible, transposeValue, showDescription } = content;
+  console.log(content);
+  const { 
+    modelTemplates, 
+    measuresPerLine, 
+    measure, 
+    tempo, 
+    stretchLastLine, 
+    isTransposible, 
+    transposeValue, 
+    showDescription, 
+    hideUpperSystem,
+    hideLowerSystem,
+    showExample,
+    emptyNoteSystems
+  } = content;
   const [selectedModel, setSelectedModel] = useState('cadence');
 
   const handleAddModelButtonClick = () => {
@@ -20,8 +33,8 @@ function Inspector({ content, updateContent }) {
     }
     const modelTemplate = cloneDeep(ModelTemplates.getModelTemplate(selectedModel));
     modelTemplate.key = uniqueId.create();
-    modelTemplates.push(modelTemplate)
-    updateContent({ modelTemplates: modelTemplates });
+    modelTemplates.push(modelTemplate);
+    updateContent({ modelTemplates });
   };
 
   const onTransposeValueChange = value => {
@@ -46,6 +59,27 @@ function Inspector({ content, updateContent }) {
 
   const onShowDescriptionChange = event => {
     updateContent({ showDescription: event.target.checked });
+  };
+
+  const onHideSystem = (event, direction) => {
+    switch (direction) {
+      case 'UPPER':
+        updateContent({ hideUpperSystem: event.target.checked });
+        break;
+      case 'LOWER':
+        updateContent({ hideLowerSystem: event.target.checked });
+        break;
+      default:
+        break;
+    }
+  };
+
+  const onShowExampleChange = event => {
+    updateContent({ showExample: event.target.checked });
+  };
+
+  const onEmptyNoteSystemsChange = event => {
+    updateContent({ emptyNoteSystems: event.target.checked });
   };
 
   const getOptionsForModelSelect = () => {
@@ -92,11 +126,7 @@ function Inspector({ content, updateContent }) {
   
   return (
     <div>
-      <div style={{ display: 'flex', 
-        flexDirection: 'row', 
-        alignItems: 'end', 
-        flexWrap: 'wrap' }}
-        >
+      <div className='inspectorItemContainer'>
         <div className='inspectorUnit'>
           <span className='iu-first'>&nbsp;</span>
           <Button 
@@ -164,26 +194,37 @@ function Inspector({ content, updateContent }) {
             />
         </div>
       </div>
-      <div style={{ display: 'flex', 
-        flexDirection: 'row', 
-        alignItems: 'end', 
-        flexWrap: 'wrap',
-        marginTop: '30px' }}
-        >
-        <div className='iu-CheckBoxHorzontaLabel'>
+      <div className='inspectorItemContainer'>
+        <div className='ui-displayLabel'>
           <Text strong style={{ display: 'block' }}>{t('displayLayout')}</Text>
         </div>
-        <div className='iu-CheckBoxHorzontaLabel'>
+        <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={stretchLastLine} onChange={e => onStretchLastLineChange(e)} /> 
           <Text style={{ display: 'block' }}>{t('stretchLastLine')}</Text>
         </div>
-        <div className='iu-CheckBoxHorzontaLabel'>
+        <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={showDescription} onChange={e => onShowDescriptionChange(e)} />
           <Text style={{ display: 'block' }}>{t('showDescription')}</Text>
         </div>   
+        <div className='ui-checkBoxHorizontalLabel'>
+          <Checkbox style={{ minWidth: '20px' }} checked={hideUpperSystem} onChange={e => onHideSystem(e, 'UPPER')} />
+          <Text style={{ display: 'block' }}>{t('hideUpperSystem')}</Text>
+        </div>   
+        <div className='ui-checkBoxHorizontalLabel'>
+          <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
+          <Text style={{ display: 'block' }}>{t('hideLowerSystem')}</Text>
+        </div>   
+        <div className='ui-checkBoxHorizontalLabel'>
+          <Checkbox style={{ minWidth: '20px' }} checked={showExample} onChange={e => onShowExampleChange(e)} />
+          <Text style={{ display: 'block' }}>{t('showExample')}</Text>
+        </div>   
+        <div className='ui-checkBoxHorizontalLabel'>
+          <Checkbox style={{ minWidth: '20px' }} checked={emptyNoteSystems} onChange={e => onEmptyNoteSystemsChange(e)} />
+          <Text style={{ display: 'block' }}>{t('emptyNoteSystems')}</Text>
+        </div>   
       </div>
     </div>
-  )
+  );
 }
 
 export default Inspector;

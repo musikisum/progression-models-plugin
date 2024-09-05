@@ -1,4 +1,5 @@
 import Cadence from './models/model-cadence.js';
+import Lamento from './models/model-lamento.js';
 import Fauxbourdon from './models/model-fauxbourdon-down.js';
 import InitialCadence from  './models/model-initial-cadence.js'
 import CircleOfFifths from './models/model-circle-of-fifths.js'; 
@@ -12,6 +13,7 @@ import ParallelismusDiminished from './models/model-parallelismus-diminished.js'
 
 const models = {
   cadence: Cadence,
+  lamento: Lamento,
   fauxbourdon: Fauxbourdon,
   initialCadence: InitialCadence,
   circleOfFifths: CircleOfFifths,

@@ -98,7 +98,6 @@ function _AdjustOptions(options) {
       }      
       break;
   }
-  return options;
 }
 
 const someKeys = ['Dm', 'Gm', 'Cm', 'Fm', 'Bm', 'F#m', 'C#m', 'Eb', 'Ab', 'A', 'E'];
@@ -113,7 +112,8 @@ const modifyLastChordSectionEndings = (keyObject, modelKey) => {
 };
 
 const getVoices = parallelismusDownOptions => {
-  const options = _AdjustOptions(parallelismusDownOptions || getOptions());
+  const options = parallelismusDownOptions ?? getOptions();
+  _AdjustOptions(options);
   const keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.modelKey) : _getKeyObjectShort(options.modelKey);
   if (someKeys.indexOf(options.modelKey) >= 0) {
     modifyLastChordSectionEndings(keyObject, options.modelKey);

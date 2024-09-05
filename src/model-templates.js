@@ -5,6 +5,7 @@ const getAvailableModels = [
   'circleOfFifths',
   'circleOfFifthsLinear',
   'fauxbourdon',
+  'lamento',
   'fiveSixConsecutive',
   'parallelismusDown',
   'parallelismusUp',
@@ -84,6 +85,22 @@ const templates = {
       numberOfSections: [3, 3, false],
       syncopation: [false, false],
       chromaticBass: [false, false]
+    }
+  },
+  lamento: {
+    key: '',
+    name: 'lamento',
+    modelKey: 'C',
+    transposeValues: [1, 0, -1],
+    voiceArrangement: [1, 2, 3],
+    radioValue: 0,
+    customDescription: '',
+    showDescription: false,
+    addProps: {
+      syncopation: [false, false],
+      chromatic3: [false, false],
+      italianSixth: [false, false],
+      chromatic2: [false, false]
     }
   },
   fiveSixConsecutive: {

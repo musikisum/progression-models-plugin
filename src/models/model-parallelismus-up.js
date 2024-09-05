@@ -104,7 +104,6 @@ function _AdjustOptions(options) {
       }      
       break;
   }
-  return options;
 }
 
 const modifyLastChordSectionEndings = (options, keyObject, key) => {
@@ -123,7 +122,8 @@ const modifyLastChordSectionEndings = (options, keyObject, key) => {
 };
 
 const getVoices = parallelismusUpOptions => {
-  const options = _AdjustOptions(parallelismusUpOptions || getOptions());
+  const options = parallelismusUpOptions ?? getOptions();
+  _AdjustOptions(options);
   const withSyncopations = options.addProps['syncopation'][0];
   const keyObject = withSyncopations ? _getKeyObject(options.modelKey) : _getKeyObjectShort(options.modelKey);
   

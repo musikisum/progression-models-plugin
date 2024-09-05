@@ -50,6 +50,18 @@ musikisum/educandu-plugin-music-puzzle:
   chromaticBass:
     en: chromatic
     de: chromatisch
+  lamento:
+    en: lament
+    de: Lamentobass
+  chromatic2:
+    en: Option
+    de: Alternative
+  chromatic3:
+    en: chrom. Bass
+    de: chrom. Bass
+  italianSixth:
+    en: ital. Sixth
+    de: mit Ü6
   isFinal:
     en: Ending
     de: Schluss

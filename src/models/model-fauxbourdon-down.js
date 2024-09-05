@@ -124,7 +124,6 @@ function _AdjustOptions(options) {
       }      
       break;
   }
-  return options;
 }
 
 function _AdjustLamento(options) {
@@ -134,7 +133,8 @@ function _AdjustLamento(options) {
 }
 
 const getVoices = fauxbourdonOptions => {
-  const options = _AdjustOptions(fauxbourdonOptions || getOptions());
+  const options = fauxbourdonOptions ?? getOptions();
+  _AdjustOptions(options);
   let keyObject;
   if (options.addProps['chromaticBass'][0]) {
     keyObject = _getKeyObjectLamento(options.modelKey);

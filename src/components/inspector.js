@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
@@ -10,7 +10,6 @@ function Inspector({ content, updateContent }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const { Text } = Typography;
-  console.log(content);
   const { 
     modelTemplates, 
     measuresPerLine, 

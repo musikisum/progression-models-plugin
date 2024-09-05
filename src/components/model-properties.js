@@ -10,13 +10,11 @@ function ModelProperties({ index, modelTemplates, cloneDeep, updateContent }) {
   const addProps = modelTemplate.addProps;
 
   const onChange = (e, propIndex) => {
-    const newModelTemplates = cloneDeep(modelTemplates);
-    const modelTemplateToUpdate = newModelTemplates[index];
-    const keys = Object.keys(modelTemplateToUpdate.addProps);
+    const modelTemplate = modelTemplates[index];
+    const keys = Object.keys(modelTemplate.addProps);
     const value = typeof e === 'number' ? e : e.target.checked;
-    modelTemplateToUpdate.addProps[keys[propIndex]][0] = value;
-    newModelTemplates[index] = modelTemplateToUpdate;
-    updateContent({ modelTemplates: newModelTemplates });
+    modelTemplate.addProps[keys[propIndex]][0] = value;
+    updateContent({ modelTemplates: modelTemplates });
   };
 
   function getCheck(key, value, propIndex) {

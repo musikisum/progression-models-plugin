@@ -95,14 +95,10 @@ function _AdjustOptions(options) {
         options.voices = [[5, 5, 4, 4], [9, 8, 8, 7], [7, 6, 6, 5]];
         options.measure = [' | ', ' ', ' | ', ' '];
         options.voicesLength = 4;
-        options.addProps['chromaticBass'] = [false, true];
-        options.addProps['numberOfSections'][2] = true;
       } else { // without syncopations
         options.voices = [[5, 4], [9, 8], [7, 6]];
         options.measure = [' | ', ' '];
         options.voicesLength = 2;
-        options.addProps['chromaticBass'] = [false, true];
-        options.addProps['numberOfSections'][2] = false;
       }
       break;
     case 2:
@@ -110,14 +106,10 @@ function _AdjustOptions(options) {
         options.voices = [[5, 5, 4, 4, 3, 3, 2, 2], [9, 8, 8, 7, 7, 6, 6, 5], [7, 6, 6, 5, 5, 4, 4, 3]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
         options.voicesLength = 8;
-        options.addProps['chromaticBass'][1] = false;
-        options.addProps['numberOfSections'][2] = true;
       } else { // without syncopations
         options.voices = [[5, 4, 3, 2], [9, 8, 7, 6], [7, 6, 5, 4]]; 
         options.measure = [' | ', ' ', ' | ', ' '];
         options.voicesLength = 4;
-        options.addProps['chromaticBass'][1] = true;
-        options.addProps['numberOfSections'][2] = false;
       }      
       break;
     default:
@@ -125,14 +117,10 @@ function _AdjustOptions(options) {
         options.voices = [[5, 5, 4, 4, 3, 3, 2, 2, 1, 1], [9, 8, 8, 7, 7, 6, 6, 5, 5, 4], [7, 6, 6, 5, 5, 4, 4, 3, 3, 2]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
         options.voicesLength = 10;
-        options.addProps['chromaticBass'][1] = false;
-        options.addProps['numberOfSections'][2] = true;
       } else { // without syncopations
         options.voices = [[5, 4, 3, 2, 1, 0], [9, 8, 7, 6, 5, 4], [7, 6, 5, 4, 3, 2]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' '];
         options.voicesLength = 6;
-        options.addProps['chromaticBass'][1] = true;
-        options.addProps['numberOfSections'][2] = false;
       }      
       break;
   }
@@ -144,6 +132,7 @@ function _AdjustLamento(options) {
   options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
   options.voicesLength = 8;
   options.addProps['numberOfSections'][2] = true;
+  options.addProps['syncopation'][2] = true;
 }
 
 const getVoices = fauxbourdonOptions => {
@@ -154,7 +143,8 @@ const getVoices = fauxbourdonOptions => {
     _AdjustLamento(options);
   } else {
     keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.modelKey) : _getKeyObjectShort(options.modelKey);
-    options.addProps['chromaticBass'][0] = false;
+    // options.addProps['chromaticBass'][0] = false;
+    // options.addProps['chromaticBass'][2] = true;
   }
 
 

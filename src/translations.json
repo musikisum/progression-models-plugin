@@ -30,7 +30,7 @@
     },
     "dragAndDrop": {
       "en": "drag & drop",
-      "de": "Ziehen & Ablegen"
+      "de": "Drag & Drop"
     },
     "ms": {
       "en": "middle voice",
@@ -57,8 +57,8 @@
       "de": "Quintfallsequenz"
     },
     "bassReverse": {
-      "en": "Bass ↓ ↑",
-      "de": "Bass ↓ ↑"
+      "en": "Bass 5↓ 4↑",
+      "de": "Bass 5↓ 4↑"
     },
     "fauxbourdon": {
       "en": "Fauxbourdon (7-6)",

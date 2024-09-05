@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import AbcSnippet from '../abc-snippet.js';
 import VoiceSwitch from './voice-switch.js';
 import { useTranslation } from 'react-i18next';
+import ModelProvider from '../model-provider.js';
 import ModelProperties from './model-properties.js';
 import ModelDescription from './model-description.js';
 import ModelComposition from '../model-composition.js';
-import ModelProvider from '../model-provider.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
-import { Button, Select, Radio, Space, Row, Col, Typography, Checkbox } from 'antd';
+import { Button, Select, Radio, Space, Row, Col, Typography, Switch } from 'antd';
 
 const { Paragraph, Text } = Typography;
 
@@ -44,7 +43,8 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
   };
 
   const onShowDescriptionChange = e => {
-    modelTemplates[index].showDescription = e.target.checked;
+    console.log(e);
+    modelTemplates[index].showDescription = e;
     updateContent({ modelTemplates: modelTemplates });
   };  
 
@@ -74,7 +74,7 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
           <Row gutter={32} type='flex' justify='space-arround'>
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
-                <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('key')}</Text>
+                <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('modelKey')}</Text>
                 <Select 
                   style={{ minWidth: '100px' }}
                   defaultValue={modelTemplate.modelKey} 
@@ -82,14 +82,14 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
                   onChange={e => changeModelTemplateKey(e, index)}
                   />
                 <ModelProperties index={index} modelTemplates={modelTemplates} cloneDeep={cloneDeep} updateContent={updateContent} />
-                <Checkbox 
-                  style={{ marginTop: '9px'}}                  
-                  className='addPropItem'           
-                  checked={modelTemplate.showDescription} 
-                  onChange={e => onShowDescriptionChange(e, index)}
-                  >
-                  {t('showDescription')}
-                </Checkbox>
+                <div style={{ display: 'flex', marginTop: '15px', gap: '6px' }}>
+                  <Switch 
+                    size="small" 
+                    checked={modelTemplate.showDescription}
+                    onChange={onShowDescriptionChange}
+                    />
+                    <div style={{marginTop: '-4px'}}>{t('showDescription')}</div>             
+                </div>
               </div>
             </Col>
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>

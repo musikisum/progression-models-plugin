@@ -67,10 +67,7 @@ export default function MusicPuzzleDisplay({ content }) {
             defaultActiveKey="panel"
             >
             <Markdown renderAnchors className='u-horizontally-centered u-width-100'>
-              { descriptionParts.reduce((akku, description) => {
-                akku = `${akku}\n\n---\n\n${description}`;
-                return akku;
-              }, '')}
+              {descriptionParts.reduce((akku, description) => !akku ? description : `${akku}\n\n---\n\n${description}`, '')}
             </Markdown>
           </Collapse>
           : null}

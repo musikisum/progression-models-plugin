@@ -48,8 +48,8 @@ musikisum/educandu-plugin-music-puzzle:
     en: Fauxbourdon (7-6)
     de: Fauxbourdon (7-6)
   chromaticBass:
-    en: Lamento Bass
-    de: Lamentobass
+    en: chromatic
+    de: chromatisch
   isFinal:
     en: Ending
     de: Schluss

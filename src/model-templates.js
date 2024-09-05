@@ -51,8 +51,8 @@ const templates = {
     customDescription: '',
     showDescription: false,
     addProps: {
-      partLengthValues: [4, 4],
-      partToBeginValues: [1, 4],
+      partLengthValues: [4, 4, false],
+      partToBeginValues: [1, 4, false],
       bassReverse: [false, false]
     }
   },
@@ -66,8 +66,8 @@ const templates = {
     customDescription: '',
     showDescription: false,
     addProps: {
-      partLengthValues: [4, 4],
-      partToBeginValues: [1, 4],
+      partLengthValues: [4, 4, false],
+      partToBeginValues: [1, 4, false],
       lastBassNoteUp: [false, false]
     }
   },
@@ -81,7 +81,7 @@ const templates = {
     customDescription: '',
     showDescription: false,
     addProps: {
-      numberOfSections: [3, 3],
+      numberOfSections: [3, 3, false],
       syncopation: [false, false],
       chromaticBass: [false, false]
     }
@@ -96,8 +96,8 @@ const templates = {
     customDescription: '',
     showDescription: false,
     addProps: {
-      partLengthValues: [6, 6],
-      partToBeginValues: [1, 6],
+      partLengthValues: [6, 6, false],
+      partToBeginValues: [1, 6, false],
       diatonic: [false, false]
     }
   },
@@ -139,7 +139,7 @@ const templates = {
     customDescription: '',
     showDescription: false,
     addProps: {
-      numberOfSections: [3, 3]
+      numberOfSections: [3, 3, false]
     }
   },
   parallelismusDown: {
@@ -152,7 +152,7 @@ const templates = {
     customDescription: '',
     showDescription: false,
     addProps: {
-      numberOfSections: [3, 3],
+      numberOfSections: [3, 3, false],
       syncopation: [false, false]
     }
   },
@@ -166,7 +166,7 @@ const templates = {
     customDescription: '',
     showDescription: false,
     addProps: {
-      numberOfSections: [3, 3],
+      numberOfSections: [3, 3, false],
       chromatic: [false, false],
       syncopation: [false, false]
     }

@@ -131,20 +131,20 @@ function _AdjustLamento(options) {
   options.voices = [[5, 5, 4, 4, 3, 3, 2, 1], [9, 8, 8, 7, 7, 6, 7, 6], [7, 6, 6, 5, 5, 4, 3, 4]];
   options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
   options.voicesLength = 8;
-  options.addProps['numberOfSections'][2] = true;
-  options.addProps['syncopation'][2] = true;
 }
 
 const getVoices = fauxbourdonOptions => {
   const options = _AdjustOptions(fauxbourdonOptions || getOptions());
   let keyObject;
-  if (options.addProps['chromaticBass'][0] === true && options.addProps['chromaticBass'][1] === false) {
+  if (options.addProps['chromaticBass'][0]) {
     keyObject = _getKeyObjectLamento(options.modelKey);
     _AdjustLamento(options);
+    options.addProps['numberOfSections'][2] = true;
+    options.addProps['syncopation'][1] = true;
   } else {
     keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.modelKey) : _getKeyObjectShort(options.modelKey);
-    // options.addProps['chromaticBass'][0] = false;
-    // options.addProps['chromaticBass'][2] = true;
+    options.addProps['numberOfSections'][2] = false;
+    options.addProps['syncopation'][1] = false;
   }
 
 

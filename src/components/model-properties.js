@@ -40,10 +40,10 @@ function ModelProperties({ index, modelTemplates, cloneDeep, updateContent }) {
         <InputNumber
           className='modelPropItem' 
           style={{ minWidth: '100px' }}
-          min={1} 
+          min={1}
           max={value[1]} 
           defaultValue={value[0]}
-          disabled={value?.[2] ?? false} 
+          disabled={value[2]} 
           onChange={e => onChange(e, propIndex)}
           />        
       </div>

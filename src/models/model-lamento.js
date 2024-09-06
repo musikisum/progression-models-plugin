@@ -80,15 +80,8 @@ function _adjustAccidantals(options, keyObject, keyObjectOrig) {
   // set italian sixth accidental
   if(options.voicesLength === 4) {
     keyObject.accidentals[0][2] = (keyObject.modelKey.includes('m') && options.addProps['italianSixth'][0]) ? 1 : 0;
-    options.addProps['chromatic3'][1] = true;
-    options.addProps['chromatic2'][1] = true;
-    options.addProps['italianSixth'][1] = true;
-    options.addProps['chromatic2'][0] = false;
   } else {
-    keyObject.accidentals[0][4] = (options.addProps['chromatic3'][0] && options.addProps['italianSixth'][0]) ? 1 : 0;
-    options.addProps['chromatic3'][1] = false;
-    options.addProps['chromatic2'][1] = false;
-    options.addProps['italianSixth'][1] = false;
+    keyObject.accidentals[0][4] = ((options.addProps['chromatic3'][0] || keyObject.modelKey.includes('m')) && options.addProps['italianSixth'][0]) ? 1 : 0;
   }
   // set the accidental for a chromatic bass line
   if(options.addProps['chromatic3'][0]) {
@@ -181,6 +174,24 @@ function _adjustAccidantals(options, keyObject, keyObjectOrig) {
   }  
 }
 
+function _setValuesForCheckboxes(isMinor, syncopationProp, chromBassProp, italianProp, variantProp) {
+  // set active state
+  chromBassProp[1] = !syncopationProp[0];
+  italianProp[1] = !isMinor;
+  if(chromBassProp[0]) {
+    italianProp[1] = false;
+  }
+  variantProp[1] = !chromBassProp[0];
+  // set value dependencies
+  if(!syncopationProp[0]) {
+    chromBassProp[0] = false;
+    variantProp[0] = false;
+    if (!isMinor) {
+      italianProp[0] = false;
+    }
+  }  
+}
+
 const getVoices = lamentoOptions => {
   const options = lamentoOptions ?? getOptions();
   _adjustOptions(options);
@@ -189,6 +200,13 @@ const getVoices = lamentoOptions => {
   if (options.voicesLength === 4 && !options.addProps['chromatic3']) {
     options.addProps['italianSixth'][1] = !keyObject.modelKey.includes('m');
   }
+  _setValuesForCheckboxes(
+    options.modelKey.includes('m'), 
+    options.addProps['syncopation'], 
+    options.addProps['chromatic3'], 
+    options.addProps['italianSixth'], 
+    options.addProps['chromatic2']
+  );
   _adjustAccidantals(options, keyObject, keyObjectOrig);
 
   return ModelHelper.getVoices(

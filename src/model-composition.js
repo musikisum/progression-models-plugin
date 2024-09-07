@@ -41,8 +41,49 @@ const splitAtVerticalBarIndex = (voice, barIndex) => {
   return `${chunks.join(' |\n')  } |`;
 }
 
+const createEmpyLines = (voices, hideUpperSystem, hideLowerSystem, emptyNoteSystems) => {
+  const result = voices[2].split(/[| ]+/).filter(entry => entry !== '');    
+  const newV1Arr = [];
+  const newV2Arr = [];
+  const newV3Arr = [];
+  for (let index = 0; index < result.length; index += 1) {
+    if (index % 2 === 0) {
+      if (hideUpperSystem || emptyNoteSystems) {
+        newV1Arr.push('x');
+        newV1Arr.push(' | ');
+        newV2Arr.push('x');
+        newV2Arr.push(' | ');        
+      }
+      if (hideLowerSystem) {
+        newV3Arr.push('x');
+        newV3Arr.push(' | '); 
+      }
+    } else {
+      if (hideUpperSystem || emptyNoteSystems) {
+        newV1Arr.push('x');
+        newV1Arr.push(' ');
+        newV2Arr.push('x');
+        newV2Arr.push(' ');        
+      }
+      if (hideLowerSystem) {
+        newV3Arr.push('x');
+        newV3Arr.push(' ');
+      }
+    }   
+  }
+  if (hideUpperSystem || emptyNoteSystems) {
+    voices[0] = newV1Arr.join();    
+    voices[1] = newV2Arr.join();
+  }
+  if (hideLowerSystem || emptyNoteSystems) {
+    voices[2] = newV2Arr.join();    
+  }
+  return voices;
+}
+
 // creates an array with playable abc.js strings from arrays with model voices 
 const getComposition = (modelKey, measure, tempo, modelVoices, barsPerLine, stretchLastLine) => {
+  createEmpyLines(modelVoices[0], true, true);
   const unsplittetVoices = modelVoices[0].map((_, index) => 
     modelVoices.reduce((combiVoice, modelVoice) => {
       return combiVoice + modelVoice[index];

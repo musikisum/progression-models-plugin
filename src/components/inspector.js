@@ -204,23 +204,23 @@ function Inspector({ content, updateContent }) {
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={showDescription} onChange={e => onShowDescriptionChange(e)} />
           <Text style={{ display: 'block' }}>{t('showDescription')}</Text>
-        </div>   
+        </div>
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={hideUpperSystem} onChange={e => onHideSystem(e, 'UPPER')} />
           <Text style={{ display: 'block' }}>{t('hideUpperSystem')}</Text>
-        </div>   
+        </div>
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
           <Text style={{ display: 'block' }}>{t('hideLowerSystem')}</Text>
-        </div>   
-        <div className='ui-checkBoxHorizontalLabel'>
-          <Checkbox style={{ minWidth: '20px' }} checked={showExample} onChange={e => onShowExampleChange(e)} />
-          <Text style={{ display: 'block' }}>{t('showExample')}</Text>
-        </div>   
+        </div>
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={emptyNoteSystems} onChange={e => onEmptyNoteSystemsChange(e)} />
           <Text style={{ display: 'block' }}>{t('emptyNoteSystems')}</Text>
-        </div>   
+        </div>
+        <div className='ui-checkBoxHorizontalLabel'>
+          <Checkbox style={{ minWidth: '20px' }} checked={showExample} onChange={e => onShowExampleChange(e)} />
+          <Text style={{ display: 'block' }}>{t('showExample')}</Text>
+        </div>        
       </div>
     </div>
   );

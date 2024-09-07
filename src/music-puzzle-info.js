@@ -42,8 +42,8 @@ class MusicPuzzleInfo {
       showDescription: false,
       hideUpperSystem: false,
       hideLowerSystem: false,
-      showExample: false,
       emptyNoteSystems: false,
+      showExample: false,
       modelTemplates: []
     };
   }

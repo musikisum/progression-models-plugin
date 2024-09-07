@@ -219,20 +219,19 @@ const getVoices = lamentoOptions => {
   );
 };
 
-const getStaff = () => {
-  return ['x | x x | x x | x x | x', 'x | x x | x x | x x | x', 'x | x x | x x | x x | x'];
-};
+const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
+  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+}
 
 const getExample = () => {
   return ['f- | f e2 d- | -d c d3/2', 'z | B2 A2 | G2 F z/', 'A,/D,/ | G,/F,/G,/C,/ F,/E,/F,/B,,/ | E,/F,//G,// A,/A,,/ D,/E,/,F,/]'];
 };
 
-const Fauxbourdon = {
+const Lamento = {
   getDefaultOptions: getOptions,
   getVoices,
   getModelKeys,
-  getEmptyStaff: getStaff,
-  getMusicExample: getExample
+  getMutedVoices: (voices, hideUpperSystem, hideLowerSystem) => _adjustMutetVoices(voices, hideUpperSystem, hideLowerSystem)
 };
 
-export default Fauxbourdon;
+export default Lamento;

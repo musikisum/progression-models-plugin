@@ -42,7 +42,6 @@ class MusicPuzzleInfo {
       showDescription: false,
       hideUpperSystem: false,
       hideLowerSystem: false,
-      emptyNoteSystems: false,
       showExample: false,
       modelTemplates: []
     };
@@ -61,7 +60,6 @@ class MusicPuzzleInfo {
       hideUpperSystem: joi.boolean(),
       hideLowerSystem: joi.boolean(),
       showExample: joi.boolean(),
-      emptyNoteSystems: joi.boolean(),
       modelTemplates: joi.array().required()
     });
 

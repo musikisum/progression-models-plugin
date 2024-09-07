@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Checkbox, InputNumber } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-function ModelProperties({ index, modelTemplates, cloneDeep, updateContent }) {
+function ModelProperties({ index, modelTemplates, updateContent }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const modelTemplate = modelTemplates[index];
@@ -69,14 +69,12 @@ function ModelProperties({ index, modelTemplates, cloneDeep, updateContent }) {
 ModelProperties.propTypes = {
   index: PropTypes.number,
   modelTemplates: PropTypes.array,
-  cloneDeep: PropTypes.func,
   updateContent: PropTypes.func
 };
 
 ModelProperties.defaultProps = {
   index: null,
   modelTemplates: [],
-  cloneDeep: null,
   updateContent: null
 };
 

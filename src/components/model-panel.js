@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { Button, Collapse, Tooltip } from 'antd';
 import ModelRenderFactory from './model-render-factory.js';
-import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import DeleteIcon from '@educandu/educandu/components/icons/general/delete-icon.js';
 import MoveUpIcon from '@educandu/educandu/components/icons/general/move-up-icon.js';
 import MoveDownIcon from '@educandu/educandu/components/icons/general/move-down-icon.js';
@@ -22,12 +21,18 @@ function ModelPanel({
   onMoveDown,
   onDelete,
   onExtraActionButtonClick,
-  modelTemplates,
-  modelTemplate,
+  content,
   updateContent
 }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { 
+    modelTemplates, 
+    hideUpperSystem, 
+    hideLowerSystem, 
+    showExample 
+  } = content;
+  const modelTemplate = modelTemplates[index];
   const header = t(modelTemplate.name);
 
   const handleActionButtonWrapperClick = (event, actionButton) => {
@@ -115,9 +120,8 @@ function ModelPanel({
         <div className="ItemPanel-contentWrapper">
           <ModelRenderFactory 
             index={index} 
-            modelTemplates={modelTemplates} 
-            modelTemplate={modelTemplate} 
-            updateContent={updateContent} 
+            content={content}
+            updateContent={updateContent}
             />
         </div>
       </Collapse.Panel>
@@ -144,9 +148,7 @@ ModelPanel.propTypes = {
   onExtraActionButtonClick: PropTypes.func,
   onMoveDown: PropTypes.func,
   onMoveUp: PropTypes.func,
-  modelTemplates: PropTypes.array,
-  modelTemplate: PropTypes.object,
-  updateContent: PropTypes.func
+  content: PropTypes.object
 };
 
 ModelPanel.defaultProps = {
@@ -162,9 +164,7 @@ ModelPanel.defaultProps = {
   onExtraActionButtonClick: () => {},
   onMoveDown: null,
   onMoveUp: null,
-  modelTemplates: [],
-  updateContent: null,
-  modelTemplate: { name: null }
+  content: null
 };
 
 export default ModelPanel;

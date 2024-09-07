@@ -90,20 +90,15 @@ const getVoices = lowerFifthModulationOptions => {
   );
 };
 
-const getStaff = () => {
-  return ['x | x x | x x | x x | x]', 'x | x x | x x | x x | x]', 'x | x x | x x | x x | x]'];
-};
-
-const getExample = () => {
-  return ['', '', '']; 
-};
+const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
+  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+}
 
 const LowerFiveModulation = {
   getDefaultOptions: getOptions,
   getVoices,
   getModelKeys,
-  getEmptyStaff: getStaff,
-  getMusicExample: getExample
+  getMutedVoices: (voices, hideUpperSystem, hideLowerSystem) => _adjustMutetVoices(voices, hideUpperSystem, hideLowerSystem)
 };
   
 export default LowerFiveModulation;

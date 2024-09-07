@@ -58,15 +58,15 @@ const getVoices = modelOptions => {
   );
 };
 
-const getStaff = () => {
-  return ['x | x x | x x | x x | x x | x x | x ]', 'x | x x | x x | x x | x x | x x | x ]', 'x | x x | x x | x x | x x | x x | x ]'];
-};
+const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
+  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+}
 
 const FiveSixConsecutive = {
   getDefaultOptions: getOptions,
   getVoices,
   getModelKeys,
-  getEmptyStaff: getStaff
+  getMutedVoices: (voices, hideUpperSystem, hideLowerSystem) => _adjustMutetVoices(voices, hideUpperSystem, hideLowerSystem)
 };
 
 export default FiveSixConsecutive;

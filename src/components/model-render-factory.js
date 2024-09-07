@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AbcSnippet from '../abc-snippet.js';
 import VoiceSwitch from './voice-switch.js';
+import ModelHelper from '../model-helper.js';
 import { useTranslation } from 'react-i18next';
 import ModelProvider from '../model-provider.js';
 import ModelProperties from './model-properties.js';
@@ -13,8 +14,18 @@ import { Button, Select, Radio, Space, Row, Col, Typography, Switch } from 'antd
 
 const { Paragraph, Text } = Typography;
 
-export default function ModelRenderFactory({ index, modelTemplates, modelTemplate, updateContent }) {
-
+export default function ModelRenderFactory({ 
+  index, 
+  content, 
+  updateContent 
+}) {
+  const {
+    modelTemplates,
+    hideUpperSystem, 
+    hideLowerSystem, 
+    showExample
+  } = content;
+  const modelTemplate = modelTemplates[index];
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
 
   const changeModelTemplateKey = e => {
@@ -46,13 +57,18 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
     console.log(e);
     modelTemplates[index].showDescription = e;
     updateContent({ modelTemplates: modelTemplates });
-  };  
+  };
 
-  const abc = ModelComposition.abcOutput('C', 'C|', 120, [
-    ModelProvider
-      .getModel(modelTemplate.name)
-      .getVoices(modelTemplate)
-  ]);
+  const getPlayableAbcVoices = () => {
+    const voiceModel = ModelProvider.getModel(modelTemplate.name);
+    let modelVoices;
+    if (!hideUpperSystem && !hideLowerSystem) {
+      modelVoices = voiceModel.getVoices(modelTemplate);
+    } else {
+      modelVoices = voiceModel.getMutedVoices(voiceModel.getVoices(modelTemplate), hideUpperSystem, hideLowerSystem);
+    }
+    return ModelComposition.abcOutput('C', 'C|', 120, [modelVoices]);
+  }
 
   return (
     <div>
@@ -61,13 +77,13 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
           <div>
             <Paragraph 
               className='svg-color' 
-              copyable={{ text: abc,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}
+              copyable={{ text: getPlayableAbcVoices(),  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}
               >
               {t('abcCopy')}
             </Paragraph>
           </div>
           <div>
-            <AbcSnippet playableABC={abc} />
+            <AbcSnippet playableABC={getPlayableAbcVoices()} />
           </div>
         </div>
         <div className="left">
@@ -125,14 +141,12 @@ export default function ModelRenderFactory({ index, modelTemplates, modelTemplat
 
 ModelRenderFactory.propTypes = {
   index: PropTypes.number,
-  modelTemplates: PropTypes.array,
-  modelTemplate: PropTypes.object,
+  content: PropTypes.object,
   updateContent: PropTypes.func
 };
 
 ModelRenderFactory.defaultProps = {
   index: 0,
-  modelTemplates: [],
+  content: null,
   updateContent: null,
-  modelTemplate: { name: null }
 };

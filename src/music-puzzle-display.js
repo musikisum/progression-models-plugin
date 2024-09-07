@@ -1,11 +1,11 @@
 import { Typography } from 'antd';
 import AbcSnippet from './abc-snippet.js';
+import ModelHelper from './model-helper.js';
 import { useTranslation } from 'react-i18next';
 import ModelProvider from './model-provider.js';
 import Transposer from './components/transposer.js';
 import React, { useEffect, useState } from 'react';
 import ModelComposition from './model-composition.js';
-import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import Markdown from '@educandu/educandu/components/markdown.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
 import Collapse, { COLLAPSIBLE_COLOR } from '@educandu/educandu/components/collapsible.js';
@@ -16,7 +16,19 @@ export default function MusicPuzzleDisplay({ content }) {
   const { Paragraph, Text } = Typography;
   const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`;
 
-  const { modelTemplates, measuresPerLine, measure, tempo, stretchLastLine, isTransposible, transposeValue, showDescription } = content;
+  const { 
+    modelTemplates, 
+    measuresPerLine, 
+    measure, 
+    tempo, 
+    stretchLastLine, 
+    isTransposible, 
+    transposeValue, 
+    showDescription,
+    hideUpperSystem, 
+    hideLowerSystem, 
+    showExample
+  } = content;
  
   const [abcResult, setAbcResult] = useState(''); 
   const [descriptionParts, setDescriptionParts] = useState([]);
@@ -27,8 +39,14 @@ export default function MusicPuzzleDisplay({ content }) {
       const descriptions = [];
       for (let index = 0; index < modelTemplates.length; index++) {
         const modelTemplate = modelTemplates[index];
-        const model = ModelProvider.getModel(modelTemplate.name);
-        voices.push(model.getVoices(modelTemplate));
+        const voiceModel = ModelProvider.getModel(modelTemplate.name);
+        let modelVoices;
+        if (!hideUpperSystem && !hideLowerSystem) {
+          modelVoices = voiceModel.getVoices(modelTemplate);
+        } else {
+          modelVoices = voiceModel.getMutedVoices(voiceModel.getVoices(modelTemplate), hideUpperSystem, hideLowerSystem);
+        }
+        voices.push(modelVoices);
         const text = modelTemplate.customDescription === ''
           ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)
           : modelTemplate.customDescription; 

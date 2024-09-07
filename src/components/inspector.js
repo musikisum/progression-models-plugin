@@ -22,7 +22,6 @@ function Inspector({ content, updateContent }) {
     hideUpperSystem,
     hideLowerSystem,
     showExample,
-    emptyNoteSystems
   } = content;
   const [selectedModel, setSelectedModel] = useState('cadence');
 
@@ -75,10 +74,6 @@ function Inspector({ content, updateContent }) {
 
   const onShowExampleChange = event => {
     updateContent({ showExample: event.target.checked });
-  };
-
-  const onEmptyNoteSystemsChange = event => {
-    updateContent({ emptyNoteSystems: event.target.checked });
   };
 
   const getOptionsForModelSelect = () => {
@@ -212,10 +207,6 @@ function Inspector({ content, updateContent }) {
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
           <Text style={{ display: 'block' }}>{t('hideLowerSystem')}</Text>
-        </div>
-        <div className='ui-checkBoxHorizontalLabel'>
-          <Checkbox style={{ minWidth: '20px' }} checked={emptyNoteSystems} onChange={e => onEmptyNoteSystemsChange(e)} />
-          <Text style={{ display: 'block' }}>{t('emptyNoteSystems')}</Text>
         </div>
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={showExample} onChange={e => onShowExampleChange(e)} />

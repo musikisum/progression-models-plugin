@@ -58,9 +58,8 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
         onMoveUp={handleMoveModelUp}
         onMoveDown={handleMoveModelDown}
         onDelete={handleDeleteModel}
-        modelTemplates={modelTemplates}
-        modelTemplate={modelTemplate}
-        updateContent={updateContent}  
+        content={content}
+        updateContent={updateContent}
         />)
   }));
 

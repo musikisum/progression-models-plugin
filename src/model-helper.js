@@ -1,7 +1,7 @@
 import ModelProvider from './model-provider.js';
 
 // Provide the abc.js tone names for c1 to b2.
-const diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
+const _diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
 
 // Replace a number for octave transposition up or down in a abc.js sign.  
 const transposeOctave = (number, tone) => {
@@ -39,7 +39,7 @@ const validateValue = index => {
       diatonicIndex -= 7;
     } while (diatonicIndex <= 13);
   }
-  const result = `${diatonicScale[diatonicIndex]}${value}`;
+  const result = `${_diatonicScale[diatonicIndex]}${value}`;
   return result;
 };
 
@@ -74,7 +74,7 @@ const updateTransposeValues = (voiceArr, modelName) => {
 };
 
 // Hack to change the beginning of the upper five modulation to a 5-6 consecutive.
-const add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
+const _add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
   const specialIssues = ['C#m', 'F#m', 'Eb', 'Ab'];
   const index = voiceArr.indexOf(voiceIndex);
   const modVoice = abcVoices[index];
@@ -91,7 +91,7 @@ const add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
     tone = firstElem.trim().charAt(1);
     octaveModifications = firstElem.trim().slice(2);
   }
-  const nextTone = diatonicScale[diatonicScale.indexOf(tone) + 1];
+  const nextTone = _diatonicScale[_diatonicScale.indexOf(tone) + 1];
   const newFirstElem = `${firstSign}${nextTone}${octaveModifications}/ ${secondSign}${tone}${octaveModifications}/ | ${rest.join('|')}`;
   abcVoices[index] = newFirstElem;
 };
@@ -113,7 +113,7 @@ const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, m
   }
 
   // Begin of the upper five modulation with 6-5 motion
-  begin65 && add56Consecutive(2, voiceArr, abcVoices, keyObject);
+  begin65 && _add56Consecutive(2, voiceArr, abcVoices, keyObject);
   if (prinner) {
     abcVoices = abcVoices.reduce((akku, elem, index) => {
       const str = elem.split(' ');
@@ -132,7 +132,7 @@ const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, m
 };
 
 // Create an array to terminate start sections of a voice model
-const getBeginAtHelperArr = voiceLength => {
+const _getBeginAtHelperArr = voiceLength => {
   const helpArr = [];
   helpArr.push(0);
   for (let index = 0; index < voiceLength; index += 1) {
@@ -161,20 +161,45 @@ const getVoicesWithLengthModifications = (transposeValues, voiceArr, voices, key
   }
 
   // implement partlength & partToBegin
-  const abcVoices = ['', '', ''];
-  const helpArr = getBeginAtHelperArr(voicesLength);
+  const abcVoices = [];
+  const helpArr = _getBeginAtHelperArr(voicesLength);
   const x = helpArr[addProps['partToBeginValues'][0]];
   const y = addProps['partLengthValues'][0] * 2;
   if((voicesLength - x) >= y) {
-    abcVoices[0] = aVoice.slice(x, x + y);
-    abcVoices[1] = bVoice.slice(x, x + y);
-    abcVoices[2] = cVoice.slice(x, x + y);
+    abcVoices[0] = aVoice.slice(x, x + y).join();
+    abcVoices[1] = bVoice.slice(x, x + y).join();
+    abcVoices[2] = cVoice.slice(x, x + y).join();
   } else {
-    abcVoices[0] = aVoice.slice(x);
-    abcVoices[1] = bVoice.slice(x);
-    abcVoices[2] = cVoice.slice(x);
+    abcVoices[0] = aVoice.slice(x).join();
+    abcVoices[1] = bVoice.slice(x).join();
+    abcVoices[2] = cVoice.slice(x).join();
   }
   return abcVoices;
+};
+
+const convertToEmptyLines = (voices, hideUpperSystem, hideLowerSystem) => {
+  const result = voices[2].split(/[| ]+/).filter(entry => entry !== '');
+  const newV1Arr = [], newV2Arr = [], newV3Arr = [];
+  
+  result.forEach((_, index) => {
+    const isEven = index % 2 === 0;
+    const separator = isEven ? ' | ' : ' ';    
+    if (hideUpperSystem) {
+      newV1Arr.push('x', separator);
+      newV2Arr.push('x', separator);
+    }    
+    if (hideLowerSystem) {
+      newV3Arr.push('x', separator);
+    }
+  });  
+  if (hideUpperSystem) {
+    voices[0] = newV1Arr.join('');
+    voices[1] = newV2Arr.join('');
+  }  
+  if (hideLowerSystem) {
+    voices[2] = newV3Arr.join('');
+  }  
+  return voices;
 };
  
 const ModelHelper = {
@@ -183,7 +208,8 @@ const ModelHelper = {
   getSign,
   updateTransposeValues,
   getVoices,
-  getVoicesWithLengthModifications
+  getVoicesWithLengthModifications,
+  convertToEmptyLines
 };
 
 export default ModelHelper;

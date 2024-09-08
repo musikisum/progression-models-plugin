@@ -61,12 +61,12 @@ export default function ModelRenderFactory({
   };
 
   const getPlayableAbcVoices = () => {
-    const voiceModel = ModelProvider.getModel(modelTemplate.name);
-    let modelVoices;
     if(showExample) {
       const example = ModelExampleProvider.getModelExample(modelTemplate.name);
       return ModelComposition.abcOutput(example.modelKey, example.measure, example.tempo, [example.voices]);
     }
+    const voiceModel = ModelProvider.getModel(modelTemplate.name);    
+    let modelVoices;
     if (!hideUpperSystem && !hideLowerSystem) {
       modelVoices = voiceModel.getVoices(modelTemplate);
     } else {
@@ -91,7 +91,7 @@ export default function ModelRenderFactory({
             <AbcSnippet playableABC={getPlayableAbcVoices()} />
           </div>
         </div>
-        <div className="left">
+        {!showExample && <div className="left">
           <Row gutter={32} type='flex' justify='space-arround'>
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
@@ -137,7 +137,7 @@ export default function ModelRenderFactory({
               </div>
             </Col> 
           </Row>
-        </div>   
+        </div>}   
       </div>
       <ModelDescription modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
     </div>

@@ -26,12 +26,7 @@ function ModelPanel({
 }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
-  const { 
-    modelTemplates, 
-    hideUpperSystem, 
-    hideLowerSystem, 
-    showExample 
-  } = content;
+  const { modelTemplates } = content;
   const modelTemplate = modelTemplates[index];
   const header = t(modelTemplate.name);
 

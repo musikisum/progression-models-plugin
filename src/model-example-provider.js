@@ -2,6 +2,7 @@ const initialCadenceExample = {
   modelKey: 'C',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',
@@ -12,6 +13,7 @@ const cadenceExample = {
   modelKey: 'C',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',
@@ -22,6 +24,7 @@ const lamentoExample = {
   modelKey: 'Am',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',
@@ -32,6 +35,7 @@ const fauxbourdonExample = {
   modelKey: 'C',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',
@@ -42,6 +46,7 @@ const circleOfFifthsExample = {
   modelKey: 'C',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',
@@ -52,6 +57,7 @@ const circleOfFifthsLinearExample = {
   modelKey: 'Dm',
   measure: 'C',
   tempo: 80,
+  description: 'Dieses Beispiel entstammt der Fuge aus der Toccata und Fuge BWV 913, T. 64–66 (mit Auftakt) von Johann Sebastian Bach.',
   voices: [
  'g- | g f2 e- | e d2 c- | c _B |',
  '=B | A2 G2 | F2 E2 | D- D/4F/4E/4D/4',
@@ -62,6 +68,7 @@ const parallelismusUpExample = {
   modelKey: 'C',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',
@@ -72,6 +79,7 @@ const parallelismusDownExample = {
   modelKey: 'C',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',
@@ -82,6 +90,7 @@ const fiveSixConsecutiveExample = {
   modelKey: 'C',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',
@@ -92,6 +101,7 @@ const upperFiveModulationExample = {
   modelKey: 'C',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',
@@ -102,6 +112,7 @@ const lowerFiveModulationExample = {
   modelKey: 'C',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',
@@ -112,6 +123,7 @@ const parallelismusDiminishedExample = {
   modelKey: 'C',
   measure: 'C',
   tempo: 80,
+  description: '',
   voices: [
  '',
  '',

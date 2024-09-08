@@ -4,6 +4,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
+import ModelExampleProvider from '../model-example-provider.js';
 import { Button, Select, InputNumber, Checkbox, Typography } from 'antd';
 
 function Inspector({ content, updateContent }) {
@@ -11,17 +12,17 @@ function Inspector({ content, updateContent }) {
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const { Text } = Typography;
   const { 
-    modelTemplates, 
-    measuresPerLine, 
-    measure, 
-    tempo, 
-    stretchLastLine, 
     isTransposible, 
-    transposeValue, 
+    transposeValue,
+    tempo, 
+    measure,
+    measuresPerLine, 
+    stretchLastLine, 
     showDescription, 
     hideUpperSystem,
     hideLowerSystem,
     showExample,
+    modelTemplates 
   } = content;
   const [selectedModel, setSelectedModel] = useState('cadence');
 

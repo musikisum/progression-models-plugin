@@ -65,7 +65,7 @@ const CircleOfFifthsLinear = {
   getDefaultOptions: getOptions,
   getVoices,
   getModelKeys,
-  getMutedVoices: (voices, hideUpperSystem, hideLowerSystem) => _adjustMutetVoices(voices, hideUpperSystem, hideLowerSystem)
+  getMutedVoices: (voices, hideUpperSystem, hideLowerSystem) => _adjustMutetVoices(voices, hideUpperSystem, hideLowerSystem),
 };
 
 export default CircleOfFifthsLinear;

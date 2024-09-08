@@ -1,4 +1,4 @@
-import { Divider, Form } from 'antd';
+import { Form } from 'antd';
 import React, { useId, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Inspector from './components/inspector.js';
@@ -17,7 +17,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   const { modelTemplates, width } = content;
   const droppableIdRef = useRef(useId());
 
-  const updateContent = newContentValues => {
+  const updateContent = (newContentValues) => {
     onContentChanged({ ...content, ...newContentValues });
   };
 

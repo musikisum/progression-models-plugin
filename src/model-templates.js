@@ -25,6 +25,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {}
   },
   cadence: {
@@ -36,6 +37,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: { 
       isBegin: [false, false],
       isFinal: [false, false],
@@ -51,6 +53,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {
       partLengthValues: [4, 4, false],
       partToBeginValues: [1, 4, false],
@@ -66,6 +69,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {
       partLengthValues: [4, 4, false],
       partToBeginValues: [1, 4, false],
@@ -81,6 +85,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {
       numberOfSections: [3, 3, false],
       syncopation: [false, false],
@@ -96,6 +101,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {
       syncopation: [false, false],
       chromatic3: [false, false],
@@ -112,6 +118,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {
       partLengthValues: [6, 6, false],
       partToBeginValues: [1, 6, false],
@@ -127,6 +134,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {
       changeMode: [false, false]
     }
@@ -140,6 +148,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {
       changeMode: [false, false],
       begin65: [false, false],
@@ -155,6 +164,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {
       numberOfSections: [3, 3, false]
     }
@@ -168,6 +178,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {
       numberOfSections: [3, 3, false],
       syncopation: [false, false]
@@ -182,6 +193,7 @@ const templates = {
     radioValue: 0,
     customDescription: '',
     showDescription: false,
+    showExample: false,
     addProps: {
       numberOfSections: [3, 3, false],
       chromatic: [false, false],

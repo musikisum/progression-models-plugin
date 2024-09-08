@@ -9,6 +9,7 @@ import ModelProperties from './model-properties.js';
 import ModelDescription from './model-description.js';
 import ModelComposition from '../model-composition.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
+import ModelExampleProvider from '../model-example-provider.js';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { Button, Select, Radio, Space, Row, Col, Typography, Switch } from 'antd';
 
@@ -62,6 +63,10 @@ export default function ModelRenderFactory({
   const getPlayableAbcVoices = () => {
     const voiceModel = ModelProvider.getModel(modelTemplate.name);
     let modelVoices;
+    if(showExample) {
+      const example = ModelExampleProvider.getModelExample(modelTemplate.name);
+      return ModelComposition.abcOutput(example.modelKey, example.measure, example.tempo, [example.voices]);
+    }
     if (!hideUpperSystem && !hideLowerSystem) {
       modelVoices = voiceModel.getVoices(modelTemplate);
     } else {

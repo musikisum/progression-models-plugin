@@ -1,6 +1,5 @@
 import { Typography } from 'antd';
 import AbcSnippet from './abc-snippet.js';
-import ModelHelper from './model-helper.js';
 import { useTranslation } from 'react-i18next';
 import ModelProvider from './model-provider.js';
 import Transposer from './components/transposer.js';
@@ -39,7 +38,6 @@ export default function MusicPuzzleDisplay({ content }) {
       const voices = [];
       const descriptions = [];
       let firstModelKey;
-      let example;
       for (let index = 0; index < modelTemplates.length; index++) {
         const modelTemplate = modelTemplates[index];
         if (index === 0) {
@@ -48,31 +46,19 @@ export default function MusicPuzzleDisplay({ content }) {
         const voiceModel = ModelProvider.getModel(modelTemplate.name);
         let modelVoices;
         if (hideUpperSystem || hideLowerSystem) {
-          modelVoices = voiceModel.getMutedVoices(voiceModel.getVoices(modelTemplate), hideUpperSystem, hideLowerSystem);          
-        } else if (showExample) {
-          example = ModelExampleProvider.getModelExample(modelTemplate.name);
-          console.log('example:', example, 'name', modelTemplate.name)
-          modelVoices = example.voices;
+          modelVoices = voiceModel.getMutedVoices(voiceModel.getVoices(modelTemplate), hideUpperSystem, hideLowerSystem);
         } else {
           modelVoices = voiceModel.getVoices(modelTemplate);
         }
         voices.push(modelVoices);
-        let text;
-        if(!showExample) {
-          text = modelTemplate.customDescription === ''
+        const text = modelTemplate.customDescription === ''
           ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)
           : modelTemplate.customDescription; 
-        } else {
-          text = example.description;
-        }
         descriptions.push(text);        
       }
-      let playableABC;
-      if (showExample) {
-        playableABC = ModelComposition.abcOutput(example.modelKey, example.measure, example.tempo, [example.voices], 6, false);     
-      } else {
-        playableABC = ModelComposition.abcOutput(firstModelKey, measure, tempo, voices, measuresPerLine, stretchLastLine);
-        playableABC = isTransposible ? Transposer.getTransposition(playableABC, transposeValue) : playableABC;
+      let playableABC = ModelComposition.abcOutput(firstModelKey, measure, tempo, voices, measuresPerLine, stretchLastLine);
+      if(isTransposible) {
+        playableABC = Transposer.getTransposition(playableABC, transposeValue);
       }
       setAbcResult(playableABC);
       setDescriptionParts(descriptions);

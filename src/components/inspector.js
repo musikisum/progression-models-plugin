@@ -4,8 +4,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
-import ModelExampleProvider from '../model-example-provider.js';
 import { Button, Select, InputNumber, Checkbox, Typography } from 'antd';
+import ModelExample from './modelExample.js';
 
 function Inspector({ content, updateContent }) {
 
@@ -121,6 +121,7 @@ function Inspector({ content, updateContent }) {
   
   return (
     <div>
+      {showExample && <ModelExample name={selectedModel} />}
       <div className='inspectorItemContainer'>
         <div className='inspectorUnit'>
           <span className='iu-first'>&nbsp;</span>

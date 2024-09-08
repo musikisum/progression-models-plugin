@@ -43,7 +43,7 @@ class MusicPuzzleInfo {
       hideUpperSystem: false,
       hideLowerSystem: false,
       showExample: false,
-      exampleKey: '',
+      exampleKey: 'C',
       modelTemplates: []
     };
   }

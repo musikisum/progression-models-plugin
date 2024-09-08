@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AbcSnippet from '../abc-snippet.js';
 import VoiceSwitch from './voice-switch.js';
-import ModelHelper from '../model-helper.js';
 import { useTranslation } from 'react-i18next';
 import ModelProvider from '../model-provider.js';
 import ModelProperties from './model-properties.js';
 import ModelDescription from './model-description.js';
 import ModelComposition from '../model-composition.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
-import ModelExampleProvider from '../model-example-provider.js';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { Button, Select, Radio, Space, Row, Col, Typography, Switch } from 'antd';
 
@@ -24,7 +22,6 @@ export default function ModelRenderFactory({
     modelTemplates,
     hideUpperSystem, 
     hideLowerSystem, 
-    showExample
   } = content;
   const modelTemplate = modelTemplates[index];
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
@@ -55,16 +52,11 @@ export default function ModelRenderFactory({
   };
 
   const onShowDescriptionChange = e => {
-    console.log(e);
     modelTemplates[index].showDescription = e;
     updateContent({ modelTemplates: modelTemplates });
   };
 
   const getPlayableAbcVoices = () => {
-    if(showExample) {
-      const example = ModelExampleProvider.getModelExample(modelTemplate.name);
-      return ModelComposition.abcOutput(example.modelKey, example.measure, example.tempo, [example.voices]);
-    }
     const voiceModel = ModelProvider.getModel(modelTemplate.name);    
     let modelVoices;
     if (!hideUpperSystem && !hideLowerSystem) {
@@ -91,7 +83,7 @@ export default function ModelRenderFactory({
             <AbcSnippet playableABC={getPlayableAbcVoices()} />
           </div>
         </div>
-        {!showExample && <div className="left">
+        <div className="left">
           <Row gutter={32} type='flex' justify='space-arround'>
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
@@ -137,7 +129,7 @@ export default function ModelRenderFactory({
               </div>
             </Col> 
           </Row>
-        </div>}   
+        </div>   
       </div>
       <ModelDescription modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
     </div>

@@ -78,10 +78,29 @@ function _adjustOptions(options) {
 
 function _adjustAccidantals(options, keyObject, keyObjectOrig) {
   // set italian sixth accidental
-  if(options.voicesLength === 4) {
-    keyObject.accidentals[0][2] = (keyObject.modelKey.includes('m') && options.addProps['italianSixth'][0]) ? 1 : 0;
-  } else {
-    keyObject.accidentals[0][4] = ((options.addProps['chromatic3'][0] || keyObject.modelKey.includes('m')) && options.addProps['italianSixth'][0]) ? 1 : 0;
+  if(options.voicesLength === 4 && keyObject.modelKey.includes('m') && options.addProps['italianSixth'][0]) {
+    switch (keyObject.accidentals[0][2]) {
+      case 0:
+        keyObject.accidentals[0][2] = 1;
+        break; 
+      case -1:
+        keyObject.accidentals[0][2] = 0;
+        break;    
+      default:
+        break;
+    }
+  }
+  if (options.voicesLength === 6 && ((options.addProps['chromatic3'][0] || keyObject.modelKey.includes('m')) && options.addProps['italianSixth'][0])) {
+    switch (keyObject.accidentals[0][4]) {
+      case 0:
+         keyObject.accidentals[0][4] = 1;
+        break; 
+      case -1:
+        keyObject.accidentals[0][4] = '=';
+        break;    
+      default:
+        break;
+    }  
   }
   // set the accidental for a chromatic bass line
   if(options.addProps['chromatic3'][0]) {
@@ -131,10 +150,10 @@ function _adjustAccidantals(options, keyObject, keyObjectOrig) {
   if(options.addProps['chromatic2'][0]) {
     switch(keyObject.modelKey) {
       case 'C':
+      case 'F':
         keyObject.accidentals[1] = [0, 1, '=', 1, '=', 0];
         break;
       case 'G':
-      case 'F':
         keyObject.accidentals[1] = [0, 1, '=', 1, '=', 1];
         break;
       case 'D':

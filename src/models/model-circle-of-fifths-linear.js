@@ -31,7 +31,7 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  const modelTemplate = ModelTemplates.getModelTemplate('CircleOfFifthsLinear');
+  const modelTemplate = ModelTemplates.getModelTemplate('circleOfFifthsLinear');
   if(change) {
     modelTemplate.modelKey = change;
   }

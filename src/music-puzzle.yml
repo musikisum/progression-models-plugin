@@ -252,8 +252,21 @@ musikisum/educandu-plugin-music-puzzle:
     en: Mute Bass
     de: Bass muten
   showExample:
-    en: Replaye (example)
-    de: Ersetzen (Beispiel)
-
-
+    en: Example
+    de: Beispiel
+  exampleTooltip:
+    en: 'Shows an Example for the Model:'
+    de: 'Zeigt ein Beispiel an für das Satzmodel:'
+  stretchLastLineTooltip:
+    en: Stretch the last line of a abc-notation to the entire width in view mode
+    de: Die letzte Notenlinie füllt im Ansichtsmodus die ganze Anzeigebreite aus
+  showDescriptionTooltip:
+    en: Show a model description in view mode
+    de: Beschreibung im Ansichtsmodus anzeigen
+  hideUpperSystemTooltip:
+    en: hide upper voices in view mode
+    de: Oberes Notensystem im Ansichtsmodus ausblenden
+  hideLowerSystemTooltip:
+    en: hide lower voices in view mode
+    de: Unteres Notensystem im Ansichtsmodus ausblenden
     

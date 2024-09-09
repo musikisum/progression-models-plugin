@@ -4,7 +4,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
-import { Button, Select, InputNumber, Checkbox, Typography } from 'antd';
+import { Button, Select, InputNumber, Checkbox, Typography, Tooltip } from 'antd';
 import ModelExample from './modelExample.js';
 
 function Inspector({ content, updateContent }) {
@@ -24,6 +24,7 @@ function Inspector({ content, updateContent }) {
     showExample,
     modelTemplates 
   } = content;
+
   const [selectedModel, setSelectedModel] = useState('cadence');
 
   const handleAddModelButtonClick = () => {
@@ -74,7 +75,7 @@ function Inspector({ content, updateContent }) {
   };
 
   const onShowExampleChange = event => {
-    updateContent({ showExample: event.target.checked });
+    updateContent({ showExample: event.target.checked ? selectedModel : '' });
   };
 
   const getOptionsForModelSelect = () => {
@@ -117,6 +118,23 @@ function Inspector({ content, updateContent }) {
       return akku;
     }, []);
     return options;
+  };
+
+  const showTooltipText = checkboxFor => {
+    switch (checkboxFor) {
+      case 'stretchLastLine':
+        return `${t('stretchLastLineTooltip')}`;
+      case 'showDescription':
+        return `${t('showDescriptionTooltip')}`;
+      case 'hideUpperSystem':
+        return `${t('hideUpperSystemTooltip')}`;
+      case 'hideLowerSystem':
+        return `${t('hideLowerSystemTooltip')}`;
+      case 'showExample':
+        return `${t('exampleTooltip')} ${t(selectedModel)}.`;
+      default:
+        return '';
+    }    
   };
   
   return (
@@ -196,23 +214,23 @@ function Inspector({ content, updateContent }) {
         </div>
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={stretchLastLine} onChange={e => onStretchLastLineChange(e)} /> 
-          <Text style={{ display: 'block' }}>{t('stretchLastLine')}</Text>
+          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('stretchLastLine')}><span>{`${t('stretchLastLine')}`}</span></Tooltip></Text>
         </div>
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={showDescription} onChange={e => onShowDescriptionChange(e)} />
-          <Text style={{ display: 'block' }}>{t('showDescription')}</Text>
+          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('showDescription')}><span>{`${t('showDescription')}`}</span></Tooltip></Text>
         </div>
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={hideUpperSystem} onChange={e => onHideSystem(e, 'UPPER')} />
-          <Text style={{ display: 'block' }}>{t('hideUpperSystem')}</Text>
+          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideUpperSystem')}><span>{`${t('hideUpperSystem')}`}</span></Tooltip></Text>
         </div>
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
-          <Text style={{ display: 'block' }}>{t('hideLowerSystem')}</Text>
+          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip></Text>
         </div>
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={showExample} onChange={e => onShowExampleChange(e)} />
-          <Text style={{ display: 'block' }}>{t('showExample')}</Text>
+          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('showExample')}><span>{`${t('showExample')}`}</span></Tooltip></Text>
         </div>        
       </div>
     </div>

@@ -83,9 +83,9 @@ export default function MusicPuzzleDisplay({ content }) {
         <div className='vSpacer' />
         { descriptionParts.length !== 0 && showDescription
           ? <Collapse 
-            collapsible="icon" 
-            title={t('descriptionTitle')} 
-            defaultActiveKey="panel"
+              collapsible="icon" 
+              title={t('descriptionTitle')} 
+              defaultActiveKey="panel"
             >
             <Markdown renderAnchors className='u-horizontally-centered u-width-100'>
               {descriptionParts.reduce((akku, description) => !akku ? description : `${akku}\n\n---\n\n${description}`, '')}

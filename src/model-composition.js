@@ -10,13 +10,13 @@ const getGefaultLength = measure => {
     default:
       return '1/2';
   }
-}
+};
 
 function removeEverySecondPipe(voice) {
   return voice.replace(/\|/g, 
     (match, offset, string) => { return (string.slice(0, offset).match(/\|/g) || []).length % 2 === 0 ? match : ''; }
   );
-}
+};
 
 // Provides meta informations for an abc.js header of a phrase model combination in a modelKey and a measure.
 const getMeta = (modelKey, measure, tempo, stretchLastLine) => {

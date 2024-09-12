@@ -42,8 +42,13 @@ class MusicPuzzleInfo {
       showDescription: false,
       hideUpperSystem: false,
       hideLowerSystem: false,
-      showExample: '',
-      exampleKey: 'C',
+      showExampleAndDescription: false,
+      example: {
+        name: '',
+        abc: '',
+        description: ''
+      },
+      selectedModel: 'cadence',
       modelTemplates: []
     };
   }
@@ -60,8 +65,13 @@ class MusicPuzzleInfo {
       showDescription: joi.boolean(),
       hideUpperSystem: joi.boolean(),
       hideLowerSystem: joi.boolean(),
-      showExample: joi.string().allow(null, ''),
-      exampleKey: joi.string(),
+      showExampleAndDescription: joi.boolean(),
+      example: joi.object({
+        name: joi.string().allow(null, ''),
+        abc: joi.string().allow(null, ''),
+        description: joi.string().allow(null, '')
+      }),
+      selectedModel: joi.string(),
       modelTemplates: joi.array().required()
     });
 

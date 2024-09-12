@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
@@ -21,11 +21,10 @@ function Inspector({ content, updateContent }) {
     showDescription, 
     hideUpperSystem,
     hideLowerSystem,
-    showExample,
-    modelTemplates 
+    showExampleAndDescription,
+    modelTemplates,
+    selectedModel
   } = content;
-
-  const [selectedModel, setSelectedModel] = useState('cadence');
 
   const handleAddModelButtonClick = () => {
     if(!selectedModel) {
@@ -36,6 +35,11 @@ function Inspector({ content, updateContent }) {
     modelTemplates.push(modelTemplate);
     updateContent({ modelTemplates });
   };
+
+  const onModelSelectionChange = model => {
+    const newExample = (content.example.name !== selectedModel || !!content.example.name) ? ModelTemplates.getModelTemplate(model).example : content.example;
+    updateContent({ selectedModel: model, example: newExample });
+  }
 
   const onTransposeValueChange = value => {
     updateContent({ transposeValue: value });
@@ -61,6 +65,10 @@ function Inspector({ content, updateContent }) {
     updateContent({ showDescription: event.target.checked });
   };
 
+  const onShowExampleAndDescriptionChange = event => {
+    updateContent({ showExampleAndDescription: event.target.checked });
+  };
+
   const onHideSystem = (event, direction) => {
     switch (direction) {
       case 'UPPER':
@@ -72,10 +80,6 @@ function Inspector({ content, updateContent }) {
       default:
         break;
     }
-  };
-
-  const onShowExampleChange = event => {
-    updateContent({ showExample: event.target.checked ? selectedModel : '' });
   };
 
   const getOptionsForModelSelect = () => {
@@ -139,7 +143,7 @@ function Inspector({ content, updateContent }) {
   
   return (
     <div>
-      {showExample && <ModelExample name={selectedModel} />}
+      {showExampleAndDescription && <ModelExample selectedModel={selectedModel} example={content.example} updateContent={updateContent} />}
       <div className='inspectorItemContainer'>
         <div className='inspectorUnit'>
           <span className='iu-first'>&nbsp;</span>
@@ -158,8 +162,8 @@ function Inspector({ content, updateContent }) {
           <Select
             className='inspectorElement'
             style={{ width: 180 }}
-            defaultValue="cadence"
-            onChange={e => setSelectedModel(e)}
+            defaultValue={selectedModel}
+            onChange={onModelSelectionChange}
             options={getOptionsForModelSelect()}
             />
         </div>
@@ -229,7 +233,7 @@ function Inspector({ content, updateContent }) {
           <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip></Text>
         </div>
         <div className='ui-checkBoxHorizontalLabel'>
-          <Checkbox style={{ minWidth: '20px' }} checked={showExample} onChange={e => onShowExampleChange(e)} />
+          <Checkbox style={{ minWidth: '20px' }} checked={showExampleAndDescription} onChange={e => onShowExampleAndDescriptionChange(e)} />
           <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('showExample')}><span>{`${t('showExample')}`}</span></Tooltip></Text>
         </div>        
       </div>

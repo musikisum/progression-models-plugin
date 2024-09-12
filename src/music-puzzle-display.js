@@ -1,11 +1,10 @@
 import { Typography } from 'antd';
-import AbcSnippet from './abc-snippet.js';
 import { useTranslation } from 'react-i18next';
 import ModelProvider from './model-provider.js';
 import Transposer from './components/transposer.js';
 import React, { useEffect, useState } from 'react';
+import AbcSnippet from './components/abc-snippet.js';
 import ModelComposition from './model-composition.js';
-import ModelExampleProvider from './model-example-provider.js';
 import Markdown from '@educandu/educandu/components/markdown.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
 import Collapse, { COLLAPSIBLE_COLOR } from '@educandu/educandu/components/collapsible.js';
@@ -26,11 +25,12 @@ export default function MusicPuzzleDisplay({ content }) {
     transposeValue, 
     showDescription,
     hideUpperSystem, 
-    hideLowerSystem, 
-    showExample
+    hideLowerSystem,
+    example,
+    showExampleAndDescription
   } = content;
  
-  const [abcResult, setAbcResult] = useState(''); 
+  const [abcResult, setAbcResult] = useState('');
   const [descriptionParts, setDescriptionParts] = useState([]);
 
   useEffect(() => {
@@ -70,6 +70,9 @@ export default function MusicPuzzleDisplay({ content }) {
       <div className={`u-horizontally-centered u-width-${content.width}`}>
         <div>
           { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
+        </div>
+        <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
+          { showExampleAndDescription && <AbcSnippet playableABC={example.abc} /> }
         </div>
         <div style={{ textAlign: 'center' }}>
           { (modelTemplates.length !== 0) 

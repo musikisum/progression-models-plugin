@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AbcSnippet from '../abc-snippet.js';
+import AbcSnippet from './abc-snippet.js';
 import VoiceSwitch from './voice-switch.js';
 import { useTranslation } from 'react-i18next';
 import ModelProvider from '../model-provider.js';
@@ -23,6 +23,7 @@ export default function ModelRenderFactory({
     hideUpperSystem, 
     hideLowerSystem, 
   } = content;
+  
   const modelTemplate = modelTemplates[index];
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
 

@@ -341,8 +341,8 @@
       "de": "Beispiel"
     },
     "exampleTooltip": {
-      "en": "Shows an Example for the Model:",
-      "de": "Zeigt ein Beispiel an für das Satzmodel:"
+      "en": "Provide an Example and Description for the selected Model:",
+      "de": "Gibt ein Beispiel und eine Beschreibung für die aktuelle Modellauswahl:"
     },
     "stretchLastLineTooltip": {
       "en": "Stretch the last line of a abc-notation to the entire width in view mode",

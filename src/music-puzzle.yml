@@ -261,8 +261,8 @@ musikisum/educandu-plugin-music-puzzle:
     en: Stretch the last line of a abc-notation to the entire width in view mode
     de: Die letzte Notenlinie füllt im Ansichtsmodus die ganze Anzeigebreite aus
   showDescriptionTooltip:
-    en: Show a model description in view mode
-    de: Beschreibung im Ansichtsmodus anzeigen
+    en: Show a description of a model or model combination in view mode
+    de: Die Beschreibung eines Modells oder einer Modellkombination im Ansichtsmodus anzeigen
   hideUpperSystemTooltip:
     en: hide upper voices in view mode
     de: Oberes Notensystem im Ansichtsmodus ausblenden

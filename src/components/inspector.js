@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
-import { Button, Select, InputNumber, Checkbox, Typography, Tooltip } from 'antd';
+import { Button, Select, InputNumber, Checkbox, Typography, Tooltip, Switch } from 'antd';
 import ModelExample from './modelExample.js';
 
 function Inspector({ content, updateContent }) {
@@ -66,7 +66,7 @@ function Inspector({ content, updateContent }) {
   };
 
   const onShowExampleAndDescriptionChange = event => {
-    updateContent({ showExampleAndDescription: event.target.checked });
+    updateContent({ showExampleAndDescription: event });
   };
 
   const onHideSystem = (event, direction) => {
@@ -232,10 +232,15 @@ function Inspector({ content, updateContent }) {
           <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
           <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip></Text>
         </div>
-        <div className='ui-checkBoxHorizontalLabel'>
-          <Checkbox style={{ minWidth: '20px' }} checked={showExampleAndDescription} onChange={e => onShowExampleAndDescriptionChange(e)} />
+        <div style={{ display: 'flex', marginTop: '15px', gap: '6px' }}>
+          <Switch 
+            style={{marginTop: '3px'}}
+            size="small" 
+            checked={showExampleAndDescription}
+            onChange={onShowExampleAndDescriptionChange}
+            />
           <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('showExample')}><span>{`${t('showExample')}`}</span></Tooltip></Text>
-        </div>        
+        </div>
       </div>
     </div>
   );

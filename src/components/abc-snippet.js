@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AbcPlayer from '@educandu/educandu/components/abc-player.js';
 import AbcNotation from '@educandu/educandu/components/abc-notation.js';
 
-const errorMessage = `X:1
+const musicErrorMessage = `X:1
 T: Sorry und Entschuldigung, ...
 %score [1 2 3 4 5]
 M: 3/2
@@ -28,13 +28,12 @@ w:Es ist nun nichts, nichts,`;
 function AbcSnippet({ playableABC }) {
   
   const [lastRenderResult, setLastRenderResult] = useState();
-  const abc = playableABC || errorMessage;
-  const isPlayable = abc === errorMessage || !!playableABC;
-  
+  const abc = playableABC || musicErrorMessage;
+  const isPlayable = lastRenderResult?.[0]?.lines.length !== 0;
 
   return (
     <div>
-      <AbcNotation abcCode={playableABC || errorMessage} onRender={setLastRenderResult} />
+      <AbcNotation abcCode={abc} onRender={setLastRenderResult} />
       { isPlayable && <AbcPlayer renderResult={lastRenderResult} /> }
     </div>
   );

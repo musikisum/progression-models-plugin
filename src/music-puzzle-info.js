@@ -33,7 +33,6 @@ class MusicPuzzleInfo {
   getDefaultContent() {   
     return  {
       width: 100,
-      isTransposible: true,
       transposeValue: 0,
       tempo: 120,
       measure: 'C|',
@@ -56,7 +55,6 @@ class MusicPuzzleInfo {
   validateContent(content) {
     const schema = joi.object({
       width: joi.number().min(0).max(100).required(),
-      isTransposible: joi.boolean(),
       transposeValue: joi.number().max(3).min(-3),
       tempo: joi.number().min(10).max(180).multiple(10).required(),
       measure: joi.string().required(),

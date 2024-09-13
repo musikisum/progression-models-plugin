@@ -87,14 +87,14 @@ const templates = {
 %%score [(1 2) 3]
 M:C
 Q:1/4=80
-L:1/4
+L:1/16
 K:Dm
 V:1
-g- | g f2 e- | e d2 c- | c _B |
+g4- | g4 f8 e4- | e4 d8 c4- | c4 _B4 |
 V:2
-=B | A2 G2 | F2 E2 | D- D/4F/4E/4D/4
+=B4 | A8 G8 | F8 E8 | D4- DFED
 V:3 bass
-E/4F/4G/4=B,/4 | ^C/4A,/4=B,/4C/4 D/4E/4F/4A,/4 _B,/4G,/4A,/4B,/4 =C/4D/4E/4G,/4 | A,/4F,/4G,/4A,/4 B,/4C/4D/4F,/4 G,/4E,/4F,/4G,/4 A,/4=B,/4C/4E,/4 | ^F,/4D,/4E,/4F,/4 G,`,
+EFG=B, | ^CA,=B,C DEFA, _B,G,A,B, =CDEG, | A,F,G,A, B,CDF, G,E,F,G, A,=B,CE, | ^F,D,E,F, G,`,
       description: 'Dieses Beispiel entstammt der Fuge aus der Toccata und Fuge BWV 913, T. 64–66 (mit Auftakt) von Johann Sebastian Bach.' 
     },
     addProps: {
@@ -213,7 +213,18 @@ E/4F/4G/4=B,/4 | ^C/4A,/4=B,/4C/4 D/4E/4F/4A,/4 _B,/4G,/4A,/4B,/4 =C/4D/4E/4G,/4
     showDescription: false,
     example: {
       name: 'parallelismusDiminished',
-      abc: ``,
+      abc: `X:1
+%%score [ 1 | 2 ]
+L:1/16
+M:C
+Q:100
+K:C
+V:1
+V:2 bass 
+V:1
+z Bea z Beg z cef z Gdf | z Gde z Gce z Acd z EBd | z EBc z EAc z FA_B z CGB | z CGA z CFA |
+V:2
+E,4 E4 A,4 B,4 | C4 E,4 ^F,4 ^G,4 | A,4 C,4 D,4 E,4 | F,4 E,4 |`,
       description: ''
     },
     addProps: {

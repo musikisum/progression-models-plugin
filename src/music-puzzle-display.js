@@ -21,7 +21,6 @@ export default function MusicPuzzleDisplay({ content }) {
     measure, 
     tempo, 
     stretchLastLine, 
-    isTransposible, 
     transposeValue, 
     showDescription,
     hideUpperSystem, 
@@ -37,12 +36,8 @@ export default function MusicPuzzleDisplay({ content }) {
     if(modelTemplates.length > 0) {
       const voices = [];
       const descriptions = [];
-      let firstModelKey;
-      for (let index = 0; index < modelTemplates.length; index++) {
+      for (let index = 0; index < modelTemplates.length; index += 1) {
         const modelTemplate = modelTemplates[index];
-        if (index === 0) {
-          firstModelKey = modelTemplate.modelKey;
-        }
         const voiceModel = ModelProvider.getModel(modelTemplate.name);
         let modelVoices;
         if (hideUpperSystem || hideLowerSystem) {
@@ -56,14 +51,14 @@ export default function MusicPuzzleDisplay({ content }) {
           : modelTemplate.customDescription; 
         descriptions.push(text);        
       }
-      let playableABC = ModelComposition.abcOutput(firstModelKey, measure, tempo, voices, measuresPerLine, stretchLastLine);
-      if(isTransposible) {
+      let playableABC = ModelComposition.abcOutput('C', measure, tempo, voices, measuresPerLine, stretchLastLine);
+      if(transposeValue !== 0) {
         playableABC = Transposer.getTransposition(playableABC, transposeValue);
       }
       setAbcResult(playableABC);
       setDescriptionParts(descriptions);
     }    
-  }, []);
+  }, [hideLowerSystem, hideUpperSystem, measure, measuresPerLine, modelTemplates, stretchLastLine, t, tempo, transposeValue]);
 
   return (
     <div className='EP_Educandu_Example_Display'>
@@ -72,11 +67,10 @@ export default function MusicPuzzleDisplay({ content }) {
           { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
         </div>
         <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
-          { showExampleAndDescription && <AbcSnippet playableABC={example.abc} /> }
+          { showExampleAndDescription ? <AbcSnippet playableABC={example.abc} /> : null }
         </div>
         <div style={{ textAlign: 'center' }}>
-          { (modelTemplates.length !== 0) 
-          && <Paragraph 
+          { (modelTemplates.length !== 0) && <Paragraph 
             className='svg-color' 
             copyable={{ text: abcResult,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}
             >
@@ -85,15 +79,11 @@ export default function MusicPuzzleDisplay({ content }) {
         </div>
         <div className='vSpacer' />
         { descriptionParts.length !== 0 && showDescription
-          ? <Collapse 
-              collapsible="icon" 
-              title={t('descriptionTitle')} 
-              defaultActiveKey="panel"
-            >
-            <Markdown renderAnchors className='u-horizontally-centered u-width-100'>
-              {descriptionParts.reduce((akku, description) => !akku ? description : `${akku}\n\n---\n\n${description}`, '')}
-            </Markdown>
-          </Collapse>
+          ? <Collapse collapsible="icon" title={t('descriptionTitle')} defaultActiveKey="panel">
+              <Markdown renderAnchors className='u-horizontally-centered u-width-100'>
+                {descriptionParts.reduce((akku, description) => !akku ? description : `${akku}\n\n---\n\n${description}`, '')}
+              </Markdown>
+            </Collapse>
           : null}
       </div>
     </div>

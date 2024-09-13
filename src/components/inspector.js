@@ -1,11 +1,11 @@
 import React from 'react';
+import ModelExample from './modelExample.js';
 import { useTranslation } from 'react-i18next';
 import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { Button, Select, InputNumber, Checkbox, Typography, Tooltip, Switch } from 'antd';
-import ModelExample from './modelExample.js';
 
 function Inspector({ content, updateContent }) {
 
@@ -37,9 +37,10 @@ function Inspector({ content, updateContent }) {
   };
 
   const onModelSelectionChange = model => {
-    const newExample = (content.example.name !== selectedModel || !!content.example.name) ? ModelTemplates.getModelTemplate(model).example : content.example;
+    // console.log('if:' content.example.name !== model || !!content.example.name)
+    const newExample = (content.example.name !== model || !!content.example.name) ? ModelTemplates.getModelTemplate(model).example : content.example;
     updateContent({ selectedModel: model, example: newExample });
-  }
+  };
 
   const onTransposeValueChange = value => {
     updateContent({ transposeValue: value });
@@ -143,7 +144,7 @@ function Inspector({ content, updateContent }) {
   
   return (
     <div>
-      {showExampleAndDescription && <ModelExample selectedModel={selectedModel} example={content.example} updateContent={updateContent} />}
+      {showExampleAndDescription ? <ModelExample selectedModel={selectedModel} example={content.example} updateContent={updateContent} /> : null}
       <div className='inspectorItemContainer'>
         <div className='inspectorUnit'>
           <span className='iu-first'>&nbsp;</span>
@@ -234,7 +235,7 @@ function Inspector({ content, updateContent }) {
         </div>
         <div style={{ display: 'flex', marginTop: '15px', gap: '6px' }}>
           <Switch 
-            style={{marginTop: '3px'}}
+            style={{ marginTop: '3px' }}
             size="small" 
             checked={showExampleAndDescription}
             onChange={onShowExampleAndDescriptionChange}

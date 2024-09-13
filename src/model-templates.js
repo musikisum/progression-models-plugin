@@ -63,7 +63,18 @@ const templates = {
     showDescription: false,
     example: {
       name: 'circleOfFifths',
-      abc: ``,
+      abc: `X:1
+%%score [(1 2) (3 4)]
+Q: 1/4=120
+L:1/8
+M:C|
+K:C
+V:1
+z g/=f/e/d/c/B/ | AcAF z f/e/d/c/B/A/ | GBGE z e/d/c/B/A/G/  | FAFD z d/c/B/A/G/F/ | E
+V:2
+E4- | E2 C2 D4- | D2 B,2 C4- | C2 A,2 B,4 | C2
+V:3 bass
+z2 C2 | F,4 z2 B,2 | E,4 z2 A,2 | D,4 z2 G,2 | [G,2 C,,2]`,
       description: ''
     },
     addProps: {
@@ -193,7 +204,18 @@ EFG=B, | ^CA,=B,C DEFA, _B,G,A,B, =CDEG, | A,F,G,A, B,CDF, G,E,F,G, A,=B,CE, | ^
     showDescription: false,
     example: {
       name: 'upperFiveModulation',
-      abc: ``,
+      abc: `X:1
+%%score [(1 2) 3]
+Q: 1/4=120
+L:1/8
+M:C|
+K:C
+V:1
+e4 | d3 d cBAd | BdBG
+V: 2
+ABGA | ^FD G4 ^F2 | G2 D2
+V:3 bass
+C4- | C2 B,2 A,2 D2 |  G,4`,
       description: ''
     },
     addProps: {

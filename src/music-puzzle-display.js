@@ -58,7 +58,7 @@ export default function MusicPuzzleDisplay({ content }) {
       setAbcResult(playableABC);
       setDescriptionParts(descriptions);
     }    
-  }, [hideLowerSystem, hideUpperSystem, measure, measuresPerLine, modelTemplates, stretchLastLine, t, tempo, transposeValue]);
+  }, []);
 
   return (
     <div className='EP_Educandu_Example_Display'>
@@ -67,7 +67,7 @@ export default function MusicPuzzleDisplay({ content }) {
           { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
         </div>
         <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
-          { showExampleAndDescription ? <AbcSnippet playableABC={example.abc} /> : null }
+          { showExampleAndDescription ? <AbcSnippet playableABC={transposeValue === 0 ? example.abc : Transposer.getTransposition(example.abc, transposeValue)} /> : null }
         </div>
         <div style={{ textAlign: 'center' }}>
           { (modelTemplates.length !== 0) && <Paragraph 

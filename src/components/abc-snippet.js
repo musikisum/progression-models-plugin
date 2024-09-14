@@ -29,12 +29,12 @@ function AbcSnippet({ playableABC }) {
   
   const [lastRenderResult, setLastRenderResult] = useState();
   const abc = playableABC || musicErrorMessage;
-  const isPlayable = lastRenderResult?.[0]?.lines.length !== 0;
+  const hasMusic = lastRenderResult?.[0]?.lines.length !== 0;
 
   return (
     <div>
       <AbcNotation abcCode={abc} onRender={setLastRenderResult} />
-      { isPlayable && <AbcPlayer renderResult={lastRenderResult} /> }
+      { hasMusic && <AbcPlayer renderResult={lastRenderResult} /> }
     </div>
   );
 }

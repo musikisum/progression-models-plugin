@@ -12,7 +12,6 @@ function Inspector({ content, updateContent }) {
   const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
   const { Text } = Typography;
   const { 
-    isTransposible, 
     transposeValue,
     tempo, 
     measure,
@@ -174,7 +173,6 @@ function Inspector({ content, updateContent }) {
             className='inspectorElement'
             style={{ width: 120 }}
             defaultValue={transposeValue}
-            disabled={!isTransposible}
             onChange={e => onTransposeValueChange(e)}
             options={getOptionsForKeySelect()}
             />

@@ -34,7 +34,7 @@ M:3/4
 Q:50
 K:Am
 V:1
-A | e3/2- e/8f/8e/8d/8 {d} e/>a/ |{e} d2 b- | b/4(c'/4b/4a/4)(b/4a/4^g/4^f/4 e/4d/4c/4B/4) |(B/4d/4c/4B/4){B} A x |
+A | e3/2- e/8f/8e/8d/8 {d} e/>a/ |{e} d2 b- | b/4(c'/4b/4a/4) (b/4a/4^g/4^f/4 e/4d/4c/4B/4) |(B/4d/4c/4B/4){B} A x |
 V:2
 x | c c c | B B e | e e B | c/>d/ e/>d/ c3/4 x/4 |
 V:3
@@ -53,8 +53,7 @@ V:3
     showDescription: false,
     example: {
       name: 'cadence',
-      abc: ``,
-      description: ''
+      abc: ``
     },
     addProps: { 
       isBegin: [false, false],
@@ -133,8 +132,7 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'fauxbourdon',
-      abc: ``,
-      description: ''
+      abc: ``
     },
     addProps: {
       numberOfSections: [3, 3, false],
@@ -153,8 +151,7 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'lamento',
-      abc: ``,
-      description: ''
+      abc: ``
     },
     addProps: {
       syncopation: [false, false],
@@ -174,8 +171,7 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'fiveSixConsecutive',
-      abc: ``,
-      description: ''
+      abc: ``
     },
     addProps: {
       partLengthValues: [6, 6, false],
@@ -194,8 +190,7 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'lowerFiveModulation',
-      abc: ``,
-      description: ''
+      abc: ``
     },
     addProps: {
       changeMode: [false, false]
@@ -268,8 +263,7 @@ V:2 bass
     showDescription: false,
     example: {
       name: 'parallelismusDown',
-      abc: ``,
-      description: ''
+      abc: ``
     },
     addProps: {
       numberOfSections: [3, 3, false],
@@ -287,8 +281,7 @@ V:2 bass
     showDescription: false,
     example: {
       name: 'parallelismusUp',
-      abc: ``,
-      description: ''
+      abc: ``
     },
     addProps: {
       numberOfSections: [3, 3, false],

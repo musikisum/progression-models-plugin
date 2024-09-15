@@ -105,7 +105,7 @@ const getVoices = cadenceOptions => {
   const isFinal = options.addProps['isFinal'][0];
   const isDeceptive = options.addProps['isDeceptiv'][0];
   if(isBegin) {
-    voices[2][0] = 0;
+    voices[2][0] = 7;
   }
   if (isFinal) {
     voices[0][3] = 7;

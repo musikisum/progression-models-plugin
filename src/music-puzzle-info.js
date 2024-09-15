@@ -41,7 +41,7 @@ class MusicPuzzleInfo {
       showDescription: false,
       hideUpperSystem: false,
       hideLowerSystem: false,
-      showExampleAndDescription: false,
+      showExample: false,
       example: {
         name: '',
         abc: ''
@@ -62,7 +62,7 @@ class MusicPuzzleInfo {
       showDescription: joi.boolean(),
       hideUpperSystem: joi.boolean(),
       hideLowerSystem: joi.boolean(),
-      showExampleAndDescription: joi.boolean(),
+      showExample: joi.boolean(),
       example: joi.object({
         name: joi.string().allow(null, ''),
         abc: joi.string().allow(null, '')

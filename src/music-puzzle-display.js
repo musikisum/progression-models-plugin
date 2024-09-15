@@ -26,7 +26,7 @@ export default function MusicPuzzleDisplay({ content }) {
     hideUpperSystem, 
     hideLowerSystem,
     example,
-    showExampleAndDescription
+    showExample
   } = content;
  
   const [abcResult, setAbcResult] = useState('');
@@ -67,7 +67,7 @@ export default function MusicPuzzleDisplay({ content }) {
           { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
         </div>
         <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
-          { showExampleAndDescription ? <AbcSnippet playableABC={transposeValue === 0 ? example.abc : Transposer.getTransposition(example.abc, transposeValue)} /> : null }
+          { showExample ? <AbcSnippet playableABC={transposeValue === 0 ? example.abc : Transposer.getTransposition(example.abc, transposeValue)} /> : null }
         </div>
         <div style={{ textAlign: 'center' }}>
           { (modelTemplates.length !== 0) && <Paragraph 

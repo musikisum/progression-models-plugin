@@ -20,7 +20,7 @@ function Inspector({ content, updateContent }) {
     showDescription, 
     hideUpperSystem,
     hideLowerSystem,
-    showExampleAndDescription,
+    showExample,
     modelTemplates,
     selectedModel
   } = content;
@@ -65,8 +65,8 @@ function Inspector({ content, updateContent }) {
     updateContent({ showDescription: event.target.checked });
   };
 
-  const onShowExampleAndDescriptionChange = event => {
-    updateContent({ showExampleAndDescription: event });
+  const onShowExampleChange = event => {
+    updateContent({ showExample: event.target.checked });
   };
 
   const onHideSystem = (event, direction) => {
@@ -134,7 +134,7 @@ function Inspector({ content, updateContent }) {
         return `${t('hideUpperSystemTooltip')}`;
       case 'hideLowerSystem':
         return `${t('hideLowerSystemTooltip')}`;
-      case 'showExample':
+      case 'showExampleDescription':
         return `${t('exampleTooltip')} ${t(selectedModel)}.`;
       default:
         return '';
@@ -143,7 +143,7 @@ function Inspector({ content, updateContent }) {
   
   return (
     <div>
-      {showExampleAndDescription ? <ModelExample selectedModel={selectedModel} example={content.example} updateContent={updateContent} /> : null}
+      {showExample ? <ModelExample selectedModel={selectedModel} example={content.example} updateContent={updateContent} /> : null}
       <div className='inspectorItemContainer'>
         <div className='inspectorUnit'>
           <span className='iu-first'>&nbsp;</span>
@@ -232,13 +232,12 @@ function Inspector({ content, updateContent }) {
           <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip></Text>
         </div>
         <div style={{ display: 'flex', marginTop: '15px', gap: '6px' }}>
-          <Switch 
-            style={{ marginTop: '3px' }}
-            size="small" 
-            checked={showExampleAndDescription}
-            onChange={onShowExampleAndDescriptionChange}
-            />
-          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('showExample')}><span>{`${t('showExample')}`}</span></Tooltip></Text>
+          <Checkbox checked={showExample} onChange={onShowExampleChange} />
+          <Text style={{ display: 'block' }}>
+            <Tooltip title={showTooltipText('showExampleDescription')}>
+              <span>{`${t('showExampleDescription')}: ${t(selectedModel)}`}</span>
+            </Tooltip>
+          </Text>
         </div>
       </div>
     </div>

@@ -251,7 +251,7 @@ musikisum/educandu-plugin-music-puzzle:
   hideLowerSystem:
     en: Mute Bass
     de: Bass muten
-  showExample:
+  showExampleDescription:
     en: Example
     de: Beispiel
   exampleTooltip:

@@ -44,8 +44,7 @@ class MusicPuzzleInfo {
       showExampleAndDescription: false,
       example: {
         name: '',
-        abc: '',
-        description: ''
+        abc: ''
       },
       selectedModel: 'cadence',
       modelTemplates: []
@@ -66,8 +65,7 @@ class MusicPuzzleInfo {
       showExampleAndDescription: joi.boolean(),
       example: joi.object({
         name: joi.string().allow(null, ''),
-        abc: joi.string().allow(null, ''),
-        description: joi.string().allow(null, '')
+        abc: joi.string().allow(null, '')
       }),
       selectedModel: joi.string(),
       modelTemplates: joi.array().required()

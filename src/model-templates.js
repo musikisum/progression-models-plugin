@@ -38,9 +38,8 @@ A | e3/2- e/8f/8e/8d/8 {d} e/>a/ |{e} d2 b- | b/4(c'/4b/4a/4)(b/4a/4^g/4^f/4 e/4
 V:2
 x | c c c | B B e | e e B | c/>d/ e/>d/ c3/4 x/4 |
 V:3
-x | A A A | A A A | ^G G G | A/>B/ c/>B/ A3/4 x/4 |`,
-      description: 'Johann Sebastian Bach, Mathäus-Passion BWV 244, Teil II, Nr. 58, ›Aus Liebe will mein Heiland sterben‹ (Anfang).'
-    },
+"_J. S. Bach, Mathäus-Passion BWV 244, Teil II, Nr. 58, ›Aus Liebe‹"x | A A A | A A A | ^G G G | A/>B/ c/>B/ A3/4 x/4 |`
+},
     addProps: {}
   },
   cadence: {
@@ -85,8 +84,7 @@ z g/=f/e/d/c/B/ | AcAF z f/e/d/c/B/A/ | GBGE z e/d/c/B/A/G/  | FAFD z d/c/B/A/G/
 V:2
 E4- | E2 C2 D4- | D2 B,2 C4- | C2 A,2 B,4 | C2
 V:3 bass
-z2 C2 | F,4 z2 B,2 | E,4 z2 A,2 | D,4 z2 G,2 | [G,2 C,,2]`,
-      description: 'Johann Sebastian Bach, Präludium und Fuge C-Dur BWV 545, Fuge T. 96–100.'
+"_J. S. Bach, Präludium und Fuge C-Dur BWV 545, Fuge T. 96–100"z2 C2 | F,4 z2 B,2 | E,4 z2 A,2 | D,4 z2 G,2 | [G,2 C,,2]`,
     },
     addProps: {
       partLengthValues: [4, 4, false],
@@ -116,8 +114,7 @@ V:1
 V:2
 d2c2 | BdBd G4 z cGc F4 | z BFB _E4 z AEA D4- | D4 z2 D2 |
 V:3 bass
-D2D,2 | G,2A,2B,2G,2 C2B,2A,2F,2 | B,2A,2G,2_E,2 A,2G,2^F,2D,2 | G,2D,2 G,4 |`,
-      description: 'Johann Sebastian Bach, Toccata und Fuge d-Moll BWV 913, Fuge T. 43 ff. (mit Auftakt).' 
+"_J. S. Bach, Toccata und Fuge d-Moll BWV 913, Fuge T. 43 ff."D2D,2 | G,2A,2B,2G,2 C2B,2A,2F,2 | B,2A,2G,2_E,2 A,2G,2^F,2D,2 | G,2D,2 G,4 |`
     },
     addProps: {
       partLengthValues: [4, 4, false],
@@ -226,9 +223,8 @@ e4 | d3 d cBAd | BdBG
 V: 2
 ABGA | ^FD G4 ^F2 | G2 D2
 V:3 bass
-C4- | C2 B,2 A,2 D2 |  G,4`,
-      description: 'Johann Sebastian Bach, Präludium und Fuge C-Dur BWV 545, Fuge T. 95 f. (mit Auftakt).'
-    },
+"_J. S. Bach, Präludium und Fuge C-Dur BWV 545, Fuge T. 95 f."C4- | C2 B,2 A,2 D2 |  G,4`
+},
     addProps: {
       changeMode: [false, false],
       begin65: [false, false],
@@ -253,13 +249,10 @@ M:C
 Q:100
 K:C
 V:1
-V:2 bass 
-V:1
 z Bea z Beg z cef z Gdf | z Gde z Gce z Acd z EBd | z EBc z EAc z FA_B z CGB | z CGA z CFA |
-V:2
-E,4 E4 A,4 B,4 | C4 E,4 ^F,4 ^G,4 | A,4 C,4 D,4 E,4 | F,4 E,4 |`,
-      description: ''
-    },
+V:2 bass
+"_J. S. Bach, kleines Präludium C-Dur BWV 924, T. 3–6"E,4 E4 A,4 B,4 | C4 E,4 ^F,4 ^G,4 | A,4 C,4 D,4 E,4 | F,4 E,4 |`
+},
     addProps: {
       numberOfSections: [3, 3, false]
     }

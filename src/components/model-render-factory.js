@@ -25,7 +25,7 @@ export default function ModelRenderFactory({
   } = content;
   
   const modelTemplate = modelTemplates[index];
-  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
 
   const changeModelTemplateKey = e => {
     modelTemplates[index].modelKey = e;

@@ -12,7 +12,7 @@ import { swapItemsAt, removeItemAt, moveItem } from '@educandu/educandu/utils/ar
 
 export default function MusicPuzzleEditor({ content, onContentChanged }) {
 
-  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
 
   const { modelTemplates, width } = content;
   const droppableIdRef = useRef(useId());

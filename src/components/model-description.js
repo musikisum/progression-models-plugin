@@ -13,7 +13,7 @@ function ModelDescription({
   updateContent
 }) {  
   
-  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
 
   const modelTemplate = modelTemplates[modelIndex];
 

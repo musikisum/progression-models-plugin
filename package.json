@@ -1,5 +1,5 @@
 {
-  "name": "@musikisum/educandu-plugin-music-puzzle",
+  "name": "@musikisum/educandu-plugin-progression-models",
   "version": "0.0.0",
   "description": "An example plugin for educandu",
   "type": "module",
@@ -15,10 +15,10 @@
   ],
   "license": "MIT",
   "author": "Educandu Team <team@educandu.dev>, Ulrich Kaiser <kontakt@kaiser-ulrich.de>",
-  "homepage": "https://github.com/musikisum/music-puzzle-plugin",
+  "homepage": "https://github.com/musikisum/progression-models-plugin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/musikisum/music-puzzle-plugin"
+    "url": "https://github.com/musikisum/progression-models-plugin"
   },
   "dependencies": {
     "abc-notation-transposition": "^1.0.5"

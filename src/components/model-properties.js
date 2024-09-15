@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 function ModelProperties({ index, modelTemplates, updateContent }) {
 
-  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
   const modelTemplate = modelTemplates[index];
   const addProps = modelTemplate.addProps;
 

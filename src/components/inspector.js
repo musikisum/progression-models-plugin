@@ -9,7 +9,7 @@ import { Button, Select, InputNumber, Checkbox, Typography, Tooltip, Switch } fr
 
 function Inspector({ content, updateContent }) {
 
-  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
   const { Text } = Typography;
   const { 
     transposeValue,

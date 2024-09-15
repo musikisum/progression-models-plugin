@@ -25,7 +25,7 @@ function ModelPanel({
   updateContent
 }) {
 
-  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
   const { modelTemplates } = content;
   const modelTemplate = modelTemplates[index];
   const header = t(modelTemplate.name);

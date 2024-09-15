@@ -5,17 +5,17 @@ import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { couldAccessUrlFromRoom } from '@educandu/educandu/utils/source-utils.js';
 import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-markdown.js';
 
-class MusicPuzzleInfo {
+class ProgressionModelsInfo {
   static dependencies = [GithubFlavoredMarkdown];
 
-  static typeName = 'musikisum/educandu-plugin-music-puzzle';
+  static typeName = 'musikisum/educandu-plugin-progression-models';
 
   constructor(gfm) {
     this.gfm = gfm;
   }
 
   getDisplayName(t) {
-    return t('musikisum/educandu-plugin-music-puzzle:name');
+    return t('musikisum/educandu-plugin-progression-models:name');
   }
 
   getIcon() {
@@ -23,11 +23,11 @@ class MusicPuzzleInfo {
   }
 
   async resolveDisplayComponent() {
-    return (await import('./music-puzzle-display.js')).default;
+    return (await import('./progression-models-display.js')).default;
   }
 
   async resolveEditorComponent() {
-    return (await import('./music-puzzle-editor.js')).default;
+    return (await import('./progression-models-editor.js')).default;
   }
 
   getDefaultContent() {   
@@ -94,4 +94,4 @@ class MusicPuzzleInfo {
   }
 }
 
-export default MusicPuzzleInfo;
+export default ProgressionModelsInfo;

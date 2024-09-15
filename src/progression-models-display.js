@@ -11,7 +11,7 @@ import Collapse, { COLLAPSIBLE_COLOR } from '@educandu/educandu/components/colla
 
 export default function MusicPuzzleDisplay({ content }) {
 
-  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
   const { Paragraph, Text } = Typography;
   const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`;
 

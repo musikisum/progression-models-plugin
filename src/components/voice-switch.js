@@ -21,7 +21,7 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
   };
 
   const droppableIdRef = useRef(useId());
-  const { t } = useTranslation('musikisum/educandu-plugin-music-puzzle');
+  const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
   const newModelTemplates = cloneDeep(modelTemplates);
   const modelTemplateToModify = newModelTemplates[modelIndex];
 

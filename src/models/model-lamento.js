@@ -33,7 +33,7 @@ const _keyObjShort = {
   'G': { modelKey: 'G', t: -3, accidentals: [[0, 0, 0, 0], [0, 0, 0, 1], [0, 1, 0, 0]] },
   'Em': { modelKey: 'Em', t: -5, accidentals: [[0, 0, 0, 0], [0, 1, 0, 1], [0, 0, 0, 0]] },
   'C': { modelKey: 'C', t: 0, accidentals: [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]] },
-  'Am': { modelKey: 'Am', t: -2, accidentals: [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]] },
+  'Am': { modelKey: 'Am', t: -2, accidentals: [[0, 0, 0, 0], [0, 0, 0, 1], [0, 0, 0, 0]] },
   'F': { modelKey: 'F', t: -4, accidentals: [[0, 0, -1, 0], [0, 0, 0, 0], [0, 0, 0, 0,]] },
   'Dm': { modelKey: 'Dm', t: -6, accidentals: [[0, 0, 0, 0], [0, 0, 0, 1], [0, 0, -1, 0]] },
   'Bb': { modelKey: 'Bb', t: -1, accidentals: [[0, 0, -1, 0,], [0, 0, -1, 0], [-1, 0, 0, 0,]] },
@@ -241,10 +241,6 @@ const getVoices = lamentoOptions => {
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
   return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
 }
-
-const getExample = () => {
-  return ['f- | f e2 d- | -d c d3/2', 'z | B2 A2 | G2 F z/', 'A,/D,/ | G,/F,/G,/C,/ F,/E,/F,/B,,/ | E,/F,//G,// A,/A,,/ D,/E,/,F,/]'];
-};
 
 const Lamento = {
   getDefaultOptions: getOptions,

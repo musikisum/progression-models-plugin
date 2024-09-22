@@ -1,7 +1,7 @@
 {
   "name": "@musikisum/educandu-plugin-progression-models",
-  "version": "0.0.0",
-  "description": "An example plugin for educandu",
+  "version": "1.0.0",
+  "description": "A plugin for progression models in music",
   "type": "module",
   "exports": {
     ".": "./dist/index.js",

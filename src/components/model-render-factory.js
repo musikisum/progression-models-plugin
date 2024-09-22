@@ -70,7 +70,7 @@ export default function ModelRenderFactory({
           <div>
             <Paragraph 
               className='svg-color' 
-              copyable={{ text: getPlayableAbcVoices(),  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}
+              copyable={{ text: getPlayableAbcVoices(),  tooltips: [t('abcCopyTtBefore'), t('abcCopyTtAfter')] }}
               >
               {t('abcCopy')}
             </Paragraph>

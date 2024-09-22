@@ -72,7 +72,7 @@ export default function MusicPuzzleDisplay({ content }) {
         <div style={{ textAlign: 'center' }}>
           { (modelTemplates.length !== 0) && <Paragraph 
             className='svg-color' 
-            copyable={{ text: abcResult,  tooltips: [t('abcCopyTtBevore'), t('abcCopyTtAfter')] }}
+            copyable={{ text: abcResult,  tooltips: [t('abcCopyTtBefore'), t('abcCopyTtAfter')] }}
             >
             {t('abcCopy')}
           </Paragraph> }

@@ -202,7 +202,7 @@ const convertToEmptyLines = (voices, hideUpperSystem, hideLowerSystem) => {
   return voices;
 };
  
-const ModelHelper = {
+const ModelUtilities = {
   transposeOctave,
   validateValue,
   getSign,
@@ -212,4 +212,4 @@ const ModelHelper = {
   convertToEmptyLines
 };
 
-export default ModelHelper;
+export default ModelUtilities;

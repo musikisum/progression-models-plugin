@@ -148,7 +148,7 @@
       "en": "chromatic",
       "de": "chromatisch"
     },
-    "parallelismusDiminished": {
+    "parallelismDiminuated": {
       "en": "Parallelism (chrom.)",
       "de": "Parallelismus (chrom.)"
     },
@@ -156,11 +156,11 @@
       "en": "Sections",
       "de": "Abschnitte"
     },
-    "parallelismusDown": {
+    "parallelismDown": {
       "en": "Parallelism down",
       "de": "Parallelismus abwärts"
     },
-    "parallelismusUp": {
+    "parallelismUp": {
       "en": "Parallelism up",
       "de": "Parallelismus aufwärts"
     },

@@ -1,4 +1,4 @@
-import ModelHelper from '../model-helper.js';
+import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
 const _keyObj = {
@@ -50,7 +50,7 @@ const getVoices = circleOfFifthsOptions => {
     voices[2][7] = -7;
   }
   
-  return ModelHelper.getVoicesWithLengthModifications(
+  return ModelUtilities.getVoicesWithLengthModifications(
     options.transposeValues, 
     options.voiceArrangement, 
     voices, 
@@ -62,7 +62,7 @@ const getVoices = circleOfFifthsOptions => {
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
 }
 
 const CircleOfFifths = {

@@ -1,7 +1,7 @@
 import ArrowPanel from './arrow-panel.js';
-import ModelHelper from '../model-helper.js';
 import React, { useRef, useId } from 'react';
 import { useTranslation } from 'react-i18next';
+import ModelUtilities from '../model-utilities.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { moveItem } from '@educandu/educandu/utils/array-utils.js';
 import DragAndDropContainer from '@educandu/educandu/components/drag-and-drop-container.js';
@@ -50,7 +50,7 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
       const result = akku + vd.voiceIndex.toString();
       return result;
     }, '');    
-    modelTemplateToModify.transposeValues = ModelHelper.updateTransposeValues(voiceArrangement, modelTemplateToModify.name);
+    modelTemplateToModify.transposeValues = ModelUtilities.updateTransposeValues(voiceArrangement, modelTemplateToModify.name);
     modelTemplateToModify.voiceArrangement = [newOrder[0].voiceIndex + 1, newOrder[1].voiceIndex + 1, newOrder[2].voiceIndex + 1];
     newModelTemplates[modelIndex] = modelTemplateToModify;
     updateContent({ modelTemplates: newModelTemplates });

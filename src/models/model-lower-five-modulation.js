@@ -1,4 +1,4 @@
-import ModelHelper from '../model-helper.js';
+import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
 const _keyObj = {
@@ -80,7 +80,7 @@ const getVoices = lowerFifthModulationOptions => {
       break;
   }
 
-  return ModelHelper.getVoices(
+  return ModelUtilities.getVoices(
     options.transposeValues, 
     options.voiceArrangement, 
     voices, 
@@ -91,7 +91,7 @@ const getVoices = lowerFifthModulationOptions => {
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
 }
 
 const LowerFiveModulation = {

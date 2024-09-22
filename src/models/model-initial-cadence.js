@@ -1,4 +1,4 @@
-import ModelHelper from '../model-helper.js';
+import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
 const _keyObj = {  
@@ -45,7 +45,7 @@ const getVoices = cadenceOptions => {
   const options = cadenceOptions ?? getOptions();
   let keyObject = _getKeyObject(options.modelKey);
 
-  return ModelHelper.getVoices(
+  return ModelUtilities.getVoices(
     options.transposeValues, 
     options.voiceArrangement, 
     voices, 
@@ -56,7 +56,7 @@ const getVoices = cadenceOptions => {
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
 }
 
 const Cadence = {

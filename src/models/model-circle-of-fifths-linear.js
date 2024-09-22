@@ -1,4 +1,4 @@
-import ModelHelper from '../model-helper.js';
+import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
 const _keyObj = {
@@ -46,7 +46,7 @@ const getVoices = fifthsCircleLinearOptions => {
   if(options.addProps['lastBassNoteUp'][0]) {
     voices[2][7] = 7;
   }
-  return ModelHelper.getVoicesWithLengthModifications(
+  return ModelUtilities.getVoicesWithLengthModifications(
     options.transposeValues, 
     options.voiceArrangement, 
     voices, 
@@ -58,7 +58,7 @@ const getVoices = fifthsCircleLinearOptions => {
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
 }
 
 const CircleOfFifthsLinear = {

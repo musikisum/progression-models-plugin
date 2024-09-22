@@ -7,9 +7,9 @@ const getAvailableModels = [
   'fauxbourdon',
   'lamento',
   'fiveSixConsecutive',
-  'parallelismusDown',
-  'parallelismusUp',
-  'parallelismusDiminished',
+  'parallelismDown',
+  'parallelismUp',
+  'parallelismDiminuated',
   'upperFiveModulation',
   'lowerFiveModulation'
 ];
@@ -226,9 +226,9 @@ V:3 bass
       prinner: [false, false]
     }
   },
-  parallelismusDiminished: {
+  parallelismDiminuated: {
     key: '',
-    name: 'parallelismusDiminished',
+    name: 'parallelismDiminuated',
     modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
@@ -236,7 +236,7 @@ V:3 bass
     customDescription: '',
     showDescription: false,
     example: {
-      name: 'parallelismusDiminished',
+      name: 'parallelismDiminuated',
       abc: `X:1
 %%score [ 1 | 2 ]
 L:1/16
@@ -252,9 +252,9 @@ V:2 bass
       numberOfSections: [3, 3, false]
     }
   },
-  parallelismusDown: {
+  parallelismDown: {
     key: '',
-    name: 'parallelismusDown',
+    name: 'parallelismDown',
     modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
@@ -262,7 +262,7 @@ V:2 bass
     customDescription: '',
     showDescription: false,
     example: {
-      name: 'parallelismusDown',
+      name: 'parallelismDown',
       abc: ``
     },
     addProps: {
@@ -270,9 +270,9 @@ V:2 bass
       syncopation: [false, false]
     }
   },
-  parallelismusUp: {
+  parallelismUp: {
     key: '',
-    name: 'parallelismusUp',
+    name: 'parallelismUp',
     modelKey: 'C',
     transposeValues: [0, 0, -1],
     voiceArrangement: [1, 2, 3],
@@ -280,7 +280,7 @@ V:2 bass
     customDescription: '',
     showDescription: false,
     example: {
-      name: 'parallelismusUp',
+      name: 'parallelismUp',
       abc: ``
     },
     addProps: {

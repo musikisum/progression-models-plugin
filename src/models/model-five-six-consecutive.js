@@ -1,4 +1,4 @@
-import ModelHelper from '../model-helper.js';
+import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
@@ -47,7 +47,7 @@ const getVoices = modelOptions => {
     keyObject = _getKeyObject(options.modelKey);
   }
 
-  return ModelHelper.getVoicesWithLengthModifications(
+  return ModelUtilities.getVoicesWithLengthModifications(
     options.transposeValues, 
     options.voiceArrangement, 
     voices, 
@@ -59,7 +59,7 @@ const getVoices = modelOptions => {
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
 }
 
 const FiveSixConsecutive = {

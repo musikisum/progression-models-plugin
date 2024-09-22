@@ -1,4 +1,4 @@
-import ModelHelper from '../model-helper.js';
+import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 
@@ -228,7 +228,7 @@ const getVoices = lamentoOptions => {
   );
   _adjustAccidantals(options, keyObject, keyObjectOrig);
 
-  return ModelHelper.getVoices(
+  return ModelUtilities.getVoices(
     options.transposeValues, 
     options.voiceArrangement, 
     options.voices, 
@@ -239,7 +239,7 @@ const getVoices = lamentoOptions => {
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
 }
 
 const Lamento = {

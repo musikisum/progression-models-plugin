@@ -1,4 +1,4 @@
-import ModelHelper from '../model-helper.js';
+import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
 const _keyObj = {
@@ -56,7 +56,7 @@ function getModelKeys() {
 }
 
 const getOptions = change => {
-  const modelTemplate = ModelTemplates.getModelTemplate('parallelismusUp');
+  const modelTemplate = ModelTemplates.getModelTemplate('parallelismUp');
   if(change) {
     modelTemplate.modelKey = change;
   }
@@ -121,8 +121,8 @@ const modifyLastChordSectionEndings = (options, keyObject, key) => {
   }
 };
 
-const getVoices = parallelismusUpOptions => {
-  const options = parallelismusUpOptions ?? getOptions();
+const getVoices = parallelismUpOptions => {
+  const options = parallelismUpOptions ?? getOptions();
   _AdjustOptions(options);
   const withSyncopations = options.addProps['syncopation'][0];
   const keyObject = withSyncopations ? _getKeyObject(options.modelKey) : _getKeyObjectShort(options.modelKey);
@@ -159,7 +159,7 @@ const getVoices = parallelismusUpOptions => {
     modifyLastChordSectionEndings(options, keyObject, options.modelKey);
   }
 
-  return ModelHelper.getVoices(
+  return ModelUtilities.getVoices(
     options.transposeValues,
     options.voiceArrangement, 
     options.voices, 
@@ -170,7 +170,7 @@ const getVoices = parallelismusUpOptions => {
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
 }
 
 const ParallismusUp = {

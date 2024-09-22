@@ -1,4 +1,4 @@
-import ModelHelper from '../model-helper.js';
+import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
 const _keyObj = {
@@ -30,7 +30,7 @@ function getModelKeys() {
 
 
 const getOptions = change => {
-  const modelTemplate = ModelTemplates.getModelTemplate('parallelismusDiminished');
+  const modelTemplate = ModelTemplates.getModelTemplate('parallelismDiminuated');
   if(change) {
     modelTemplate.modelKey = change;
   }
@@ -65,7 +65,7 @@ const getVoices = upperFifthModulationOptions => {
     options.modelKey === 'Cm' && (keyObject.accidentals[1][3] = -1);
   }
 
-  return ModelHelper.getVoices(
+  return ModelUtilities.getVoices(
     options.transposeValues,
     options.voiceArrangement,
     voices,
@@ -76,14 +76,14 @@ const getVoices = upperFifthModulationOptions => {
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelHelper.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
+  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
 }
 
-const ParallelismusDiminished = {
+const ParallelismDiminuated = {
   getDefaultOptions: getOptions,
   getVoices,
   getModelKeys,
   getMutedVoices: (voices, hideUpperSystem, hideLowerSystem) => _adjustMutetVoices(voices, hideUpperSystem, hideLowerSystem)
 };
   
-export default ParallelismusDiminished;
+export default ParallelismDiminuated;

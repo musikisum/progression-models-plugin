@@ -60,7 +60,7 @@ export default function ModelRenderFactory({
     } else {
       modelVoices = voiceModel.getMutedVoices(voiceModel.getVoices(modelTemplate), hideUpperSystem, hideLowerSystem);
     }
-    return ModelComposition.abcOutput('C', 'C|', 120, [modelVoices]);
+    return ModelComposition.getModelAbcOutput('C', 'C|', 120, [modelVoices]);
   }
 
   return (

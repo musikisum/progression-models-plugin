@@ -51,7 +51,7 @@ export default function MusicPuzzleDisplay({ content }) {
           : modelTemplate.customDescription; 
         descriptions.push(text);        
       }
-      let playableABC = ModelComposition.abcOutput('C', measure, tempo, voices, measuresPerLine, stretchLastLine);
+      let playableABC = ModelComposition.getModelAbcOutput('C', measure, tempo, voices, measuresPerLine, stretchLastLine);
       if(transposeValue !== 0) {
         playableABC = Transposer.getTransposition(playableABC, transposeValue);
       }

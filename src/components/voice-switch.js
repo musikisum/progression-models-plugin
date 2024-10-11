@@ -50,7 +50,6 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
       const result = akku + vd.voiceIndex.toString();
       return result;
     }, '');    
-    modelTemplateToModify.transposeValues = ModelUtilities.updateTransposeValues(voiceArrangement, modelTemplateToModify.name);
     modelTemplateToModify.voiceArrangement = [newOrder[0].voiceIndex + 1, newOrder[1].voiceIndex + 1, newOrder[2].voiceIndex + 1];
     newModelTemplates[modelIndex] = modelTemplateToModify;
     updateContent({ modelTemplates: newModelTemplates });

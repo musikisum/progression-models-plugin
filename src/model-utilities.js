@@ -1,5 +1,123 @@
 import ModelProvider from './model-provider.js';
 
+const _fifthsValues = {
+  '^^D': 14,
+  '^^G': 13,
+  '^B': 12,
+  '^E': 11,
+  '^A': 10,
+  '^D': 9,
+  '^G': 8,
+  '^C': 7,
+  '^F': 6,
+  '=B': 5,
+  '=E': 4,
+  '=A': 3,
+  '=D': 2,
+  '=G': 1,
+  '=C': 0,
+  '=F': -1,
+  '_B': -2,
+  '_E': -3,
+  '_A': -4,
+  '_D': -5,
+  '_G': -6,
+  '_C': -7,
+  '_F': -8
+ };
+
+const transposeUp = (fifthsValue, transposeFifthsValue) => {
+  const values = [0, 4, 1, 5, 2, 6, 3];
+  const val1 = values[((fifthsValue % 7) + 7) % 7];
+  const val2 = values[((transposeFifthsValue % 7) + 7) % 7];
+  return (val1 + val2) > 6 ? 1 : 0;
+}
+
+ const _getModelKeyValue = modelKey => {
+  switch (modelKey) {
+    case 'E':
+    case 'C#m':
+      return _fifthsValues['=E'];
+    case 'A':
+    case 'F#m':
+      return _fifthsValues['=A'];
+    case 'D':
+    case 'Bm':
+      return _fifthsValues['=D'];
+    case 'G':
+    case 'Em':
+      return _fifthsValues['=G'];
+    case 'C':
+    case 'Am':
+      return _fifthsValues['=C'];
+    case 'F':
+    case 'Dm':
+      return _fifthsValues['=F'];
+    case 'Bb':
+    case 'Gm':
+      return _fifthsValues['_B'];
+    case 'Eb':
+    case 'Cm':
+      return _fifthsValues['_E'];
+    case 'Ab':
+    case 'Fm':
+      return _fifthsValues['_A'];
+    default:
+      return 0;
+  }
+ }
+
+// Provide a fifths value from an abc symbol
+const getFifthsValueFromTone = symbol => {
+  return _fifthsValues[symbol];
+}
+
+// Provide an abc symbol from a fifts value
+const getToneFromFifthsValue = number => {
+  if (number < -9 && number < 15) {
+    console.log(`The fifths value ${number} ist out of range`);
+  }
+  return Object.keys(_fifthsValues).find(key => _fifthsValues[key] === number);
+};
+
+// Create a tone object
+const _createToneObject = toneSymbol => {
+  const regex = /^(\^}^|\^|=|_|__)([CDEFGAB])(\d)(\d):?(\w+)?$/;
+  const match = toneSymbol.match(regex);
+  const toneObj = {};
+  const [, sign, tone, octave, length, additionals] = match;
+  toneObj.fifthsValue = _fifthsValues[`${sign}${tone}`];
+  toneObj.octave = parseInt(octave, 10) || 4;
+  toneObj.length = parseInt(length, 10) || 2;
+  toneObj.force = !!additionals;
+  return toneObj;
+};
+
+// Provide a valid abc octave value from a midi octave number
+const _getOctaveSpecifier = octaveNumber => {
+  switch (octaveNumber) {
+    case 1:
+      return ',,,';
+    case 2:
+      return ',,';
+    case 3:
+      return ',';
+    case 4:
+      return '';
+    case 5:
+      return '\'';
+    case 6:
+      return '\'\'';
+    case 7:
+      return '\'\'\'';
+    case 8:
+      return '\'\'\'\'';
+    default:
+      console.log(`The octave value is invalid: ${octaveNumber}.`);
+      return '';
+  }
+}
+
 // Provide the abc.js tone names for c1 to b2.
 const _diatonicScale = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'c', 'd', 'e', 'f', 'g', 'a', 'b'];
 
@@ -64,7 +182,7 @@ const updateTransposeValues = (voiceArr, modelName) => {
   const mapObj = {
     '012': [dtv[0], dtv[1], dtv[2]],
     '102': [dtv[0], dtv[1] - 1, dtv[2]],
-    '021': [dtv[0], dtv[1], dtv[2]],
+    '021': [dtv[0], dtv[1] + 1, dtv[2]],
     '120': [dtv[0], dtv[1], dtv[2] - 1],
     '201': [dtv[0] + 1, dtv[1] - 1, dtv[2]],
     '210': [dtv[0] + 1, dtv[1], dtv[2]]
@@ -96,40 +214,91 @@ const _add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
   abcVoices[index] = newFirstElem;
 };
 
-// Create the abc string representation of a voice model 
-const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, begin65, prinner) => {
-  const [va1, va2, va3] = voiceArr; // Contains the voice numbers 1, 2 and 3
-  let abcVoices = ['', '', ''];
-  for (let index = 0; index < voicesLength; index += 1) { 
-    abcVoices[0] += getSign(keyObject.accidentals[va1 - 1][index]);
-    abcVoices[0] += transposeOctave(transposeValues[0], validateValue(voices[va1 - 1][index] + keyObject.t));
-    abcVoices[0] += measure[index];
-    abcVoices[1] += getSign(keyObject.accidentals[va2 - 1][index]);
-    abcVoices[1] += transposeOctave(transposeValues[1], validateValue(voices[va2 - 1][index] + keyObject.t));
-    abcVoices[1] += measure[index];    
-    abcVoices[2] += getSign(keyObject.accidentals[va3 - 1][index]);
-    abcVoices[2] += transposeOctave(transposeValues[2], validateValue(voices[va3 - 1][index] + keyObject.t));
-    abcVoices[2] += measure[index];  
+function reorderVoices(voiceArr, newOrder) {
+  return newOrder.map(index => voiceArr[index - 1]);
+}
+
+const getVoices = (options, modelVoices) => {
+  let modelToneObjects = [[], [], []];
+  // set model key 
+  const fifthsValueToTranspose = _getModelKeyValue(options.modelKey)
+
+  for (let voicesIndex = 0; voicesIndex < modelVoices.length; voicesIndex += 1) {
+    const voice = modelVoices[voicesIndex];
+    for (let vIndex = 0; vIndex < voice.length; vIndex += 1) {
+      const toneObj = _createToneObject(voice[vIndex]);
+      const transposeUpValue = transposeUp(toneObj.fifthsValue, fifthsValueToTranspose);
+      console.log('transposeUpValue:', transposeUpValue)
+      toneObj.octave += transposeUpValue;
+      toneObj.fifthsValue += fifthsValueToTranspose;
+      modelToneObjects[voicesIndex].push(toneObj);
+    }    
+  }
+  // voice change 
+  modelToneObjects = options.voiceArrangement.map(index => modelToneObjects[index - 1]);
+  // voice octave transposition
+  for (let index = 0; index < modelToneObjects.length; index += 1) {
+    const voice = modelToneObjects[index];
+    voice.forEach(obj => {
+      obj.octave += options.transposeValues[index];
+    });
   }
 
-  // Begin of the upper five modulation with 6-5 motion
-  begin65 && _add56Consecutive(2, voiceArr, abcVoices, keyObject);
-  if (prinner) {
-    abcVoices = abcVoices.reduce((akku, elem, index) => {
-      const str = elem.split(' ');
-      str.splice(2, 1);        
-      if (index < 2) {
-        str.splice(3, 2);
-      } else {
-        str.splice(3, 1);
-        str.splice(4, 1);
-      }
-      akku.push(str.join(' '));
-      return akku;
-    }, []);
+  return modelToneObjects;
+}
+
+const convertModelVoiceToAbcSymbols = modelVoice => {
+  const voiceAbcSymbols = [];
+  let length = 2;
+  for (let index = 0; index < modelVoice.length; index += 1) {
+    const toneObj = modelVoice[index];
+    let abcValue = `${getToneFromFifthsValue(toneObj.fifthsValue)}${_getOctaveSpecifier(toneObj.octave)}${toneObj.length}`;
+    if (!toneObj.force && abcValue.startsWith('=')) {
+      abcValue = abcValue.slice(1);
+    }
+    voiceAbcSymbols.push(abcValue);
+    length += toneObj.length;
+    if (length % 4 === 0) {
+      voiceAbcSymbols.push('|');
+    }
   }
-  return abcVoices;
-};
+  return voiceAbcSymbols;
+}
+
+// Create the abc string representation of a voice model 
+// const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, begin65, prinner) => {
+//   const [va1, va2, va3] = voiceArr; // Contains the voice numbers 1, 2 and 3
+//   let abcVoices = ['', '', ''];
+//   for (let index = 0; index < voicesLength; index += 1) { 
+//     abcVoices[0] += getSign(keyObject.accidentals[va1 - 1][index]);
+//     abcVoices[0] += transposeOctave(transposeValues[0], validateValue(voices[va1 - 1][index] + keyObject.t));
+//     abcVoices[0] += measure[index];
+//     abcVoices[1] += getSign(keyObject.accidentals[va2 - 1][index]);
+//     abcVoices[1] += transposeOctave(transposeValues[1], validateValue(voices[va2 - 1][index] + keyObject.t));
+//     abcVoices[1] += measure[index];    
+//     abcVoices[2] += getSign(keyObject.accidentals[va3 - 1][index]);
+//     abcVoices[2] += transposeOctave(transposeValues[2], validateValue(voices[va3 - 1][index] + keyObject.t));
+//     abcVoices[2] += measure[index];  
+//   }
+
+//   // Begin of the upper five modulation with 6-5 motion
+//   begin65 && _add56Consecutive(2, voiceArr, abcVoices, keyObject);
+//   if (prinner) {
+//     abcVoices = abcVoices.reduce((akku, elem, index) => {
+//       const str = elem.split(' ');
+//       str.splice(2, 1);        
+//       if (index < 2) {
+//         str.splice(3, 2);
+//       } else {
+//         str.splice(3, 1);
+//         str.splice(4, 1);
+//       }
+//       akku.push(str.join(' '));
+//       return akku;
+//     }, []);
+//   }
+//   return abcVoices;
+// };
 
 // Create an array to terminate start sections of a voice model
 const _getBeginAtHelperArr = voiceLength => {
@@ -203,6 +372,9 @@ const convertToEmptyLines = (voices, hideUpperSystem, hideLowerSystem) => {
 };
  
 const ModelUtilities = {
+  getFifthsValueFromTone,
+  getToneFromFifthsValue,
+  convertModelVoiceToAbcSymbols,
   transposeOctave,
   validateValue,
   getSign,

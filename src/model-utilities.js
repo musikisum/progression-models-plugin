@@ -218,17 +218,17 @@ function reorderVoices(voiceArr, newOrder) {
   return newOrder.map(index => voiceArr[index - 1]);
 }
 
+// Modifies voices of a model according to the properties of the model
 const getVoices = (options, modelVoices) => {
   let modelToneObjects = [[], [], []];
   // set model key 
   const fifthsValueToTranspose = _getModelKeyValue(options.modelKey)
-
+  // Modify toneObjects
   for (let voicesIndex = 0; voicesIndex < modelVoices.length; voicesIndex += 1) {
     const voice = modelVoices[voicesIndex];
     for (let vIndex = 0; vIndex < voice.length; vIndex += 1) {
       const toneObj = _createToneObject(voice[vIndex]);
       const transposeUpValue = transposeUp(toneObj.fifthsValue, fifthsValueToTranspose);
-      console.log('transposeUpValue:', transposeUpValue)
       toneObj.octave += transposeUpValue;
       toneObj.fifthsValue += fifthsValueToTranspose;
       modelToneObjects[voicesIndex].push(toneObj);
@@ -236,69 +236,70 @@ const getVoices = (options, modelVoices) => {
   }
   // voice change 
   modelToneObjects = options.voiceArrangement.map(index => modelToneObjects[index - 1]);
-  // voice octave transposition
+  // octave transpositions
   for (let index = 0; index < modelToneObjects.length; index += 1) {
     const voice = modelToneObjects[index];
     voice.forEach(obj => {
       obj.octave += options.transposeValues[index];
     });
   }
-
   return modelToneObjects;
 }
 
+// Create measure abc code from an array of tone objects and remove not forced leading =-signs  
+function _getMeasureAbcCodeFromTonObjectsArray(toneObjArr) {
+  return toneObjArr.reduce((accu, toneObj) => {
+    let abcSymbol = `${getToneFromFifthsValue(toneObj.fifthsValue)}${_getOctaveSpecifier(toneObj.octave)}${toneObj.length}`;
+    if (!toneObj.force && abcSymbol.startsWith('=')) {
+      abcSymbol = abcSymbol.slice(1);
+    }
+    accu.push(abcSymbol);
+    return accu;
+  }, []);
+}
+
+// Remove redundant signs in a measure
+function _removeRedundantSignsInMeasure(measureSymbols, index = 0, done = {}, prefixPattern = /^([=_^]+)?/) {
+  // stop the loop 
+  if (index >= measureSymbols.length) {
+    return measureSymbols;
+  }
+  let symbol = measureSymbols[index];
+  if (done[symbol]) { // replace an symbol 
+    measureSymbols[index] = done[symbol];
+  } else { // save the modefied symbol for the next replace 
+    const modifiedSymbol = symbol.replace(prefixPattern, '');
+    done[symbol] = modifiedSymbol;
+  }
+  // recursive method call 
+  return _removeRedundantSignsInMeasure(measureSymbols, index + 1, done, prefixPattern);
+}
+
+// Convert a voice of tone objects to an string ob abc symbols with measure signs 
 const convertModelVoiceToAbcSymbols = modelVoice => {
   const voiceAbcSymbols = [];
   let length = 2;
+  let tempArr = [];
   for (let index = 0; index < modelVoice.length; index += 1) {
     const toneObj = modelVoice[index];
-    let abcValue = `${getToneFromFifthsValue(toneObj.fifthsValue)}${_getOctaveSpecifier(toneObj.octave)}${toneObj.length}`;
-    if (!toneObj.force && abcValue.startsWith('=')) {
-      abcValue = abcValue.slice(1);
-    }
-    voiceAbcSymbols.push(abcValue);
+    tempArr.push(toneObj);
     length += toneObj.length;
     if (length % 4 === 0) {
+      let measureOfSymbols = _getMeasureAbcCodeFromTonObjectsArray(tempArr);
+      measureOfSymbols = _removeRedundantSignsInMeasure(measureOfSymbols);
+      voiceAbcSymbols.push(...measureOfSymbols);
       voiceAbcSymbols.push('|');
+      tempArr = [];
+    }
+    if (index === modelVoice.length - 1) {
+      let halfMeasureOfSymbols = _getMeasureAbcCodeFromTonObjectsArray(tempArr);
+      halfMeasureOfSymbols = _removeRedundantSignsInMeasure(halfMeasureOfSymbols);
+      voiceAbcSymbols.push(...halfMeasureOfSymbols);
+      tempArr = [];
     }
   }
   return voiceAbcSymbols;
 }
-
-// Create the abc string representation of a voice model 
-// const getVoices = (transposeValues, voiceArr, voices, keyObject, voicesLength, measure, begin65, prinner) => {
-//   const [va1, va2, va3] = voiceArr; // Contains the voice numbers 1, 2 and 3
-//   let abcVoices = ['', '', ''];
-//   for (let index = 0; index < voicesLength; index += 1) { 
-//     abcVoices[0] += getSign(keyObject.accidentals[va1 - 1][index]);
-//     abcVoices[0] += transposeOctave(transposeValues[0], validateValue(voices[va1 - 1][index] + keyObject.t));
-//     abcVoices[0] += measure[index];
-//     abcVoices[1] += getSign(keyObject.accidentals[va2 - 1][index]);
-//     abcVoices[1] += transposeOctave(transposeValues[1], validateValue(voices[va2 - 1][index] + keyObject.t));
-//     abcVoices[1] += measure[index];    
-//     abcVoices[2] += getSign(keyObject.accidentals[va3 - 1][index]);
-//     abcVoices[2] += transposeOctave(transposeValues[2], validateValue(voices[va3 - 1][index] + keyObject.t));
-//     abcVoices[2] += measure[index];  
-//   }
-
-//   // Begin of the upper five modulation with 6-5 motion
-//   begin65 && _add56Consecutive(2, voiceArr, abcVoices, keyObject);
-//   if (prinner) {
-//     abcVoices = abcVoices.reduce((akku, elem, index) => {
-//       const str = elem.split(' ');
-//       str.splice(2, 1);        
-//       if (index < 2) {
-//         str.splice(3, 2);
-//       } else {
-//         str.splice(3, 1);
-//         str.splice(4, 1);
-//       }
-//       akku.push(str.join(' '));
-//       return akku;
-//     }, []);
-//   }
-//   return abcVoices;
-// };
 
 // Create an array to terminate start sections of a voice model
 const _getBeginAtHelperArr = voiceLength => {

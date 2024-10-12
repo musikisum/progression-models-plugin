@@ -228,6 +228,7 @@ const getVoices = (options, modelVoices) => {
     const voice = modelVoices[voicesIndex];
     for (let vIndex = 0; vIndex < voice.length; vIndex += 1) {
       const toneObj = _createToneObject(voice[vIndex]);
+      console.log('toneObj:', toneObj)
       const transposeUpValue = transposeUp(toneObj.fifthsValue, fifthsValueToTranspose);
       toneObj.octave += transposeUpValue;
       toneObj.fifthsValue += fifthsValueToTranspose;

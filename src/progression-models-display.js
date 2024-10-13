@@ -38,7 +38,7 @@ export default function MusicPuzzleDisplay({ content }) {
       const descriptions = [];
       for (let index = 0; index < modelTemplates.length; index += 1) {
         const modelTemplate = modelTemplates[index];
-        const modelObj = ModelProvider.getModel(modelTemplate.name).getVoices();
+        const modelObj = ModelProvider.getModel(modelTemplate.name).getVoices(modelTemplate);
         voices.push(modelObj);
         const text = modelTemplate.customDescription === ''
           ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)

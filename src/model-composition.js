@@ -1,7 +1,7 @@
 import ModelUtilities from './model-utilities.js';
 
 // Provides meta informations for an abc.js header of a phrase model combination in a modelKey and a measure.
-const getMeta = (modelKey, measure, tempo, stretchLastLine) => {
+const _getMeta = (modelKey, measure, tempo, stretchLastLine) => {
   const metaResult = ['X:1'];
   metaResult.push('%%score [(1 2) 3]');
   metaResult.push(`%%measurenb 0${stretchLastLine ? '\n%%stretchLast 1' : ''}`);
@@ -13,7 +13,8 @@ const getMeta = (modelKey, measure, tempo, stretchLastLine) => {
   return metaResult.join('\n');;
 };
 
-const convertModelVoicesToAbcVoices = modelVoices => {
+// Convert a voices collection with tone objcts in a collection with abc values 
+const _convertModelVoicesToAbcVoices = modelVoices => {
   return modelVoices.reduce((accu, modelVoice) => {
     for (let index = 0; index < modelVoice.length; index += 1) {
       const voiceToneObjects = modelVoice[index];
@@ -24,67 +25,54 @@ const convertModelVoicesToAbcVoices = modelVoices => {
   }, []);
 }
 
-// creates an array with playable abc.js strings from arrays with model voices 
+// Creates an array with playable abc.js strings from arrays with tone objects of model voices
 const getModelAbcOutput = (modelKey, measure, tempo, modelVoices) => {
-  const abcResult = [getMeta(modelKey, measure, tempo)];
-  const voices = convertModelVoicesToAbcVoices(modelVoices);
+  const abcResult = [_getMeta(modelKey, measure, tempo)];
+  const voices = _convertModelVoicesToAbcVoices(modelVoices);
   abcResult.push(`V:1\n${voices[0].join(' ')}`);
   abcResult.push(`V:2\n${voices[1].join(' ')}`);
   abcResult.push(`V:3 bass\n${voices[2].join(' ')}`);
   return abcResult.join('\n');
 };
 
-const lookupAndSetForceValue = (voiceObj1, voiceObj2) => {
+// Set a force flag for the first voice objects of a model voice 
+const _lookupAndSetForceValue = (voiceObj1, voiceObj2) => {
   const numer1 = Math.abs(voiceObj1.fifthsValue);
   const numer2 = Math.abs(voiceObj2.fifthsValue);
-  return !((numer1 + numer2) % 7 === 0);
+  return voiceObj1.fifthsValue !== voiceObj2.fifthsValue && 
+  (Math.abs(voiceObj1.fifthsValue) + Math.abs(voiceObj2.fifthsValue)) % 7 === 0;
 }
 
-const getCompositionAbcOutput = (modelKey, measure, tempo, modelVoices, barsPerLine, stretchLastLine) => {
-  const abcResult = [getMeta(modelKey, measure, tempo)];
-  const voices = convertModelVoicesToAbcVoices(modelVoices);
-  let v1 = '';
-  let v2 = '';
-  let v3 = '';
-  voices.map((voice, index) => {
+// Create the abc output from collections with tone ojects of models
+const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, stretchLastLine) => {
+  const abcResult = [_getMeta(modelKey, measure, tempo)];   
+  let voicesCollection = models.map((modelVoices, index, arr) => {
+    const [cmV1, cmV2, cmV3] = modelVoices;
+    if (index > 0) {
+      const lastModelVoices = arr[index - 1];
+      const [lmV1, lmV2, lmV3] = lastModelVoices;
+      cmV1[0].force = _lookupAndSetForceValue(lmV1[lmV1.length - 1], cmV1[0]);
+      cmV2[0].force = _lookupAndSetForceValue(lmV2[lmV2.length - 1], cmV2[0]);
+      cmV3[0].force = _lookupAndSetForceValue(lmV3[lmV3.length - 1], cmV3[0]);
+    }
+    return modelVoices;
+  });
+  const voices = _convertModelVoicesToAbcVoices(voicesCollection);
+  let [v1, v2, v3] = [[], [], []];
+  voices.forEach((voice, index) => {
     const arrIndex = index % 3;
     if (arrIndex === 0) {
-      v1 += ` ${voice.join(' ')}`;
+      v1.push(...voice);
     } else if (arrIndex === 1) {
-      v2 += ` ${voice.join(' ')}`;
+      v2.push(...voice);
     } else {
-      v3 += ` ${voice.join(' ')}`;
+      v3.push(...voice);
     }
   });
-  abcResult.push(`V:1\n${v1.trim()}`);
-  abcResult.push(`V:2\n${v2.trim()}`);
-  abcResult.push(`V:3 bass\n${v3.trim()}`);
+  abcResult.push(`V:1\n${v1.join(' ')}`);
+  abcResult.push(`V:2\n${v2.join(' ')}`);
+  abcResult.push(`V:3 bass\n${v3.join(' ')}`);
   return abcResult.join('\n');
-  // Set force flag for beginning voice objects of a model voice 
-  // let modelVoices = voicesOjects.map((voiceObj, index, voiceObjArr) =>{
-  //   if (index > 0) {
-  //     const lastVoiceObj = voiceObjArr[index - 1];
-  //     const forcesFlag0 = lookupAndSetForceValue(lastVoiceObj[0], voiceObj[0]);
-  //     voiceObj[0].force = forcesFlag0;
-  //     const forcesFlag1 = lookupAndSetForceValue(lastVoiceObj[1], voiceObj[1]);
-  //     voiceObj[1].force = forcesFlag1;
-  //     const forcesFlag2 = lookupAndSetForceValue(lastVoiceObj[2], voiceObj[2]);
-  //     voiceObj[2].force = forcesFlag2;
-  //   }
-  //   return voiceObj;
-  // });
-  // console.log('modelVoices:', modelVoices)
-  // const abcVoices = [[], [], []]
-  // const allAbcVoices = convertModelVoicesToAbcVoices(voicesOjects);
-  // for (let index = 0; index < allAbcVoices.length; index += 1) {
-  //   const arrIndex = index % 3; 
-  //   abcVoice[arrIndex] = ` ${allAbcVoices[index]}`;
-  // }
-  // const abcResult = [getMeta(modelKey, measure, tempo, stretchLastLine)];
-  // abcResult.push(`V:1\n${abcVoices[0].trim()}`);
-  // abcResult.push(`V:2\n${abcVoices[1].trimm()}`);
-  // abcResult.push(`V:3 bass\n${abcVoices[2].trimm()}`);
-  // return abcResult;
 }
 
 const ModelComposition = {

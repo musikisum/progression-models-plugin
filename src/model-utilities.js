@@ -1,5 +1,6 @@
 import ModelProvider from './model-provider.js';
 
+// Provide values of fifths
 const _fifthsValues = {
   '^^D': 14,
   '^^G': 13,
@@ -26,6 +27,7 @@ const _fifthsValues = {
   '_F': -8
  };
 
+// Set the direction up/down of a tone object transposition
 const transposeUp = (fifthsValue, transposeFifthsValue) => {
   const values = [0, 4, 1, 5, 2, 6, 3];
   const val1 = values[((fifthsValue % 7) + 7) % 7];
@@ -33,67 +35,68 @@ const transposeUp = (fifthsValue, transposeFifthsValue) => {
   return (val1 + val2) > 6 ? 1 : 0;
 }
 
- const _getModelKeyValue = modelKey => {
-  switch (modelKey) {
-    case 'E':
-    case 'C#m':
-      return _fifthsValues['=E'];
-    case 'A':
-    case 'F#m':
-      return _fifthsValues['=A'];
-    case 'D':
-    case 'Bm':
-      return _fifthsValues['=D'];
-    case 'G':
-    case 'Em':
-      return _fifthsValues['=G'];
-    case 'C':
-    case 'Am':
-      return _fifthsValues['=C'];
-    case 'F':
-    case 'Dm':
-      return _fifthsValues['=F'];
-    case 'Bb':
-    case 'Gm':
-      return _fifthsValues['_B'];
-    case 'Eb':
-    case 'Cm':
-      return _fifthsValues['_E'];
-    case 'Ab':
-    case 'Fm':
-      return _fifthsValues['_A'];
-    default:
-      return 0;
-  }
- }
+//
+const _getModelKeyValue = modelKey => {
+switch (modelKey) {
+  case 'E':
+  case 'C#m':
+    return _fifthsValues['=E'];
+  case 'A':
+  case 'F#m':
+    return _fifthsValues['=A'];
+  case 'D':
+  case 'Bm':
+    return _fifthsValues['=D'];
+  case 'G':
+  case 'Em':
+    return _fifthsValues['=G'];
+  case 'C':
+  case 'Am':
+    return _fifthsValues['=C'];
+  case 'F':
+  case 'Dm':
+    return _fifthsValues['=F'];
+  case 'Bb':
+  case 'Gm':
+    return _fifthsValues['_B'];
+  case 'Eb':
+  case 'Cm':
+    return _fifthsValues['_E'];
+  case 'Ab':
+  case 'Fm':
+    return _fifthsValues['_A'];
+  default:
+    return 0;
+}
+}
 
 // Provide a fifths value from an abc symbol
 const getFifthsValueFromTone = symbol => {
-  return _fifthsValues[symbol];
+return _fifthsValues[symbol];
 }
 
 // Provide an abc symbol from a fifts value
 const getToneFromFifthsValue = number => {
-  if (number < -9 && number < 15) {
-    console.log(`The fifths value ${number} ist out of range`);
-  }
-  return Object.keys(_fifthsValues).find(key => _fifthsValues[key] === number);
+if (number < -9 && number < 15) {
+  console.log(`The fifths value ${number} ist out of range`);
+}
+return Object.keys(_fifthsValues).find(key => _fifthsValues[key] === number);
 };
 
-// Create a tone object
+// Create a tone object from a model tone: [sign][tone][octave][length][:force]
 const _createToneObject = toneSymbol => {
-  const regex = /^(\^}^|\^|=|_|__)([CDEFGAB])(\d)(\d):?(\w+)?$/;
-  const match = toneSymbol.match(regex);
-  const toneObj = {};
-  const [, sign, tone, octave, length, additionals] = match;
-  toneObj.fifthsValue = _fifthsValues[`${sign}${tone}`];
-  toneObj.octave = parseInt(octave, 10) || 4;
-  toneObj.length = parseInt(length, 10) || 2;
-  toneObj.force = !!additionals;
-  return toneObj;
+const regex = /^(\^}^|\^|=|_|__)([CDEFGAB])(\d)(\d):?(\w+)?$/;
+const match = toneSymbol.match(regex);
+const toneObj = {};
+const [, sign, tone, octave, length, additionals] = match;
+toneObj.fifthsValue = _fifthsValues[`${sign}${tone}`];
+toneObj.octave = parseInt(octave, 10) || 4;
+toneObj.length = parseInt(length, 10) || 2;
+toneObj.force = !!additionals;
+return toneObj;
 };
 
-// Provide a valid abc octave value from a midi octave number
+// Provide a abc octave value from a midi octave number
 const _getOctaveSpecifier = octaveNumber => {
   switch (octaveNumber) {
     case 1:
@@ -134,30 +137,12 @@ const updateTransposeValues = (voiceArr, modelName) => {
   return returnValue;
 };
 
-// Hack to change the beginning of the upper five modulation to a 5-6 consecutive.
+// Set the beginning of the upper five modulation to a 6-5 consecutive
 const _add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
-  const specialIssues = ['C#m', 'F#m', 'Eb', 'Ab'];
-  const index = voiceArr.indexOf(voiceIndex);
-  const modVoice = abcVoices[index];
-  const [firstElem, ...rest] = modVoice.split('|');
-  let octaveModifications; let firstSign; let secondSign; let tone;
-  if (specialIssues.indexOf(keyObject.modelKey) < 0) {
-    firstSign = '';
-    secondSign = '';
-    tone = firstElem.trim().charAt(0);
-    octaveModifications = firstElem.trim().slice(1);
-  } else {
-    firstSign = firstElem.trim().charAt(0) === '^' ? '^' : '';
-    secondSign  = firstElem.trim().charAt(0);
-    tone = firstElem.trim().charAt(1);
-    octaveModifications = firstElem.trim().slice(2);
-  }
-  const nextTone = _diatonicScale[_diatonicScale.indexOf(tone) + 1];
-  const newFirstElem = `${firstSign}${nextTone}${octaveModifications}/ ${secondSign}${tone}${octaveModifications}/ | ${rest.join('|')}`;
-  abcVoices[index] = newFirstElem;
+  // TODO
 };
 
-// Modifies voices of a model according to the properties of the model
+// Modifies voices of a model in according to the modeltemplate properties
 const getVoices = (options, modelVoices) => {
   let modelToneObjects = [[], [], []];
   // set model key 
@@ -240,6 +225,7 @@ const convertModelVoiceToAbcSymbols = modelVoice => {
   return voiceAbcSymbols;
 }
 
+// Convert an abc string t an empty line
 const convertToEmptyLines = (voices, hideUpperSystem, hideLowerSystem) => {
   const result = voices[2].split(/[| ]+/).filter(entry => entry !== '');
   const newV1Arr = [], newV2Arr = [], newV3Arr = [];

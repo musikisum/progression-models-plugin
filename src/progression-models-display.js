@@ -38,20 +38,14 @@ export default function MusicPuzzleDisplay({ content }) {
       const descriptions = [];
       for (let index = 0; index < modelTemplates.length; index += 1) {
         const modelTemplate = modelTemplates[index];
-        const voiceModel = ModelProvider.getModel(modelTemplate.name);
-        let modelVoices;
-        if (hideUpperSystem || hideLowerSystem) {
-          modelVoices = voiceModel.getMutedVoices(voiceModel.getVoices(modelTemplate), hideUpperSystem, hideLowerSystem);
-        } else {
-          modelVoices = voiceModel.getVoices(modelTemplate);
-        }
-        voices.push(modelVoices);
+        const modelObj = ModelProvider.getModel(modelTemplate.name).getVoices();
+        voices.push(modelObj);
         const text = modelTemplate.customDescription === ''
           ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)
           : modelTemplate.customDescription; 
         descriptions.push(text);        
       }
-      let playableABC = ModelComposition.getModelAbcOutput('C', measure, tempo, voices, measuresPerLine, stretchLastLine);
+      let playableABC = ModelComposition.getCompositionAbcOutput('C', measure, tempo, voices, measuresPerLine, stretchLastLine);
       if(transposeValue !== 0) {
         playableABC = Transposer.getTransposition(playableABC, transposeValue);
       }

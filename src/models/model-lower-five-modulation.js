@@ -1,33 +1,8 @@
 import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
-const _keyObj = {
-  'E': { modelKey: 'E', t: 2, accidentals: [[1, 1, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 1, 0, 0, 1], [0, 0, 0, 1, 0, 0, 0, 0]] },
-  'C#m': { modelKey: 'C#m', t: 0, accidentals: [[0, 1, 0, 1, 1, 1, 1, 1], [1, 1, '=', '=', 0, 1, 1, 0], [1, 1, 0, 1, 1, 1, 1, 1]] },
-  'A': { modelKey: 'A', t: -2, accidentals: [[1, 0, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 1, 0, 0, 1], [0, 0, 0, 1, 0, 0, 0, 0]] },
-  'F#m': { modelKey: 'F#m', t: 3, accidentals: [[0, 1, 0, 1, 0, 0, 1, 0], [1, 1, '=', '=', 0, 1, 1, 0], [1, 1, 0, 1, 0, 1, 1, 0]] },
-  'D': { modelKey: 'D', t: 1, accidentals: [[1, 0, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0]] },
-  'Bm': { modelKey: 'Bm', t: 2, accidentals: [[0, 1, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0]] },
-  'G': { modelKey: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, '=', '=', 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]] },
-  'Em': { modelKey: 'Em', t: 2, accidentals: [[0, 1, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0]] },
-  'C': { modelKey: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, -1, -1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]] },
-  'Am': { modelKey: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0]] },
-  'F': { modelKey: 'F', t: 3, accidentals: [[0, 0, 0, 0, -1, -1, 0, -1], [0, 0, -1, -1, 0, 0, 0, 0], [0, 0, 0, 0, -1, 0, 0, -1]] },
-  'Dm': { modelKey: 'Dm', t: 1, accidentals: [[0, 0, 0, 0, 0, 0, 1, 0], [0, 0, '=', '=', -1, 0, 0, -1], [0, 0, 0, 1, 0, 0, 0, 0]] },
-  'Bb': { modelKey: 'Bb', t: -1, accidentals: [[0, 0, 0, -1, -1, -1, 0, -1], [-1, -1, -1, -1, 0, 0, 0, 0], [-1, 0, 0, 0, -1, -1, -1, -1]] },
-  'Gm': { modelKey: 'Gm', t: -3, accidentals: [[-1, 0, 0, 0, 0, 0, '=', 0], [0, 0, '=', '=', -1, 0, 0, -1], [0, 0, 0, '=', 0, 0, 0, 0]] },
-  'Eb': { modelKey: 'Eb', t: 2, accidentals: [[0, 0, 0, -1, -1, -1, 0, -1], [-1, -1, -1, -1, 0, -1, -1, 0], [-1, -1, 0, 0, -1, 0, 0, -1]] },
-  'Cm': { modelKey: 'Cm', t: 0, accidentals: [[-1, 0, 0, 0, 0, 0, '=', 0], [0, 0, -1, -1, -1, 0, 0, -1], [0, 0, 0, '=', 0, 0, 0, 0]] },
-  'Ab': { modelKey: 'Ab', t: -2, accidentals: [[0, -1, 0, -1, -1, -1, 0, -1], [-1, -1, -1, -1, 0, -1, -1, 0], [-1, -1, 0, 0, -1, -1, 0, -1]] },
-  'Fm': { modelKey: 'Fm', t: 3, accidentals: [[-1, 0, 0, 0, -1, -1, '=', -1], [0, 0, -1, -1, -1, 0, 0, -1], [0, 0, 0, '=', -1, 0, 0, -1]] }
-};
-
-function _getKeyObject(change) {  
-  return _keyObj[change];
-}
-
 function getModelKeys() {
-  return Object.keys(_keyObj);
+  return ['E','C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
 }
 
 const getOptions = change => {
@@ -39,55 +14,34 @@ const getOptions = change => {
 };
 
 const getVoices = lowerFifthModulationOptions => {
-  const voicesLength = 8;
-  const measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
-  const voices = [[9, 8, 8, 7, 10, 10, 9, 10], [7, 7, 6, 6, 5, 4, 4, 5], [0, 4, 4, 2, 3, 0, 0, 3]];
   const options = lowerFifthModulationOptions || getOptions();
-  const changeMode = options.addProps['changeMode'][0];
-  const keyObject = _getKeyObject(options.modelKey);
-
-  switch (options.modelKey) {
-    case 'Cm':
-    case 'Gm':
-    case 'Dm':
-      keyObject.accidentals[1][4] = changeMode ? 0 : -1;
-      keyObject.accidentals[1][7] = changeMode ? 0 : -1;
-      options.addProps['changeMode'][1] = false;
-      break;
-    case 'C':
-    case 'G':
-    case 'D':
-      keyObject.accidentals[1][4] = changeMode ? -1 : 0;
-      keyObject.accidentals[1][7] = changeMode ? -1 : 0;
-      options.addProps['changeMode'][1] = false;
-      break;
-    case 'Am':
-    case 'Em':
-    case 'Bm':
-    case 'F#m':
-      keyObject.accidentals[1][4] = changeMode ? 1 : 0;
-      keyObject.accidentals[1][7] = changeMode ? 1 : 0;
-      options.addProps['changeMode'][1] = false;
-      break;
-    case 'A':
-    case 'E':
-      keyObject.accidentals[1][4] = changeMode ? 0 : 1;
-      keyObject.accidentals[1][7] = changeMode ? 0 : 1;
-      options.addProps['changeMode'][1] = false;
-      break;
-    default:      
-      options.addProps['changeMode'][1] = true;      
-      break;
+  const isMinor = options.modelKey.includes('m');
+  let voices;
+  if (!isMinor) {
+    voices = [
+      ['=E42', '=D42', '=D42', '=C42', '=F42', '=F42', '=E42', '=F42'],
+      ['=C42', '=C42', '_B32:f', '_B32', '=A32', '=G32', '=G32', '=A32'],
+      ['=C32', '=G32', '=G32', '=E32', '=F32', '=C32', '=C32', '=F32']
+     ]
+  } else {
+    voices = [
+      ['=C52', '=B42', '=B42', '=A42', '=D52', '=D52', '^C52', '=D52'],
+      ['=A42', '=A42', '=G42:f', '=G42', '=F42', '=E42', '=E42', '=F42'],
+      ['=A32', '=E42', '=E42', '^C42', '=D42', '=A32', '=A32', '=D42']
+    ]
+  }
+  if (options.addProps['changeMode'][0]) {
+    if (!isMinor) {
+      voices[0][6] = '=E42:f';
+      voices[1][4] = '_A32';
+      voices[1][7] = '_A32';
+    } else {
+      voices[1][4] = '^F42';
+      voices[1][7] = '^F42';
+    }
   }
 
-  return ModelUtilities.getVoices(
-    options.transposeValues, 
-    options.voiceArrangement, 
-    voices, 
-    keyObject, 
-    voicesLength, 
-    measure
-  );
+  return ModelUtilities.getVoices(options, voices);
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {

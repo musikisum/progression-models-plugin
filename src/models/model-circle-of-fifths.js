@@ -30,6 +30,19 @@ const getVoices = circleOfFifthsOptions => {
       ['=A22', '=D32', '=G22', '=C32', '=F22', '=B22', '=E22', '=A22']
     ]
   }
+  if (options.addProps['bassReverse'][0]) {
+    voices[2] = !isMinor ? 
+    ['=C32', '=F22', '=B22', '=E22', '=A22', '=D22', '=G22', '=C22'] :
+    ['=A22', '=D22', '=G22', '=C22', '=F22', '=B12', '=E22', '=A12'];
+  }
+  const partLengthValue = options.addProps['partLengthValues'][0];
+  if (partLengthValue !== 4) {
+    voices = voices.map(arr => arr.slice(0, partLengthValue * 2));
+  }
+  const partToBeginValues = options.addProps['partToBeginValues'][0]
+  if (partToBeginValues !== 1) {
+    voices = voices.map(arr => arr.slice((partToBeginValues - 1) * 2));
+  }
   return ModelUtilities.getVoices(options, voices);
 };
 

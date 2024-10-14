@@ -19,31 +19,50 @@ const getVoices = upperFifthModulationOptions => {
   let voices;
   if (!isMinor) {
     voices = [
+      ['=G42', '^F42', '=G42', '=G42', '^F42', '=G42'],
       ['=E42', '=D42', '=D42', '=C42', '=C42', '=B32'],
-      ['=G32', '^F32', '=G32', '=G32', '^F32', '=G32'],
       ['=C32', '=C32', '=B22', '=A22', '=D32', '=G22']
      ]
   } else {
     voices = [
-      ['=C52', '=B42', '=B42', '=A42', '=A42', '=G42'],
       ['=E42', '^D42', '=E42', '=E42', '^D42', '=E42'],
+      ['=C42', '=B32', '=B32', '=A32', '=A32', '=G32'],
       ['=A32', '=A32', '=G32', '^F32', '=B32', '=E32']
     ]
   }
-  
+  // Set values for changeMod selection 
+  if (options.addProps['changeMode'][0]) {
+    options.addProps['prinner'] = [false, false];
+    if (!isMinor) {
+      voices[1][5] = '_B32';
+      voices[2][2] = '_B22';
+    } else {
+      voices[1][5] = '^G42';
+      voices[2][2] = '^G32';
+    }
+  }  
   // Set values for prinner selection 
-  const prinner = options.addProps['prinner'][0];
-  if(prinner) {
+  if(options.addProps['prinner'][0]) {
     options.addProps['changeMode'] = [false, true];
     options.addProps['begin65'] = [false, true];
+    voices = !isMinor ? 
+    [
+      ['=G42', '=G42', '^F42', '=G42'],
+      ['=E42', '=D42', '=C42', '=B32'],
+      ['=C32', '=B22', '=A22', '=G22']
+     ] :
+     [
+      ['=E42', '=E42', '^D42', '=E42'],
+      ['=C42', '=B32', '=A32', '=G32'],
+      ['=A32', '=G32', '^F32', '=E32']
+     ];
   } else {
     options.addProps['changeMode'][1] = false;
     options.addProps['begin65'][1] = false;
   }
-  
-  // Set values for changing mode or 6-5 begin
-  const changeMode = options.addProps['changeMode'][0];
-  const begin65 = options.addProps['begin65'][0]; 
+  if (options.addProps['begin65'][0]) {
+   // TODO:  
+  }
 
   return ModelUtilities.getVoices(options, voices);
 };

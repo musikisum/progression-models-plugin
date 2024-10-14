@@ -35,21 +35,25 @@ const getModelAbcOutput = (modelKey, measure, tempo, modelVoices) => {
   return abcResult.join('\n');
 };
 
-// Set a force flag for the first voice objects of a model voice 
+// Set a force flag for the first voice objects of a model voice
+// (Actually inly valid for twice voiceObjects in a measure)
 const _lookupAndSetForceValue = (voiceObj1, voiceObj2) => {
-  const numer1 = Math.abs(voiceObj1.fifthsValue);
-  const numer2 = Math.abs(voiceObj2.fifthsValue);
-  return voiceObj1.fifthsValue !== voiceObj2.fifthsValue && 
-  (Math.abs(voiceObj1.fifthsValue) + Math.abs(voiceObj2.fifthsValue)) % 7 === 0;
+  const val1 = voiceObj1.fifthsValue;
+  const val2 = voiceObj2.fifthsValue;
+  if (val1 === val2) {
+    return false;
+  }
+  const isGreaterThan6 = Math.abs(val1 - val2) > 6;
+  // console.log('> 6:', isGreaterThan6, val1, val2)
+  return isGreaterThan6 && (val1 - val2) % 7 === 0;
 }
 
 // Create the abc output from collections with tone ojects of models
 const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, stretchLastLine) => {
   const abcResult = [_getMeta(modelKey, measure, tempo)];
-  // Hier erst alle Modells verbinden und dann redundante Vorzeichen entfernen (dann dürfte die Lookup-Methode redundant sein)
   let voicesCollection = models.map((modelVoices, index, arr) => {
-    const [cmV1, cmV2, cmV3] = modelVoices;
     if (index > 0) {
+      const [cmV1, cmV2, cmV3] = modelVoices;
       const lastModelVoices = arr[index - 1];
       const [lmV1, lmV2, lmV3] = lastModelVoices;
       cmV1[0].force = _lookupAndSetForceValue(lmV1[lmV1.length - 1], cmV1[0]);

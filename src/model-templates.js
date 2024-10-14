@@ -200,7 +200,7 @@ V:3 bass
     key: '',
     name: 'upperFiveModulation',
     modelKey: 'C',
-    transposeValues: [0, 0, -1],
+    transposeValues: [0, 0, 0],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
     customDescription: '',

@@ -45,7 +45,8 @@ const _lookupAndSetForceValue = (voiceObj1, voiceObj2) => {
 
 // Create the abc output from collections with tone ojects of models
 const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, stretchLastLine) => {
-  const abcResult = [_getMeta(modelKey, measure, tempo)];   
+  const abcResult = [_getMeta(modelKey, measure, tempo)];
+  // Hier erst alle Modells verbinden und dann redundante Vorzeichen entfernen (dann dürfte die Lookup-Methode redundant sein)
   let voicesCollection = models.map((modelVoices, index, arr) => {
     const [cmV1, cmV2, cmV3] = modelVoices;
     if (index > 0) {

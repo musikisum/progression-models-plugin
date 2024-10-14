@@ -249,7 +249,8 @@ V:2 bass
 "_J. S. Bach, kleines Präludium C-Dur BWV 924, T. 3–6"E,4 E4 A,4 B,4 | C4 E,4 ^F,4 ^G,4 | A,4 C,4 D,4 E,4 | F,4 E,4 |`
 },
     addProps: {
-      numberOfSections: [3, 3, false]
+      numberOfSections: [4, 4, false],
+      confirmation: [true, false]
     }
   },
   parallelismDown: {

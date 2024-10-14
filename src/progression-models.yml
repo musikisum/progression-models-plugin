@@ -113,6 +113,9 @@ musikisum/educandu-plugin-progression-models:
   parallelismDiminuated:
     en: Parallelism (chrom.)
     de: Parallelismus (chrom.)
+  confirmation:
+    en: Confirmation
+    de: Bestätigung
   numberOfSections:
     en: Sections
     de: Abschnitte

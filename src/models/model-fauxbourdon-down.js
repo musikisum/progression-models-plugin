@@ -13,50 +13,6 @@ const getOptions = change => {
   return modelTemplate;
 };
 
-function _AdjustOptions(options) {
-  switch(options.addProps.numberOfSections[0]) {
-    case 1: 
-      if(options.addProps.syncopation[0]) { // with syncopations
-        options.voices = [[5, 5, 4, 4], [9, 8, 8, 7], [7, 6, 6, 5]];
-        options.measure = [' | ', ' ', ' | ', ' '];
-        options.voicesLength = 4;
-      } else { // without syncopations
-        options.voices = [[5, 4], [9, 8], [7, 6]];
-        options.measure = [' | ', ' '];
-        options.voicesLength = 2;
-      }
-      break;
-    case 2:
-      if(options.addProps.syncopation[0]) { // with syncopations
-        options.voices = [[5, 5, 4, 4, 3, 3, 2, 2], [9, 8, 8, 7, 7, 6, 6, 5], [7, 6, 6, 5, 5, 4, 4, 3]];
-        options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
-        options.voicesLength = 8;
-      } else { // without syncopations
-        options.voices = [[5, 4, 3, 2], [9, 8, 7, 6], [7, 6, 5, 4]]; 
-        options.measure = [' | ', ' ', ' | ', ' '];
-        options.voicesLength = 4;
-      }      
-      break;
-    default:
-      if(options.addProps.syncopation[0]) { // with syncopations
-        options.voices = [[5, 5, 4, 4, 3, 3, 2, 2, 1, 1], [9, 8, 8, 7, 7, 6, 6, 5, 5, 4], [7, 6, 6, 5, 5, 4, 4, 3, 3, 2]];
-        options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
-        options.voicesLength = 10;
-      } else { // without syncopations
-        options.voices = [[5, 4, 3, 2, 1, 0], [9, 8, 7, 6, 5, 4], [7, 6, 5, 4, 3, 2]];
-        options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' '];
-        options.voicesLength = 6;
-      }      
-      break;
-  }
-}
-
-function _AdjustLamento(options) {
-  options.voices = [[5, 5, 4, 4, 3, 3, 2, 1], [9, 8, 8, 7, 7, 6, 7, 6], [7, 6, 6, 5, 5, 4, 3, 4]];
-  options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
-  options.voicesLength = 8;
-}
-
 const getVoices = fauxbourdonOptions => {
   const options = fauxbourdonOptions || getOptions();
   const isMinor = options.modelKey.includes('m');
@@ -74,7 +30,6 @@ const getVoices = fauxbourdonOptions => {
         ['=C42', '=B32', '=B32', '=A32', '=A32', '=G32', '=G32', '=F32', '=F32', '=E32'],
         ['=A32', '=G32', '=G32', '=F32', '=F32', '=E32', '=E32', '=D32', '=D32', '=C32']
       ];
-
   } 
 
   if (options.addProps.chromaticBass[0]) {
@@ -85,8 +40,7 @@ const getVoices = fauxbourdonOptions => {
     } else {
       voices[1] = ['=C42', '=B32:f', '_B32:f', '=A32:f', '_A32:f', '=G32:f', '=G32:f', '^F32:f', '=F32:f', '=E32'];
       voices[2] = ['=A32', '^G32:f', '=G32:f', '^F32:f', '=F32:f', '=E32:f', '=E32:f', '^D32:f', '=D32:f', '=C32'];
-    }
-    
+    }    
   } else {    
     options.addProps.syncopation[1] = false;
   }

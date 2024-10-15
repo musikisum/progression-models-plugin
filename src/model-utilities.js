@@ -2,8 +2,8 @@ import ModelProvider from './model-provider.js';
 
 // Provide values of fifths
 const _fifthsValues = {
-  '^^D': 14,
-  '^^G': 13,
+  '^^C': 14,
+  '^^F': 13,
   '^B': 12,
   '^E': 11,
   '^A': 10,

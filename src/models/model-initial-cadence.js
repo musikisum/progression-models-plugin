@@ -22,20 +22,20 @@ const getVoices = cadenceOptions => {
       ['=G42', '=F42', '=F42', '=E42'],
       ['=E42', '=D42', '=D42', '=C42'],
       ['=C32', '=C32', '=B22', '=C32']
-     ]
+    ];
   } else {
     voices = [
       ['=E42', '=D42', '=D42', '=C42'],
       ['=C42', '=B32', '=B32', '=A32'],
       ['=A22', '=A22', '^G22', '=A22']
-    ]
+    ];
   }
   return ModelUtilities.getVoices(options, voices);
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
   return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
-}
+};
 
 const Cadence = {
   getDefaultOptions: getOptions,

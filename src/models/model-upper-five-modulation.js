@@ -22,17 +22,17 @@ const getVoices = upperFifthModulationOptions => {
       ['=G42', '^F42', '=G42', '=G42', '^F42', '=G42'],
       ['=E42', '=D42', '=D42', '=C42', '=C42', '=B32'],
       ['=C32', '=C32', '=B22', '=A22', '=D32', '=G22']
-     ]
+    ];
   } else {
     voices = [
       ['=E42', '^D42', '=E42', '=E42', '^D42', '=E42'],
       ['=C42', '=B32', '=B32', '=A32', '=A32', '=G32'],
       ['=A32', '=A32', '=G32', '^F32', '=B32', '=E32']
-    ]
+    ];
   }
   // Set values for changeMod selection 
-  if (options.addProps['changeMode'][0]) {
-    options.addProps['prinner'] = [false, false];
+  if (options.addProps.changeMode[0]) {
+    options.addProps.prinner = [false, false];
     if (!isMinor) {
       voices[1][5] = '_B32';
       voices[2][2] = '_B22';
@@ -42,26 +42,26 @@ const getVoices = upperFifthModulationOptions => {
     }
   }  
   // Set values for prinner selection 
-  if(options.addProps['prinner'][0]) {
-    options.addProps['changeMode'] = [false, true];
-    options.addProps['begin65'] = [false, true];
-    voices = !isMinor ? 
-    [
-      ['=G42', '=G42', '^F42', '=G42'],
-      ['=E42', '=D42', '=C42', '=B32'],
-      ['=C32', '=B22', '=A22', '=G22']
-     ] :
-     [
-      ['=E42', '=E42', '^D42', '=E42'],
-      ['=C42', '=B32', '=A32', '=G32'],
-      ['=A32', '=G32', '^F32', '=E32']
-     ];
+  if(options.addProps.prinner[0]) {
+    options.addProps.changeMode = [false, true];
+    options.addProps.begin65 = [false, true];
+    voices = !isMinor 
+      ? [
+        ['=G42', '=G42', '^F42', '=G42'],
+        ['=E42', '=D42', '=C42', '=B32'],
+        ['=C32', '=B22', '=A22', '=G22']
+      ]
+      : [
+        ['=E42', '=E42', '^D42', '=E42'],
+        ['=C42', '=B32', '=A32', '=G32'],
+        ['=A32', '=G32', '^F32', '=E32']
+      ];
   } else {
-    options.addProps['changeMode'][1] = false;
-    options.addProps['begin65'][1] = false;
+    options.addProps.changeMode[1] = false;
+    options.addProps.begin65[1] = false;
   }
-  if (options.addProps['begin65'][0]) {
-   // TODO:  
+  if (options.addProps.begin65[0]) {
+    // TODO:  
   }
 
   return ModelUtilities.getVoices(options, voices);
@@ -69,7 +69,7 @@ const getVoices = upperFifthModulationOptions => {
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
   return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
-}
+};
 
 const UpperFiveModulation = {
   getDefaultOptions: getOptions,

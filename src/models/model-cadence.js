@@ -2,7 +2,7 @@ import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
 function getModelKeys() {
-  return ['E','C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
+  return ['E', 'C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
 }
 
 const getOptions = change => {
@@ -22,17 +22,17 @@ const getVoices = cadenceOptions => {
       ['=E42', '=D42', '=D42', '=E42'],
       ['=C42', '=C42', '=B32', '=C42'],
       ['=E32', '=F32', '=G32', '=C32']
-     ]
+    ];
   } else {
     voices = [
       ['=C52', '=B42', '=B42', '=C52'],
       ['=A42', '=A42', '^G42:f', '=A42'],
       ['=C42', '=D42', '=E42', '=A32']
-    ]
+    ];
   }
-  const isBegin = options.addProps['isBegin'][0];
-  const isFinal = options.addProps['isFinal'][0];
-  const isDeceptive = options.addProps['isDeceptiv'][0];
+  const isBegin = options.addProps.isBegin[0];
+  const isFinal = options.addProps.isFinal[0];
+  const isDeceptive = options.addProps.isDeceptiv[0];
   if(isBegin) {
     voices[2][0] = !isMinor ? '=C42' : '=A42';
   }
@@ -49,7 +49,7 @@ const getVoices = cadenceOptions => {
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
   return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
-}
+};
 
 const Cadence = {
   getDefaultOptions: getOptions,

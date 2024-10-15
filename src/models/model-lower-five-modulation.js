@@ -22,15 +22,15 @@ const getVoices = lowerFifthModulationOptions => {
       ['=E42', '=D42', '=D42', '=C42', '=F42', '=F42', '=E42', '=F42'],
       ['=C42', '=C42', '_B32:f', '_B32', '=A32', '=G32', '=G32', '=A32'],
       ['=C32', '=G32', '=G32', '=E32', '=F32', '=C32', '=C32', '=F32']
-     ]
+    ];
   } else {
     voices = [
       ['=C52', '=B42', '=B42', '=A42', '=D52', '=D52', '^C52', '=D52'],
       ['=A42', '=A42', '=G42:f', '=G42', '=F42', '=E42', '=E42', '=F42'],
       ['=A32', '=E42', '=E42', '^C42', '=D42', '=A32', '=A32', '=D42']
-    ]
+    ];
   }
-  if (options.addProps['changeMode'][0]) {
+  if (options.addProps.changeMode[0]) {
     if (!isMinor) {
       voices[0][6] = '=E42:f';
       voices[1][4] = '_A32';
@@ -46,7 +46,7 @@ const getVoices = lowerFifthModulationOptions => {
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
   return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
-}
+};
 
 const LowerFiveModulation = {
   getDefaultOptions: getOptions,

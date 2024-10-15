@@ -39,7 +39,7 @@ V:2
 x | c c c | B B e | e e B | c/>d/ e/>d/ c3/4 x/4 |
 V:3
 "_J. S. Bach, Mathäus-Passion BWV 244, Teil II, Nr. 58, ›Aus Liebe‹"x | A A A | A A A | ^G G G | A/>B/ c/>B/ A3/4 x/4 |`
-},
+    },
     addProps: {}
   },
   cadence: {
@@ -53,7 +53,7 @@ V:3
     showDescription: false,
     example: {
       name: 'cadence',
-      abc: ``
+      abc: ''
     },
     addProps: { 
       isBegin: [false, false],
@@ -125,18 +125,18 @@ V:3 bass
     key: '',
     name: 'fauxbourdon',
     modelKey: 'C',
-    transposeValues: [1, 0, -1],
+    transposeValues: [0, 0, 0],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
     customDescription: '',
     showDescription: false,
     example: {
       name: 'fauxbourdon',
-      abc: ``
+      abc: ''
     },
     addProps: {
-      numberOfSections: [3, 3, false],
-      syncopation: [false, false],
+      partLengthValues: [5, 5, false],
+      syncopation: [true, false],
       chromaticBass: [false, false]
     }
   },
@@ -151,7 +151,7 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'lamento',
-      abc: ``
+      abc: ''
     },
     addProps: {
       syncopation: [false, false],
@@ -171,7 +171,7 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'fiveSixConsecutive',
-      abc: ``
+      abc: ''
     },
     addProps: {
       partLengthValues: [6, 6, false],
@@ -190,7 +190,7 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'lowerFiveModulation',
-      abc: ``
+      abc: ''
     },
     addProps: {
       changeMode: [false, false]
@@ -219,7 +219,7 @@ V: 2
 ABGA | ^FD G4 ^F2 | G2 D2
 V:3 bass
 "_J. S. Bach, Präludium und Fuge C-Dur BWV 545, Fuge T. 95 f."C4- | C2 B,2 A,2 D2 |  G,4`
-},
+    },
     addProps: {
       changeMode: [false, false],
       begin65: [false, false],
@@ -247,7 +247,7 @@ V:1
 z Bea z Beg z cef z Gdf | z Gde z Gce z Acd z EBd | z EBc z EAc z FA_B z CGB | z CGA z CFA |
 V:2 bass
 "_J. S. Bach, kleines Präludium C-Dur BWV 924, T. 3–6"E,4 E4 A,4 B,4 | C4 E,4 ^F,4 ^G,4 | A,4 C,4 D,4 E,4 | F,4 E,4 |`
-},
+    },
     addProps: {
       numberOfSections: [4, 4, false],
       confirmation: [true, false]
@@ -264,7 +264,7 @@ V:2 bass
     showDescription: false,
     example: {
       name: 'parallelismDown',
-      abc: ``
+      abc: ''
     },
     addProps: {
       numberOfSections: [3, 3, false],
@@ -282,7 +282,7 @@ V:2 bass
     showDescription: false,
     example: {
       name: 'parallelismUp',
-      abc: ``
+      abc: ''
     },
     addProps: {
       numberOfSections: [3, 3, false],
@@ -290,7 +290,7 @@ V:2 bass
       syncopation: [false, false]
     }
   }  
-}
+};
  
 const ModelTemplates = {
   getModelTemplate: modelName => templates[modelName],

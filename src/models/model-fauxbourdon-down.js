@@ -1,83 +1,8 @@
 import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
-const _keyObj = {
-  'E': { modelKey: 'E', t: -5, accidentals: [[1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0], [1, 1, 0, 0, 0, 1, 0, 1, 0, 0], [0, 1, 0, 1, 0, 0, 0, 0, 0, 1]] },
-  'C#m': { modelKey: 'C#m', t: 0, accidentals: [[0, 0, 1, 1, 1, 1, 0, 0, 1, 1], [0, 1, 0, 1, 0, 0, 0, 0, 0, 1], [1, 0, 0, 0, 0, 1, 0, 1, 0, 0]] },
-  'A': { modelKey: 'A', t: -2, accidentals: [[1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0], [1, 0, 0, 0, 0, 1, 0, 1, 0, 0], [0, 1, 0, 1, 0, 0, 0, 0, 0, 1]] },
-  'F#m': { modelKey: 'F#m', t: -4, accidentals: [[0, 0, 1, 1, 0, 0, 0, 0, 1, 1], [0, 1, 0, 1, 0, 0, 0, 0, 0, 1], [1, 0, 0, 0, 0, 1, 0, 0, 0, 0]] },
-  'D': { modelKey: 'D', t: 1, accidentals: [[0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0], [1, 0, 0, 0, 0, 1, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 1]] },
-  'Bm': { modelKey: 'Bm', t: -1, accidentals: [[0, 0, 1, 1, 0, 0, 0, 0, 1, 1], [0, 1, 0, 0, 0, 0, 0, 0, 0, 1], [0, 0, 0, 0, 0, 1, 0, 0, 0, 0]] },
-  'G': { modelKey: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0]] },
-  'Em': { modelKey: 'Em', t: -5, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 1, 1], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
-  'C': { modelKey: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
-  'Am': { modelKey: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]] },
-  'F': { modelKey: 'F', t: -4, accidentals: [[0, 0, 0, 0, -1, -1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, -1, 0, 0]] },
-  'Dm': { modelKey: 'Dm', t: -6, accidentals: [[-1, -1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, -1, 0, 0], [0, 0, 0, -1, 0, 0, 0, 0, 0, 0]] },
-  'Bb': { modelKey: 'Bb', t: -1, accidentals: [[0, 0, 0, 0, -1, -1, 0, 0, 0, 0, -1], [0, 0, 0, -1, 0, 0, 0, 0, 0, 0], [-1, 0, 0, 0, 0, 0, 0, -1, 0, 0]] },
-  'Gm': { modelKey: 'Gm', t: -3, accidentals: [[-1, -1, 0, 0, 0, 0, -1, -1, 0, 0], [-1, 0, 0, 0, 0, 0, -1, 0, 0, -1], [0, 0, 0, -1, 0, 0, 0, 0, 0, -1]] },
-  'Eb': { modelKey: 'Eb', t: 2, accidentals: [[0, 0, -1, -1, -1, -1, 0, 0, 0, 0, -1], [0, 0, 0, -1, 0, 0, 0, 0, 0, -1], [-1, 0, 0, 0, 0, -1, 0, -1, 0, 0]] },
-  'Cm': { modelKey: 'Cm', t: 0, accidentals: [[-1, -1, 0, 0, 0, 0, -1, -1, 0, 0], [-1, 0, 0, 0, 0, -1, 0, -1, 0, 0], [0, -1, 0, -1, 0, 0, 0, 0, 0, -1]] } ,
-  'Ab': { modelKey: 'Ab', t: -2, accidentals: [[0, 0, -1, -1, -1, -1, 0, 0, -1, -1, -1], [0, -1, 0, -1, 0, 0, 0, 0, 0, -1], [-1, 0, 0, 0, 0, -1, 0, -1, 0, 0]] },
-  'Fm': { modelKey: 'Fm', t: -4, accidentals: [[-1, -1, 0, 0, -1, -1, -1, -1, 0, 0], [-1, 0, 0, 0, 0, -1, 0, -1, 0, 0], [0, -1, 0, -1, 0, 0, 0, -1, 0, -1]] }  
-};
-
-const _keyObjShort = {
-  'E': { modelKey: 'E', t: -5, accidentals: [[1, 0, 0, 1, 1, 0], [1, 1, 0, 1, 1, 0], [0, 1, 1, 0, 0, 1]] },
-  'C#m': { modelKey: 'C#m', t: 0, accidentals: [[0, 1, 1, 0, 1, 1], [0, 1, 1, 0, 0, 1], [1, 0, 0, 1, 1, 0]] },
-  'A': { modelKey: 'A', t: -2, accidentals: [[1, 0, 0, 1, 0, 0], [1, 0, 0, 1, 1, 0], [0, 1, 1, 0, 0, 1]] },
-  'F#m': { modelKey: 'F#m', t: -4, accidentals: [[0, 1, 0, 0, 1, 1], [0, 1, 1, 0, 0, 1], [1, 0, 0, 1, 0, 0]] },
-  'D': { modelKey: 'D', t: 1, accidentals: [[0, 0, 0, 1, 0, 0], [1, 0, 0, 1, 0, 0], [0, 1, 0, 0, 0, 1]] },
-  'Bm': { modelKey: 'Bm', t: -1, accidentals: [[0, 1, 0, 0, 1, 0], [0, 1, 0, 0, 0, 1], [0, 0, 0, 1, 0, 0]] },
-  'G': { modelKey: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0], [0, 1, 0, 0, 0, 0]] },
-  'Em': { modelKey: 'Em', t: -5, accidentals: [[0, 0, 0, 0, 1, 0], [0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
-  'C': { modelKey: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
-  'Am': { modelKey: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]] },
-  'F': { modelKey: 'F', t: -4, accidentals: [[0, 0, -1, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, -1, 0]] },
-  'Dm': { modelKey: 'Dm', t: -6, accidentals: [[-1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, -1, 0, 0, 0]] },
-  'Bb': { modelKey: 'Bb', t: -1, accidentals: [[0, 0, -1, 0, 0, -1], [0, 0, -1, 0, 0, 0], [-1, 0, 0, 0, -1, 0]] },
-  'Gm': { modelKey: 'Gm', t: -3, accidentals: [[-1, 0, 0, 0, -1, 0], [0, 0, -1, 0, 0, -1], [0, 0, -1, -1, 0, 0]] },
-  'Eb': { modelKey: 'Eb', t: 2, accidentals: [[0, -1, -1, 0, 0, -1], [0, 0, -1, 0, 0, -1], [-1, 0, 0, -1, -1, 0]] },
-  'Cm': { modelKey: 'Cm', t: 0, accidentals: [[-1, 0, 0, -1, 0, 0], [-1, 0, 0, -1, -1, 0], [0, -1, -1, 0, 0, -1]] },
-  'Ab': { modelKey: 'Ab', t: -2, accidentals: [[0, -1, -1, 0, -1, -1], [0, -1, -1, 0, 0, -1], [-1, 0, 0, -1, -1, 0]] },
-  'Fm': { modelKey: 'Fm', t: -4, accidentals: [[-1, 0, -1, -1, 0, 0], [-1, 0, 0, -1, -1, 0], [0, -1, -1, 0, -1, -1]] }
-};
-
-const _keyObjLamento = {
-  'E': { modelKey: 'E', t: -5, accidentals: [[1, 1, 0, 0, 0, 0, '=', 1], [1, '^^', '^', 1, '=', 1, 0, 1], [0, 1, '=', 1, '=', 0, 1, 0]] },
-  'C#m': { modelKey: 'C#m', t: 0, accidentals: [[0, 0, 1, 1, 1, 1, 0, 1], [0, 1, '=', 1, 0, 1, 1, 1], [1, 1, '=', 1, '=', 1, '^^', 1]] },
-  'A': { modelKey: 'A', t: -2, accidentals: [[1, 1, 0, 0, 0, 0, '=', 0], [1, 1, '=', 1, '=', 1, 0, 1], [0, 1, '=', 1, '=', 0, 1, 0]] },
-  'F#m': { modelKey: 'F#m', t: -4, accidentals: [[0, 0, 1, 1, 0, 0, 0, 1], [0, 1, '=', 1, 1, 1, 1, 1], [1, 1, '=', 1, '=', 1, 1, 1]] },
-  'D': { modelKey: 'D', t: 1, accidentals: [[0, 0, 0, 0, 0, 0, '=', 0], [1, 1, '=', 1, '=', 1, 0, 1], [0, 1, '=', 0, -1, 0, 1, 0]] },
-  'Bm': { modelKey: 'Bm', t: -1, accidentals: [[0, 0, 1, 1, 0, 0, 0, 1], [0, 1, '=', 0, 0, 1, 0, 1], [0, 1, '=', 1, '=', 1, 1, 1]] },
-  'G': { modelKey: 'G', t: -3, accidentals: [[0, 0, 0, 0, 0, 0, -1, 0], [0, 1, '=', 1, '=', 1, 0, 1], [0, 1, '=', 0, -1, 0, 1, 0]] },
-  'Em': { modelKey: 'Em', t: -5, accidentals: [[0, 0, 0, 0, 0, 0, 0, 1], [0, 1, '=', 0, 0, 1, 0, 1], [0, 1, '=', 1, '=', 0, 1, 0]] },
-  'C': { modelKey: 'C', t: 0, accidentals: [[0, 0, 0, 0, 0, 0, -1, 0], [0, 1, '=', 1, '=', 0, 0, 0], [0, '=', -1, '=', -1, 0, 1, 0]] },
-  'Am': { modelKey: 'Am', t: -2, accidentals: [[0, 0, 0, 0, 0, 0, 0, 0], [0, 0, -1, 0, 0, 1, 0, 1], [0, 1, '=', 1, '=', 0, 1, 0]] },
-  'F': { modelKey: 'F', t: -4, accidentals: [[0, 0, 0, 0, -1, -1, -1, 0], [0, 1, '=', 1, '=', 0, 0, 0], [0, 0, -1, 0, -1, 0, 0, 0]] },
-  'Dm': { modelKey: 'Dm', t: -6, accidentals: [[-1, -1, 0, 0, 0, 0, 0, 0], [0, 0, -1, 0, 0, 1, 0, 1], [0, 1, '=', 0, -1, 0, 1, 0]] },
-  'Bb': { modelKey: 'Bb', t: -1, accidentals: [[0, 0, 0, 0, -1, -1, -1, 0], [0, 1, '=', 0, -1, 0, -1, 0], [0, 0, -1, 0, -1, 0, '=', 0]] },
-  'Gm': { modelKey: 'Gm', t: -3, accidentals: [[-1, -1, 0, 0, 0, 0, -1, 0], [-1, 0, -1, 0, 0, 1, 0, 1], [0, 1, '=', 0, -1, 0, 1, 0]] },
-  'Eb': { modelKey: 'Eb', t: 2, accidentals: [[0, 0, -1, -1, -1, -1, -1, 0], [0, 1, '=', '=', -1, 0, -1, 0], [0, 0, -1, 0, -1, -1, '=', -1]] },
-  'Cm': { modelKey: 'Cm', t: 0, accidentals: [[-1, -1, 0, 0, 0, 0, -1, 0], [-1, 0, -1, 0, 0, '=', 0, '='], [0, '=', -1, '=', -1, 0, 1, 0]] },
-  'Ab': { modelKey: 'Ab', t: -2, accidentals: [[0, 0, -1, -1, -1, -1, -1, -1], [0, 0, -1, 0, -1, 0, -1, 0], [-1, 0, -1, 0, -1, -1, 0, -1]] },
-  'Fm': { modelKey: 'Fm', t: -4, accidentals: [[-1, -1, 0, 0, -1, -1, -1, 0], [-1, 0, -1, 0, 0, '=', 0, '='], [0, '=', -1, '=', -1, 0, '=', 0]] } 
-}
-
-function _getKeyObject(change) {  
-  return _keyObj[change];
-}
-
-function _getKeyObjectShort(change) {  
-  return _keyObjShort[change];
-}
-
-function _getKeyObjectLamento(change) {  
-  return _keyObjLamento[change];
-}
-
 function getModelKeys() {
-  return Object.keys(_keyObj);
+  return ['E', 'C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
 }
 
 const getOptions = change => {
@@ -89,9 +14,9 @@ const getOptions = change => {
 };
 
 function _AdjustOptions(options) {
-  switch(options.addProps['numberOfSections'][0]) {
+  switch(options.addProps.numberOfSections[0]) {
     case 1: 
-      if(options.addProps['syncopation'][0]) { // with syncopations
+      if(options.addProps.syncopation[0]) { // with syncopations
         options.voices = [[5, 5, 4, 4], [9, 8, 8, 7], [7, 6, 6, 5]];
         options.measure = [' | ', ' ', ' | ', ' '];
         options.voicesLength = 4;
@@ -102,7 +27,7 @@ function _AdjustOptions(options) {
       }
       break;
     case 2:
-      if(options.addProps['syncopation'][0]) { // with syncopations
+      if(options.addProps.syncopation[0]) { // with syncopations
         options.voices = [[5, 5, 4, 4, 3, 3, 2, 2], [9, 8, 8, 7, 7, 6, 6, 5], [7, 6, 6, 5, 5, 4, 4, 3]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
         options.voicesLength = 8;
@@ -113,7 +38,7 @@ function _AdjustOptions(options) {
       }      
       break;
     default:
-      if(options.addProps['syncopation'][0]) { // with syncopations
+      if(options.addProps.syncopation[0]) { // with syncopations
         options.voices = [[5, 5, 4, 4, 3, 3, 2, 2, 1, 1], [9, 8, 8, 7, 7, 6, 6, 5, 5, 4], [7, 6, 6, 5, 5, 4, 4, 3, 3, 2]];
         options.measure = [' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' ', ' | ', ' '];
         options.voicesLength = 10;
@@ -133,33 +58,64 @@ function _AdjustLamento(options) {
 }
 
 const getVoices = fauxbourdonOptions => {
-  const options = fauxbourdonOptions ?? getOptions();
-  _AdjustOptions(options);
-  let keyObject;
-  if (options.addProps['chromaticBass'][0]) {
-    keyObject = _getKeyObjectLamento(options.modelKey);
-    _AdjustLamento(options);
-    options.addProps['numberOfSections'][2] = true;
-    options.addProps['syncopation'][1] = true;
-  } else {
-    keyObject = options.addProps['syncopation'][0] ? _getKeyObject(options.modelKey) : _getKeyObjectShort(options.modelKey);
-    options.addProps['numberOfSections'][2] = false;
-    options.addProps['syncopation'][1] = false;
+  const options = fauxbourdonOptions || getOptions();
+  const isMinor = options.modelKey.includes('m');
+  let voices;
+  if (options.addProps.syncopation[0]) {
+    options.addProps.partLengthValues[2] = false;
+    voices = !isMinor 
+      ? [
+        ['=A42', '=A42', '=G42', '=G42', '=F42', '=F42', '=E42', '=E42', '=D42', '=C42'],
+        ['=E42', '=D42', '=D42', '=C42', '=C42', '=B32', '=B32', '=A32', '=A32', '=G32'],
+        ['=C42', '=B32', '=B32', '=A32', '=A32', '=G32', '=G32', '=F32', '=F32', '=E32']
+      ]
+      : [
+        ['=F42', '=F42', '=E42', '=E42', '=D42', '=D42', '=C42', '=C42', '=B32', '=A32'],
+        ['=C42', '=B32', '=B32', '=A32', '=A32', '=G32', '=G32', '=F32', '=F32', '=E32'],
+        ['=A32', '=G32', '=G32', '=F32', '=F32', '=E32', '=E32', '=D32', '=D32', '=C32']
+      ];
+
+  } 
+
+  if (options.addProps.chromaticBass[0]) {
+    options.addProps.syncopation = [true, true];
+    if (!isMinor) {
+      voices[1] = ['=E42', '^D42:f', '=D42:f', '^C42:f', '=C42:f', '=B32:f', '=B32', '^A32:f', '=A32:f', '=G32'];
+      voices[2] = ['=C42', '=B32:f', '_B32:f', '=A32:f', '_A32:f', '=G32:f', '=G32:F', '^F32:f', '=F32:f', '=E32'];
+    } else {
+      voices[1] = ['=C42', '=B32:f', '_B32:f', '=A32:f', '_A32:f', '=G32:f', '=G32:f', '^F32:f', '=F32:f', '=E32'];
+      voices[2] = ['=A32', '^G32:f', '=G32:f', '^F32:f', '=F32:f', '=E32:f', '=E32:f', '^D32:f', '=D32:f', '=C32'];
+    }
+    
+  } else {    
+    options.addProps.syncopation[1] = false;
   }
 
-  return ModelUtilities.getVoices(
-    options.transposeValues, 
-    options.voiceArrangement, 
-    options.voices, 
-    keyObject, 
-    options.voicesLength, 
-    options.measure
-  );
+  if (!options.addProps.syncopation[0]) {
+    options.addProps.partLengthValues[2] = true;
+    voices = !isMinor
+      ? [
+        ['=G42', '=G42', '=F42', '=E42', '=D42', '=C42'],
+        ['=E42', '=D42', '=C42', '=B32', '=A32', '=G32'],
+        ['=C42', '=B32', '=A32', '=G32', '=F32', '=E32']
+      ]
+      : [
+        ['=E42', '=E42', '=D42', '=C42', '=B32', '=A32'],
+        ['=C42', '=B32', '=A32', '=G32', '=F32', '=E32'],
+        ['=A32', '=G32', '=F32', '=E32', '=D32', '=C32']
+      ];
+  }
+
+  if (options.addProps.partLengthValues[0] !== 5) {
+    voices = voices.map(arr => arr.slice(0, options.addProps.partLengthValues[0] * 2));
+  }
+
+  return ModelUtilities.getVoices(options, voices);
 };
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
   return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
-}
+};
 
 const Fauxbourdon = {
   getDefaultOptions: getOptions,

@@ -30,8 +30,7 @@ const getVoices = fauxbourdonOptions => {
         ['=C42', '=B32', '=B32', '=A32', '=A32', '=G32', '=G32', '=F32', '=F32', '=E32'],
         ['=A32', '=G32', '=G32', '=F32', '=F32', '=E32', '=E32', '=D32', '=D32', '=C32']
       ];
-  } 
-
+  }
   if (options.addProps.chromaticBass[0]) {
     options.addProps.syncopation = [true, true];
     if (!isMinor) {
@@ -44,7 +43,6 @@ const getVoices = fauxbourdonOptions => {
   } else {    
     options.addProps.syncopation[1] = false;
   }
-
   if (!options.addProps.syncopation[0]) {
     options.addProps.partLengthValues[2] = true;
     voices = !isMinor

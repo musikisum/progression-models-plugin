@@ -267,7 +267,7 @@ V:2 bass
       abc: ''
     },
     addProps: {
-      numberOfSections: [3, 3, false],
+      numberOfSections: [5, 5, false],
       syncopation: [false, false]
     }
   },

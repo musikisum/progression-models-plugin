@@ -60,18 +60,18 @@ const getVoices = lamentoOptions => {
         ['=A32', '=G32', '=F32', '=E32']
       ];
   }
-  if (options.addProps['chromatic3'][0]) {
+  if (options.addProps.chromatic3[0]) {
     voices[2] = !isMinor
       ? ['=C42', '=B32:f', '_B32:f', '=A32:f', '_A32:f', '=G32']
       : ['=A32', '^G32:f', '=G32:f', '^F32:f', '=F32:f', '=E32'];
-    if (options.addProps['chromatic2'][0]) {
+    if (options.addProps.chromatic2[0]) {
       voices[1] = !isMinor
-      ? ['=E42', '^D42:f', '=D42:f', '^C42:f', '=C42:f', '=B32']
-      : ['=C42', '=B32:f', '_B32:f', '=A32', '=A32', '^G32'];
+        ? ['=E42', '^D42:f', '=D42:f', '^C42:f', '=C42:f', '=B32']
+        : ['=C42', '=B32:f', '_B32:f', '=A32', '=A32', '^G32'];
     }
   }
   const ue65Index = options.addProps.syncopation[0] ? 4 : 2;
-  if (options.addProps['italianSixth'][0]) {    
+  if (options.addProps.italianSixth[0]) {    
     voices[0][ue65Index] = !isMinor ? '^F42' : '^D42';
   } else {
     voices[0][ue65Index] = !isMinor ? '=F42' : '=D42';
@@ -79,10 +79,10 @@ const getVoices = lamentoOptions => {
 
   _setValuesForCheckboxes(
     options.modelKey.includes('m'), 
-    options.addProps['syncopation'], 
-    options.addProps['chromatic3'], 
-    options.addProps['italianSixth'], 
-    options.addProps['chromatic2']
+    options.addProps.syncopation, 
+    options.addProps.chromatic3, 
+    options.addProps.italianSixth, 
+    options.addProps.chromatic2
   );
 
   return ModelUtilities.getVoices(options, voices);
@@ -90,7 +90,7 @@ const getVoices = lamentoOptions => {
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
   return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
-}
+};
 
 const Lamento = {
   getDefaultOptions: getOptions,

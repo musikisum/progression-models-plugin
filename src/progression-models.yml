@@ -122,6 +122,9 @@ musikisum/educandu-plugin-progression-models:
   parallelismDown:
     en: Parallelism down
     de: Parallelismus abwärts
+  endWithoutSuspension:
+    en: Closing
+    de: Abschluss
   parallelismUp:
     en: Parallelism up
     de: Parallelismus aufwärts
@@ -129,8 +132,8 @@ musikisum/educandu-plugin-progression-models:
     en: Syncopations
     de: Synkopen
   chromatic:
-    en: with D-t
-    de: mit D-t
+    en: with D
+    de: mit D
   C:
     en: C major (C)
     de: C-Dur (C)

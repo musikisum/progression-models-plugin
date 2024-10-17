@@ -267,15 +267,16 @@ V:2 bass
       abc: ''
     },
     addProps: {
-      numberOfSections: [5, 5, false],
-      syncopation: [false, false]
+      numberOfSections: [3, 3, false],
+      syncopation: [false, false],
+      endWithoutSuspension: [true, false]
     }
   },
   parallelismUp: {
     key: '',
     name: 'parallelismUp',
     modelKey: 'C',
-    transposeValues: [0, 0, -1],
+    transposeValues: [0, 0, 0],
     voiceArrangement: [1, 2, 3],
     radioValue: 0,
     customDescription: '',
@@ -287,7 +288,8 @@ V:2 bass
     addProps: {
       numberOfSections: [3, 3, false],
       chromatic: [false, false],
-      syncopation: [false, false]
+      syncopation: [false, false],
+      endWithoutSuspension: [true, false]
     }
   }  
 };

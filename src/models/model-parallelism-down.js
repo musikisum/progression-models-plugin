@@ -45,25 +45,20 @@ const getVoices = parallelismDownOptions => {
   }
 
   const numberOfSections =  options.addProps.numberOfSections[0];
-  if (numberOfSections !== 5) {
+  if (numberOfSections !== 3) {
+    options.addProps.endWithoutSuspension[1] = !options.addProps.syncopation[0];
     if (options.addProps.syncopation[0]) {
-      voices = voices.map(arr => arr.slice(0, numberOfSections * 2));
+      voices = voices.map(arr => arr.slice(0, numberOfSections * 4));
     } else {
-      voices = numberOfSections < 3 ? voices.map(arr => arr.slice(0, numberOfSections * 2)) : voices;
+      voices = voices.map(arr => arr.slice(0, numberOfSections * 2));
     }
-    if (options.addProps.syncopation[0]) {
+    if (options.addProps.syncopation[0] && options.addProps.endWithoutSuspension[0]) {
       switch (numberOfSections) {
-        case 4:
+        case 2:
           voices[0][7] = !isMinor ? '=F42' : '=D42';
           break;
-        case 3:
-          voices[0][5] = !isMinor ? '=G42' : '=E42';
-          break;
-        case 2:
-          voices[0][3] = !isMinor ? '=A42' : '=F42';
-          break;
         default:
-          voices[0][1] = !isMinor ? '=B42' : '=G42';
+          voices[0][3] = !isMinor ? '=A42' : '=F42';
           break;
       }
     }

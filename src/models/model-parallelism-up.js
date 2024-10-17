@@ -15,35 +15,38 @@ const getOptions = change => {
 
 const _adjustDisabled = (isMinor, numberOfSections, chromatic, syncopation, endWithoutSuspension) => {
   endWithoutSuspension[1] = !syncopation[0];
+  // eslint-disable-next-line no-return-assign
+  const setChromatic = value => chromatic[1] = value;
   if (!isMinor) {
-  switch (numberOfSections) {
-    case 3:
-      chromatic[1] = false;
-      break;
-    case 2:
-      chromatic[1] = false;
-      break;
-    default:
-      chromatic[1] = endWithoutSuspension[0];
-      chromatic[1] = !syncopation[0];
-      break;
+    switch (numberOfSections) {
+      case 3:
+      case 2:
+        setChromatic(false);
+        break;
+      default:
+        setChromatic(endWithoutSuspension[0]);
+        setChromatic(!syncopation[0]);
+        break;
     }
   } else {
     switch (numberOfSections) {
       case 3:     
-        chromatic[1] = false;
+        setChromatic(false);
         break;
       case 2:
-        chromatic[1] = !endWithoutSuspension[0];
-        chromatic[1] = !syncopation[0];
+        setChromatic(!endWithoutSuspension[0]);
+        setChromatic(!syncopation[0]);
+        if(!endWithoutSuspension[0]) {
+          setChromatic(true);
+        }
         break;
       default:
-        chromatic[1] = true;
+        setChromatic(true);
         break;
     }
 
   }
-}
+};
 
 const getVoices = parallelismUpOptions => {
   const options = parallelismUpOptions || getOptions();
@@ -100,10 +103,10 @@ const getVoices = parallelismUpOptions => {
         voices[1][9] = !isMinor ? '=C42' : '=A32';
         break;
       case 2:
-        voices[0][7] = !isMinor ? '=B42' : (options.addProps.chromatic[0] ? '^G42' : '=G42');
+        voices[0][7] = !isMinor ? '=B42' : options.addProps.chromatic[0] ? '^G42' : '=G42';
         break;
       default:
-        voices[0][3] = !isMinor ? (options.addProps.chromatic[0] ? '^G42' : '=G42') : '=E42';
+        voices[0][3] = !isMinor ? options.addProps.chromatic[0] ? '^G42' : '=G42' : '=E42';
         break;
     }
   }
@@ -113,7 +116,7 @@ const getVoices = parallelismUpOptions => {
 
 const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
   return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
-}
+};
 
 const ParallismusUp = {
   getDefaultOptions: getOptions,

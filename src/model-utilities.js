@@ -25,7 +25,7 @@ const _fifthsValues = {
   '_G': -6,
   '_C': -7,
   '_F': -8
- };
+};
 
 // Set the direction up/down of a tone object transposition
 const transposeUp = (fifthsValue, transposeFifthsValue) => {
@@ -33,67 +33,67 @@ const transposeUp = (fifthsValue, transposeFifthsValue) => {
   const val1 = values[((fifthsValue % 7) + 7) % 7];
   const val2 = values[((transposeFifthsValue % 7) + 7) % 7];
   return (val1 + val2) > 6 ? 1 : 0;
-}
+};
 
 //
 const _getModelKeyValue = modelKey => {
-switch (modelKey) {
-  case 'E':
-  case 'C#m':
-    return _fifthsValues['=E'];
-  case 'A':
-  case 'F#m':
-    return _fifthsValues['=A'];
-  case 'D':
-  case 'Bm':
-    return _fifthsValues['=D'];
-  case 'G':
-  case 'Em':
-    return _fifthsValues['=G'];
-  case 'C':
-  case 'Am':
-    return _fifthsValues['=C'];
-  case 'F':
-  case 'Dm':
-    return _fifthsValues['=F'];
-  case 'Bb':
-  case 'Gm':
-    return _fifthsValues['_B'];
-  case 'Eb':
-  case 'Cm':
-    return _fifthsValues['_E'];
-  case 'Ab':
-  case 'Fm':
-    return _fifthsValues['_A'];
-  default:
-    return 0;
-}
-}
+  switch (modelKey) {
+    case 'E':
+    case 'C#m':
+      return _fifthsValues['=E'];
+    case 'A':
+    case 'F#m':
+      return _fifthsValues['=A'];
+    case 'D':
+    case 'Bm':
+      return _fifthsValues['=D'];
+    case 'G':
+    case 'Em':
+      return _fifthsValues['=G'];
+    case 'C':
+    case 'Am':
+      return _fifthsValues['=C'];
+    case 'F':
+    case 'Dm':
+      return _fifthsValues['=F'];
+    case 'Bb':
+    case 'Gm':
+      return _fifthsValues._B;
+    case 'Eb':
+    case 'Cm':
+      return _fifthsValues._E;
+    case 'Ab':
+    case 'Fm':
+      return _fifthsValues._A;
+    default:
+      return 0;
+  }
+};
 
 // Provide a fifths value from an abc symbol
 const getFifthsValueFromTone = symbol => {
-return _fifthsValues[symbol];
-}
+  return _fifthsValues[symbol];
+};
 
 // Provide an abc symbol from a fifts value
 const getToneFromFifthsValue = number => {
-if (number < -9 && number < 15) {
-  console.log(`The fifths value ${number} ist out of range`);
-}
-return Object.keys(_fifthsValues).find(key => _fifthsValues[key] === number);
+  if (number < -9 && number < 15) {
+    console.log(`The fifths value ${number} ist out of range`);
+  }
+  return Object.keys(_fifthsValues).find(key => _fifthsValues[key] === number);
 };
 
 // Create a tone object from a model tone: [sign][tone][octave][length][:force]
 const _createToneObject = toneSymbol => {
-const regex = /^(\^}^|\^|=|_|__)([CDEFGAB])(\d)(\d):?(\w+)?$/;
-const match = toneSymbol.match(regex);
-const toneObj = {};
-const [, sign, tone, octave, length, additionals] = match;
-toneObj.fifthsValue = _fifthsValues[`${sign}${tone}`];
-toneObj.octave = parseInt(octave, 10) || 4;
-toneObj.length = parseInt(length, 10) || 2;
-toneObj.force = !!additionals;
-return toneObj;
+  const regex = /^(\^}^|\^|=|_|__)([CDEFGAB])(\d)(\d):?(\w+)?$/;
+  const match = toneSymbol.match(regex);
+  const toneObj = {};
+  const [, sign, tone, octave, length, additionals] = match;
+  toneObj.fifthsValue = _fifthsValues[`${sign}${tone}`];
+  toneObj.octave = parseInt(octave, 10) || 4;
+  toneObj.length = parseInt(length, 10) || 2;
+  toneObj.force = !!additionals;
+  return toneObj;
 };
 
 // Provide a abc octave value from a midi octave number
@@ -119,7 +119,7 @@ const _getOctaveSpecifier = octaveNumber => {
       console.log(`The octave value is invalid: ${octaveNumber}.`);
       return '';
   }
-}
+};
 
 // Handle voice exchanges 
 const updateTransposeValues = (voiceArr, modelName) => {
@@ -146,7 +146,7 @@ const _add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
 const getVoices = (options, modelVoices) => {
   let modelToneObjects = [[], [], []];
   // set model key 
-  const fifthsValueToTranspose = _getModelKeyValue(options.modelKey)
+  const fifthsValueToTranspose = _getModelKeyValue(options.modelKey);
   // Modify toneObjects
   for (let voicesIndex = 0; voicesIndex < modelVoices.length; voicesIndex += 1) {
     const voice = modelVoices[voicesIndex];
@@ -168,7 +168,7 @@ const getVoices = (options, modelVoices) => {
     });
   }
   return modelToneObjects;
-}
+};
 
 // Create measure abc code from an array of tone objects and remove not forced leading =-signs  
 function _getMeasureAbcCodeFromTonObjectsArray(toneObjArr) {
@@ -188,7 +188,7 @@ function _removeRedundantSignsInMeasure(measureSymbols, index = 0, done = {}, pr
   if (index >= measureSymbols.length) {
     return measureSymbols;
   }
-  let symbol = measureSymbols[index];
+  const symbol = measureSymbols[index];
   if (done[symbol]) { // replace an symbol 
     measureSymbols[index] = done[symbol];
   } else { // save the modefied symbol for the next replace 
@@ -223,12 +223,12 @@ const convertModelVoiceToAbcSymbols = modelVoice => {
     }
   }
   return voiceAbcSymbols;
-}
+};
 
 // Convert an abc string t an empty line
 const convertToEmptyLines = (voices, hideUpperSystem, hideLowerSystem) => {
   const result = voices[2].split(/[| ]+/).filter(entry => entry !== '');
-  const newV1Arr = [], newV2Arr = [], newV3Arr = [];
+  const newV1Arr = []; const newV2Arr = []; const newV3Arr = [];
   
   result.forEach((_, index) => {
     const isEven = index % 2 === 0;

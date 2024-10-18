@@ -189,9 +189,9 @@ function _removeRedundantSignsInMeasure(measureSymbols, index = 0, done = {}, pr
     return measureSymbols;
   }
   const symbol = measureSymbols[index];
-  if (done[symbol]) { // replace an symbol 
+  if (done[symbol]) { // Replace an reminded symbol 
     measureSymbols[index] = done[symbol];
-  } else { // save the modefied symbol for the next replace 
+  } else { // Entry point for replacing a symbol and saving the modefied symbol for the next replace 
     const modifiedSymbol = symbol.replace(prefixPattern, '');
     done[symbol] = modifiedSymbol;
   }

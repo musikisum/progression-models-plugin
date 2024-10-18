@@ -15,7 +15,6 @@ const _getMeta = (modelKey, measure, tempo, stretchLastLine) => {
 
 // Convert a voices collection with tone objcts in a collection with abc values 
 const _convertModelVoicesToAbcVoices = modelVoices => {
-  console.log('modelVoices', modelVoices)
   return modelVoices.reduce((accu, modelVoice) => {
     for (let index = 0; index < modelVoice.length; index += 1) {
       const voiceToneObjects = modelVoice[index];
@@ -63,10 +62,12 @@ const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, 
     }
     return modelVoices;
   });
-  // const combinedVoicesCollection = voicesCollection[0].map((_, colIndex) => {
-  //   return voicesCollection.map(row => row[colIndex]).reduce((acc, curr) => acc.concat(curr), []);
-  // });
-  const voices = _convertModelVoicesToAbcVoices(voicesCollection);
+  const combinedVoicesCollection = voicesCollection[0].map((_, colIndex) => {
+    return voicesCollection.map(row => row[colIndex]).reduce((acc, curr) => acc.concat(curr), []);
+  });
+  console.log('combinedVoicesCollection:', combinedVoicesCollection)
+  const voices = _convertModelVoicesToAbcVoices([[combinedVoicesCollection[0]], [combinedVoicesCollection[1]], [combinedVoicesCollection[2]]]);
+  // const voices = _convertModelVoicesToAbcVoices(voicesCollection);
   let [v1, v2, v3] = [[], [], []];
   voices.forEach((voice, index) => {
     const arrIndex = index % 3;

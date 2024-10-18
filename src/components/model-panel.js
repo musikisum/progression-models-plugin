@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import ModelTemplates from '../model-templates.js';
+import ModelUtilities from '../model-utilities.js'; 
 import ModelRenderFactory from './model-render-factory.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { Button, Collapse, Tooltip, Select, Typography } from 'antd';
@@ -110,10 +111,14 @@ function ModelPanel({
   };
 
   const onModelSelectionChange = model => {
+    console.log(model)
     const oldModelTemplate = modelTemplates[index];
     modelTemplates.splice(index, 1);
     const newModelTemplate = cloneDeep(ModelTemplates.getModelTemplate(model));
     newModelTemplate.key = oldModelTemplate.key;
+    ModelUtilities.copyMatchingProperties(oldModelTemplate, newModelTemplate);
+    console.log('old:', oldModelTemplate);
+    console.log('new:', newModelTemplate);
     modelTemplates.splice(index, 0, newModelTemplate);
     updateContent({ modelTemplates });
     // const newExample = content.example.name !== model || !!content.example.name ? modelTemplates.getModelTemplate(model).example : content.example;

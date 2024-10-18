@@ -246,6 +246,26 @@ const divideVoices = (abcVoices, barsPerLine) => {
   return newAbcVoices;
 };
 
+// Copy properties form one modelTemplate to an other modelTemplate
+const copyMatchingProperties = (oldModelTemplate, newModelTemplate) => {
+  for (let key in oldModelTemplate) {
+    if (key === 'key' || key === 'name') {
+      continue;
+    }
+    if (newModelTemplate.hasOwnProperty(key)) {
+      if (typeof oldModelTemplate[key] === 'object' && oldModelTemplate[key] !== null) {
+        if (Array.isArray(oldModelTemplate[key])) {
+          newModelTemplate[key] = [...oldModelTemplate[key]];
+        } else {
+          copyMatchingProperties(oldModelTemplate[key], newModelTemplate[key]);
+        } 
+      } else {
+        newModelTemplate[key] = oldModelTemplate[key];
+      }
+    }
+  }
+}
+
 // Convert an abc string t an empty line
 const convertToEmptyLines = (voices, hideUpperSystem, hideLowerSystem) => {
   const result = voices[2].split(/[| ]+/).filter(entry => entry !== '');
@@ -279,6 +299,7 @@ const ModelUtilities = {
   convertModelVoiceToAbcSymbols,
   updateTransposeValues,
   divideVoices,
+  copyMatchingProperties,
   convertToEmptyLines
 };
 

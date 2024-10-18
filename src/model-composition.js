@@ -50,8 +50,8 @@ const _lookupAndSetForceValue = (voiceObj1, voiceObj2) => {
 
 // Create the abc output from collections with tone ojects of models
 const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, stretchLastLine) => {
-  const abcResult = [_getMeta(modelKey, measure, tempo)];
-  let voicesCollection = models.map((modelVoices, index, arr) => {
+  const abcResult = [_getMeta(modelKey, measure, tempo, stretchLastLine)];
+  const voicesCollection = models.map((modelVoices, index, arr) => {
     if (index > 0) {
       const [cmV1, cmV2, cmV3] = modelVoices;
       const lastModelVoices = arr[index - 1];
@@ -65,10 +65,8 @@ const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, 
   const combinedVoicesCollection = voicesCollection[0].map((_, colIndex) => {
     return voicesCollection.map(row => row[colIndex]).reduce((acc, curr) => acc.concat(curr), []);
   });
-  console.log('combinedVoicesCollection:', combinedVoicesCollection)
   const voices = _convertModelVoicesToAbcVoices([[combinedVoicesCollection[0]], [combinedVoicesCollection[1]], [combinedVoicesCollection[2]]]);
-  // const voices = _convertModelVoicesToAbcVoices(voicesCollection);
-  let [v1, v2, v3] = [[], [], []];
+  const [v1, v2, v3] = [[], [], []];
   voices.forEach((voice, index) => {
     const arrIndex = index % 3;
     if (arrIndex === 0) {
@@ -79,11 +77,12 @@ const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, 
       v3.push(...voice);
     }
   });
-  abcResult.push(`V:1\n${v1.join(' ')}`);
-  abcResult.push(`V:2\n${v2.join(' ')}`);
-  abcResult.push(`V:3 bass\n${v3.join(' ')}`);
+  const [abcV1, abcV2, abcV3] = ModelUtilities.divideVoices([v1.join(' '), v2.join(' '), v3.join(' ')], barsPerLine);
+  abcResult.push(`V:1\n${abcV1}`);
+  abcResult.push(`V:2\n${abcV2}`);
+  abcResult.push(`V:3 bass\n${abcV3}`);
   return abcResult.join('\n');
-}
+};
 
 const ModelComposition = {
   getModelAbcOutput,

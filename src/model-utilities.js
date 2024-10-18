@@ -225,6 +225,27 @@ const convertModelVoiceToAbcSymbols = modelVoice => {
   return voiceAbcSymbols;
 };
 
+const divideVoices = (abcVoices, barsPerLine) => {
+  const result = [[], [], []];
+  const newAbcVoices = [[], [], []];
+  abcVoices.forEach((voice, index) => {
+    const parts = voice.split(' | '); 
+    for (let i = 0; i < parts.length; i += barsPerLine) {
+      result[index].push(parts.slice(i, i + barsPerLine));    
+    }
+  });
+  result.forEach((voiceArr, index) => {
+    let abc = '';
+    for (let i = 0; i < voiceArr.length; i += 1) {
+      abc += voiceArr[i].join(' | ');
+      abc += ' | ';
+      abc += i !== voiceArr.length - 1 ? '\n' : '';
+      newAbcVoices[index] = abc;
+    }
+  });
+  return newAbcVoices;
+};
+
 // Convert an abc string t an empty line
 const convertToEmptyLines = (voices, hideUpperSystem, hideLowerSystem) => {
   const result = voices[2].split(/[| ]+/).filter(entry => entry !== '');
@@ -252,11 +273,12 @@ const convertToEmptyLines = (voices, hideUpperSystem, hideLowerSystem) => {
 };
  
 const ModelUtilities = {
+  getVoices,
   getFifthsValueFromTone,
   getToneFromFifthsValue,
   convertModelVoiceToAbcSymbols,
   updateTransposeValues,
-  getVoices,
+  divideVoices,
   convertToEmptyLines
 };
 

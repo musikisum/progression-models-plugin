@@ -2,12 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
-import { Button, Collapse, Tooltip } from 'antd';
+import ModelTemplates from '../model-templates.js';
 import ModelRenderFactory from './model-render-factory.js';
+import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
+import { Button, Collapse, Tooltip, Select, Typography } from 'antd';
 import DeleteIcon from '@educandu/educandu/components/icons/general/delete-icon.js';
 import MoveUpIcon from '@educandu/educandu/components/icons/general/move-up-icon.js';
 import MoveDownIcon from '@educandu/educandu/components/icons/general/move-down-icon.js';
 import { confirmDeleteItem } from '@educandu/educandu/components/confirmation-dialogs.js';
+
+const { Text } = Typography;
 
 function ModelPanel({
   index,
@@ -26,7 +30,7 @@ function ModelPanel({
 }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
-  const { modelTemplates } = content;
+  const { modelTemplates, selectedModel } = content;
   const modelTemplate = modelTemplates[index];
   const header = t(modelTemplate.name);
 
@@ -105,11 +109,50 @@ function ModelPanel({
     );
   };
 
+  const onModelSelectionChange = model => {
+    const oldModelTemplate = modelTemplates[index];
+    modelTemplates.splice(index, 1);
+    const newModelTemplate = cloneDeep(ModelTemplates.getModelTemplate(model));
+    newModelTemplate.key = oldModelTemplate.key;
+    modelTemplates.splice(index, 0, newModelTemplate);
+    updateContent({ modelTemplates });
+    // const newExample = content.example.name !== model || !!content.example.name ? modelTemplates.getModelTemplate(model).example : content.example;
+    // updateContent({ selectedModel: model, example: newExample });
+  };
+
+  const getOptionsForModelSelect = () => {
+    const options = ModelTemplates.getAvailableModels.reduce((akku, modelName) => {
+      const so = {
+        value: modelName,
+        label: t(modelName)
+      }; 
+      akku.push(so);
+      return akku;
+    }, []);
+    return options;
+  };
+
+  const createHaeder = () => {
+    return (<div className='inspectorUnit'>
+      <div style={{ display: 'flex' }}>
+        <Text className='iu-first' style={{ marginTop: '6px' }}>Modell auswählen</Text>
+        <Select
+          className='inspectorElement'
+          style={{ width: 180, marginLeft: '15px' }}
+          defaultValue={selectedModel}
+          onChange={onModelSelectionChange}
+          options={getOptionsForModelSelect()}
+          />
+      </div>
+    </div>);
+    // return header;
+  };
+
   return (
     <Collapse collapsible="icon" className={classNames('ItemPanel', { 'is-dragged': isDragged, 'is-other-dragged': isOtherDragged })} defaultActiveKey="panel">
       <Collapse.Panel
         key="panel"
-        header={<div {...dragHandleProps} className="ItemPanel-header">{header}</div>}
+        header={<div {...dragHandleProps} className="ItemPanel-header">{createHaeder(header)}</div>}
         extra={renderActionButtons()}
         >
         <div className="ItemPanel-contentWrapper">
@@ -131,7 +174,7 @@ ModelPanel.propTypes = {
     title: PropTypes.string.isRequired,
     icon: PropTypes.node,
     danger: PropTypes.bool,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
   })),
   header: PropTypes.string,
   index: PropTypes.number,
@@ -143,7 +186,8 @@ ModelPanel.propTypes = {
   onExtraActionButtonClick: PropTypes.func,
   onMoveDown: PropTypes.func,
   onMoveUp: PropTypes.func,
-  content: PropTypes.object
+  content: PropTypes.object,
+  updateContent: PropTypes.func
 };
 
 ModelPanel.defaultProps = {
@@ -159,7 +203,8 @@ ModelPanel.defaultProps = {
   onExtraActionButtonClick: () => {},
   onMoveDown: null,
   onMoveUp: null,
-  content: null
+  content: null,
+  updateContent: null
 };
 
 export default ModelPanel;

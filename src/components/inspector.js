@@ -29,16 +29,10 @@ function Inspector({ content, updateContent }) {
     if(!selectedModel) {
       return;
     }
-    const modelTemplate = cloneDeep(ModelTemplates.getModelTemplate(selectedModel));
+    const modelTemplate = cloneDeep(ModelTemplates.getModelTemplate('cadence'));
     modelTemplate.key = uniqueId.create();
     modelTemplates.push(modelTemplate);
     updateContent({ modelTemplates });
-  };
-
-  const onModelSelectionChange = model => {
-    // console.log('if:' content.example.name !== model || !!content.example.name)
-    const newExample = (content.example.name !== model || !!content.example.name) ? ModelTemplates.getModelTemplate(model).example : content.example;
-    updateContent({ selectedModel: model, example: newExample });
   };
 
   const onTransposeValueChange = value => {
@@ -57,7 +51,7 @@ function Inspector({ content, updateContent }) {
     updateContent({ measuresPerLine: number });
   };
 
-  const onStretchLastLineChange = event => {
+  const onStretchLastLineChange = event => {    
     updateContent({ stretchLastLine: event.target.checked });
   };
 
@@ -80,18 +74,6 @@ function Inspector({ content, updateContent }) {
       default:
         break;
     }
-  };
-
-  const getOptionsForModelSelect = () => {
-    const options = ModelTemplates.getAvailableModels.reduce((akku, modelName) => {
-      const so = {
-        value: modelName,
-        label: t(modelName)
-      }; 
-      akku.push(so);
-      return akku;
-    }, []);
-    return options;
   };
 
   const getOptionsForMeasureSelect = () => {
@@ -156,16 +138,6 @@ function Inspector({ content, updateContent }) {
             >
             {t('addModel')}
           </Button>
-        </div>
-        <div className='inspectorUnit'>
-          <Text className='iu-first'>Modell auswählen</Text>
-          <Select
-            className='inspectorElement'
-            style={{ width: 180 }}
-            defaultValue={selectedModel}
-            onChange={onModelSelectionChange}
-            options={getOptionsForModelSelect()}
-            />
         </div>
         <div className='inspectorUnit'>
           <Text className='iu-first'>Transponieren</Text>

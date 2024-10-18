@@ -29,7 +29,7 @@ export default function ModelRenderFactory({
 
   const changeModelTemplateKey = e => {
     modelTemplates[index].modelKey = e;
-    updateContent({ modelTemplates: modelTemplates });
+    updateContent({ modelTemplates });
   };
 
   const onArrowButtonClick = direction => {
@@ -39,17 +39,17 @@ export default function ModelRenderFactory({
     } else {
       modelTemplates[index].transposeValues[voice] -= 1;
     }
-    updateContent({ modelTemplates: modelTemplates });
+    updateContent({ modelTemplates });
   };
 
   const onRadioChange = e => { 
     modelTemplates[index].radioValue = e.target.value;
-    updateContent({ modelTemplates: modelTemplates }); 
+    updateContent({ modelTemplates }); 
   };
 
   const onShowDescriptionChange = e => {
     modelTemplates[index].showDescription = e;
-    updateContent({ modelTemplates: modelTemplates });
+    updateContent({ modelTemplates });
   };
 
   const getPlayableAbcVoices = () => {
@@ -61,7 +61,7 @@ export default function ModelRenderFactory({
       modelVoices = voiceModel.getMutedVoices(voiceModel.getVoices(modelTemplate), hideUpperSystem, hideLowerSystem);
     }
     return ModelComposition.getModelAbcOutput('C', 'C|', 120, [modelVoices]);
-  }
+  };
 
   return (
     <div>
@@ -97,7 +97,7 @@ export default function ModelRenderFactory({
                     checked={modelTemplate.showDescription}
                     onChange={onShowDescriptionChange}
                     />
-                    <div style={{marginTop: '-4px'}}>{t('showDescription')}</div>             
+                  <div style={{ marginTop: '-4px' }}>{t('showDescription')}</div>             
                 </div>
               </div>
             </Col>

@@ -12,7 +12,7 @@ import Collapse, { COLLAPSIBLE_COLOR } from '@educandu/educandu/components/colla
 export default function MusicPuzzleDisplay({ content }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
-  const { Paragraph, Text } = Typography;
+  const { Paragraph } = Typography;
   const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`;
 
   const { 
@@ -77,7 +77,7 @@ export default function MusicPuzzleDisplay({ content }) {
               <Markdown renderAnchors className='u-horizontally-centered u-width-100'>
                 {descriptionParts.reduce((akku, description) => !akku ? description : `${akku}\n\n---\n\n${description}`, '')}
               </Markdown>
-            </Collapse>
+            </Collapse> 
           : null}
       </div>
     </div>

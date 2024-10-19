@@ -1,8 +1,8 @@
-import { Typography } from 'antd';
+import { Typography, Divider } from 'antd';
 import { useTranslation } from 'react-i18next';
 import ModelProvider from './model-provider.js';
-import Transposer from './components/transposer.js';
 import React, { useEffect, useState } from 'react';
+import Transposer from './components/transposer.js';
 import AbcSnippet from './components/abc-snippet.js';
 import ModelComposition from './model-composition.js';
 import Markdown from '@educandu/educandu/components/markdown.js';
@@ -60,13 +60,25 @@ export default function MusicPuzzleDisplay({ content }) {
         <div>
           { abcResult ? <AbcSnippet playableABC={abcResult} /> : null }
         </div>
-        <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
-          { showExample ? <AbcSnippet playableABC={transposeValue === 0 ? example.abc : Transposer.getTransposition(example.abc, transposeValue)} /> : null }
-        </div>
         <div style={{ textAlign: 'center' }}>
           { (modelTemplates.length !== 0) && <Paragraph 
             className='svg-color' 
             copyable={{ text: abcResult,  tooltips: [t('abcCopyTtBefore'), t('abcCopyTtAfter')] }}
+            >
+            {t('abcCopy')}
+          </Paragraph> }
+        </div>
+        { showExample && <Divider orientation="right" plain>
+          {`${t('showExampleDescription')}: ${t(example.name)}`}
+          </Divider> 
+        }
+        <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
+          { showExample && <AbcSnippet playableABC={ example.abc } /> }
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          { showExample && <Paragraph 
+            className='svg-color' 
+            copyable={{ text: example.abc,  tooltips: [t('abcCopyTtBefore'), t('abcCopyTtAfter')] }}
             >
             {t('abcCopy')}
           </Paragraph> }

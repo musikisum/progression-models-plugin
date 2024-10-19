@@ -111,7 +111,6 @@ function ModelPanel({
   };
 
   const onModelSelectionChange = model => {
-    console.log(model)
     const oldModelTemplate = modelTemplates[index];
     modelTemplates.splice(index, 1);
     const newModelTemplate = cloneDeep(ModelTemplates.getModelTemplate(model));
@@ -121,8 +120,6 @@ function ModelPanel({
     console.log('new:', newModelTemplate);
     modelTemplates.splice(index, 0, newModelTemplate);
     updateContent({ modelTemplates });
-    // const newExample = content.example.name !== model || !!content.example.name ? modelTemplates.getModelTemplate(model).example : content.example;
-    // updateContent({ selectedModel: model, example: newExample });
   };
 
   const getOptionsForModelSelect = () => {
@@ -150,7 +147,6 @@ function ModelPanel({
           />
       </div>
     </div>);
-    // return header;
   };
 
   return (

@@ -257,6 +257,12 @@ musikisum/educandu-plugin-progression-models:
   hideLowerSystem:
     en: Mute Bass
     de: Bass muten
+  modelNameSelect:
+    en: Choose Example ...
+    de: Wähle Beispiel ...
+  noExample:
+    en: No selection
+    de: Keine Auswahl
   showExampleDescription:
     en: Example
     de: Beispiel

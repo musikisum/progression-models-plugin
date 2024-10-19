@@ -10,22 +10,21 @@ function ModelExample({ selectedModel, example, updateContent }) {
     const abc = !!event.target.value ? event.target.value : ModelTemplates.getModelTemplate(selectedModel).example.abc;
     const newExample = {
       name: selectedModel,
-      abc: abc,
-      description: ''
+      abc: abc
     };
     updateContent({ example: newExample })
   };
 
   return (
     <div> 
-      {<>
+      {(selectedModel && selectedModel !== 'default') && (
         <InputAndPreview
           input={<NeverScrollingTextArea minRows={6} value={example.abc} onChange={handleCurrentAbcCodeChanged} />}
           preview={<AbcSnippet playableABC={example.abc} />} 
-          />
-      </>}
+        />
+      )}
     </div>
-  )
+  );
 }
 
 export default ModelExample;

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ModelExample from './modelExample.js';
 import { useTranslation } from 'react-i18next';
 import { PlusOutlined } from '@ant-design/icons';
 import ModelTemplates from '../model-templates.js';
 import uniqueId from '@educandu/educandu/utils/unique-id.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
-import { Button, Select, InputNumber, Checkbox, Typography, Tooltip, Switch } from 'antd';
+import { Button, Select, InputNumber, Checkbox, Typography, Tooltip } from 'antd';
 
 function Inspector({ content, updateContent }) {
 
@@ -21,6 +21,7 @@ function Inspector({ content, updateContent }) {
     hideUpperSystem,
     hideLowerSystem,
     showExample,
+    example,
     modelTemplates,
     selectedModel
   } = content;
@@ -59,8 +60,15 @@ function Inspector({ content, updateContent }) {
     updateContent({ showDescription: event.target.checked });
   };
 
-  const onShowExampleChange = event => {
-    updateContent({ showExample: event.target.checked });
+  const onExampleSelectionChange = model => {
+    if (model && model !== 'default') {
+      setExampleName(model);
+      const exampleTemplate = cloneDeep(ModelTemplates.getModelTemplate(model));
+      updateContent({ example: exampleTemplate.example, showExample: true });
+    } else {
+      const defaultExample = { name: '', abc: '' };
+      updateContent({ example: defaultExample, showExample: false });
+    }
   };
 
   const onHideSystem = (event, direction) => {
@@ -106,6 +114,23 @@ function Inspector({ content, updateContent }) {
     return options;
   };
 
+  const getOptionsForExampleSelect = () => {
+    const options = ModelTemplates.getAvailableModels.reduce((akku, modelName) => {
+      const so = {
+        value: modelName,
+        label: t(modelName)
+      }; 
+      akku.push(so);
+      return akku;
+    }, []);
+    const defaultSo = {
+      value: 'default',
+      label: t('modelNameSelect')
+    }; 
+    options.splice(0, 0, defaultSo);
+    return options;
+  };
+
   const showTooltipText = checkboxFor => {
     switch (checkboxFor) {
       case 'stretchLastLine':
@@ -117,15 +142,32 @@ function Inspector({ content, updateContent }) {
       case 'hideLowerSystem':
         return `${t('hideLowerSystemTooltip')}`;
       case 'showExampleDescription':
-        return `${t('exampleTooltip')} ${t(selectedModel)}.`;
+        return `${t('exampleTooltip')} ${showExample ? t(example.name) : t('noExample')}.`;
       default:
         return '';
     }    
   };
   
+  const createExampleSelect = () => {
+    return (<div className='inspectorUnit'>
+      <span className='iu-first'>&nbsp;</span>
+      <Tooltip title={showTooltipText('showExampleDescription')}>
+        <Select
+          className='inspectorElement'
+          defaultValue={exampleName}
+          style={{ width: 180, marginLeft: '15px' }}
+          onChange={onExampleSelectionChange}
+          options={getOptionsForExampleSelect()}
+          />      
+      </Tooltip>
+    </div>);
+  };
+
+  const [exampleName, setExampleName] = useState(showExample ? example.name : 'default');
+
   return (
     <div>
-      {showExample ? <ModelExample selectedModel={selectedModel} example={content.example} updateContent={updateContent} /> : null}
+      {showExample ? <ModelExample selectedModel={exampleName} example={content.example} updateContent={updateContent} /> : null}
       <div className='inspectorItemContainer'>
         <div className='inspectorUnit'>
           <span className='iu-first'>&nbsp;</span>
@@ -182,6 +224,9 @@ function Inspector({ content, updateContent }) {
             onChange={e => onNumberOfMaesuresChange(e)}
             />
         </div>
+        <div style={{ marginTop: '15px' }}>
+          { createExampleSelect() }
+        </div>
       </div>
       <div className='inspectorItemContainer'>
         <div className='ui-displayLabel'>
@@ -202,14 +247,6 @@ function Inspector({ content, updateContent }) {
         <div className='ui-checkBoxHorizontalLabel'>
           <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
           <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip></Text>
-        </div>
-        <div style={{ display: 'flex', marginTop: '15px', gap: '6px' }}>
-          <Checkbox checked={showExample} onChange={onShowExampleChange} />
-          <Text style={{ display: 'block' }}>
-            <Tooltip title={showTooltipText('showExampleDescription')}>
-              <span>{`${t('showExampleDescription')}: ${t(selectedModel)}`}</span>
-            </Tooltip>
-          </Text>
         </div>
       </div>
     </div>

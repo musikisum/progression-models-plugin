@@ -143,6 +143,14 @@ function Inspector({ content, updateContent }) {
         return `${t('hideLowerSystemTooltip')}`;
       case 'showExampleDescription':
         return `${t('exampleTooltip')} ${showExample ? t(example.name) : t('noExample')}.`;
+      case 'measurePerLine':
+        return `${t('measurePerLineToolTip')}`;
+      case 'tempo':
+        return `${t('tempoToolTip')}`;
+      case 'measure':
+        return `${t('measureToolTip')}`;
+      case 'transpose':
+        return `${t('transposeToolTip')}`;
       default:
         return '';
     }    
@@ -182,47 +190,59 @@ function Inspector({ content, updateContent }) {
           </Button>
         </div>
         <div className='inspectorUnit'>
-          <Text className='iu-first'>Transponieren</Text>
-          <Select
-            className='inspectorElement'
-            style={{ width: 120 }}
-            defaultValue={transposeValue}
-            onChange={e => onTransposeValueChange(e)}
-            options={getOptionsForKeySelect()}
-            />
+          <Text className='iu-first'>{t('transposeToolTip')}</Text>
+          <Tooltip title={showTooltipText('transpose')}>
+            <Select
+              className='inspectorElement'
+              style={{ width: 120 }}
+              defaultValue={transposeValue}
+              onChange={e => onTransposeValueChange(e)}
+              options={getOptionsForKeySelect()}
+              />
+          </Tooltip>
         </div>
         <div className='inspectorUnit'>
-          <Text className='iu-first'>Taktart</Text>
-          <Select
-            className='inspectorElement'
-            style={{ width: 80 }}
-            defaultValue={measure ?? 'C|'}
-            onChange={e => onMeasureChange(e)}
-            options={getOptionsForMeasureSelect()}
-            />
+          <Text className='iu-first'>{t('measureToolTip')}</Text>
+          <Tooltip title={showTooltipText('measure')}>
+            <Select
+              className='inspectorElement'
+              style={{ width: 80 }}
+              defaultValue={measure ?? 'C|'}
+              onChange={e => onMeasureChange(e)}
+              options={getOptionsForMeasureSelect()}
+              />
+          </Tooltip>
         </div>
         <div className='inspectorUnit'>
-          <Text className='iu-first'>Tempo</Text>
-          <InputNumber 
-            className='inspectorElement'
-            style={{ width: 80 }}
-            min={10}
-            max={180}
-            step={10}
-            defaultValue={tempo ?? 120}
-            onChange={e => onTempoChange(e)}
-            />
+          <Text className='iu-first'>
+          <span>{`${t('tempoToolTip')}`}</span>
+          </Text>
+          <Tooltip title={showTooltipText('tempo')}>
+            <InputNumber 
+              className='inspectorElement'
+              style={{ width: 80 }}
+              min={10}
+              max={180}
+              step={10}
+              defaultValue={tempo ?? 120}
+              onChange={e => onTempoChange(e)}
+              />
+          </Tooltip>
         </div>
-        <div className='inspectorUnit'>
-          <Text className='iu-first'>Takte / Zeile</Text>
-          <InputNumber
-            className='inspectorElement' 
-            style={{ width: 80 }}
-            min={2} 
-            max={10} 
-            defaultValue={measuresPerLine}
-            onChange={e => onNumberOfMaesuresChange(e)}
-            />
+        <div className='inspectorUnit'>          
+          <Text className='iu-first'>
+            <span>{`${t('measurePerLineToolTip')}`}</span>
+          </Text>
+          <Tooltip title={showTooltipText('measurePerLine')}>
+            <InputNumber
+              className='inspectorElement' 
+              style={{ width: 80 }}
+              min={2} 
+              max={10} 
+              defaultValue={measuresPerLine}
+              onChange={e => onNumberOfMaesuresChange(e)}
+              />
+          </Tooltip>
         </div>
         <div style={{ marginTop: '15px' }}>
           { createExampleSelect() }

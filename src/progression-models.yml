@@ -281,4 +281,16 @@ musikisum/educandu-plugin-progression-models:
   hideLowerSystemTooltip:
     en: hide lower voices in view mode
     de: Unteres Notensystem im Ansichtsmodus ausblenden
+  measurePerLineToolTip:
+    en: Measure / Line
+    de: Takte / Zeile
+  tempoToolTip:
+    en: Time
+    de: Tempo
+  measureToolTip:
+    en: Time signature
+    de: Taktart
+  transposeToolTip:
+    en: Transpose
+    de: Transponieren
     

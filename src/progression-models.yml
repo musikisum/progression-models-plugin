@@ -55,13 +55,13 @@ musikisum/educandu-plugin-progression-models:
     de: Lamentobass
   chromatic2:
     en: Option
-    de: Alternative
+    de: Variante
   chromatic3:
     en: chrom. Bass
     de: chrom. Bass
   italianSixth:
-    en: ital. Sixth
-    de: mit Ü6
+    en: '#6'
+    de: '#6'
   isFinal:
     en: Ending
     de: Schluss

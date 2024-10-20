@@ -27,13 +27,10 @@ function Inspector({ content, updateContent }) {
   } = content;
 
   const handleAddModelButtonClick = () => {
-    if(!selectedModel) {
-      return;
-    }
     const modelTemplate = cloneDeep(ModelTemplates.getModelTemplate('cadence'));
     modelTemplate.key = uniqueId.create();
     modelTemplates.push(modelTemplate);
-    updateContent({ modelTemplates });
+    updateContent({ modelTemplates, selectedModel: 'cadence' });
   };
 
   const onTransposeValueChange = value => {

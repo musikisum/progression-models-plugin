@@ -16,19 +16,14 @@ const getOptions = change => {
 function _setValuesForCheckboxes(isMinor, syncopationProp, chromBassProp, italianProp, variantProp) {
   // set active state
   chromBassProp[1] = !syncopationProp[0];
-  italianProp[1] = !isMinor;
-  if(chromBassProp[0]) {
-    italianProp[1] = false;
-  }
   variantProp[1] = !chromBassProp[0];
   // set value dependencies
   if(!syncopationProp[0]) {
     chromBassProp[0] = false;
     variantProp[0] = false;
-    if (!isMinor) {
-      italianProp[0] = false;
-    }
-  }  
+  }
+  // set option for syncopation proerty
+  syncopationProp[1] = chromBassProp[0];
 }
 
 const getVoices = lamentoOptions => {

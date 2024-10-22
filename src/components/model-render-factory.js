@@ -9,7 +9,7 @@ import ModelDescription from './model-description.js';
 import ModelComposition from '../model-composition.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
-import { Button, Select, Radio, Space, Row, Col, Typography, Switch } from 'antd';
+import { Button, Select, Radio, Space, Row, Col, Typography, Switch, Tooltip } from 'antd';
 
 const { Paragraph, Text } = Typography;
 
@@ -63,6 +63,15 @@ export default function ModelRenderFactory({
     return ModelComposition.getModelAbcOutput('C', 'C|', 120, [modelVoices]);
   };
 
+  const showTooltipText = text => {
+    switch (text) {
+      case 'transposition':
+        return `${t('transpositionToolTip')}`;
+      default:
+        return '';
+    }    
+  };
+
   return (
     <div>
       <div className='container' key={index}>        
@@ -84,12 +93,14 @@ export default function ModelRenderFactory({
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
                 <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('modelKey')}</Text>
-                <Select 
-                  style={{ minWidth: '100px' }}
-                  defaultValue={modelTemplate.modelKey} 
-                  options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(modelKey => ({ value: modelKey, label: t(modelKey) }))}
-                  onChange={e => changeModelTemplateKey(e, index)}
-                  />
+                <Tooltip title={showTooltipText('selectKeyToolTip')}>
+                  <Select 
+                    style={{ minWidth: '100px' }}
+                    defaultValue={modelTemplate.modelKey} 
+                    options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(modelKey => ({ value: modelKey, label: t(modelKey) }))}
+                    onChange={e => changeModelTemplateKey(e, index)}
+                    />
+                </Tooltip>
                 <ModelProperties index={index} modelTemplates={modelTemplates} cloneDeep={cloneDeep} updateContent={updateContent} />
                 <div style={{ display: 'flex', marginTop: '15px', gap: '6px' }}>
                   <Switch 
@@ -103,11 +114,13 @@ export default function ModelRenderFactory({
             </Col>
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
-                <Text strong style={{ display: 'block', marginBottom: '10px' }}>Transposition (8)</Text>
-                <div className='buttons'>
-                  <Button className='button' onClick={() => onArrowButtonClick('up', index)}><ArrowUpOutlined /></Button>
-                  <Button className='button' onClick={() => onArrowButtonClick('down', index)}><ArrowDownOutlined /></Button>
-                </div>
+                <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('transposition')}</Text>
+                <Tooltip title={showTooltipText('transposition')}>
+                  <div className='buttons'>
+                    <Button className='button' onClick={() => onArrowButtonClick('up', index)}><ArrowUpOutlined /></Button>
+                    <Button className='button' onClick={() => onArrowButtonClick('down', index)}><ArrowDownOutlined /></Button>
+                  </div>
+                </Tooltip>
                 <Radio.Group onChange={e => onRadioChange(e, index)} value={modelTemplate.radioValue}>
                   <Space direction="vertical">
                     <Radio value={0}>{t('os')}</Radio>

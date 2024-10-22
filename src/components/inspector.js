@@ -26,6 +26,8 @@ function Inspector({ content, updateContent }) {
     selectedModel
   } = content;
 
+  const [exampleName, setExampleName] = useState(showExample ? example.name : 'default');
+
   const handleAddModelButtonClick = () => {
     const modelTemplate = cloneDeep(ModelTemplates.getModelTemplate('cadence'));
     modelTemplate.key = uniqueId.create();
@@ -167,8 +169,6 @@ function Inspector({ content, updateContent }) {
       </Tooltip>
     </div>);
   };
-
-  const [exampleName, setExampleName] = useState(showExample ? example.name : 'default');
 
   return (
     <div>

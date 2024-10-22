@@ -116,8 +116,6 @@ function ModelPanel({
     const newModelTemplate = cloneDeep(ModelTemplates.getModelTemplate(model));
     newModelTemplate.key = oldModelTemplate.key;
     ModelUtilities.copyMatchingProperties(oldModelTemplate, newModelTemplate);
-    console.log('old:', oldModelTemplate);
-    console.log('new:', newModelTemplate);
     modelTemplates.splice(index, 0, newModelTemplate);
     updateContent({ modelTemplates });
   };
@@ -137,7 +135,7 @@ function ModelPanel({
   const createHaeder = () => {
     return (<div className='inspectorUnit'>
       <div style={{ display: 'flex' }}>
-        <Text className='iu-first' style={{ marginTop: '6px' }}>Modell auswählen</Text>
+        <Text className='iu-first' style={{ marginTop: '6px' }}>{t('selectModel')}</Text>
         <Select
           className='inspectorElement'
           style={{ width: 180, marginLeft: '15px' }}

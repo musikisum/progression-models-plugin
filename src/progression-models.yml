@@ -293,4 +293,16 @@ musikisum/educandu-plugin-progression-models:
   transposeToolTip:
     en: Transpose
     de: Transponieren
+  selectModel:
+    en: Select model
+    de: Modell auswählen
+  transposition:
+    en: Transposition
+    de: Transposition
+  transpositionToolTip:
+    en: Transposes the selected voice by one octave 
+    de: Transponiert die ausgewählte Stimme um eine Okatve
+  selectKeyToolTip:
+    en: Select for a model key 
+    de: Auswahl einer Tonart für das Modell
     

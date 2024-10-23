@@ -132,7 +132,21 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'fauxbourdon',
-      abc: ''
+      abc: `X:1
+%%score [( 1 2 ) | 3 ]
+L:1/4
+M:3/4
+Q:80
+K:C
+V:1
+z/ e/ f2- | f/f/ e2- | e/e/ d2- | d/d/ c2- |  c/c/ B2 | c z/ g/a/g/ |
+f z/ f/g/f/ | e z/ e/f/e/ |  d z/ d/e/d/ | c z/ c/d/c/ | B z/ B/c/B/ | A z/ A/B/A/ |  G z |
+V:2
+z z/ c/d/c/ | B z/ B/c/B/ | A z/ A/B/A/ | G z/ G/A/G/ |  F z/ A/G/F/ | E z/ E/F/E/ |
+D z/ D/E/D/ | C z/ C/D/C/ |  B, z/ B,/C/B,/ | A,/ G/ ^F2- | F/^F/ E2- | E/E/ ^D2 |  z/ ^D/ E |
+V:3 bass
+[K: treble] z z/ A/B/A/ | G z/ G/A/G/ | F z/ F/G/F/ | E z/ E/F/E/ |  D z/ F/E/D/ | C/ [K: bass] C/ C,2- |
+"_J. S. Bach, Preludium in A-Moll BWV 569, T. 9–21 (Particell)"C,/B,/ B,,2- | B,,/A,/ A,,2- |  A,,/^G,/ ^G,,2 | A,, z/ A,/B,/A,/ | G, z/ G,/A,/G,/ | ^F, z/ F,/G,/F,/ |  E, z |`
     },
     addProps: {
       partLengthValues: [5, 5, false],

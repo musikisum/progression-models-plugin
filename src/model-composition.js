@@ -1,12 +1,11 @@
 import ModelUtilities from './model-utilities.js';
 
 // Provides meta informations for an abc.js header of a phrase model combination in a modelKey and a measure.
-const _getMeta = (modelKey, measure, tempo, stretchLastLine) => {
+const _getMeta = (modelKey, measure, length, tempo, stretchLastLine) => {
   const metaResult = ['X:1'];
   metaResult.push('%%score [(1 2) 3]');
   metaResult.push(`%%measurenb 0${stretchLastLine ? '\n%%stretchLast 1' : ''}`);
   metaResult.push(`M:${measure}`);
-  metaResult.push('L:1/4');
   metaResult.push(`Q:1/4=${tempo}`);
   metaResult.push(`L:${length}`);
   metaResult.push(`K:${modelKey}`);
@@ -14,21 +13,21 @@ const _getMeta = (modelKey, measure, tempo, stretchLastLine) => {
 };
 
 // Convert a voices collection with tone objcts in a collection with abc values 
-const _convertModelVoicesToAbcVoices = modelVoices => {
+const _convertModelVoicesToAbcVoices = (modelVoices, measureSign) => {
   return modelVoices.reduce((accu, modelVoice) => {
     for (let index = 0; index < modelVoice.length; index += 1) {
       const voiceToneObjects = modelVoice[index];
-      const abcSymbolsOfModelVoice = ModelUtilities.convertModelVoiceToAbcSymbols(voiceToneObjects);
+      const abcSymbolsOfModelVoice = ModelUtilities.convertModelVoiceToAbcSymbols(voiceToneObjects, measureSign);
       accu.push(abcSymbolsOfModelVoice);
     }
     return accu;
   }, []);
 }
 
-// Creates an array with playable abc.js strings from arrays with tone objects of model voices
-const getModelAbcOutput = (modelKey, measure, tempo, modelVoices) => {
-  const abcResult = [_getMeta(modelKey, measure, tempo)];
-  const voices = _convertModelVoicesToAbcVoices(modelVoices);
+// Creates an array with playable abc.js strings from arrays with tone objects of model voices for editor view
+const getModelAbcOutput = (modelKey, measure, length, tempo, modelVoices) => {
+  const abcResult = [_getMeta(modelKey, measure, length, tempo)];
+  const voices = _convertModelVoicesToAbcVoices(modelVoices, measure);
   abcResult.push(`V:1\n${voices[0].join(' ')}`);
   abcResult.push(`V:2\n${voices[1].join(' ')}`);
   abcResult.push(`V:3 bass\n${voices[2].join(' ')}`);
@@ -50,7 +49,7 @@ const _lookupAndSetForceValue = (voiceObj1, voiceObj2) => {
 
 // Create the abc output from collections with tone ojects of models
 const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, stretchLastLine) => {
-  const abcResult = [_getMeta(modelKey, measure, tempo, stretchLastLine)];
+  const abcResult = [_getMeta(modelKey, measure, '1/4', tempo, stretchLastLine)];
   const voicesCollection = models.map((modelVoices, index, arr) => {
     if (index > 0) {
       const [cmV1, cmV2, cmV3] = modelVoices;
@@ -65,7 +64,7 @@ const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, 
   const combinedVoicesCollection = voicesCollection[0].map((_, colIndex) => {
     return voicesCollection.map(row => row[colIndex]).reduce((acc, curr) => acc.concat(curr), []);
   });
-  const voices = _convertModelVoicesToAbcVoices([[combinedVoicesCollection[0]], [combinedVoicesCollection[1]], [combinedVoicesCollection[2]]]);
+  const voices = _convertModelVoicesToAbcVoices([[combinedVoicesCollection[0]], [combinedVoicesCollection[1]], [combinedVoicesCollection[2]]], measure);
   const [v1, v2, v3] = [[], [], []];
   voices.forEach((voice, index) => {
     const arrIndex = index % 3;

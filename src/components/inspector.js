@@ -22,8 +22,7 @@ function Inspector({ content, updateContent }) {
     hideLowerSystem,
     showExample,
     example,
-    modelTemplates,
-    selectedModel
+    modelTemplates 
   } = content;
 
   const [exampleName, setExampleName] = useState(showExample ? example.name : 'default');
@@ -94,8 +93,12 @@ function Inspector({ content, updateContent }) {
         label: '4/4'
       },
       {
+        value: '3/4',
+        label: '3/4'
+      },
+      {
         value: '2/4',
-        labe: ' 2/4'
+        label: '2/4'
       }
     ];
   };

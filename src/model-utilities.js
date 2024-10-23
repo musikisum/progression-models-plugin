@@ -199,16 +199,60 @@ function _removeRedundantSignsInMeasure(measureSymbols, index = 0, done = {}, pr
   return _removeRedundantSignsInMeasure(measureSymbols, index + 1, done, prefixPattern);
 }
 
+function _convertMeasureSign(measureSign) {
+  switch (measureSign) {    
+    case "C":
+        return [3, 4];    
+    case "3/4":
+        return [-1, 3];    
+    case "2/4":
+        return [1, 2];  
+    default:
+      return [2, 4]; // 'C|'
+  }
+} 
+
+function _adjustLengthValues(voice, measureSign) {
+  const length = 1;
+  let moduloValue;
+  switch (measureSign) {      
+    case "C":
+      moduloValue = 1;
+      break;
+    case "3/4":
+      moduloValue = 2;
+      break;
+    case "2/4":
+      moduloValue = 1;
+      break;
+    default:
+      return voice;
+  }
+  return voice.map((toneObj, index) => {
+    const toneObjCopy = { ... toneObj };
+    if (index % moduloValue === 0) {
+      toneObjCopy.length = length;
+    }
+    return toneObjCopy;
+  });
+}
+
 // Convert a voice of tone objects to an string ob abc symbols with measure signs 
-const convertModelVoiceToAbcSymbols = modelVoice => {
+const convertModelVoiceToAbcSymbols = (modelVoiceObjs, measureSign) => {
   const voiceAbcSymbols = [];
-  let length = 2;
+  let [length, measureLength] = _convertMeasureSign(measureSign);
   let tempArr = [];
+  let modelVoice;
+  if (measureSign === '|C') {
+    modelVoice = modelVoiceObjs;
+  } else {
+    modelVoice = _adjustLengthValues(modelVoiceObjs, measureSign);
+  }
   for (let index = 0; index < modelVoice.length; index += 1) {
     const toneObj = modelVoice[index];
     tempArr.push(toneObj);
     length += toneObj.length;
-    if (length % 4 === 0) {
+    if (length % measureLength === 0) {
       let measureOfSymbols = _getMeasureAbcCodeFromTonObjectsArray(tempArr);
       measureOfSymbols = _removeRedundantSignsInMeasure(measureOfSymbols);
       voiceAbcSymbols.push(...measureOfSymbols);

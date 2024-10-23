@@ -190,7 +190,28 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'lowerFiveModulation',
-      abc: ''
+      abc: `X:1
+%%score [ ( 1 2 ) | ( 3 4 ) ]
+L:1/4
+M:C
+Q:120
+K:Eb
+V:1
+c d/e/ f2- | f2 e/d/e/f/ | d g2 f | =e c f2- |
+f2 _e2- | e2 d/c/d/e/ | c f2 e | d B e2- |
+e2 _d2- | d c |
+V:2
+c2- c/=B/c/d/ | =B G c2- | c2 _B2- | B2 A/G/A/B/ |
+G c2 B | =A F B2- | B2 _A2- | A2 G/F/G/A/ |
+F B2 A | B A |
+V:3 bass
+x4 | x4 | x4 | x4 |
+x4 | x4 | x4 | x4 |
+x2 B,2 | E2 |
+V:4 bass
+A, A,, A, G,/F,/ | G,4- | G,/F,/G,/A,/ G,/F,/=E,/D,/ | C,4- |  
+C,/B,,/C,/D,/ C,/B,,/=A,,/G,,/ | F,,4- | F,,/E,/F,/G,/ F,/E,/D,/C,/ | B,,4- | 
+B,,/A,/B,/C/ B,/A,/G,/F,/ | "_J. S. Bach, Präludium und Fuge Es-Dur BWV 876, Fuge T. 45–54 f." G, A, |`
     },
     addProps: {
       changeMode: [false, false]
@@ -301,7 +322,24 @@ B,/B,,/4C,/4 D,/C,/4B,,/4 C,,/C,/4D,/4 E,/D,/4C,/4 | G,/G,,/4A,,/4 B,,/A,,/4G,,/
     showDescription: false,
     example: {
       name: 'parallelismUp',
-      abc: ''
+      abc: `X:1
+%%score [( 1 2 ) | ( 3 4 )]
+L:1/4
+M:C
+Q:50
+K:Fm
+V:1
+z2 g2- | g f b2- | b a d'2- |
+d' c'/b/ =a c'- | c' b G/b/g/=e/ |
+V:2
+"_Grave"f3 =e | a3 g | c'3 b | 
+=e2 _e d/c/ | d f =e z |
+V:3 bass
+z4 | C2 E2- | E A F B | 
+G2 C2 | D2 C z |
+V:4
+F,/G,/A,/F,/ C,/=D,/=E,/C,/ | F,/G,/A,/F,/ E,/F,/G,/E,/ | A,/B,/C/A,/ B,/C/D/B,/ | 
+C/B,/A,/G,/ F,/_G,/F,/E,/ | "_G. B- Pergolesi, Stabat Mater P77 (Anfang)"D,/C,/D,/B,,/ C, z |`
     },
     addProps: {
       numberOfSections: [3, 3, false],

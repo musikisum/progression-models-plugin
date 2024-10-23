@@ -264,7 +264,25 @@ V:2 bass
     showDescription: false,
     example: {
       name: 'parallelismDown',
-      abc: ''
+      abc: `X:1
+%%score [( 1 2 ) | 3 ]
+L:1/4
+M:4/4
+Q:100
+K:Gm
+U:s=!stemless!
+V:1
+V:2
+V:3 bass 
+V:1
+g/ z/ z/4 d/4c/4B/4 | A- A/4B/4c/4d/4 G- G/4B/4_A/4G/4 | 
+F- F/4G/4_A/4B/4 E- E/4G/4F/4E/4 | D- D/4D/4=E/4^F/4 G- G/4B/4A/4G/4 |  s^F
+V:2
+B/4D/4=E/4^F/4 G- | G/4G/4=F/4_E/4 D- D/4B,/4C/4D/4 E- | 
+E/4E/4D/4C/4 B,- B,/4G,/4=A,/4=B,/4 C- | C/4[I:staff +1]C/4B,/4A,/4 G,- G,/4G,/4A,/4B,/4[I:staff -1] C/^C/ | D
+V:3
+"_J. S. Bach, Fuge in g-Moll BWV 861 (WtKl I), T. 24–28"G,,/G,/4A,/4 B,/A,/4G,/4 | D/D,/4E,/4 F,/E,/4D,/4 E,,/E,/4F,/4 G,/F,/4E,/4 | 
+B,/B,,/4C,/4 D,/C,/4B,,/4 C,,/C,/4D,/4 E,/D,/4C,/4 | G,/G,,/4A,,/4 B,,/A,,/4G,,/4 E,2 | D,`
     },
     addProps: {
       numberOfSections: [3, 3, false],

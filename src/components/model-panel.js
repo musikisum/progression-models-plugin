@@ -117,7 +117,7 @@ function ModelPanel({
     newModelTemplate.key = oldModelTemplate.key;
     ModelUtilities.copyMatchingProperties(oldModelTemplate, newModelTemplate);
     modelTemplates.splice(index, 0, newModelTemplate);
-    updateContent({ modelTemplates });
+    updateContent({ modelTemplates, selectedModel: model });
   };
 
   const getOptionsForModelSelect = () => {

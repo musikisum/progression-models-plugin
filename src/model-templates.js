@@ -53,7 +53,21 @@ V:3
     showDescription: false,
     example: {
       name: 'cadence',
-      abc: ''
+      abc: `X:1
+%%score [1 | ( 2 3 )]
+L:1/4
+M:C
+Q:120
+K:A
+V:1
+z F | G2- G/d/c/B/ | A/G/ F z A | B2- B/f/e/d/ |  c/B/ A z c |
+^d2- d/a/g/f/ | e/^d/ c z e | f2- f/c'/b/a/ |  g/f/ e |
+V:2 bass
+z [A,C] | z [F,D] z [^E,G,] | z [F,A,] z [A,E] | z [A,F] z [G,B,] |  z [A,C] z [CG] |
+z [CA] z [^B,^D] | z [K:treble][CE] z [EB] | z [Ec] z [^DF] | [K:bass][EG]/[FA]/[GB]/ z/ |
+V:3 bass
+A,, z | B,, z C, z | F, z C, z | D, z E, z | A, z E, z |
+"_W. A. Mozart, Sinfonie A-Dur KV 201, 1. Satz, T. 92–99"F, z G, z | C [K:treble]z G, z | A, z B, z | [K:bass]E,/E,/E,/E,/ |`
     },
     addProps: { 
       isBegin: [false, false],
@@ -185,7 +199,21 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'fiveSixConsecutive',
-      abc: ''
+      abc: `X:1
+%%score [( 1 2 ) | 3 ]
+L:1/4
+M:3/4
+Q:100
+K:D
+V:1
+a =c3/2 c/ | (T=c B2) | b d3/2 d/ | (Td c2) |  
+c' e3/2 e/ | (Te d2) | d'/c'/b/a/g/f/ | e
+V:2
+d A2 | D G2 | e B2 | E A2 | 
+f c2 | F B2 | b/a/g/f/e/d/ | c
+V:3 bass
+F,/E,/F,/D,/E,/F,/ | G,/F,/G,/A,/B,/A,/ | ^G,/F,/G,/E,/F,/G,/ | A,/^G,/A,/B,/C/B,/ | 
+"_Arcangelo Corelli, Concerto grosso D-Dur Op. 6, Nr. 4, T. 9–16 (Concertino)"^A,/^G,/A,/F,/G,/A,/ | B,/^A,/B,/C/D/F,/ | =G, G,,2 | A,,`
     },
     addProps: {
       partLengthValues: [6, 6, false],

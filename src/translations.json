@@ -53,8 +53,16 @@
       "de": "Kadenz"
     },
     "circleOfFifths": {
-      "en": "Circle of fifths",
+      "en": "Circle of fifths (down)",
       "de": "Quintfallsequenz"
+    },
+    "circleOfFifthsUp": {
+      "en": "Circle of fifths (up)",
+      "de": "Quintanstiegssequenz"
+    },
+    "endWithMajorChord": {
+      "en": "End major",
+      "de": "Ende Dur"
     },
     "bassReverse": {
       "en": "Bass 5↓ 4↑",

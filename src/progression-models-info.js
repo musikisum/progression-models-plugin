@@ -8,8 +8,8 @@ import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-ma
 class ProgressionModelsInfo {
   static dependencies = [GithubFlavoredMarkdown];
 
-  static typeName = 'musikisum/educandu-plugin-progression-models';
 
+  static typeName = 'musikisum/educandu-plugin-progression-models';
   constructor(gfm) {
     this.gfm = gfm;
   }

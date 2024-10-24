@@ -4,6 +4,7 @@ const getAvailableModels = [
   'cadence', 
   'circleOfFifths',
   'circleOfFifthsLinear',
+  'circleOfFifthsUp',
   'fauxbourdon',
   'lamento',
   'fiveSixConsecutive',
@@ -105,6 +106,26 @@ V:3 bass
       bassReverse: [false, false]
     }
   },
+  circleOfFifthsUp:  {
+    key: '',
+    name: 'circleOfFifthsUp',
+    modelKey: 'C',
+    transposeValues: [0, 0, 0],
+    voiceArrangement: [1, 2, 3],
+    radioValue: 0,
+    customDescription: '',
+    showDescription: false,
+    example: {
+      name: 'circleOfFifthsUp',
+      abc: ``,
+    },
+    addProps: {
+      partLengthValues: [4, 4, false],
+      syncopation: [true, false],
+      endWithoutSuspension: [true, false],
+      endWithMajorChord: [false, false]
+    }
+  },
   circleOfFifthsLinear: {
     key: '',
     name: 'circleOfFifthsLinear',
@@ -179,7 +200,7 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'lamento',
-      abc: ''
+      abc: ``
     },
     addProps: {
       syncopation: [true, false],

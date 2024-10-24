@@ -13,18 +13,18 @@ const _getMeta = (modelKey, measure, length, tempo, stretchLastLine) => {
 };
 
 // Convert a voices collection with tone objcts in a collection with abc values 
-const _convertModelVoicesToAbcVoices = (modelVoices, measureSign) => {
+const _convertModelVoicesToAbcVoices = (modelVoices, measureSign, invertRhythm) => {
   return modelVoices.reduce((accu, modelVoice) => {
     for (let index = 0; index < modelVoice.length; index += 1) {
       const voiceToneObjects = modelVoice[index];
-      const abcSymbolsOfModelVoice = ModelUtilities.convertModelVoiceToAbcSymbols(voiceToneObjects, measureSign);
+      const abcSymbolsOfModelVoice = ModelUtilities.convertModelVoiceToAbcSymbols(voiceToneObjects, measureSign, invertRhythm);
       accu.push(abcSymbolsOfModelVoice);
     }
     return accu;
   }, []);
 }
 
-// Creates an array with playable abc.js strings from arrays with tone objects of model voices for editor view
+// Creates an array with playable abc.js strings from arrays with tone objects of model voices for editor view only
 const getModelAbcOutput = (modelKey, measure, length, tempo, modelVoices) => {
   const abcResult = [_getMeta(modelKey, measure, length, tempo)];
   const voices = _convertModelVoicesToAbcVoices(modelVoices, measure);
@@ -48,8 +48,17 @@ const _lookupAndSetForceValue = (voiceObj1, voiceObj2) => {
 }
 
 // Create the abc output from collections with tone ojects of models
-const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, stretchLastLine) => {
-  const abcResult = [_getMeta(modelKey, measure, '1/4', tempo, stretchLastLine)];
+const getCompositionAbcOutput = (
+  modelKey, 
+  measure, 
+  tempo, 
+  models, 
+  barsPerLine, 
+  stretchLastLine, 
+  invertRhythm
+) => {
+  const defaultLength = ModelUtilities.convertMeasureSignToDefaultLength(measure);
+  const abcResult = [_getMeta(modelKey, measure, defaultLength, tempo, stretchLastLine)];
   const voicesCollection = models.map((modelVoices, index, arr) => {
     if (index > 0) {
       const [cmV1, cmV2, cmV3] = modelVoices;
@@ -64,7 +73,7 @@ const getCompositionAbcOutput = (modelKey, measure, tempo, models, barsPerLine, 
   const combinedVoicesCollection = voicesCollection[0].map((_, colIndex) => {
     return voicesCollection.map(row => row[colIndex]).reduce((acc, curr) => acc.concat(curr), []);
   });
-  const voices = _convertModelVoicesToAbcVoices([[combinedVoicesCollection[0]], [combinedVoicesCollection[1]], [combinedVoicesCollection[2]]], measure);
+  const voices = _convertModelVoicesToAbcVoices([[combinedVoicesCollection[0]], [combinedVoicesCollection[1]], [combinedVoicesCollection[2]]], measure, invertRhythm);
   const [v1, v2, v3] = [[], [], []];
   voices.forEach((voice, index) => {
     const arrIndex = index % 3;

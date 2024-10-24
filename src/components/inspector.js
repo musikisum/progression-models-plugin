@@ -22,6 +22,7 @@ function Inspector({ content, updateContent }) {
     hideLowerSystem,
     showExample,
     example,
+    invertRhythm,
     modelTemplates 
   } = content;
 
@@ -81,6 +82,10 @@ function Inspector({ content, updateContent }) {
         break;
     }
   };
+
+  const onInvertRhythmChange = e => {
+    updateContent({ invertRhythm: e.target.checked });
+  } 
 
   const getOptionsForMeasureSelect = () => {
     return [
@@ -153,6 +158,8 @@ function Inspector({ content, updateContent }) {
         return `${t('measureToolTip')}`;
       case 'transpose':
         return `${t('transposeToolTip')}`;
+      case 'invertRhythm':
+        return `${t('invertRhythmToolTip')}`;
       default:
         return '';
     }    
@@ -268,6 +275,10 @@ function Inspector({ content, updateContent }) {
           <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
           <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip></Text>
         </div>
+        { measure === '3/4' && <div className='ui-checkBoxHorizontalLabel'>
+          <Checkbox style={{ minWidth: '20px' }} checked={invertRhythm} onChange={e => onInvertRhythmChange(e)} /> 
+          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('invertRhythm')}><span>{`${t('invertRhythm')}`}</span></Tooltip></Text>
+        </div> }
       </div>
     </div>
   );

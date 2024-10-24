@@ -25,6 +25,7 @@ const getVoices = circleOfFifthsOptionsUp => {
     options.addProps.partLengthValues[2] = false;
     options.addProps.endWithoutSuspension[1] = false;
     options.addProps.endWithMajorChord[1] = false;
+    options.addProps.endWithMajorChord[1] = !options.addProps.endWithoutSuspension[0];
   } else {
     voices = [
       ['=E42', '=D42', '=F42', '=E42'],
@@ -37,8 +38,10 @@ const getVoices = circleOfFifthsOptionsUp => {
   }
   const partLengthValue = options.addProps.partLengthValues[0];
   if (partLengthValue !== 4) {
-    voices = voices.map(arr => arr.slice(0, partLengthValue * 2));
-    options.addProps.endWithMajorChord[1] = partLengthValue === 1;
+    voices = voices.map(arr => arr.slice(0, partLengthValue * 2));    
+  }
+  if (partLengthValue === 1) {
+    options.addProps.endWithMajorChord[1] = true;
   }
   if (options.addProps.endWithoutSuspension[0] && options.addProps.syncopation[0]) {
     switch (partLengthValue) {

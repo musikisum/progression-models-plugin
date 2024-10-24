@@ -61,9 +61,14 @@ const getVoices = upperFifthModulationOptions => {
     options.addProps.begin65[1] = false;
   }
   if (options.addProps.begin65[0]) {
-    // TODO:  
+    if (!isMinor) {
+      voices[0].splice(0, 0, '=A41');
+      voices[0].splice(1, 1, '=G41');
+    } else {
+      voices[0].splice(0, 0, '^F41');
+      voices[0].splice(1, 1, '=E41');
+    }
   }
-
   return ModelUtilities.getVoices(options, voices);
 };
 

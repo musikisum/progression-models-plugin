@@ -139,7 +139,7 @@ function ModelPanel({
         <Select
           className='inspectorElement'
           style={{ width: 180, marginLeft: '15px' }}
-          defaultValue={selectedModel}
+          defaultValue={header}
           onChange={onModelSelectionChange}
           options={getOptionsForModelSelect()}
           />

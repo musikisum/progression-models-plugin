@@ -92,6 +92,7 @@ const _createToneObject = toneSymbol => {
   toneObj.fifthsValue = _fifthsValues[`${sign}${tone}`];
   toneObj.octave = parseInt(octave, 10) || 4;
   toneObj.length = parseInt(length, 10) || 2;
+  console.log(additionals)
   toneObj.force = !!additionals;
   return toneObj;
 };
@@ -135,11 +136,6 @@ const updateTransposeValues = (voiceArr, modelName) => {
   };
   const returnValue = mapObj[voiceArr];
   return returnValue;
-};
-
-// Set the beginning of the upper five modulation to a 6-5 consecutive
-const _add56Consecutive = (voiceIndex, voiceArr, abcVoices, keyObject) => {
-  // TODO
 };
 
 // Modifies voices of a model in according to the modeltemplate properties
@@ -202,51 +198,51 @@ function _removeRedundantSignsInMeasure(measureSymbols, index = 0, done = {}, pr
 function _convertMeasureSign(measureSign) {
   switch (measureSign) {    
     case "C":
-        return [3, 4];    
+        return [6, 8];    
     case "3/4":
-        return [-1, 3];    
+        return [4, 6];    
     case "2/4":
-        return [1, 2];  
+        return [2, 4];  
     default:
       return [2, 4]; // 'C|'
   }
 } 
 
-function _adjustLengthValues(voice, measureSign) {
-  const length = 1;
-  let moduloValue;
-  switch (measureSign) {      
-    case "C":
-      moduloValue = 1;
-      break;
-    case "3/4":
-      moduloValue = 2;
-      break;
-    case "2/4":
-      moduloValue = 1;
-      break;
-    default:
-      return voice;
-  }
-  return voice.map((toneObj, index) => {
-    const toneObjCopy = { ... toneObj };
-    if (index % moduloValue === 0) {
-      toneObjCopy.length = length;
+// Only for triple meters
+function _adjustLengthValuesInTripleMeasures(voice, inversion) {
+  const indexIs5 = inversion ? 2 : 1;
+    if (inversion) {
+      voice[0].length = 4;
     }
-    return toneObjCopy;
-  });
+    for (let i = indexIs5; i < voice.length; i += 2) {
+      voice[i].length = 4;
+    }
+  return voice;
+};
+
+// Convert MeasureSign to defaultLength 
+function convertMeasureSignToDefaultLength(measureSign) {
+  switch (measureSign) {      
+    case "2/4":
+    case "3/4":
+    case "C":   
+      return '1/8';
+    default:
+      return '1/4';
+  }
 }
 
 // Convert a voice of tone objects to an string ob abc symbols with measure signs 
-const convertModelVoiceToAbcSymbols = (modelVoiceObjs, measureSign) => {
+const convertModelVoiceToAbcSymbols = (modelVoiceObjs, measureSign, invertRhythm) => {
   const voiceAbcSymbols = [];
   let [length, measureLength] = _convertMeasureSign(measureSign);
   let tempArr = [];
   let modelVoice;
-  if (measureSign === '|C') {
+  if (measureSign !== '3/4') {
     modelVoice = modelVoiceObjs;
   } else {
-    modelVoice = _adjustLengthValues(modelVoiceObjs, measureSign);
+    modelVoice = _adjustLengthValuesInTripleMeasures(modelVoiceObjs, invertRhythm);
+    length = invertRhythm ? 2 : 4;
   }
   for (let index = 0; index < modelVoice.length; index += 1) {
     const toneObj = modelVoice[index];
@@ -341,6 +337,7 @@ const ModelUtilities = {
   getFifthsValueFromTone,
   getToneFromFifthsValue,
   convertModelVoiceToAbcSymbols,
+  convertMeasureSignToDefaultLength,
   updateTransposeValues,
   divideVoices,
   copyMatchingProperties,

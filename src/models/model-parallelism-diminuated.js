@@ -41,7 +41,7 @@ const getVoices = upperFifthModulationOptions => {
   if (numberOfSections === 3) {
     voices[1][11] = !isMinor ? '=F32' : '=D42';
   }
-  if (options.addProps.confirmation[0]) {
+  if (!options.addProps.confirmation[0]) {
     voices = voices.map(arr => arr.slice(4));
   }
   return ModelUtilities.getVoices(options, voices);

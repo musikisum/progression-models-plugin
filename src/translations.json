@@ -297,8 +297,8 @@
       "de": "Beschreibung der verwendeten Satzmodelle"
     },
     "stretchLastLine": {
-      "en": "stretch last line",
-      "de": "letzte Zeile füllen"
+      "en": "Stretch",
+      "de": "Dehnen"
     },
     "Q3": {
       "en": "3 fifths ↑",
@@ -325,19 +325,19 @@
       "de": "1 Quinten ↓"
     },
     "Q0": {
-      "en": "no tranposition",
-      "de": "keine Tranposition"
+      "en": "No tranposition",
+      "de": "Keine Tranposition"
     },
     "abcCopy": {
-      "en": "copy abc code",
+      "en": "Copy abc code",
       "de": "ABC-Code kopieren"
     },
     "abcCopyTtBefore": {
-      "en": "click here to copy",
+      "en": "Click here to copy",
       "de": "Hier klicken"
     },
     "abcCopyTtAfter": {
-      "en": "abc code copied to clipboard",
+      "en": "ABC code copied to clipboard",
       "de": "ABC-Code erfolgreich in die Zwischenablage kopiert"
     },
     "displayLayout": {
@@ -377,11 +377,11 @@
       "de": "Die Beschreibung eines Modells oder einer Modellkombination im Ansichtsmodus anzeigen"
     },
     "hideUpperSystemTooltip": {
-      "en": "hide upper voices in view mode",
+      "en": "Hide upper voices in view mode",
       "de": "Oberes Notensystem im Ansichtsmodus ausblenden"
     },
     "hideLowerSystemTooltip": {
-      "en": "hide lower voices in view mode",
+      "en": "Hide lower voices in view mode",
       "de": "Unteres Notensystem im Ansichtsmodus ausblenden"
     },
     "measurePerLineToolTip": {
@@ -415,6 +415,14 @@
     "selectKeyToolTip": {
       "en": "Select for a model key",
       "de": "Auswahl einer Tonart für das Modell"
+    },
+    "invertRhythmToolTip": {
+      "en": "Invert rhythm in triple meters",
+      "de": "Kehrt den Rhythmus in triplierten Taktarten um"
+    },
+    "invertRhythm": {
+      "en": "Invert",
+      "de": "Umkehren"
     }
   }
 }

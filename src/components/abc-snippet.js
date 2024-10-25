@@ -28,13 +28,18 @@ w:Es ist nun nichts, nichts,`;
 function AbcSnippet({ playableABC }) {
   
   const [lastRenderResult, setLastRenderResult] = useState();
-  const abc = playableABC || musicErrorMessage;
+  let abc;
+  if (playableABC === 'X:' || !playableABC) {
+    abc = musicErrorMessage;
+  } else {
+    abc = playableABC;
+  }
   const hasMusic = lastRenderResult?.[0]?.lines.length !== 0;
 
   return (
     <div>
       <AbcNotation abcCode={abc} onRender={setLastRenderResult} />
-      { hasMusic && <AbcPlayer renderResult={lastRenderResult} /> }
+      { hasMusic ? <AbcPlayer renderResult={lastRenderResult} /> : null }
     </div>
   );
 }

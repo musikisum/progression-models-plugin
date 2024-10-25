@@ -117,7 +117,16 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'circleOfFifthsUp',
-      abc: ``,
+      abc: `X:1
+%%score [ 1 | 2 ]
+L:1/16
+M:C
+Q:100
+K:C
+V:1
+z Gce z Gce z Gcd z Bdg | z Adf z Adf z Ade z cea | z Bea z Beg |
+V:2 bass
+"_J. S. Bach, kleines Präludium C-Dur BWV 924, T. 1–3"C,4 E,4 G,4 G,,4 | D,4 F,4 A,4 A,,4 | E,4 E4 |`,
     },
     addProps: {
       partLengthValues: [4, 4, false],
@@ -200,7 +209,24 @@ V:3 bass
     showDescription: false,
     example: {
       name: 'lamento',
-      abc: ``
+      abc: `X:1
+%%score [( 1 2 ) | ( 3 4 )]
+L:1/4
+M:6/8
+Q:3/8=40
+K:C
+V:1
+z/ F/A/ _B3/2- | B/E/G/ A3/2- | A/D/F/ G3/2- | G/A/G/ (F E/ |  F)/F/A/ _B3/2- |
+B/E/^G/ A3/2- | A/D/^F/ G3/2- | G/(E/4F/4G/) (F E/ |  D/) F/A/
+V:2
+z/ F- F/F/G/- | G/ E- E/E/F/- | F/ D- D/D/E/ | [^CE]/ z/ z/ x x/ |  x/ F- F/F/G/- |
+G/ E- E/E/F/- | F/ D- D/D/E/ | [^CE]/ x/ x/ x x/ |  F,/ F
+V:3 bass
+x3 | x3 | x3 | x3/2 A,3/2 |  D,3/2 D,3/2 |
+^C,3/2 =C,3/2 | B,,3/2 _B,,3/2 | A,, G,,/ A,,- A,,/ |  D,,3/2
+V:4 bass
+D, z/ D3/2 | ^C3/2 =C3/2 | B,3/2 _B,3/2 | A,3/2-  A,,3/2 |  D,3/2- D,,3/2 |
+"_François Couperin, Pièce de Clavcin, XIX. Ordre, La Muse Plantine "x3 | x3 | x5/2 A,,,/ | x3/2`
     },
     addProps: {
       syncopation: [true, false],
@@ -274,7 +300,7 @@ x2 B,2 | E2 |
 V:4 bass
 A, A,, A, G,/F,/ | G,4- | G,/F,/G,/A,/ G,/F,/=E,/D,/ | C,4- |  
 C,/B,,/C,/D,/ C,/B,,/=A,,/G,,/ | F,,4- | F,,/E,/F,/G,/ F,/E,/D,/C,/ | B,,4- | 
-B,,/A,/B,/C/ B,/A,/G,/F,/ | "_J. S. Bach, Präludium und Fuge Es-Dur BWV 876, Fuge T. 45–54 f." G, A, |`
+"_J. S. Bach, Präludium und Fuge Es-Dur BWV 876, Fuge T. 45–54 f."B,,/A,/B,/C/ B,/A,/G,/F,/ | G, A, |`
     },
     addProps: {
       changeMode: [false, false]
@@ -328,9 +354,9 @@ M:C
 Q:100
 K:C
 V:1
-z Bea z Beg z cef z Gdf | z Gde z Gce z Acd z EBd | z EBc z EAc z FA_B z CGB | z CGA z CFA |
+z cef z Gdf | z Gde z Gce z Acd z EBd | z EBc z EAc z FA_B z CGB | z CGA z CFA |
 V:2 bass
-"_J. S. Bach, kleines Präludium C-Dur BWV 924, T. 3–6"E,4 E4 A,4 B,4 | C4 E,4 ^F,4 ^G,4 | A,4 C,4 D,4 E,4 | F,4 E,4 |`
+"_J. S. Bach, kleines Präludium C-Dur BWV 924, T. 3–6"A,4 B,4 | C4 E,4 ^F,4 ^G,4 | A,4 C,4 D,4 E,4 | F,4 E,4 |`
     },
     addProps: {
       numberOfSections: [4, 4, false],
@@ -365,8 +391,8 @@ V:2
 B/4D/4=E/4^F/4 G- | G/4G/4=F/4_E/4 D- D/4B,/4C/4D/4 E- | 
 E/4E/4D/4C/4 B,- B,/4G,/4=A,/4=B,/4 C- | C/4[I:staff +1]C/4B,/4A,/4 G,- G,/4G,/4A,/4B,/4[I:staff -1] C/^C/ | D
 V:3
-"_J. S. Bach, Fuge in g-Moll BWV 861 (WtKl I), T. 24–28"G,,/G,/4A,/4 B,/A,/4G,/4 | D/D,/4E,/4 F,/E,/4D,/4 E,,/E,/4F,/4 G,/F,/4E,/4 | 
-B,/B,,/4C,/4 D,/C,/4B,,/4 C,,/C,/4D,/4 E,/D,/4C,/4 | G,/G,,/4A,,/4 B,,/A,,/4G,,/4 E,2 | D,`
+G,,/G,/4A,/4 B,/A,/4G,/4 | D/D,/4E,/4 F,/E,/4D,/4 E,,/E,/4F,/4 G,/F,/4E,/4 | 
+"_J. S. Bach, Fuge in g-Moll BWV 861 (WtKl I), T. 24–28"B,/B,,/4C,/4 D,/C,/4B,,/4 C,,/C,/4D,/4 E,/D,/4C,/4 | G,/G,,/4A,,/4 B,,/A,,/4G,,/4 E,2 | D,`
     },
     addProps: {
       numberOfSections: [3, 3, false],

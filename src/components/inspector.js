@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import ModelExample from './modelExample.js';
 import { useTranslation } from 'react-i18next';
@@ -85,7 +86,7 @@ function Inspector({ content, updateContent }) {
 
   const onInvertRhythmChange = e => {
     updateContent({ invertRhythm: e.target.checked });
-  } 
+  };
 
   const getOptionsForMeasureSelect = () => {
     return [
@@ -283,5 +284,38 @@ function Inspector({ content, updateContent }) {
     </div>
   );
 }
+
+Inspector.propTypes = {
+  transposeValue: PropTypes.number,
+  tempo: PropTypes.number, 
+  measure: PropTypes.string,
+  measuresPerLine: PropTypes.number, 
+  stretchLastLine: PropTypes.bool, 
+  showDescription: PropTypes.bool, 
+  hideUpperSystem: PropTypes.bool,
+  hideLowerSystem: PropTypes.bool,
+  showExample: PropTypes.bool,
+  example: PropTypes.object,
+  invertRhythm: PropTypes.bool,
+  modelTemplates: PropTypes.array 
+};
+
+Inspector.defaultProps = {
+  transposeValue: 0,
+  tempo: 120, 
+  measure: 'C|',
+  measuresPerLine: 6, 
+  stretchLastLine: false, 
+  showDescription: false, 
+  hideUpperSystem: false,
+  hideLowerSystem: false,
+  showExample: false,
+  example: {
+    name: '',
+    abc: ''
+  },
+  invertRhythm: false,
+  modelTemplates: []
+};
 
 export default Inspector;

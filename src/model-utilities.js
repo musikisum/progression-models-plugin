@@ -92,7 +92,6 @@ const _createToneObject = toneSymbol => {
   toneObj.fifthsValue = _fifthsValues[`${sign}${tone}`];
   toneObj.octave = parseInt(octave, 10) || 4;
   toneObj.length = parseInt(length, 10) || 2;
-  console.log(additionals)
   toneObj.force = !!additionals;
   return toneObj;
 };
@@ -117,6 +116,7 @@ const _getOctaveSpecifier = octaveNumber => {
     case 8:
       return '\'\'\'\'';
     default:
+      // eslint-disable-next-line no-console
       console.log(`The octave value is invalid: ${octaveNumber}.`);
       return '';
   }
@@ -197,12 +197,12 @@ function _removeRedundantSignsInMeasure(measureSymbols, index = 0, done = {}, pr
 
 function _convertMeasureSign(measureSign) {
   switch (measureSign) {    
-    case "C":
-        return [6, 8];    
-    case "3/4":
-        return [4, 6];    
-    case "2/4":
-        return [2, 4];  
+    case 'C':
+      return [6, 8];    
+    case '3/4':
+      return [4, 6];    
+    case '2/4':
+      return [2, 4];  
     default:
       return [2, 4]; // 'C|'
   }
@@ -211,21 +211,21 @@ function _convertMeasureSign(measureSign) {
 // Only for triple meters
 function _adjustLengthValuesInTripleMeasures(voice, inversion) {
   const indexIs5 = inversion ? 2 : 1;
-    if (inversion) {
-      voice[0].length = 4;
-    }
-    for (let i = indexIs5; i < voice.length; i += 2) {
-      voice[i].length = 4;
-    }
+  if (inversion) {
+    voice[0].length = 4;
+  }
+  for (let i = indexIs5; i < voice.length; i += 2) {
+    voice[i].length = 4;
+  }
   return voice;
 };
 
 // Convert MeasureSign to defaultLength 
 function convertMeasureSignToDefaultLength(measureSign) {
   switch (measureSign) {      
-    case "2/4":
-    case "3/4":
-    case "C":   
+    case '2/4':
+    case '3/4':
+    case 'C':   
       return '1/8';
     default:
       return '1/4';
@@ -235,7 +235,9 @@ function convertMeasureSignToDefaultLength(measureSign) {
 // Convert a voice of tone objects to an string ob abc symbols with measure signs 
 const convertModelVoiceToAbcSymbols = (modelVoiceObjs, measureSign, invertRhythm) => {
   const voiceAbcSymbols = [];
-  let [length, measureLength] = _convertMeasureSign(measureSign);
+  const measureSignArray = _convertMeasureSign(measureSign);
+  const measureLength = measureSignArray[1];
+  let length = measureSignArray[0];
   let tempArr = [];
   let modelVoice;
   if (measureSign !== '3/4') {
@@ -288,11 +290,8 @@ const divideVoices = (abcVoices, barsPerLine) => {
 
 // Copy properties form one modelTemplate to an other modelTemplate
 const copyMatchingProperties = (oldModelTemplate, newModelTemplate) => {
-  for (let key in oldModelTemplate) {
-    if (key === 'key' || key === 'name') {
-      continue;
-    }
-    if (newModelTemplate.hasOwnProperty(key)) {
+  for (const key in oldModelTemplate) {
+    if (key !== 'key' && key !== 'name' && Object.hasOwn(newModelTemplate, key)) {
       if (typeof oldModelTemplate[key] === 'object' && oldModelTemplate[key] !== null) {
         if (Array.isArray(oldModelTemplate[key])) {
           newModelTemplate[key] = [...oldModelTemplate[key]];
@@ -304,7 +303,23 @@ const copyMatchingProperties = (oldModelTemplate, newModelTemplate) => {
       }
     }
   }
-}
+  // for (const key in oldModelTemplate) {
+  //   if (key === 'key' || key === 'name') {
+  //     continue;
+  //   }
+  //   if (newModelTemplate.hasOwnProperty(key)) {
+  //     if (typeof oldModelTemplate[key] === 'object' && oldModelTemplate[key] !== null) {
+  //       if (Array.isArray(oldModelTemplate[key])) {
+  //         newModelTemplate[key] = [...oldModelTemplate[key]];
+  //       } else {
+  //         copyMatchingProperties(oldModelTemplate[key], newModelTemplate[key]);
+  //       } 
+  //     } else {
+  //       newModelTemplate[key] = oldModelTemplate[key];
+  //     }
+  //   }
+  // }
+};
 
 // Convert an abc string t an empty line
 const convertToEmptyLines = (voices, hideUpperSystem, hideLowerSystem) => {

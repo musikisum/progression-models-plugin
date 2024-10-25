@@ -33,18 +33,20 @@ function ModelDescription({
     setText(event.target.value);
   };
 
-  return (<div> 
-    { modelTemplate.showDescription 
-      ? <Collapse collapsible="icon" defaultActiveKey="panel" className='descriptionContainer'>
-        <Collapse.Panel
-          key="panel"
-          header={<div className="ItemPanel-header">{t('showDescription')}</div>}
-          >
-          <MarkdownInput value={text} onChange={handleTextChanged} />
-        </Collapse.Panel>
-        </Collapse>
-      : null }    
-  </div>);
+  return (
+    <div> 
+      { modelTemplate.showDescription 
+        ? <Collapse collapsible="icon" defaultActiveKey="panel" className='descriptionContainer'>
+          <Collapse.Panel
+            key="panel"
+            header={<div className="ItemPanel-header">{t('showDescription')}</div>}
+            >
+            <MarkdownInput value={text} onChange={handleTextChanged} />
+          </Collapse.Panel>
+          </Collapse>
+        : null }    
+    </div>
+  );
 }
 ModelDescription.propTypes = {
   modelIndex: PropTypes.number,

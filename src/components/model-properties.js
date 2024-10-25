@@ -10,11 +10,10 @@ function ModelProperties({ index, modelTemplates, updateContent }) {
   const addProps = modelTemplate.addProps;
 
   const onChange = (e, propIndex) => {
-    const modelTemplate = modelTemplates[index];
     const keys = Object.keys(modelTemplate.addProps);
     const value = typeof e === 'number' ? e : e.target.checked;
     modelTemplate.addProps[keys[propIndex]][0] = value;
-    updateContent({ modelTemplates: modelTemplates });
+    updateContent({ modelTemplates });
   };
 
   function getCheck(key, value, propIndex) {

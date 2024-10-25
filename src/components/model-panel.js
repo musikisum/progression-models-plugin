@@ -31,7 +31,7 @@ function ModelPanel({
 }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
-  const { modelTemplates, selectedModel } = content;
+  const { modelTemplates } = content;
   const modelTemplate = modelTemplates[index];
   const header = t(modelTemplate.name);
 
@@ -175,7 +175,6 @@ ModelPanel.propTypes = {
     danger: PropTypes.bool,
     disabled: PropTypes.bool,
   })),
-  header: PropTypes.string,
   index: PropTypes.number,
   dragHandleProps: PropTypes.object,
   isDragged: PropTypes.bool,
@@ -192,7 +191,6 @@ ModelPanel.propTypes = {
 ModelPanel.defaultProps = {
   canDeleteLastItem: false,
   extraActionButtons: [],
-  header: '',
   index: 0,
   dragHandleProps: null,
   isDragged: false,

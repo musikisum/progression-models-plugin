@@ -17,7 +17,7 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   const { modelTemplates, width } = content;
   const droppableIdRef = useRef(useId());
 
-  const updateContent = (newContentValues) => {
+  const updateContent = newContentValues => {
     onContentChanged({ ...content, ...newContentValues });
   };
 

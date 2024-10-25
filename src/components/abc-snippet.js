@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import AbcPlayer from '@educandu/educandu/components/abc-player.js';
 import AbcNotation from '@educandu/educandu/components/abc-notation.js';
@@ -43,5 +44,13 @@ function AbcSnippet({ playableABC }) {
     </div>
   );
 }
+
+AbcSnippet.propTypes = {
+  playableABC: PropTypes.string
+};
+
+AbcSnippet.defaultProps = {
+  playableABC: ''
+};
 
 export default AbcSnippet;

@@ -1,4 +1,5 @@
 import ModelProvider from './model-provider.js';
+import AbcVoiceFactory from './abc-voice-factory.js';
 
 // Provide values of fifths
 const _fifthsValues = {
@@ -96,32 +97,6 @@ const _createToneObject = toneSymbol => {
   return toneObj;
 };
 
-// Provide a abc octave value from a midi octave number
-const _getOctaveSpecifier = octaveNumber => {
-  switch (octaveNumber) {
-    case 1:
-      return ',,,';
-    case 2:
-      return ',,';
-    case 3:
-      return ',';
-    case 4:
-      return '';
-    case 5:
-      return '\'';
-    case 6:
-      return '\'\'';
-    case 7:
-      return '\'\'\'';
-    case 8:
-      return '\'\'\'\'';
-    default:
-      // eslint-disable-next-line no-console
-      console.log(`The octave value is invalid: ${octaveNumber}.`);
-      return '';
-  }
-};
-
 // Handle voice exchanges 
 const updateTransposeValues = (voiceArr, modelName) => {
   const model = ModelProvider.getModel(modelName);
@@ -166,60 +141,6 @@ const getVoices = (options, modelVoices) => {
   return modelToneObjects;
 };
 
-// Create measure abc code from an array of tone objects and remove not forced leading =-signs  
-function _getMeasureAbcCodeFromTonObjectsArray(toneObjArr) {
-  return toneObjArr.reduce((accu, toneObj) => {
-    let abcSymbol = `${getToneFromFifthsValue(toneObj.fifthsValue)}${_getOctaveSpecifier(toneObj.octave)}${toneObj.length}`;
-    if (!toneObj.force && abcSymbol.startsWith('=')) {
-      abcSymbol = abcSymbol.slice(1);
-    }
-    accu.push(abcSymbol);
-    return accu;
-  }, []);
-}
-
-// Remove redundant signs in a measure
-function _removeRedundantSignsInMeasure(measureSymbols, index = 0, done = {}, prefixPattern = /^([=_^]+)?/) {
-  // stop the loop 
-  if (index >= measureSymbols.length) {
-    return measureSymbols;
-  }
-  const symbol = measureSymbols[index];
-  if (done[symbol]) { // Replace an reminded symbol 
-    measureSymbols[index] = done[symbol];
-  } else { // Entry point for replacing a symbol and saving the modefied symbol for the next replace 
-    const modifiedSymbol = symbol.replace(prefixPattern, '');
-    done[symbol] = modifiedSymbol;
-  }
-  // recursive method call 
-  return _removeRedundantSignsInMeasure(measureSymbols, index + 1, done, prefixPattern);
-}
-
-function _convertMeasureSign(measureSign) {
-  switch (measureSign) {    
-    case 'C':
-      return [6, 8];    
-    case '3/4':
-      return [4, 6];    
-    case '2/4':
-      return [2, 4];  
-    default:
-      return [2, 4]; // 'C|'
-  }
-} 
-
-// Only for triple meters
-function _adjustLengthValuesInTripleMeasures(voice, inversion) {
-  const indexIs5 = inversion ? 2 : 1;
-  if (inversion) {
-    voice[0].length = 4;
-  }
-  for (let i = indexIs5; i < voice.length; i += 2) {
-    voice[i].length = 4;
-  }
-  return voice;
-};
-
 // Convert MeasureSign to defaultLength 
 function convertMeasureSignToDefaultLength(measureSign) {
   switch (measureSign) {      
@@ -234,37 +155,8 @@ function convertMeasureSignToDefaultLength(measureSign) {
 
 // Convert a voice of tone objects to an string ob abc symbols with measure signs 
 const convertModelVoiceToAbcSymbols = (modelVoiceObjs, measureSign, invertRhythm) => {
-  const voiceAbcSymbols = [];
-  const measureSignArray = _convertMeasureSign(measureSign);
-  const measureLength = measureSignArray[1];
-  let length = measureSignArray[0];
-  let tempArr = [];
-  let modelVoice;
-  if (measureSign !== '3/4') {
-    modelVoice = modelVoiceObjs;
-  } else {
-    modelVoice = _adjustLengthValuesInTripleMeasures(modelVoiceObjs, invertRhythm);
-    length = invertRhythm ? 2 : 4;
-  }
-  for (let index = 0; index < modelVoice.length; index += 1) {
-    const toneObj = modelVoice[index];
-    tempArr.push(toneObj);
-    length += toneObj.length;
-    if (length % measureLength === 0) {
-      let measureOfSymbols = _getMeasureAbcCodeFromTonObjectsArray(tempArr);
-      measureOfSymbols = _removeRedundantSignsInMeasure(measureOfSymbols);
-      voiceAbcSymbols.push(...measureOfSymbols);
-      voiceAbcSymbols.push('|');
-      tempArr = [];
-    }
-    if (index === modelVoice.length - 1) {
-      let halfMeasureOfSymbols = _getMeasureAbcCodeFromTonObjectsArray(tempArr);
-      halfMeasureOfSymbols = _removeRedundantSignsInMeasure(halfMeasureOfSymbols);
-      voiceAbcSymbols.push(...halfMeasureOfSymbols);
-      tempArr = [];
-    }
-  }
-  return voiceAbcSymbols;
+  const voiceAbcSymbols = new AbcVoiceFactory(modelVoiceObjs, measureSign, invertRhythm);
+  return voiceAbcSymbols.getAbcMeasures();
 };
 
 const divideVoices = (abcVoices, barsPerLine) => {

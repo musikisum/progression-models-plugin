@@ -41,6 +41,13 @@ musikisum/educandu-plugin-progression-models:
   circleOfFifths:
     en: Circle of fifths (down)
     de: Quintfallsequenz
+  defaultDescriptionCircleOfFifths:
+    en:
+    de: Historisch gesehen ist die **Quintfallsequenz mit Grundakkorden** (*sekundweise abwärts sequenzierter Quintfall*) und Septimen eine Reduktion eines fünfstimmigen Satzes, 
+        bestehend aus einer Agensstimme und deren Überterzung, einer Patiensstimme und deren Unterterzung sowie einer aus satztechnischen Notwendigkeiten in Quinten und Quarten springenden fünften Stimme.
+        In der Dreitsimmigkeit erklingt zu jedem Grundton der HArmonie im Bass eine Septime, die sich zur Terz des nächsten Grundtons auflöst sowie eine
+        Septime, die durch Wiederholung oder Überbindung zur Seotime des nächsten Grundtons wird. Die Quintfallsequenz in ihren verschiedenen Ausprägungen gehört zu  
+        den bekanntesten Modellen tonaler Musik.
   circleOfFifthsUp:
     en: Circle of fifths (up)
     de: Quintanstiegssequenz
@@ -83,6 +90,9 @@ musikisum/educandu-plugin-progression-models:
   circleOfFifthsLinear:
     en: Circle of Fifths (Inversions)
     de: Quintfallsequenz (Umkehrungen)
+  defaultDescriptionCircleOfFifthsLinear:
+    en:
+    de: Hallo Welt
   fiveSixConsecutive:
     en: Fauxbourdon (5-6)
     de: Fauxbourdon (5-6)
@@ -99,14 +109,23 @@ musikisum/educandu-plugin-progression-models:
     en: Description
     de: Beschreibung
   defaultDescriptionCadence:
-    en: TODO
-    de: "Die Kadenz als Satzmodell ist eine Schlusswendung aus drei Stimmen: 1. Der Tenorklausel, 2. der Sopranklausel und 3. der Bassklausel. Je nachdem, ob die Tenorklausel in der Finalis oder in der Oberterz zur Finalis endet, ist die Schlusswendung vollkommen oder unvollkommen. Wird die Bassklausel nicht in die Finalis, sondern in die Unterterz zur Finalis geführt, entsteht eine Form des ›Fuggir la Cadenza‹, die als Trugschluss bezeichent wird. Liegt die Tenorklausel im Bass, erklingt in der Dreistimmigkeit ein Quartsextklang, der früher gemieden worden ist und der deshalb heute als Satzfehler gilt." 
+    en: "The **cadence** as a phrase model is a musical ending involving three voices: 1. the tenor clausula, 2. the soprano clausula, and 3. the bass clausula. Depending on whether the tenor clausula ends on the final note (finalis) or on the major third above it, 
+        the cadence is considered perfect or imperfect. If the bass clausula leads not to the finalis but to the minor third below it, this creates a form of Fuggir la Cadenza, which is referred to as an evaded cadence or deceptive cadence. 
+        When the tenor clausula appears in the bass, a six-four chord (quart-sext chord) is heard in three-part harmony, a sound avoided in the past and thus now regarded as a compositional error."
+    de: "Die **Kadenz** als Satzmodell ist eine Schlusswendung aus drei Stimmen: 1. Der Tenorklausel, 2. der Sopranklausel und 3. der Bassklausel. Je nachdem, ob die Tenorklausel in der Finalis oder in der Oberterz zur Finalis endet, 
+        ist die Schlusswendung vollkommen oder unvollkommen. Wird die Bassklausel nicht in die Finalis, sondern in die Unterterz zur Finalis geführt, entsteht eine Form des ›Fuggir la Cadenza‹, die als Trugschluss bezeichent wird. 
+        Liegt die Tenorklausel im Bass, erklingt in der Dreistimmigkeit ein Quartsextklang, der früher gemieden worden ist und der deshalb heute als Satzfehler gilt." 
   lowerFiveModulation:
     en: Lower Quint Modulation
     de: Unterquintmodulation
   upperFiveModulation:
     en: Upper Quint Modulation
     de: Oberquintmodulation
+  defaultDescriptionUpperFiveModulation:
+    en:
+    de: Wesentliches Mittel für die **Modulation in die Oberquinte** ist die Einführung des *Leittons* zur Oberquinttonart, die in dem hier gezeigten Modell mit Septimendissonanzen an zweiter und im Modell ohne Dissonanzen an dritter Position erklingt.  
+        (»Es ist genug, wenn die grosse Septime derjenigen Tonart, (semitonium modi), worein man gehet, im Basse, oder einer andern Stimme da ist.«, C. Ph. E. Bach, 1753). Das Modell lässt sich dabei als Ausprägung einer Tetracordharmonisierung 
+        (*fa-mi-re-ut*) verstehen (vgl. Kaiser, 2007, 2009 und 2023) oder als ein mehrstimmiger Satz auffassen (vgl. Gjerdingens *Prinner*, 2007 und Martin 2023).     
   prinner:
     en: Prinner
     de: Prinner

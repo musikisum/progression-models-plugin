@@ -1,5 +1,4 @@
 import ModelProvider from './model-provider.js';
-import AbcVoiceFactory from './abc-voice-factory.js';
 
 // Provide values of fifths
 const _fifthsValues = {
@@ -74,14 +73,6 @@ const _getModelKeyValue = modelKey => {
 // Provide a fifths value from an abc symbol
 const getFifthsValueFromTone = symbol => {
   return _fifthsValues[symbol];
-};
-
-// Provide an abc symbol from a fifts value
-const getToneFromFifthsValue = number => {
-  if (number < -9 && number < 15) {
-    console.log(`The fifths value ${number} ist out of range`);
-  }
-  return Object.keys(_fifthsValues).find(key => _fifthsValues[key] === number);
 };
 
 // Create a tone object from a model tone: [sign][tone][octave][length][:force]
@@ -173,75 +164,13 @@ const divideVoices = (abcVoices, barsPerLine) => {
   });
   return newAbcVoices;
 };
-
-// Copy properties form one modelTemplate to an other modelTemplate
-const copyMatchingProperties = (oldModelTemplate, newModelTemplate) => {
-  for (const key in oldModelTemplate) {
-    if (key !== 'key' && key !== 'name' && Object.hasOwn(newModelTemplate, key)) {
-      if (typeof oldModelTemplate[key] === 'object' && oldModelTemplate[key] !== null) {
-        if (Array.isArray(oldModelTemplate[key])) {
-          newModelTemplate[key] = [...oldModelTemplate[key]];
-        } else {
-          copyMatchingProperties(oldModelTemplate[key], newModelTemplate[key]);
-        } 
-      } else {
-        newModelTemplate[key] = oldModelTemplate[key];
-      }
-    }
-  }
-  // for (const key in oldModelTemplate) {
-  //   if (key === 'key' || key === 'name') {
-  //     continue;
-  //   }
-  //   if (newModelTemplate.hasOwnProperty(key)) {
-  //     if (typeof oldModelTemplate[key] === 'object' && oldModelTemplate[key] !== null) {
-  //       if (Array.isArray(oldModelTemplate[key])) {
-  //         newModelTemplate[key] = [...oldModelTemplate[key]];
-  //       } else {
-  //         copyMatchingProperties(oldModelTemplate[key], newModelTemplate[key]);
-  //       } 
-  //     } else {
-  //       newModelTemplate[key] = oldModelTemplate[key];
-  //     }
-  //   }
-  // }
-};
-
-// Convert an abc string t an empty line
-const convertToEmptyLines = (voices, hideUpperSystem, hideLowerSystem) => {
-  const result = voices[2].split(/[| ]+/).filter(entry => entry !== '');
-  const newV1Arr = []; const newV2Arr = []; const newV3Arr = [];
-  
-  result.forEach((_, index) => {
-    const isEven = index % 2 === 0;
-    const separator = isEven ? ' | ' : ' ';    
-    if (hideUpperSystem) {
-      newV1Arr.push('x', separator);
-      newV2Arr.push('x', separator);
-    }    
-    if (hideLowerSystem) {
-      newV3Arr.push('x', separator);
-    }
-  });  
-  if (hideUpperSystem) {
-    voices[0] = newV1Arr.join('');
-    voices[1] = newV2Arr.join('');
-  }  
-  if (hideLowerSystem) {
-    voices[2] = newV3Arr.join('');
-  }  
-  return voices;
-};
  
 const ModelUtilities = {
   getVoices,
   getFifthsValueFromTone,
-  getToneFromFifthsValue,
   convertMeasureSignToDefaultLength,
   updateTransposeValues,
-  divideVoices,
-  copyMatchingProperties,
-  convertToEmptyLines
+  divideVoices
 };
 
 export default ModelUtilities;

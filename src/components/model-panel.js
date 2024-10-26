@@ -110,12 +110,29 @@ function ModelPanel({
     );
   };
 
+  // Copy properties form one modelTemplate to an other modelTemplate
+  const _copyMatchingProperties = (oldModelTemplate, newModelTemplate) => {
+    for (const key in oldModelTemplate) {
+      if (key !== 'key' && key !== 'name' && Object.hasOwn(newModelTemplate, key)) {
+        if (typeof oldModelTemplate[key] === 'object' && oldModelTemplate[key] !== null) {
+          if (Array.isArray(oldModelTemplate[key])) {
+            newModelTemplate[key] = [...oldModelTemplate[key]];
+          } else {
+            _copyMatchingProperties(oldModelTemplate[key], newModelTemplate[key]);
+          } 
+        } else {
+          newModelTemplate[key] = oldModelTemplate[key];
+        }
+      }
+    }
+  };
+
   const onModelSelectionChange = model => {
     const oldModelTemplate = modelTemplates[index];
     modelTemplates.splice(index, 1);
     const newModelTemplate = cloneDeep(ModelTemplates.getModelTemplate(model));
-    newModelTemplate.key = oldModelTemplate.key;
-    ModelUtilities.copyMatchingProperties(oldModelTemplate, newModelTemplate);
+    newModelTemplate.key = oldModelTemplate.key;    
+    _copyMatchingProperties(oldModelTemplate, newModelTemplate);
     modelTemplates.splice(index, 0, newModelTemplate);
     updateContent({ modelTemplates, selectedModel: model });
   };

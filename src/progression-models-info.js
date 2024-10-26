@@ -1,14 +1,14 @@
 import joi from 'joi';
 import React from 'react';
 import { ClockCircleOutlined } from '@ant-design/icons';
+import ProgressionModelsIcon from './progression-models-icon.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { couldAccessUrlFromRoom } from '@educandu/educandu/utils/source-utils.js';
 import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-markdown.js';
 
 class ProgressionModelsInfo {
+
   static dependencies = [GithubFlavoredMarkdown];
-
-
   static typeName = 'musikisum/educandu-plugin-progression-models';
   constructor(gfm) {
     this.gfm = gfm;
@@ -19,7 +19,7 @@ class ProgressionModelsInfo {
   }
 
   getIcon() {
-    return <ClockCircleOutlined />;
+    return <ProgressionModelsIcon />;
   }
 
   async resolveDisplayComponent() {

@@ -160,7 +160,7 @@ export default class AbcVoiceFactory {
   // Provide the abc value for a measure an remove redundant signs (i.e. '=')
   _getMeasureAbcCodeFromTonObjectsArray(toneObjArr) {
     return toneObjArr.reduce((accu, toneObj) => {
-      let abcSymbol = `${getToneFromFifthsValue(toneObj.fifthsValue)}${_getOctaveSpecifier(toneObj.octave)}${toneObj.length}`;
+      let abcSymbol = `${_getToneFromFifthsValue(toneObj.fifthsValue)}${_getOctaveSpecifier(toneObj.octave)}${toneObj.length}`;
       if (!toneObj.force && abcSymbol.startsWith('=')) {
         abcSymbol = abcSymbol.slice(1);
       }

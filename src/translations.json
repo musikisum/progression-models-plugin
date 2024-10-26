@@ -5,8 +5,8 @@
       "de": "Satzmodelle"
     },
     "modelKey": {
-      "en": "Key (Begin)",
-      "de": "Tonart (Beginn)"
+      "en": "Begin",
+      "de": "Beginn"
     },
     "ve": {
       "en": "Voice exchange",
@@ -81,16 +81,16 @@
       "de": "Lamentobass"
     },
     "chromatic2": {
-      "en": "Option",
-      "de": "Variante"
+      "en": "#/b middle",
+      "de": "#/b Mitte"
     },
     "chromatic3": {
-      "en": "chrom. Bass",
-      "de": "chrom. Bass"
+      "en": "#/b Bass",
+      "de": "#/b Bass"
     },
     "italianSixth": {
-      "en": "#6",
-      "de": "#6"
+      "en": "Ital. 6",
+      "de": "Überm. 6"
     },
     "isFinal": {
       "en": "Ending",

@@ -41,7 +41,9 @@ x | c c c | B B e | e e B | c/>d/ e/>d/ c3/4 x/4 |
 V:3
 "_J. S. Bach, Mathäus-Passion BWV 244, Teil II, Nr. 58, ›Aus Liebe‹"x | A A A | A A A | ^G G G | A/>B/ c/>B/ A3/4 x/4 |`
     },
-    addProps: {}
+    addProps: {
+      begin65: [false, false]
+    }
   },
   cadence: {
     key: '',

@@ -35,15 +35,10 @@ const getVoices = modelOptions => {
   return ModelUtilities.getVoices(options, voices);
 };
 
-const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
-};
-
 const FiveSixConsecutive = {
   getDefaultOptions: getOptions,
   getVoices,
-  getModelKeys,
-  getMutedVoices: (voices, hideUpperSystem, hideLowerSystem) => _adjustMutetVoices(voices, hideUpperSystem, hideLowerSystem)
+  getModelKeys
 };
 
 export default FiveSixConsecutive;

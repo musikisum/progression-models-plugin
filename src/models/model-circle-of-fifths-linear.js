@@ -47,15 +47,10 @@ const getVoices = fifthsCircleLinearOptions => {
   return ModelUtilities.getVoices(options, voices);
 };
 
-const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
-};
-
 const CircleOfFifthsLinear = {
   getDefaultOptions: getOptions,
   getVoices,
-  getModelKeys,
-  getMutedVoices: (voices, hideUpperSystem, hideLowerSystem) => _adjustMutetVoices(voices, hideUpperSystem, hideLowerSystem),
+  getModelKeys
 };
 
 export default CircleOfFifthsLinear;

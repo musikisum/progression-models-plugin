@@ -72,15 +72,10 @@ const getVoices = upperFifthModulationOptions => {
   return ModelUtilities.getVoices(options, voices);
 };
 
-const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
-};
-
 const UpperFiveModulation = {
   getDefaultOptions: getOptions,
   getVoices,
-  getModelKeys,
-  getMutedVoices: (voices, hideUpperSystem, hideLowerSystem) => _adjustMutetVoices(voices, hideUpperSystem, hideLowerSystem)
+  getModelKeys
 };
 
 export default UpperFiveModulation;

@@ -18,12 +18,8 @@ export default function ModelRenderFactory({
   content, 
   updateContent 
 }) {
-  const {
-    modelTemplates,
-    hideUpperSystem, 
-    hideLowerSystem, 
-  } = content;
-  
+
+  const { modelTemplates } = content;  
   const modelTemplate = modelTemplates[index];
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
 
@@ -55,11 +51,7 @@ export default function ModelRenderFactory({
   const getPlayableAbcVoices = () => {
     const voiceModel = ModelProvider.getModel(modelTemplate.name);    
     let modelVoices;
-    if (!hideUpperSystem && !hideLowerSystem) {
-      modelVoices = voiceModel.getVoices(modelTemplate);
-    } else {
-      modelVoices = voiceModel.getMutedVoices(voiceModel.getVoices(modelTemplate), hideUpperSystem, hideLowerSystem);
-    }
+    modelVoices = voiceModel.getVoices(modelTemplate);
     return ModelComposition.getModelAbcOutput('C', 'C|', '1/4', 120, [modelVoices]);
   };
 

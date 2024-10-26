@@ -30,18 +30,22 @@ const getVoices = cadenceOptions => {
       ['=A22', '=A22', '^G22', '=A22']
     ];
   }
+  if (options.addProps.begin65[0]) {
+    if (!isMinor) {
+      voices[0].splice(0, 0, '=A41');
+      voices[0].splice(1, 1, '=G41');
+    } else {
+      voices[0].splice(0, 0, '^F41');
+      voices[0].splice(1, 1, '=E41');
+    }
+  }
   return ModelUtilities.getVoices(options, voices);
-};
-
-const _adjustMutetVoices = (voices, hideUpperSystem, hideLowerSystem) => {
-  return ModelUtilities.convertToEmptyLines(voices, hideUpperSystem, hideLowerSystem);
 };
 
 const Cadence = {
   getDefaultOptions: getOptions,
   getVoices,
-  getModelKeys,
-  getMutedVoices: (voices, hideUpperSystem, hideLowerSystem) => _adjustMutetVoices(voices, hideUpperSystem, hideLowerSystem)
+  getModelKeys
 };
 
 export default Cadence;

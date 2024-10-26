@@ -153,12 +153,6 @@ function convertMeasureSignToDefaultLength(measureSign) {
   }
 }
 
-// Convert a voice of tone objects to an string ob abc symbols with measure signs 
-const convertModelVoiceToAbcSymbols = (modelVoiceObjs, measureSign, invertRhythm) => {
-  const voiceAbcSymbols = new AbcVoiceFactory(modelVoiceObjs, measureSign, invertRhythm);
-  return voiceAbcSymbols.getAbcMeasures();
-};
-
 const divideVoices = (abcVoices, barsPerLine) => {
   const result = [[], [], []];
   const newAbcVoices = [[], [], []];
@@ -243,7 +237,6 @@ const ModelUtilities = {
   getVoices,
   getFifthsValueFromTone,
   getToneFromFifthsValue,
-  convertModelVoiceToAbcSymbols,
   convertMeasureSignToDefaultLength,
   updateTransposeValues,
   divideVoices,

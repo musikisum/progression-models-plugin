@@ -34,6 +34,34 @@ export default class AbcVoiceFactory {
     }
   }
 
+  _createMeasures() {
+    const returnValue = [];
+    let tempArr = [];
+    let length = this.startValue;
+    for (let index = 0; index < this.voice.length; index += 1) {
+      const tonObj = this.voice[index];
+      tempArr.push(tonObj)
+      length += tonObj.length;
+      if(length % this.measureLength === 0) {
+        if (this.measureSign === '3/4') {
+          tempArr[0].length = tempArr[0].length * 2;
+          length += 2;
+        }
+        returnValue.push(tempArr.slice());
+        tempArr = [];      
+      }
+      if(index === this.voice.length - 1) {
+        returnValue.push(tempArr.slice());
+      }  
+    }
+    if (this.measureSign === '3/4') {
+      returnValue[0][0].length = returnValue[0][0].length / 2;
+      const lmi = returnValue.length - 1
+      returnValue[lmi][0].length = returnValue[lmi][0].length * 2;
+    }
+    return [...returnValue];
+  }
+
   // Provide a abc octave value from a midi octave number
   _getOctaveSpecifier(octaveNumber) {
     switch (octaveNumber) {
@@ -122,25 +150,6 @@ export default class AbcVoiceFactory {
       accu.push(abcSymbol);
       return accu;
     }, []);
-  }
-
-  _createMeasures() {
-    const returnValue = [];
-    let tempArr = [];
-    let length = this.startValue;
-    for (let index = 0; index < this.voice.length; index += 1) {
-      const tonObj = this.voice[index];
-      tempArr.push(tonObj)
-      length += tonObj.length;
-      if(length % this.measureLength === 0) {
-        returnValue.push(tempArr.slice());
-        tempArr = [];      
-      }
-      if(index === this.voice.length - 1) {
-        returnValue.push(tempArr.slice());
-      }    
-    }
-    return [...returnValue];
   }
 
   getMeasures() {

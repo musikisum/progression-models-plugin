@@ -91,8 +91,12 @@ musikisum/educandu-plugin-progression-models:
     en: Circle of Fifths (Inversions)
     de: Quintfallsequenz (Umkehrungen)
   defaultDescriptionCircleOfFifthsLinear:
-    en:
-    de: Hallo Welt
+    en: Another variation of the **circle of fifths* model can be understood as a 7-6 syncopation with an additional voice. The framework consists of an active (agens) and a passive (patiens) voice; an added voice presents itself 
+        as a 6-5 movement to the active voice when it is below, or as a 3-4 movement when it is above. This model lends itself excellently to elaboration as a triple counterpoint in the octave, making it significant 
+        both in the history of composition and in theoretical development. It appears in numerous 18th-century manuals on fugue or counterpoint.
+    de: Eine weitere Auspägung des Modells **Quintfallsequenz** lässt sich als 7-6-Synkopenkette mit einer Zusatzstimme verstehen. Das Gerüst bildet eine Agensstimme und eine Patiensstimme bzw. eine 7-6-Synkopenkette, als Zusatzstimme 
+        erklingt eine 6-5-Seitenbewegung zur Agensstimme, wenn sie unter oder einer 3-4-Seitenbewegung, wenn sie über ihr erklingt. Da dieses Modell sich hervorragend für einen Ausarbeitung als dreifacher Kontrapunkt in der Oktave
+        eignet, war es sowohl kompositionsgeschichtlich als auch theoriegeschichtlich bedeutsam. Es findet sich in zahlreichen Anleitung des 18. Jahrhunderts zur Fuge bzw. zum Kontrapunkt.
   fiveSixConsecutive:
     en: Fauxbourdon (5-6)
     de: Fauxbourdon (5-6)
@@ -122,7 +126,9 @@ musikisum/educandu-plugin-progression-models:
     en: Upper Quint Modulation
     de: Oberquintmodulation
   defaultDescriptionUpperFiveModulation:
-    en:
+    en: An essential means for **modulation to the upper fifth** is the introduction of the leading tone to the key of the upper fifth, which appears in the model shown here with seventh dissonances in the second position and in the model 
+        without dissonances in the third position ("It is sufficient if the major seventh of the key to which one modulates (semitonium modi) is present in the bass or another voice." — C. Ph. E. Bach, 1753). 
+        This model can be understood as a harmonisation of a tetrachord (fa-mi-re-ut) model (see Kaiser, 2007, 2009, and 2023) or interpreted as a phrase model with three voices (see Gjerdingen's Prinner, 2007, and Martin, 2023).
     de: Wesentliches Mittel für die **Modulation in die Oberquinte** ist die Einführung des *Leittons* zur Oberquinttonart, die in dem hier gezeigten Modell mit Septimendissonanzen an zweiter und im Modell ohne Dissonanzen an dritter Position erklingt.  
         (»Es ist genug, wenn die grosse Septime derjenigen Tonart, (semitonium modi), worein man gehet, im Basse, oder einer andern Stimme da ist.«, C. Ph. E. Bach, 1753). Das Modell lässt sich dabei als Ausprägung einer Tetracordharmonisierung 
         (*fa-mi-re-ut*) verstehen (vgl. Kaiser, 2007, 2009 und 2023) oder als ein mehrstimmiger Satz auffassen (vgl. Gjerdingens *Prinner*, 2007 und Martin 2023).     

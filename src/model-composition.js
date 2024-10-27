@@ -46,8 +46,8 @@ const getCompositionAbcOutput = (
   const voices = _convertModelVoicesToAbcVoices([[combinedVoicesCollection[0]], [combinedVoicesCollection[1]], [combinedVoicesCollection[2]]], measure, invertRhythm, hideUpperSystem, hideLowerSystem);
   const [abcV1, abcV2, abcV3] = ModelUtilities.divideVoices([voices[0].join(' '), voices[1].join(' '), voices[2].join(' ')], barsPerLine);
   abcResult.push(`V:1\n${AbcVoiceFactory.removeSingelNoteNotations(abcV1)}`);
-  abcResult.push(`V:2\n${abcV2}`);
-  abcResult.push(`V:3 bass\n${abcV3}`);
+  abcResult.push(`V:2\n${AbcVoiceFactory.removeSingelNoteNotations(abcV2)}`);
+  abcResult.push(`V:3 bass\n${AbcVoiceFactory.removeSingelNoteNotations(abcV3)}`);
   return abcResult.join('\n');
 };
 

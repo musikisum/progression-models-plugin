@@ -60,6 +60,12 @@ musikisum/educandu-plugin-progression-models:
   fauxbourdon:
     en: Fauxbourdon (7-6)
     de: Fauxbourdon (7-6)
+  defaultDescriptionFauxbourdon:
+    en: The term fauxbourdon is ambiguous and is used differently in musicology (Besseler 1974) than in music theory (Burmeister 1606). In music theory, it refers to a compositional model characterized by parallel sixth chords moving downward, with or without syncopation. 
+        In the syncopated downward fauxbourdon, one finds a root for the development of the *circle of fifths* harmony (stepwise downward sequence of falling fifths).
+    de: Der Begriff Fauxbourdon ist mehrdeutig und wird in der Musikwissenschaft (Besseler 1974) anders verwendet als in der Musiktheorie (Burmeister 1606).
+        In der Musiktheorie wird damit ein Satzmodell bezeichnet, dass aus parallel geführten Sextakkorden mit oder ohne Synkopenbewegung abwärts besteht. 
+        Im synkopierten Fauxbourdonsatz abwärts liegt eine Wurzel für die Entstehung der Quintfallsequenzharmonik (*stufenweise abwärts sequenzierter Quintfall*).
   chromaticBass:
     en: chromatic
     de: chromatisch

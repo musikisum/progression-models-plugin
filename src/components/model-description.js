@@ -17,19 +17,9 @@ function ModelDescription({
 
   const modelTemplate = modelTemplates[modelIndex];
 
-  const [text, setText] = useState();
-
-  useEffect(() => {
-    const modelDescription = !modelTemplate.customDescription 
-      ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)
-      : modelTemplate.customDescription;
-    setText(modelDescription);
-  }, []); 
-
   const handleTextChanged = event => {
-    const newModelTemplates = cloneDeep(modelTemplates);
-    newModelTemplates[modelIndex].customDescription = event.target.value;;
-    updateContent({ modelTemplates: newModelTemplates });
+    modelTemplate.customDescription = event.target.value;
+    updateContent({ modelTemplates });
     setText(event.target.value);
   };
 
@@ -41,7 +31,7 @@ function ModelDescription({
             key="panel"
             header={<div className="ItemPanel-header">{t('showDescription')}</div>}
             >
-            <MarkdownInput value={text} onChange={handleTextChanged} />
+            <MarkdownInput value={!modelTemplate.customDescription ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`) : modelTemplate.customDescription} onChange={handleTextChanged} />
           </Collapse.Panel>
           </Collapse>
         : null }    

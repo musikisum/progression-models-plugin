@@ -43,8 +43,8 @@ export default function MusicPuzzleDisplay({ content }) {
         voices.push(modelObj);
         const text = modelTemplate.customDescription === ''
           ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`)
-          : modelTemplate.customDescription; 
-        descriptions.push(text);        
+          : modelTemplate.customDescription;           
+        descriptions.push(!descriptions.includes(text) ? text : `zum Satzmodell ${t(modelTemplate.name)} s.o.`); // TODO übersetzen       
       }
       let playableABC = ModelComposition.getCompositionAbcOutput('C', measure, tempo, voices, measuresPerLine, stretchLastLine, invertRhythm, hideUpperSystem, hideLowerSystem);
       if(transposeValue !== 0) {

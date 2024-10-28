@@ -8,6 +8,11 @@ import DragAndDropContainer from '@educandu/educandu/components/drag-and-drop-co
 
 function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
 
+  const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
+  const droppableIdRef = useRef(useId());
+  const newModelTemplates = cloneDeep(modelTemplates);
+  const modelTemplateToModify = newModelTemplates[modelIndex];
+
   const switchButtonsFactory = voiceArrangement => {    
     const switchButtons = voiceArrangement.reduce((akku, current) => {
       const sbItem = {};
@@ -19,11 +24,6 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
     }, []);
     return switchButtons;
   };
-
-  const droppableIdRef = useRef(useId());
-  const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
-  const newModelTemplates = cloneDeep(modelTemplates);
-  const modelTemplateToModify = newModelTemplates[modelIndex];
 
   const switchButtons = switchButtonsFactory(modelTemplateToModify.voiceArrangement);
 
@@ -41,7 +41,7 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
   
   const dragAndDropItems = switchButtons.map((sb, index) => ({
     key: sb.key,
-    render: ({ dragHandleProps, isDragged, isOtherDragged }) => renderVoiceLabels({sb, index, dragHandleProps, isDragged, isOtherDragged })
+    render: ({ dragHandleProps, isDragged, isOtherDragged }) => renderVoiceLabels({ sb, index, dragHandleProps, isDragged, isOtherDragged })
   }));
 
   const handleItemMove = (fromIndex, toIndex) => {

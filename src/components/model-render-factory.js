@@ -50,8 +50,7 @@ export default function ModelRenderFactory({
 
   const getPlayableAbcVoices = () => {
     const voiceModel = ModelProvider.getModel(modelTemplate.name);    
-    let modelVoices;
-    modelVoices = voiceModel.getVoices(modelTemplate);
+    const modelVoices = voiceModel.getVoices(modelTemplate);
     return ModelComposition.getModelAbcOutput('C', 'C|', '1/4', 120, [modelVoices]);
   };
 

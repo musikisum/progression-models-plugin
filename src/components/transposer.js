@@ -1,4 +1,4 @@
-import { transposeABC, INTERVALS } from 'abc-notation-transposition';
+import { transposeABC } from 'abc-notation-transposition';
  
 const transpose = (abcNotation, transpositionValue) => {
   let transposedPlayableABC = null;
@@ -32,7 +32,7 @@ const transpose = (abcNotation, transpositionValue) => {
     console.log(error.message);
   }   
   return transposedPlayableABC ?? abcNotation;
-}
+};
 
 const Transposer = {
   getTransposition: (abc, transpositionValue) => transpose(abc, transpositionValue)

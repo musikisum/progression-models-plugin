@@ -1,8 +1,7 @@
 import joi from 'joi';
 import React from 'react';
-import { ClockCircleOutlined } from '@ant-design/icons';
-import ProgressionModelsIcon from './progression-models-icon.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
+import ProgressionModelsIcon from './progression-models-icon.js';
 import { couldAccessUrlFromRoom } from '@educandu/educandu/utils/source-utils.js';
 import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-markdown.js';
 

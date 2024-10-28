@@ -49,4 +49,5 @@ ModelDescription.defaultProps = {
   modelTemplates: [],
   updateContent: null
 };
+
 export default ModelDescription;

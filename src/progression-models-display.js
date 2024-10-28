@@ -6,8 +6,8 @@ import Transposer from './components/transposer.js';
 import AbcSnippet from './components/abc-snippet.js';
 import ModelComposition from './model-composition.js';
 import Markdown from '@educandu/educandu/components/markdown.js';
+import Collapse from '@educandu/educandu/components/collapsible.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
-import Collapse, { COLLAPSIBLE_COLOR } from '@educandu/educandu/components/collapsible.js';
 
 export default function MusicPuzzleDisplay({ content }) {
 
@@ -69,27 +69,30 @@ export default function MusicPuzzleDisplay({ content }) {
             {t('abcCopy')}
           </Paragraph> }
         </div>
-        { showExample && <Divider orientation="right" plain>
-          {`${t('showExampleDescription')}: ${t(example.name)}`}
-          </Divider> 
-        }
+        { showExample
+          ? <Divider orientation="right" plain>
+            {`${t('showExampleDescription')}: ${t(example.name)}`}
+            </Divider>
+          : null}
         <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
-          { showExample && <AbcSnippet playableABC={ example.abc } /> }
+          { showExample ? <AbcSnippet playableABC={example.abc} /> : null }
         </div>
         <div style={{ textAlign: 'center' }}>
-          { showExample && <Paragraph 
-            className='svg-color' 
-            copyable={{ text: example.abc,  tooltips: [t('abcCopyTtBefore'), t('abcCopyTtAfter')] }}
-            >
-            {t('abcCopy')}
-          </Paragraph> }
+          { showExample
+            ? <Paragraph 
+                className='svg-color' 
+                copyable={{ text: example.abc,  tooltips: [t('abcCopyTtBefore'), t('abcCopyTtAfter')] }}
+              >
+              {t('abcCopy')}
+              </Paragraph>
+            : null }
         </div>
         <div className='vSpacer' />
         { descriptionParts.length !== 0 && showDescription
           ? <Collapse collapsible="icon" title={t('descriptionTitle')} defaultActiveKey="panel">
-              <Markdown renderAnchors className='u-horizontally-centered u-width-100'>
-                {descriptionParts.reduce((akku, description) => !akku ? description : `${akku}\n\n---\n\n${description}`, '')}
-              </Markdown>
+            <Markdown renderAnchors className='u-horizontally-centered u-width-100'>
+              {descriptionParts.reduce((akku, description) => !akku ? description : `${akku}\n\n---\n\n${description}`, '')}
+            </Markdown>
             </Collapse> 
           : null}
       </div>

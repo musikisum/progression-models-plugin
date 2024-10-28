@@ -24,7 +24,7 @@ const _convertModelVoicesToAbcVoices = (modelVoices, measureSign, invertRhythm, 
     }
     return accu;
   }, []);
-}
+};
 
 // Create the abc output from collections with tone ojects of models for display view
 const getCompositionAbcOutput = (

@@ -43,20 +43,21 @@ export default class AbcVoiceFactory {
     let length = this.startValue;
     for (let index = 0; index < this.voice.length; index += 1) {
       const tonObj = this.voice[index];
-      tempArr.push(tonObj)
+      tempArr.push(tonObj);
       length += tonObj.length;
       // create a measure unit
       if(length % this.measureLength === 0) {
         if (this.measureSign === '3/4') {           
           if (!this.invertRhythm) {
             // expand the first length of a measure
-            tempArr[0].length = tempArr[0].length * 2;
+            tempArr[0].length *= 2;
             length += 2;
           } else {
             // expand the rest of a measure
-            tempArr.forEach((_, index) => {
-              if (index > 0) {
-                tempArr[index].length = tempArr[index].length * 2;
+            // eslint-disable-next-line no-loop-func
+            tempArr.forEach((_, tempIndex) => {
+              if (tempIndex > 0) {
+                tempArr[tempIndex].length *= 2;
               }
             });
             length += 2;        
@@ -71,8 +72,8 @@ export default class AbcVoiceFactory {
     }
     if (this.measureSign === '3/4') {
       returnValue[0][0].length = !this.invertRhythm ? returnValue[0][0].length / 2 : returnValue[0][0].length;
-      const lmi = returnValue.length - 1
-      returnValue[lmi][0].length = returnValue[lmi][0].length * 2;
+      const lmi = returnValue.length - 1;
+      returnValue[lmi][0].length *= 2;
     }
     return [...returnValue];
   }
@@ -105,62 +106,64 @@ export default class AbcVoiceFactory {
 
   // Create an abc toneSymbol with sign (i.e. '_C', '=C' or '^C') form a fifthValue
   _getToneSymbolFormFifthsValue(number) {
-  switch (number) {
-    case 14:
-      return '^^C'; 
-    case 13:
-      return '^^F'; 
-    case 12:
-      return '^B'; 
-    case 11:
-      return '^E'; 
-    case 10:
-      return '^A'; 
-    case 9:
-      return '^D'; 
-    case 8:
-      return '^G'; 
-    case 7:
-      return '^C';
-    case 6:
-      return '^F'; 
-    case 5:
-      return '=B'; 
-    case 4:
-      return '=E'; 
-    case 3:
-      return '=A';
-    case 2:
-      return '=D'; 
-    case 1:
-      return '=G'; 
-    case 0:
-      return '=C'; 
-    case -1:
-      return '=F';
-    case -2:
-      return '_B'; 
-    case -3:
-      return '_E'; 
-    case -4:
-      return '_A';
-    case -5:
-      return '_D'; 
-    case -6:
-      return '_G'; 
-    case -7:
-      return '_C';
-    case -8:
-      return '_F';
-    default:
-      console.log(`The fifths value ${number} ist out of range`);
-  }
+    switch (number) {
+      case 14:
+        return '^^C'; 
+      case 13:
+        return '^^F'; 
+      case 12:
+        return '^B'; 
+      case 11:
+        return '^E'; 
+      case 10:
+        return '^A'; 
+      case 9:
+        return '^D'; 
+      case 8:
+        return '^G'; 
+      case 7:
+        return '^C';
+      case 6:
+        return '^F'; 
+      case 5:
+        return '=B'; 
+      case 4:
+        return '=E'; 
+      case 3:
+        return '=A';
+      case 2:
+        return '=D'; 
+      case 1:
+        return '=G'; 
+      case 0:
+        return '=C'; 
+      case -1:
+        return '=F';
+      case -2:
+        return '_B'; 
+      case -3:
+        return '_E'; 
+      case -4:
+        return '_A';
+      case -5:
+        return '_D'; 
+      case -6:
+        return '_G'; 
+      case -7:
+        return '_C';
+      case -8:
+        return '_F';
+      default:
+        // eslint-disable-next-line no-console
+        console.log(`The fifths value ${number} ist out of range`);
+        return 0;
+    }
   }
 
   // Provide the abc value for a measure an remove redundant signs (i.e. '=')
   _getMeasureAbcCodeFromTonObjectsArray(toneObjArr) {
     return toneObjArr.reduce((accu, toneObj) => {
-      let abcSymbol = `${_getToneFromFifthsValue(toneObj.fifthsValue)}${_getOctaveSpecifier(toneObj.octave)}${toneObj.length}`;
+      let abcSymbol = `${this._getToneFromFifthsValue(toneObj.fifthsValue)}${this._getOctaveSpecifier(toneObj.octave)}${toneObj.length}`;
       if (!toneObj.force && abcSymbol.startsWith('=')) {
         abcSymbol = abcSymbol.slice(1);
       }
@@ -191,12 +194,12 @@ export default class AbcVoiceFactory {
       }
       abcSymbols.push('|');
     });
-    abcSymbols.pop()
+    abcSymbols.pop();
     return abcSymbols;
   }
 
   // Removes a whitespace after the first occurrence of twice abc symbols with a length of 1
   static removeSingelNoteNotations(abcVoice) {
-    return abcVoice.replace(/1 (\S)/g, '1$1')
+    return abcVoice.replace(/1 (\S)/g, '1$1');
   }
 }

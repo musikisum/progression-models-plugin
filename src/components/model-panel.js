@@ -148,30 +148,32 @@ function ModelPanel({
   };
 
   const createHaeder = () => {
-    return <Fragment>
-            <div className='inspectorUnit'>
-              <div style={{ display: 'flex' }}>
-                <Text className='iu-first' style={{ marginTop: '6px' }}>{t('selectModel')}</Text>
-                <Select 
-                  className='inspectorElement'
-                  style={{ width: 180, marginLeft: '15px' }}
-                  defaultValue={header}
-                  onChange={onModelSelectionChange}
-                  options={getOptionsForModelSelect()}
-                  />
-              </div>
-            </div>
-          </Fragment>
+    return (<div className='inspectorUnit'>
+      <div style={{ display: 'flex' }}>
+        <Text className='iu-first' style={{ marginTop: '6px' }}>{t('selectModel')}</Text>
+        <Select 
+          className='inspectorElement'
+          style={{ width: 180, marginLeft: '15px' }}
+          defaultValue={header}
+          onChange={onModelSelectionChange}
+          options={getOptionsForModelSelect()}
+          />
+      </div>
+    </div>);
   };
 
   return (
-    <Collapse collapsible="icon" defaultActiveKey="panel" className={classNames('ItemPanel', { 'is-dragged': isDragged, 'is-other-dragged': isOtherDragged })} items={[{
-      key: 'panel',
-      label: (<div {...dragHandleProps} className="ItemPanel-header">{createHaeder(header)}</div>),
-      extra: renderActionButtons(),
-      children: (<div className="ItemPanel-contentWrapper"><ModelRenderFactory index={index} content={content} updateContent={updateContent} /></div>)
-    }]}
-    />
+    <Collapse
+      collapsible="icon"
+      defaultActiveKey="panel"
+      className={classNames('ItemPanel', { 'is-dragged': isDragged, 'is-other-dragged': isOtherDragged })}
+      items={[{
+        key: 'panel',
+        label: (<div {...dragHandleProps} className="ItemPanel-header">{createHaeder(header)}</div>),
+        extra: renderActionButtons(),
+        children: (<div className="ItemPanel-contentWrapper"><ModelRenderFactory index={index} content={content} updateContent={updateContent} /></div>)
+      }]}
+      />
   );
 }
 

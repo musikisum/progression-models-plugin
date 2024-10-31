@@ -95,16 +95,24 @@ function Inspector({ content, updateContent }) {
         label: '2/2'
       },
       {
+        value: '3/2',
+        label: '3/2'
+      },
+      {
         value: 'C',
         label: '4/4'
+      },
+      {
+        value: '2/4',
+        label: '2/4'
       },
       {
         value: '3/4',
         label: '3/4'
       },
       {
-        value: '2/4',
-        label: '2/4'
+        value: '3/8',
+        label: '3/8'
       }
     ];
   };
@@ -223,7 +231,7 @@ function Inspector({ content, updateContent }) {
         </div>
         <div className='inspectorUnit'>
           <Text className='iu-first'>
-          <span>{`${t('tempoToolTip')}`}</span>
+            <span>{`${t('tempoToolTip')}`}</span>
           </Text>
           <Tooltip title={showTooltipText('tempo')}>
             <InputNumber 
@@ -276,10 +284,11 @@ function Inspector({ content, updateContent }) {
           <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
           <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip></Text>
         </div>
-        { measure === '3/4' && <div className='ui-checkBoxHorizontalLabel'>
-          <Checkbox style={{ minWidth: '20px' }} checked={invertRhythm} onChange={e => onInvertRhythmChange(e)} /> 
-          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('invertRhythm')}><span>{`${t('invertRhythm')}`}</span></Tooltip></Text>
-        </div> }
+        { measure === '3/4' && ( 
+          <div className='ui-checkBoxHorizontalLabel'>
+            <Checkbox style={{ minWidth: '20px' }} checked={invertRhythm} onChange={e => onInvertRhythmChange(e)} /> 
+            <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('invertRhythm')}><span>{`${t('invertRhythm')}`}</span></Tooltip></Text>
+          </div>)}
       </div>
     </div>
   );

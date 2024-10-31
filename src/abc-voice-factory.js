@@ -17,15 +17,25 @@ export default class AbcVoiceFactory {
         this.measureLength = 8;
         this.startValue = 6;
         break;
+      case '3/2':
+        this.defaultValue = 8;
+        this.measureLength = 6;
+        this.startValue = 4;
+        break;
       case '3/4':
         this.defaultValue = 8;
         this.measureLength = 6;
         this.startValue = 4;
-        break; 
+        break;
       case '2/4':
         this.defaultValue = 8;
         this.measureLength = 4;
         this.startValue = 2;
+        break;
+      case '3/8':
+        this.defaultValue = 16;
+        this.measureLength = 6;
+        this.startValue = 4;
         break; 
       default:
         this.measureSign = 'C|';
@@ -47,7 +57,7 @@ export default class AbcVoiceFactory {
       length += tonObj.length;
       // create a measure unit
       if(length % this.measureLength === 0) {
-        if (this.measureSign === '3/4') {           
+        if (this.measureSign === '3/2' || this.measureSign === '3/4' || this.measureSign === '3/8') {           
           if (!this.invertRhythm) {
             // expand the first length of a measure
             tempArr[0].length *= 2;

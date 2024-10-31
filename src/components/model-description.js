@@ -1,43 +1,37 @@
+import React from 'react';
 import { Collapse } from 'antd';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import React, { useState, useEffect } from 'react';
-import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import MarkdownInput from '@educandu/educandu/components/markdown-input.js';
 
-const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`; 
-
-function ModelDescription({
-  modelIndex,
-  modelTemplates,
-  updateContent
-}) {  
+function ModelDescription({ modelIndex, modelTemplates, updateContent }) {  
   
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
+  const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`; 
 
   const modelTemplate = modelTemplates[modelIndex];
 
   const handleTextChanged = event => {
     modelTemplate.customDescription = event.target.value;
     updateContent({ modelTemplates });
-    setText(event.target.value);
   };
 
+  const descriptionCollaps = (<Collapse
+    collapsible="icon"
+    defaultActiveKey="panel"
+    className='descriptionContainer'
+    items={[{
+      key: 'panel',
+      label: (<div className="ItemPanel-header">{t('showDescription')}</div>),
+      children: (<MarkdownInput value={!modelTemplate.customDescription ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`) : modelTemplate.customDescription} onChange={handleTextChanged} />)
+    }]}
+    />);
+  
   return (
-    <div> 
-      { modelTemplate.showDescription 
-        ? <Collapse collapsible="icon" defaultActiveKey="panel" className='descriptionContainer'>
-          <Collapse.Panel
-            key="panel"
-            header={<div className="ItemPanel-header">{t('showDescription')}</div>}
-            >
-            <MarkdownInput value={!modelTemplate.customDescription ? t(`defaultDescription${capitalizeFirstLetter(modelTemplate.name)}`) : modelTemplate.customDescription} onChange={handleTextChanged} />
-          </Collapse.Panel>
-          </Collapse>
-        : null }    
-    </div>
+    <div>{ modelTemplate.showDescription ? descriptionCollaps : null }</div>
   );
 }
+
 ModelDescription.propTypes = {
   modelIndex: PropTypes.number,
   modelTemplates: PropTypes.array,

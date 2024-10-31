@@ -1,9 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import ModelTemplates from '../model-templates.js';
-import ModelUtilities from '../model-utilities.js'; 
 import ModelRenderFactory from './model-render-factory.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { Button, Collapse, Tooltip, Select, Typography } from 'antd';
@@ -83,7 +82,6 @@ function ModelPanel({
       disabled: isDeleteDisabled
     });
   }
-
   actionButtons.push(...extraActionButtons);
 
   const renderActionButtons = () => {
@@ -110,7 +108,7 @@ function ModelPanel({
     );
   };
 
-  // Copy properties form one modelTemplate to an other modelTemplate
+  // Copy properties from a modelTemplate to another modelTemplate
   const _copyMatchingProperties = (oldModelTemplate, newModelTemplate) => {
     for (const key in oldModelTemplate) {
       if (key !== 'key' && key !== 'name' && Object.hasOwn(newModelTemplate, key)) {
@@ -150,36 +148,30 @@ function ModelPanel({
   };
 
   const createHaeder = () => {
-    return (<div className='inspectorUnit'>
-      <div style={{ display: 'flex' }}>
-        <Text className='iu-first' style={{ marginTop: '6px' }}>{t('selectModel')}</Text>
-        <Select
-          className='inspectorElement'
-          style={{ width: 180, marginLeft: '15px' }}
-          defaultValue={header}
-          onChange={onModelSelectionChange}
-          options={getOptionsForModelSelect()}
-          />
-      </div>
-    </div>);
+    return <Fragment>
+            <div className='inspectorUnit'>
+              <div style={{ display: 'flex' }}>
+                <Text className='iu-first' style={{ marginTop: '6px' }}>{t('selectModel')}</Text>
+                <Select 
+                  className='inspectorElement'
+                  style={{ width: 180, marginLeft: '15px' }}
+                  defaultValue={header}
+                  onChange={onModelSelectionChange}
+                  options={getOptionsForModelSelect()}
+                  />
+              </div>
+            </div>
+          </Fragment>
   };
 
   return (
-    <Collapse collapsible="icon" className={classNames('ItemPanel', { 'is-dragged': isDragged, 'is-other-dragged': isOtherDragged })} defaultActiveKey="panel">
-      <Collapse.Panel
-        key="panel"
-        header={<div {...dragHandleProps} className="ItemPanel-header">{createHaeder(header)}</div>}
-        extra={renderActionButtons()}
-        >
-        <div className="ItemPanel-contentWrapper">
-          <ModelRenderFactory 
-            index={index} 
-            content={content}
-            updateContent={updateContent}
-            />
-        </div>
-      </Collapse.Panel>
-    </Collapse>
+    <Collapse collapsible="icon" defaultActiveKey="panel" className={classNames('ItemPanel', { 'is-dragged': isDragged, 'is-other-dragged': isOtherDragged })} items={[{
+      key: 'panel',
+      label: (<div {...dragHandleProps} className="ItemPanel-header">{createHaeder(header)}</div>),
+      extra: renderActionButtons(),
+      children: (<div className="ItemPanel-contentWrapper"><ModelRenderFactory index={index} content={content} updateContent={updateContent} /></div>)
+    }]}
+    />
   );
 }
 

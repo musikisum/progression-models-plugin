@@ -67,12 +67,8 @@ export default function MusicPuzzleDisplay({ content }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getCopy = value => {
-    return { value, tooltips: [t('abcCopyTtBefore'), t('abcCopyTtAfter')] };
-  };
-
   const getParagraph = value => {
-    return <Paragraph className='svg-color' copyable={getCopy(value)}>{t('abcCopy')}</Paragraph>;
+    return <Paragraph className='svg-color' copyable={{ text: value, tooltips: [t('abcCopyTtBefore'), t('abcCopyTtAfter')] }}>{t('abcCopy')}</Paragraph>;
   };
 
   const markdownElem = <Markdown renderAnchors className='u-horizontally-centered u-width-100'>{description}</Markdown>;
@@ -88,10 +84,10 @@ export default function MusicPuzzleDisplay({ content }) {
         </div>
         { showExample ? <Divider orientation="right" plain>{`${t('showExampleDescription')}: ${t(example.name)}`}</Divider> : null }
         <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
-          { showExample ? <AbcSnippet playableABC={example.abc} /> : null }
+          { showExample && <AbcSnippet playableABC={example.abc} /> }
         </div>
         <div style={{ textAlign: 'center' }}>
-          { showExample ? getParagraph(example.abc) : null }
+          { showExample && getParagraph(example.abc) }
         </div>
         <div className='vSpacer' />
         { description.length !== 0 && showDescription

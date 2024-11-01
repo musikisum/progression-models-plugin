@@ -1,5 +1,3 @@
-import ModelProvider from './model-provider.js';
-
 // Provide values of fifths
 const _fifthsValues = {
   '^^C': 14,
@@ -28,7 +26,7 @@ const _fifthsValues = {
 };
 
 // Set the direction up/down of a tone object transposition
-const transposeUp = (fifthsValue, transposeFifthsValue) => {
+const _transposeUp = (fifthsValue, transposeFifthsValue) => {
   const values = [0, 4, 1, 5, 2, 6, 3];
   const val1 = values[((fifthsValue % 7) + 7) % 7];
   const val2 = values[((transposeFifthsValue % 7) + 7) % 7];
@@ -70,11 +68,6 @@ const _getModelKeyValue = modelKey => {
   }
 };
 
-// Provide a fifths value from an abc symbol
-const getFifthsValueFromTone = symbol => {
-  return _fifthsValues[symbol];
-};
-
 // Create a tone object from a model tone: [sign][tone][octave][length][:force]
 const _createToneObject = toneSymbol => {
   const regex = /^(\^}^|\^|=|_|__)([CDEFGAB])(\d)(\d):?(\w+)?$/;
@@ -88,22 +81,6 @@ const _createToneObject = toneSymbol => {
   return toneObj;
 };
 
-// Handle voice exchanges 
-const updateTransposeValues = (voiceArr, modelName) => {
-  const model = ModelProvider.getModel(modelName);
-  const dtv = model.getDefaultOptions().transposeValues;
-  const mapObj = {
-    '012': [dtv[0], dtv[1], dtv[2]],
-    '102': [dtv[0], dtv[1] - 1, dtv[2]],
-    '021': [dtv[0], dtv[1] + 1, dtv[2]],
-    '120': [dtv[0], dtv[1], dtv[2] - 1],
-    '201': [dtv[0] + 1, dtv[1] - 1, dtv[2]],
-    '210': [dtv[0] + 1, dtv[1], dtv[2]]
-  };
-  const returnValue = mapObj[voiceArr];
-  return returnValue;
-};
-
 // Modifies voices of a model in according to the modeltemplate properties
 const getVoices = (options, modelVoices) => {
   let modelToneObjects = [[], [], []];
@@ -114,7 +91,7 @@ const getVoices = (options, modelVoices) => {
     const voice = modelVoices[voicesIndex];
     for (let vIndex = 0; vIndex < voice.length; vIndex += 1) {
       const toneObj = _createToneObject(voice[vIndex]);
-      const transposeUpValue = transposeUp(toneObj.fifthsValue, fifthsValueToTranspose);
+      const transposeUpValue = _transposeUp(toneObj.fifthsValue, fifthsValueToTranspose);
       toneObj.octave += transposeUpValue;
       toneObj.fifthsValue += fifthsValueToTranspose;
       modelToneObjects[voicesIndex].push(toneObj);
@@ -148,6 +125,7 @@ function convertMeasureSignToDefaultLength(measureSign) {
   }
 }
 
+// Divide abc voices for display
 const divideVoices = (abcVoices, barsPerLine) => {
   const result = [[], [], []];
   const newAbcVoices = [[], [], []];
@@ -169,18 +147,66 @@ const divideVoices = (abcVoices, barsPerLine) => {
   return newAbcVoices;
 };
 
-const addCrossVoicesSaftySigns = (voice1, voice2) => {
-  console.log('1:', voice1)
-  console.log('2:', voice2)
+// Provide an array of arrays with abc tone symbols ob a measure
+const _splitVoiceAbcInMeasures = voice => {
+  return voice.reduce((acc, item) => {
+    if (item === '|') {
+      acc.push([]);
+    } else {
+      if (acc.length === 0) {
+        acc.push([]);
+      }
+      acc[acc.length - 1].push(item);
+    }
+    return acc;
+  }, []);
+};
+
+// Restore a model voice with measure signs
+const _combineAbcMeasuresToVoice = measures => {
+  return measures.flatMap((measure, index) => {
+    return index > 0 ? ['|', ...measure] : measure;
+  });
+};
+
+// Add an safety sign ('=') to an abcTone where applicable
+const _addSafetySigns = (abcTones, matchTone, hasSign) => {
+  for (let i = 1; i < abcTones.length; i += 1) {
+    if (abcTones[i].startsWith(matchTone) && hasSign) {
+      abcTones[i] = `=${abcTones[i]}`;
+    } 
+  }
+};
+
+// Set an safty natural sign ('=') between corresponding abc signs between upper voices
+const addCrossVoicesSaftySigns = voices => {
+  const abcTones = /[ABCDEFG]/;
+  const [voice1Measures, voice2Measures] = [
+    _splitVoiceAbcInMeasures(voices[0]),
+    _splitVoiceAbcInMeasures(voices[1]),
+  ];
+  if (voice1Measures.length !== voice2Measures.length) { 
+    return voices;
+  };
+  voice1Measures.forEach((abcToneArr1, index) => {
+    const abcToneArr2 = voice2Measures[index];
+    if (abcToneArr1.length > 1 && abcToneArr2.length > 1) {
+      const tone1 = (abcToneArr1[0].match(abcTones) || [])[0];
+      const tone2 = (abcToneArr2[0].match(abcTones) || [])[0];
+      const tone1HasSign = abcToneArr1[0].startsWith('^') || abcToneArr1[0].startsWith('_');
+      const tone2HasSign = abcToneArr2[0].startsWith('^') || abcToneArr2[0].startsWith('_');
+      _addSafetySigns(abcToneArr2, tone1, tone1HasSign);
+      _addSafetySigns(abcToneArr1, tone2, tone2HasSign);
+    }
+  });
+  return [_combineAbcMeasuresToVoice(voice1Measures), _combineAbcMeasuresToVoice(voice2Measures)];
 };
  
 const ModelUtilities = {
-  getVoices,
-  getFifthsValueFromTone,
   convertMeasureSignToDefaultLength,
   addCrossVoicesSaftySigns,
-  updateTransposeValues,
-  divideVoices
+  divideVoices,
+  getVoices
 };
 
 export default ModelUtilities;

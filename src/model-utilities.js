@@ -168,11 +168,17 @@ const divideVoices = (abcVoices, barsPerLine) => {
   });
   return newAbcVoices;
 };
+
+const addCrossVoicesSaftySigns = (voice1, voice2) => {
+  console.log('1:', voice1)
+  console.log('2:', voice2)
+};
  
 const ModelUtilities = {
   getVoices,
   getFifthsValueFromTone,
   convertMeasureSignToDefaultLength,
+  addCrossVoicesSaftySigns,
   updateTransposeValues,
   divideVoices
 };

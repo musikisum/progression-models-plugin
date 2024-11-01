@@ -55,6 +55,7 @@ const getCompositionAbcOutput = (
 const getModelAbcOutput = (modelKey, measure, length, tempo, modelVoices) => {
   const abcResult = [_getMeta(modelKey, measure, length, tempo)];
   const voices = _convertModelVoicesToAbcVoices(modelVoices, measure);
+  ModelUtilities.addCrossVoicesSaftySigns(voices[0], voices[1]);
   abcResult.push(`V:1\n${voices[0].join(' ')}`);
   abcResult.push(`V:2\n${voices[1].join(' ')}`);
   abcResult.push(`V:3 bass\n${voices[2].join(' ')}`);

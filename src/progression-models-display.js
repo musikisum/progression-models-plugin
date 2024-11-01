@@ -1,9 +1,9 @@
+import { Typography, Divider } from 'antd';
 import { useTranslation } from 'react-i18next';
 import ModelProvider from './model-provider.js';
 import React, { useEffect, useState } from 'react';
 import Transposer from './components/transposer.js';
 import AbcSnippet from './components/abc-snippet.js';
-import { Typography, Divider } from 'antd';
 import ModelComposition from './model-composition.js';
 import Markdown from '@educandu/educandu/components/markdown.js';
 import Collapse from '@educandu/educandu/components/collapsible.js';
@@ -84,10 +84,10 @@ export default function MusicPuzzleDisplay({ content }) {
         </div>
         { showExample ? <Divider orientation="right" plain>{`${t('showExampleDescription')}: ${t(example.name)}`}</Divider> : null }
         <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
-          { showExample && <AbcSnippet playableABC={example.abc} /> }
+          { showExample ? <AbcSnippet playableABC={example.abc} /> : null }
         </div>
         <div style={{ textAlign: 'center' }}>
-          { showExample && getParagraph(example.abc) }
+          { showExample ? getParagraph(example.abc) : null }
         </div>
         <div className='vSpacer' />
         { description.length !== 0 && showDescription

@@ -284,7 +284,7 @@ function Inspector({ content, updateContent }) {
           <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
           <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip></Text>
         </div>
-        { measure === '3/4' && ( 
+        { (measure === '3/2' || measure === '3/4' || measure === '3/8') && ( 
           <div className='ui-checkBoxHorizontalLabel'>
             <Checkbox style={{ minWidth: '20px' }} checked={invertRhythm} onChange={e => onInvertRhythmChange(e)} /> 
             <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('invertRhythm')}><span>{`${t('invertRhythm')}`}</span></Tooltip></Text>

@@ -113,6 +113,10 @@ function Inspector({ content, updateContent }) {
       {
         value: '3/8',
         label: '3/8'
+      },
+      {
+        value: '6/8',
+        label: '6/8'
       }
     ];
   };

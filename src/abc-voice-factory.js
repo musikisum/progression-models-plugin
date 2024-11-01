@@ -33,10 +33,11 @@ export default class AbcVoiceFactory {
         this.startValue = 2;
         break;
       case '3/8':
+      case '6/8':
         this.defaultValue = 16;
         this.measureLength = 6;
         this.startValue = 4;
-        break; 
+        break;
       default:
         this.measureSign = 'C|';
         this.defaultValue = 4;
@@ -48,6 +49,7 @@ export default class AbcVoiceFactory {
 
   // Create from an array of toneObjects an Array of measures with toneObejcts
   _createMeasures() {
+    const tripleMeters = ['3/2', '3/4', '3/8','6/8'];
     const returnValue = [];
     let tempArr = [];
     let length = this.startValue;
@@ -57,7 +59,7 @@ export default class AbcVoiceFactory {
       length += tonObj.length;
       // create a measure unit
       if(length % this.measureLength === 0) {
-        if (this.measureSign === '3/2' || this.measureSign === '3/4' || this.measureSign === '3/8') {           
+        if (tripleMeters.includes(this.measureSign)) {           
           if (!this.invertRhythm) {
             // expand the first length of a measure
             tempArr[0].length *= 2;
@@ -80,7 +82,7 @@ export default class AbcVoiceFactory {
         returnValue.push(tempArr.slice());
       }  
     }
-    if (this.measureSign === '3/2' || this.measureSign === '3/4' || this.measureSign === '3/8') {
+    if (tripleMeters.includes(this.measureSign)) {
       returnValue[0][0].length = !this.invertRhythm ? returnValue[0][0].length / 2 : returnValue[0][0].length;
       const lmi = returnValue.length - 1;
       returnValue[lmi][0].length *= 2;
@@ -207,6 +209,16 @@ export default class AbcVoiceFactory {
       abcSymbols.push('|');
     });
     abcSymbols.pop();
+    if (this.measureSign === '6/8') {
+      let pipeCount = 0;
+      return [...abcSymbols.filter(item => {
+        if (item === '|') {
+          pipeCount += 1;
+          return pipeCount % 2 !== 0;
+        }
+        return true;
+      })];
+    }
     return abcSymbols;
   }
 

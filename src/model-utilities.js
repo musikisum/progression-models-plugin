@@ -117,6 +117,7 @@ function convertMeasureSignToDefaultLength(measureSign) {
     case 'C':   
       return '1/8';
     case '3/8':
+    case '6/8':
       return '1/16';
     case '3/2':
       return '1/4';

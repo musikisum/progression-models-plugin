@@ -171,18 +171,17 @@ export default class AbcVoiceFactory {
   }
 
   // Remove redundant signs (i.e. _ or ^ or =) in a abc measure
-  _removeRedundantSigns(arr, index = 0, seen = {}, prefixPattern = /^([=_^]+)?/) {
-    if (index >= arr.length) {
-      return arr;
+  _removeRedundantSigns(measureAbcToneObjects, index = 0, seen = {}, prefixPattern = /^([=_^]+)?/) {
+    if (index >= measureAbcToneObjects.length) {
+      return measureAbcToneObjects;
     }
-    let currentAbcTone = arr[index];
-    if (seen[currentAbcTone]) {
-      arr[index] = seen[currentAbcTone]; // Replace unnecessary repetitions of signs (_,=,^)
+    const currentAbcToneObj = measureAbcToneObjects[index];
+    if (seen[currentAbcToneObj]) {
+      measureAbcToneObjects[index] = seen[currentAbcToneObj]; // Replace unnecessary repetitions of signs (_,=,^)
     } else {
-      let modifiedAbcTone = currentAbcTone.replace(prefixPattern, '');
-      seen[currentAbcTone] = modifiedAbcTone;
+      seen[currentAbcToneObj] = currentAbcToneObj.replace(prefixPattern, '');
     }
-    return removeRedundantSigns(arr, index + 1, seen, prefixPattern);
+    return this._removeRedundantSigns(measureAbcToneObjects, index + 1, seen, prefixPattern);
   }
 
   // Provide an array of toneObjects with measure signs (i.e. '|')
@@ -200,9 +199,10 @@ export default class AbcVoiceFactory {
         if (!toneObj.force && abcSymbol.startsWith('=')) {
           abcSymbol = abcSymbol.slice(1);
         }
+       
         abcSymbols.push(abcSymbol);
-        console.log(abcSymbols)
       }
+      abcSymbols.splice(0, abcSymbols.length, ...this._removeRedundantSigns(abcSymbols));
       abcSymbols.push('|');
     });
     abcSymbols.pop();

@@ -267,7 +267,8 @@ F,/E,/F,/D,/E,/F,/ | G,/F,/G,/A,/B,/A,/ | ^G,/F,/G,/E,/F,/G,/ | A,/^G,/A,/B,/C/B
     addProps: {
       partLengthValues: [6, 6, false],
       partToBeginValues: [1, 6, false],
-      diatonic: [false, false]
+      diatonic: [false, false],
+      withRootNotes: [false, false]
     }
   },
   lowerFiveModulation: {

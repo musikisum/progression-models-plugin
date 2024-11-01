@@ -23,6 +23,17 @@ const getVoices = modelOptions => {
   if (options.addProps.diatonic[0]) {
     voices[1][4] = '=F42';
     voices[2] = voices[2].map(symbol => symbol.replace('^', '='));
+    options.addProps.withRootNotes[1] = true;
+  } else {
+    options.addProps.withRootNotes[1] = false;
+  }
+  if (!options.addProps.diatonic[0] && options.addProps.withRootNotes[0]) {
+    voices[0][1] = '=C52';
+    voices[0][3] = '=D52';
+    voices[0][5] = '=E52';
+    voices[0][7] = '=F52';
+    voices[0][9] = '=G52';
+    voices[0][11] = '=A52';
   }
   const partLengthValue = options.addProps.partLengthValues[0];
   if (partLengthValue !== 6) {

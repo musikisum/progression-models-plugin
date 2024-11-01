@@ -143,6 +143,9 @@ musikisum/educandu-plugin-progression-models:
   diatonic:
     en: diatonic
     de: diatonisch
+  withRootNotes:
+    en: with 4 ↑
+    de: mit 4 ↑
   partLengthValues:
     en: Number
     de: Anzahl
@@ -281,9 +284,6 @@ musikisum/educandu-plugin-progression-models:
   descriptionRepeatTail:
     en: see above,
     de: siehe oben.
-  fiveSixConsecutive:
-    en: Fauxbourdon (5-6)
-    de: Fauxbourdon (5-6)
   parallelismUp:
     en: Parallelism up
     de: Parallelismus aufwärts
@@ -356,11 +356,20 @@ musikisum/educandu-plugin-progression-models:
     en: Fauxbourdon (7-6)
     de: Fauxbourdon (7-6)
   defaultDescriptionFauxbourdon:
-    en: The term fauxbourdon is ambiguous and is used differently in musicology (Besseler 1974) than in music theory (Burmeister 1606). In music theory, it refers to a compositional model characterized by parallel sixth chords moving downward, with or without syncopation. 
-        In the syncopated downward fauxbourdon, one finds a root for the development of the *circle of fifths* harmony (stepwise downward sequence of falling fifths).
-    de: Der Begriff Fauxbourdon ist mehrdeutig und wird in der Musikwissenschaft (Besseler 1974) anders verwendet als in der Musiktheorie (Burmeister 1606).
-        In der Musiktheorie wird damit ein Satzmodell bezeichnet, dass aus parallel geführten Sextakkorden mit oder ohne Synkopenbewegung abwärts besteht. 
-        Im synkopierten Fauxbourdonsatz abwärts liegt eine Wurzel für die Entstehung der Quintfallsequenzharmonik (*stufenweise abwärts sequenzierter Quintfall*). 
+    en: The term fauxbourdon is ambiguous and is used differently in musicology (Besseler 1974) than in music theory (Burmeister 1606). In music theory, it refers to a compositional model characterized by parallel sixth chords with or without syncopation. 
+        In the ***syncopated downward fauxbourdon*** (7→6) there is a root for the development of the *circle of fifths* harmony (*stepwise downward sequence of falling fifths*).
+    de: Der Begriff Fauxbourdon ist mehrdeutig und wird in der Musikwissenschaft (Besseler 1974) auf andere Art verwendet als in der Musiktheorie (Burmeister 1606). In der Musiktheorie wird mit ***Fauxboudonsatz** ein Satzmodell bezeichnet, dass aus 
+        parallel geführten Sextakkorden mit oder ohne Synkopenbewegungen besteht. Im ***synkopierten Fauxbourdonsatz abwärts (7→6)*** liegt eine Wurzel für die Entstehung der *Quintfallsequenzharmonik* (*stufenweise abwärts sequenzierter Quintfall*). 
+  fiveSixConsecutive:
+    en: Fauxbourdon (5-6)
+    de: Fauxbourdon (5-6)
+  defaultDescriptionFiveSixConsecutive:
+    en: Analogous to the syncopated faux-bourdon motion downwards (7→6), a sixth chord motion upwards with a 5-6 side motion to the bass can be understood as a ***syncopated faux-bourdon motion upwards (5→6)***. 
+        The chromatization of the bass produces harmonies that can be described as a *stepwise upward sequenced fifth fall*. Chromatization produces dominant chords to gradually ascending tonic chords. 
+        If the chromatic voice is in the melody, it could be used very expressively in the 17th century (cf. H. Schütz, “O süßer, O freundlicher, O gütiger Herr Jesu Christe” SWV 285).
+    de: Analog zum synkopierten Fauxboudonsatz abwärts (7→6) lässt sich ein Sextakkordsatz aufwärts mit 5-6-Seitenbewegung zur Bassstimme als ***synkpierter Fauxbourdonsatz aufwärts (5→6)*** verstehen. Durch Chromatisierung der Bassstimme erklingt eine
+        Harmonik, die sich angemessen als *stufenweise aufwärts sequenzierter Quintfall* beschreiben lässt. Durch die Chromatisierung erklingen Zwischendominanten zu stufenweise ansteigenden Grundakkorden. Liegt die chromatische Stimme in der
+        Melodie, konnte sie im 17. Jahrhundert zum ausdrücken besonderer Bedeutungen verwendet werden (vgl. H. Schütz, »O süßer, O freundlicher, O gütiger Herr Jesu Christe« SWV 285).   
   lamento:
     en: lamento bass
     de: Lamentobass   
@@ -381,5 +390,5 @@ musikisum/educandu-plugin-progression-models:
         This model can be understood as a harmonisation of a tetrachord (fa-mi-re-ut) model (see Kaiser, 2007, 2009, and 2023) or interpreted as a phrase model with three voices (see Gjerdingen's Prinner, 2007, and Martin, 2023).
     de: Wesentliches Mittel für die ***Modulation in die Oberquinte*** ist die Einführung des *Leittons* zur Oberquinttonart, die in dem hier gezeigten Modell mit Septimendissonanzen an zweiter und im Modell ohne Dissonanzen an dritter Position erklingt.  
         (»Es ist genug, wenn die grosse Septime derjenigen Tonart, (semitonium modi), worein man gehet, im Basse, oder einer andern Stimme da ist.«, C. Ph. E. Bach, 1753). Das Modell lässt sich dabei als Ausprägung einer Tetracordharmonisierung 
-        (*fa-mi-re-ut*) verstehen (vgl. Kaiser, 2007, 2009 und 2023) oder als ein mehrstimmiger Satz auffassen (vgl. Gjerdingens *Prinner*, 2007 und Martin 2023). 
+        (*fa-mi-re-ut*) verstehen (vgl. Kaiser 2007, 2009 und 2023) oder als ein mehrstimmiger Satz auffassen (vgl. Gjerdingens *Prinner* 2007, Caplin 2015 und Martin 2023). 
     

@@ -80,7 +80,7 @@ export default class AbcVoiceFactory {
         returnValue.push(tempArr.slice());
       }  
     }
-    if (this.measureSign === '3/4') {
+    if (this.measureSign === '3/2' || this.measureSign === '3/4' || this.measureSign === '3/8') {
       returnValue[0][0].length = !this.invertRhythm ? returnValue[0][0].length / 2 : returnValue[0][0].length;
       const lmi = returnValue.length - 1;
       returnValue[lmi][0].length *= 2;
@@ -114,7 +114,7 @@ export default class AbcVoiceFactory {
     }
   }
 
-  // Create an abc toneSymbol with sign (i.e. '_C', '=C' or '^C') form a fifthValue
+  // Create an abc toneSymbol with sign (i.e. '_C', '=C' or '^C') from a fifthValue
   _getToneSymbolFormFifthsValue(number) {
     switch (number) {
       case 14:
@@ -170,21 +170,19 @@ export default class AbcVoiceFactory {
     }
   }
 
-  // Provide the abc value for a measure an remove redundant signs (i.e. '=')
-  _getMeasureAbcCodeFromTonObjectsArray(toneObjArr) {
-    return toneObjArr.reduce((accu, toneObj) => {
-      let abcSymbol = `${this._getToneFromFifthsValue(toneObj.fifthsValue)}${this._getOctaveSpecifier(toneObj.octave)}${toneObj.length}`;
-      if (!toneObj.force && abcSymbol.startsWith('=')) {
-        abcSymbol = abcSymbol.slice(1);
-      }
-      accu.push(abcSymbol);
-      return accu;
-    }, []);
-  }
-
-  // Provide an array of arrays for measure toneObjects 
-  getMeasures() {
-    return [...this.measures];
+  // Remove redundant signs (i.e. _ or ^ or =) in a abc measure
+  _removeRedundantSigns(arr, index = 0, seen = {}, prefixPattern = /^([=_^]+)?/) {
+    if (index >= arr.length) {
+      return arr;
+    }
+    let currentAbcTone = arr[index];
+    if (seen[currentAbcTone]) {
+      arr[index] = seen[currentAbcTone]; // Replace unnecessary repetitions of signs (_,=,^)
+    } else {
+      let modifiedAbcTone = currentAbcTone.replace(prefixPattern, '');
+      seen[currentAbcTone] = modifiedAbcTone;
+    }
+    return removeRedundantSigns(arr, index + 1, seen, prefixPattern);
   }
 
   // Provide an array of toneObjects with measure signs (i.e. '|')
@@ -195,12 +193,15 @@ export default class AbcVoiceFactory {
       for (let index = 0; index < measure.length; index += 1) {
         const toneObj = measure[index];
         fifthsValues.push(toneObj.fifthsValue);
-        toneObj.force = fifthsValues.some(number => (number + 7 === toneObj.fifthsValue) || (number - 7 === toneObj.fifthsValue));
+        if (!toneObj.force) {
+          toneObj.force = fifthsValues.some(number => (number + 7 === toneObj.fifthsValue) || (number - 7 === toneObj.fifthsValue));          
+        }
         let abcSymbol = !this.hideSystem ? `${this._getToneSymbolFormFifthsValue(toneObj.fifthsValue)}${this._getOctaveSpecifier(toneObj.octave)}${toneObj.length}` : `x${toneObj.length}`;
         if (!toneObj.force && abcSymbol.startsWith('=')) {
           abcSymbol = abcSymbol.slice(1);
         }
         abcSymbols.push(abcSymbol);
+        console.log(abcSymbols)
       }
       abcSymbols.push('|');
     });

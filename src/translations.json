@@ -376,10 +376,6 @@
       "en": "see above,",
       "de": "siehe oben."
     },
-    "lamento": {
-      "en": "lament",
-      "de": "Lamentobass"
-    },
     "fiveSixConsecutive": {
       "en": "Fauxbourdon (5-6)",
       "de": "Fauxbourdon (5-6)"
@@ -447,6 +443,14 @@
     "defaultDescriptionFauxbourdon": {
       "en": "The term fauxbourdon is ambiguous and is used differently in musicology (Besseler 1974) than in music theory (Burmeister 1606). In music theory, it refers to a compositional model characterized by parallel sixth chords moving downward, with or without syncopation. In the syncopated downward fauxbourdon, one finds a root for the development of the *circle of fifths* harmony (stepwise downward sequence of falling fifths).",
       "de": "Der Begriff Fauxbourdon ist mehrdeutig und wird in der Musikwissenschaft (Besseler 1974) anders verwendet als in der Musiktheorie (Burmeister 1606). In der Musiktheorie wird damit ein Satzmodell bezeichnet, dass aus parallel geführten Sextakkorden mit oder ohne Synkopenbewegung abwärts besteht. Im synkopierten Fauxbourdonsatz abwärts liegt eine Wurzel für die Entstehung der Quintfallsequenzharmonik (*stufenweise abwärts sequenzierter Quintfall*)."
+    },
+    "lamento": {
+      "en": "lamento bass",
+      "de": "Lamentobass"
+    },
+    "defaultDescriptionLamento": {
+      "en": "The term ***lamento bass*** refers to a descending melodic line in a minor key that connects the root tone with the dominant tone (8-7-6-5 or, in A minor, a-g-f-e). A prime example of a composition based on an ostinato lamento bass is the *Lamento della Ninfa* by Claudio Monteverdi, published in 1638 in Madrigali guerrieri et amorosi (VIII. of Madrigals). Chromatic alterations of the lamento bass (*passus duriusculus*) and a middle voice in parallel thirds create a heightened sound effect. Compositions in which the lamento bass plays a significant role can be interpreted as a historical context of compositions due to their prominence.",
+      "de": "Als ***Lamentobass*** wird in der Musikthorie ein absteigende melodische Linie in Moll bezeichnet, die den Grundton mit dem Quinton verbindet (8-7-6-5 oder in a-Moll a-g-f-e). Als Musterbeispiel für eine Komposition über einen ostinaten Lamentobass gilt das *Lamento della Ninfa* von Claudio Monteverdi, das 1638 in den Madrigali guerrieri et amorosi (VIII. Madrigalbuch) veröffentlicht worden ist. Klangliche Steigerungen bilden die Chromatisierungen des Lamentobasses (*passus duriusculus*) sowie einer Mitelstimme in parallelen Terzen. Kompositionen, in denen der Lamentobass eine tragende Rolle spielt, lassen sich aufgrund ihrer Bekanntheit in einem kompositionsgeschichtlichen Zusammenhang interpretieren."
     },
     "upperFiveModulation": {
       "en": "Upper Quint Modulation",

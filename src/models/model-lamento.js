@@ -13,7 +13,7 @@ const getOptions = change => {
   return modelTemplate;
 };
 
-function _setValuesForCheckboxes(isMinor, syncopationProp, chromBassProp, italianProp, variantProp) {
+function _setValuesForCheckboxes(syncopationProp, chromBassProp, variantProp) {
   // set active state
   chromBassProp[1] = !syncopationProp[0];
   variantProp[1] = !chromBassProp[0];
@@ -73,10 +73,8 @@ const getVoices = lamentoOptions => {
   }
 
   _setValuesForCheckboxes(
-    options.modelKey.includes('m'), 
     options.addProps.syncopation, 
-    options.addProps.chromatic3, 
-    options.addProps.italianSixth, 
+    options.addProps.chromatic3,
     options.addProps.chromatic2
   );
 

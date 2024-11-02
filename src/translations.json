@@ -384,10 +384,6 @@
       "en": "Parallelism up",
       "de": "Parallelismus aufwärts"
     },
-    "parallelismDown": {
-      "en": "Parallelism down",
-      "de": "Parallelismus abwärts"
-    },
     "parallelismDiminuated": {
       "en": "Parallelism (chrom.)",
       "de": "Parallelismus (chrom.)"
@@ -425,7 +421,7 @@
       "de": "Quintfallsequenz (Umkehrungen)"
     },
     "defaultDescriptionCircleOfFifthsLinear": {
-      "en": "Another variation of the ***circle of fifths*** model can be understood as a 7-6 syncopation with an additional voice. The framework consists of an active (agens) and a passive (patiens) voice; an added voice presents itself as a 6-5 movement to the active voice when it is below, or as a 3-4 movement when it is above. This model lends itself excellently to elaboration as a triple counterpoint in the octave, making it significant both in the history of composition and in theoretical development. It appears in numerous 18th-century manuals on fugue or counterpoint.",
+      "en": "Another variation of the ***circle of fifths*** progression model can be understood as a 7-6 syncopation with an additional voice. The framework consists of an active (agens) and a passive (patiens) voice; an added voice presents itself as a 6-5 movement to the active voice when it is below, or as a 3-4 movement when it is above. This model lends itself excellently to elaboration as a triple counterpoint in the octave, making it significant both in the history of composition and in theoretical development. It appears in numerous 18th-century manuals on fugue or counterpoint.",
       "de": "Eine weitere Auspägung des Modells ***Quintfallsequenz*** lässt sich als 7-6-Synkopenkette mit einer Zusatzstimme verstehen. Das Gerüst bildet eine Agensstimme und eine Patiensstimme bzw. eine 7-6-Synkopenkette, als Zusatzstimme erklingt eine 6-5-Seitenbewegung zur Agensstimme, wenn sie unter oder einer 3-4-Seitenbewegung, wenn sie über ihr erklingt. Da dieses Modell sich hervorragend für einen Ausarbeitung als dreifacher Kontrapunkt in der Oktave eignet, war es sowohl kompositionsgeschichtlich als auch theoriegeschichtlich bedeutsam. Es findet sich in zahlreichen Anleitung des 18. Jahrhunderts zur Fuge bzw. zum Kontrapunkt."
     },
     "circleOfFifthsUp": {
@@ -449,8 +445,8 @@
       "de": "Fauxbourdon (5-6)"
     },
     "defaultDescriptionFiveSixConsecutive": {
-      "en": "Analogous to the syncopated faux-bourdon motion downwards (7→6), a sixth chord motion upwards with a 5-6 side motion to the bass can be understood as a ***syncopated faux-bourdon motion upwards (5→6)***. The chromatization of the bass produces harmonies that can be described as a *stepwise upward sequenced fifth fall*. Chromatization produces dominant chords to gradually ascending tonic chords. If the chromatic voice is in the melody, it could be used very expressively in the 17th century (cf. H. Schütz, “O süßer, O freundlicher, O gütiger Herr Jesu Christe” SWV 285).",
-      "de": "Analog zum synkopierten Fauxboudonsatz abwärts (7→6) lässt sich ein Sextakkordsatz aufwärts mit 5-6-Seitenbewegung zur Bassstimme als ***synkpierter Fauxbourdonsatz aufwärts (5→6)*** verstehen. Durch Chromatisierung der Bassstimme erklingt eine Harmonik, die sich angemessen als *stufenweise aufwärts sequenzierter Quintfall* beschreiben lässt. Durch die Chromatisierung erklingen Zwischendominanten zu stufenweise ansteigenden Grundakkorden. Liegt die chromatische Stimme in der Melodie, konnte sie im 17. Jahrhundert zum ausdrücken besonderer Bedeutungen verwendet werden (vgl. H. Schütz, »O süßer, O freundlicher, O gütiger Herr Jesu Christe« SWV 285)."
+      "en": "Analogous to the syncopated faux-bourdon motion downwards (7→6), a sixth chord motion upwards with a 5-6 side motion to the bass can be understood as a ***syncopated faux-bourdon motion upwards (5→6)***. The harmonies can be described as a *stepwise upward sequenced fifth fall*. Chromatization produces dominant chords to gradually ascending tonic chords. If the chromatic voice is in the melody, it could be used very expressively in the 17th century (cf. H. Schütz, “O süßer, O freundlicher, O gütiger Herr Jesu Christe” SWV 285).",
+      "de": "Analog zum synkopierten Fauxboudonsatz abwärts (7→6) lässt sich ein Sextakkordsatz aufwärts mit 5-6-Seitenbewegung zur Bassstimme als ***synkopierter Fauxbourdonsatz aufwärts (5→6)*** verstehen. Die Harmonik lässt sich angemessen als *stufenweise aufwärts sequenzierter Quintfall* beschreiben. Durch die Chromatisierung erklingen Zwischendominanten zu stufenweise ansteigenden Grundakkorden. Liegt die chromatische Stimme in der Melodie, konnte sie im 17. Jahrhundert zur musikalischen Darstellung besonderer Inhalte verwendet werden (vgl. H. Schütz, »O süßer, O freundlicher, O gütiger Herr Jesu Christe« SWV 285)."
     },
     "lamento": {
       "en": "lamento bass",
@@ -459,6 +455,14 @@
     "defaultDescriptionLamento": {
       "en": "The term ***lamento bass*** refers to a descending melodic line in a minor key that connects the root tone with the dominant tone (8-7-6-5 or, in A minor, a-g-f-e). A prime example of a composition based on an ostinato lamento bass is the *Lamento della Ninfa* by Claudio Monteverdi, published in 1638 in Madrigali guerrieri et amorosi (VIII. of Madrigals). Chromatic alterations of the lamento bass (*passus duriusculus*) and a middle voice in parallel thirds create a heightened sound effect. Compositions in which the lamento bass plays a significant role can be interpreted as a historical context of compositions due to their prominence.",
       "de": "Als ***Lamentobass*** wird in der Musikthorie ein absteigende melodische Linie in Moll bezeichnet, die den Grundton mit dem Quinton verbindet (8-7-6-5 oder in a-Moll a-g-f-e). Als Musterbeispiel für eine Komposition über einen ostinaten Lamentobass gilt das *Lamento della Ninfa* von Claudio Monteverdi, das 1638 in den Madrigali guerrieri et amorosi (VIII. Madrigalbuch) veröffentlicht worden ist. Klangliche Steigerungen bilden die Chromatisierungen des Lamentobasses (*passus duriusculus*) sowie einer Mitelstimme in parallelen Terzen. Kompositionen, in denen der Lamentobass eine tragende Rolle spielt, lassen sich aufgrund ihrer Bekanntheit in einem kompositionsgeschichtlichen Zusammenhang interpretieren."
+    },
+    "parallelismDown": {
+      "en": "Parallelism down",
+      "de": "Parallelismus abwärts"
+    },
+    "defaultDescriptionParallelismDown": {
+      "en": "The term ***parallelism*** is ambiguous in music. Parallelism as a model describes a parallel movement of the upper voices in thirds or sixths in connection with a simple, sequenced bass motif (sequenced in thirds, e.g. C | G Am | E or E | Am G | C). As early as the 15th century, Guilelmus Monachus described a form of improvisation or composition (\"regula ad componendum cum tribus vocibus\") that can be understood as paralelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). If the ***parallelism downwards*** is based on a 7-6 syncopation (*ascending fifths in thirds downwards*), this results in alternating fourths and non-firsts in the bass part.",
+      "de": "Der Begriff ***Parallelismus*** ist in der Musik mehrdeutig. Das hier als Parallelismus vorgestellte Modell bezeichnet eine Parallelfühung der Oberstimmen in Terzen oder Sexten in Verbindung mit einem einfachen, sequenzierten Bassmotiv (terzweise abwärts wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilelmus Monachus eine Form der Improvisation bzw. Komposition beschrieben (\"regula ad componendum cum tribus vocibus\"), die sich als Parallelismus verstehen lässt. Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Liegt dem ***Parallelismus abwärts*** (*terzweise abwärts sequenzierter Quintstieg*) eine 7-6-Synkope zugrunde, ergeben sich zur Bassstimme alternierende Quart- und Nonvorhalte."
     },
     "upperFiveModulation": {
       "en": "Upper Quint Modulation",

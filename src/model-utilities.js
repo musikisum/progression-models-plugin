@@ -202,10 +202,41 @@ const addCrossVoicesSaftySigns = voices => {
   });
   return [_combineAbcMeasuresToVoice(voice1Measures), _combineAbcMeasuresToVoice(voice2Measures)];
 };
+
+const replaceDoubleValues = voice => {
+  const measures = _splitVoiceAbcInMeasures(voice);
+  for (let index = 1; index < measures.length; index += 1) {
+    const lastMeasure = measures[index - 1];
+    const currentMeasure = measures[index];
+    if (lastMeasure[lastMeasure.length - 1] === currentMeasure[0]) {
+      lastMeasure[lastMeasure.length - 1] += '-';
+    }
+  }
+  measures.forEach(measure => {
+    if (measure.length > 1 && measure[0] === measure[1]) {
+      let first = measure[0];
+      const second = measure[1];
+      const firstNumber = parseInt(first.slice(-1), 10);
+      const secondNumber = parseInt(second.slice(-1), 10);
+      first = `${first.slice(0, -1)}${firstNumber + secondNumber}`;
+      measure.splice(0, 2, first);
+    }
+    if (measure.length > 2 && measure[1] === measure[2]) {
+      let third = measure[1];
+      const fourth = measure[2];
+      const thirdNumber = parseInt(third.slice(-1), 10);
+      const fourthNumber = parseInt(fourth.slice(-1), 10);
+      third = `${third.slice(0, -1)}${thirdNumber + fourthNumber}`;
+      measure.splice(1, 2, third);
+    }
+  });
+  return _combineAbcMeasuresToVoice(measures);
+};
  
 const ModelUtilities = {
   convertMeasureSignToDefaultLength,
   addCrossVoicesSaftySigns,
+  replaceDoubleValues,
   divideVoices,
   getVoices
 };

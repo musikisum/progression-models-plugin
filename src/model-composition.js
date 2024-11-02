@@ -18,8 +18,8 @@ const _convertModelVoicesToAbcVoices = (modelVoices, measureSign, invertRhythm, 
   return modelVoices.reduce((accu, modelVoice, modelIndex) => {
     for (let index = 0; index < modelVoice.length; index += 1) {
       const hideSystem = (hideUpperSystem && modelIndex < 2) || (hideLowerSystem && modelIndex === 2) || (hideUpperSystem && hideLowerSystem);
-      const abcVoice = new AbcVoiceFactory(modelVoice[index], measureSign, invertRhythm, hideSystem);    
-      const abcSymbolsOfModelVoice = abcVoice.getAbcMeasures();
+      const abcVoice = new AbcVoiceFactory(modelVoice[index], measureSign, invertRhythm, hideSystem);
+      const abcSymbolsOfModelVoice = abcVoice.getAbcMeasures(); 
       accu.push(abcSymbolsOfModelVoice);
     }
     return accu;
@@ -36,7 +36,8 @@ const getCompositionAbcOutput = (
   stretchLastLine, 
   invertRhythm,
   hideUpperSystem, 
-  hideLowerSystem
+  hideLowerSystem,
+  withTies
 ) => {
   const defaultLength = ModelUtilities.convertMeasureSignToDefaultLength(measure);
   const abcResult = [_getMeta(modelKey, measure, defaultLength, tempo, stretchLastLine)];
@@ -45,6 +46,11 @@ const getCompositionAbcOutput = (
   });
   const voices = _convertModelVoicesToAbcVoices([[combinedVoicesCollection[0]], [combinedVoicesCollection[1]], [combinedVoicesCollection[2]]], measure, invertRhythm, hideUpperSystem, hideLowerSystem);
   [voices[0], voices[1]] = ModelUtilities.addCrossVoicesSaftySigns([voices[0], voices[1]]);
+  if (withTies) {
+    voices[0] = ModelUtilities.replaceDoubleValues(voices[0]);
+    voices[1] = ModelUtilities.replaceDoubleValues(voices[1]);
+    voices[2] = ModelUtilities.replaceDoubleValues(voices[2]);    
+  }
   const [abcV1, abcV2, abcV3] = ModelUtilities.divideVoices([voices[0].join(' '), voices[1].join(' '), voices[2].join(' ')], barsPerLine);
   abcResult.push(`V:1\n${AbcVoiceFactory.removeSingelNoteNotations(abcV1)}`);
   abcResult.push(`V:2\n${AbcVoiceFactory.removeSingelNoteNotations(abcV2)}`);

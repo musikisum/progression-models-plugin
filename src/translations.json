@@ -348,6 +348,14 @@
       "en": "Transpose",
       "de": "Transponieren"
     },
+    "withTies": {
+      "en": "2 → 1",
+      "de": "2 → 1"
+    },
+    "withTiesToolTip": {
+      "en": "Replacing repetitions with double note values or ties",
+      "de": "Ersetzt Tonwiederholungen durch größere Notenwerte bzw. Überbindungen"
+    },
     "selectModel": {
       "en": "Select model",
       "de": "Modell auswählen"
@@ -379,10 +387,6 @@
     "descriptionRepeatTail": {
       "en": "see above,",
       "de": "siehe oben."
-    },
-    "parallelismUp": {
-      "en": "Parallelism up",
-      "de": "Parallelismus aufwärts"
     },
     "parallelismDiminuated": {
       "en": "Parallelism (chrom.)",
@@ -461,8 +465,16 @@
       "de": "Parallelismus abwärts"
     },
     "defaultDescriptionParallelismDown": {
-      "en": "The term ***parallelism*** is ambiguous in music. Parallelism as a model describes a parallel movement of the upper voices in thirds or sixths in connection with a simple, sequenced bass motif (sequenced in thirds, e.g. C | G Am | E or E | Am G | C). As early as the 15th century, Guilelmus Monachus described a form of improvisation or composition (\"regula ad componendum cum tribus vocibus\") that can be understood as paralelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). If the ***parallelism downwards*** is based on a 7-6 syncopation (*ascending fifths in thirds downwards*), this results in alternating fourths and non-firsts in the bass part.",
+      "en": "The term ***parallelism*** is ambiguous in music. Parallelism as a model describes a parallel movement of the upper voices in thirds or sixths in connection with a simple, sequenced bass motif (sequenced in thirds, e.g. C | G Am | E or E | Am G | C). As early as the 15th century, Guilelmus Monachus described a form of improvisation or composition (\"regula ad componendum cum tribus vocibus\") that can be understood as paralelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). If the ***parallelism downwards*** is based on a 7-6 syncopation (*ascending fifths downwards in thirds*), this results in alternating fourths and non-firsts in the bass part.",
       "de": "Der Begriff ***Parallelismus*** ist in der Musik mehrdeutig. Das hier als Parallelismus vorgestellte Modell bezeichnet eine Parallelfühung der Oberstimmen in Terzen oder Sexten in Verbindung mit einem einfachen, sequenzierten Bassmotiv (terzweise abwärts wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilelmus Monachus eine Form der Improvisation bzw. Komposition beschrieben (\"regula ad componendum cum tribus vocibus\"), die sich als Parallelismus verstehen lässt. Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Liegt dem ***Parallelismus abwärts*** (*terzweise abwärts sequenzierter Quintstieg*) eine 7-6-Synkope zugrunde, ergeben sich zur Bassstimme alternierende Quart- und Nonvorhalte."
+    },
+    "parallelismUp": {
+      "en": "Parallelism up",
+      "de": "Parallelismus aufwärts"
+    },
+    "defaultDescriptionParallelismUp": {
+      "en": "The term ***parallelism*** is ambiguous in music. Parallelism as a model describes a parallel movement of the upper voices in thirds or sixths in connection with a simple, sequenced bass motif (sequenced in thirds, e.g. C | G Am | E or E | Am G | C). As early as the 15th century, Guilelmus Monachus described a form of improvisation or composition (\"regula ad componendum cum tribus vocibus\") that can be understood as paralelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). When the ***parallelism upwards*** (*falling fifths upwards in thirds*) sounds with 7-6 sysncopations, voice exchanges are necessary to prepare the dissonances.",
+      "de": "Der Begriff ***Parallelismus*** ist in der Musik mehrdeutig. Das hier als Parallelismus vorgestellte Modell bezeichnet eine Parallelfühung der Oberstimmen in Terzen oder Sexten in Verbindung mit einem einfachen, sequenzierten Bassmotiv (terzweise abwärts wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilelmus Monachus eine Form der Improvisation bzw. Komposition beschrieben (\"regula ad componendum cum tribus vocibus\"), die sich als Parallelismus verstehen lässt. Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Erklingen in dem ***Parallelismus aufwärts*** (*terzweise aufwärts sequenzierter Quintfall*) 7-6-Synkopen, sind Stimmkreuzungen zur korrekten Vorbereitung der Dissonanzen notwendig."
     },
     "upperFiveModulation": {
       "en": "Upper Quint Modulation",

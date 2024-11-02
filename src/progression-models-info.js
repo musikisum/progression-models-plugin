@@ -41,6 +41,7 @@ class ProgressionModelsInfo {
       showDescription: false,
       hideUpperSystem: false,
       hideLowerSystem: false,
+      withTies: false,
       showExample: false,
       example: {
         name: '',
@@ -63,6 +64,7 @@ class ProgressionModelsInfo {
       showDescription: joi.boolean(),
       hideUpperSystem: joi.boolean(),
       hideLowerSystem: joi.boolean(),
+      withTies: joi.boolean(),
       showExample: joi.boolean(),
       example: joi.object({
         name: joi.string().allow(null, ''),

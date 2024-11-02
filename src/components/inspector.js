@@ -21,6 +21,7 @@ function Inspector({ content, updateContent }) {
     showDescription, 
     hideUpperSystem,
     hideLowerSystem,
+    withTies,
     showExample,
     example,
     invertRhythm,
@@ -45,7 +46,8 @@ function Inspector({ content, updateContent }) {
   };
 
   const onMeasureChange = event => {
-    updateContent({ measure: event });
+    const value = withTies && (measure === 'C|' || measure === 'C' || measure === '2/4');
+    updateContent({ measure: event, withTies: value });
   };
 
   const onNumberOfMaesuresChange = number => {
@@ -82,6 +84,10 @@ function Inspector({ content, updateContent }) {
       default:
         break;
     }
+  };
+
+  const onWithTiesChange = event => {
+    updateContent({ withTies: event.target.checked });
   };
 
   const onInvertRhythmChange = e => {
@@ -173,6 +179,8 @@ function Inspector({ content, updateContent }) {
         return `${t('transposeToolTip')}`;
       case 'invertRhythm':
         return `${t('invertRhythmToolTip')}`;
+      case 'withTies':
+        return `${t('withTiesToolTip')}`;
       default:
         return '';
     }    
@@ -288,6 +296,11 @@ function Inspector({ content, updateContent }) {
           <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
           <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip></Text>
         </div>
+        { (measure === 'C|' || measure === 'C' || measure === '2/4') && (
+          <div className='ui-checkBoxHorizontalLabel'>
+            <Checkbox style={{ minWidth: '20px' }} checked={withTies} onChange={e => onWithTiesChange(e)} />
+            <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('withTies')}><span>{`${t('withTies')}`}</span></Tooltip></Text>
+          </div>)}
         { (measure === '3/2' || measure === '3/4' || measure === '3/8') && ( 
           <div className='ui-checkBoxHorizontalLabel'>
             <Checkbox style={{ minWidth: '20px' }} checked={invertRhythm} onChange={e => onInvertRhythmChange(e)} /> 
@@ -299,36 +312,47 @@ function Inspector({ content, updateContent }) {
 }
 
 Inspector.propTypes = {
-  transposeValue: PropTypes.number,
-  tempo: PropTypes.number, 
-  measure: PropTypes.string,
-  measuresPerLine: PropTypes.number, 
-  stretchLastLine: PropTypes.bool, 
-  showDescription: PropTypes.bool, 
-  hideUpperSystem: PropTypes.bool,
-  hideLowerSystem: PropTypes.bool,
-  showExample: PropTypes.bool,
-  example: PropTypes.object,
-  invertRhythm: PropTypes.bool,
-  modelTemplates: PropTypes.array 
+  content: PropTypes.shape({
+    transposeValue: PropTypes.number,
+    tempo: PropTypes.number, 
+    measure: PropTypes.string,
+    measuresPerLine: PropTypes.number, 
+    stretchLastLine: PropTypes.bool, 
+    showDescription: PropTypes.bool, 
+    hideUpperSystem: PropTypes.bool,
+    hideLowerSystem: PropTypes.bool,
+    withTies: PropTypes.bool,
+    showExample: PropTypes.bool,
+    example: PropTypes.shape({
+      name: PropTypes.string,
+      abc: PropTypes.string
+    }),
+    invertRhythm: PropTypes.bool,
+    modelTemplates: PropTypes.array
+  }),
+  updateContent: PropTypes.func
 };
 
 Inspector.defaultProps = {
-  transposeValue: 0,
-  tempo: 120, 
-  measure: 'C|',
-  measuresPerLine: 6, 
-  stretchLastLine: false, 
-  showDescription: false, 
-  hideUpperSystem: false,
-  hideLowerSystem: false,
-  showExample: false,
-  example: {
-    name: '',
-    abc: ''
+  content: {
+    transposeValue: 0,
+    tempo: 120, 
+    measure: 'C|',
+    measuresPerLine: 6, 
+    stretchLastLine: false, 
+    showDescription: false, 
+    hideUpperSystem: false,
+    hideLowerSystem: false,
+    withTies: false,
+    showExample: false,
+    example: {
+      name: '',
+      abc: ''
+    },
+    invertRhythm: false,
+    modelTemplates: []
   },
-  invertRhythm: false,
-  modelTemplates: []
+  updateContent: null
 };
 
 export default Inspector;

@@ -25,6 +25,7 @@ export default function MusicPuzzleDisplay({ content }) {
     hideLowerSystem,
     example,
     invertRhythm,
+    withTies,
     showExample
   } = content;
  
@@ -56,7 +57,8 @@ export default function MusicPuzzleDisplay({ content }) {
         stretchLastLine, 
         invertRhythm, 
         hideUpperSystem, 
-        hideLowerSystem
+        hideLowerSystem,
+        withTies
       );
       if(transposeValue !== 0) {
         playableABC = Transposer.getTransposition(playableABC, transposeValue);

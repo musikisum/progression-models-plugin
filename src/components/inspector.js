@@ -46,8 +46,7 @@ function Inspector({ content, updateContent }) {
   };
 
   const onMeasureChange = event => {
-    const value = withTies && (measure === 'C|' || measure === 'C' || measure === '2/4');
-    updateContent({ measure: event, withTies: value });
+    updateContent({ measure: event, withTies: false, invertRhythm: false });
   };
 
   const onNumberOfMaesuresChange = number => {
@@ -187,13 +186,11 @@ function Inspector({ content, updateContent }) {
   };
   
   const createExampleSelect = () => {
-    return (<div className='inspectorUnit'>
-      <span className='iu-first'>&nbsp;</span>
+    return (<div className='inspectorUnit elementWidth'>
       <Tooltip title={showTooltipText('showExampleDescription')}>
         <Select
-          className='inspectorElement'
+          className='inspectorSelect'
           defaultValue={exampleName}
-          style={{ width: 180, marginLeft: '15px' }}
           onChange={onExampleSelectionChange}
           options={getOptionsForExampleSelect()}
           />      
@@ -206,10 +203,8 @@ function Inspector({ content, updateContent }) {
       {showExample ? <ModelExample selectedModel={exampleName} example={content.example} updateContent={updateContent} /> : null}
       <div className='inspectorItemContainer'>
         <div className='inspectorUnit'>
-          <span className='iu-first'>&nbsp;</span>
           <Button 
-            className='inspectorElement'
-            style={{ width: 180 }}
+            className='inspectorElement elementWidth'
             type="primary" 
             icon={<PlusOutlined />} 
             onClick={handleAddModelButtonClick}
@@ -276,36 +271,30 @@ function Inspector({ content, updateContent }) {
           { createExampleSelect() }
         </div>
       </div>
-      <div className='inspectorItemContainer'>
+      <div className='inspectorItemContainer pt30'>
         <div className='ui-displayLabel'>
           <Text strong style={{ display: 'block' }}>{t('displayLayout')}</Text>
         </div>
-        <div className='ui-checkBoxHorizontalLabel'>
-          <Checkbox style={{ minWidth: '20px' }} checked={stretchLastLine} onChange={e => onStretchLastLineChange(e)} /> 
-          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('stretchLastLine')}><span>{`${t('stretchLastLine')}`}</span></Tooltip></Text>
-        </div>
-        <div className='ui-checkBoxHorizontalLabel'>
-          <Checkbox style={{ minWidth: '20px' }} checked={showDescription} onChange={e => onShowDescriptionChange(e)} />
-          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('showDescription')}><span>{`${t('showDescription')}`}</span></Tooltip></Text>
-        </div>
-        <div className='ui-checkBoxHorizontalLabel'>
-          <Checkbox style={{ minWidth: '20px' }} checked={hideUpperSystem} onChange={e => onHideSystem(e, 'UPPER')} />
-          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideUpperSystem')}><span>{`${t('hideUpperSystem')}`}</span></Tooltip></Text>
-        </div>
-        <div className='ui-checkBoxHorizontalLabel'>
-          <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')} />
-          <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip></Text>
-        </div>
+        <Checkbox style={{ minWidth: '20px' }} checked={stretchLastLine} onChange={e => onStretchLastLineChange(e)}> 
+          <Tooltip title={showTooltipText('stretchLastLine')}><span>{`${t('stretchLastLine')}`}</span></Tooltip>
+        </Checkbox>
+        <Checkbox style={{ minWidth: '20px' }} checked={showDescription} onChange={e => onShowDescriptionChange(e)}>
+          <Tooltip title={showTooltipText('showDescription')}><span>{`${t('showDescription')}`}</span></Tooltip>
+        </Checkbox>
+        <Checkbox style={{ minWidth: '20px' }} checked={hideUpperSystem} onChange={e => onHideSystem(e, 'UPPER')}>
+          <Tooltip title={showTooltipText('hideUpperSystem')}><span>{`${t('hideUpperSystem')}`}</span></Tooltip>
+        </Checkbox>
+        <Checkbox style={{ minWidth: '20px' }} checked={hideLowerSystem} onChange={e => onHideSystem(e, 'LOWER')}>
+          <Tooltip title={showTooltipText('hideLowerSystem')}><span>{`${t('hideLowerSystem')}`}</span></Tooltip>
+        </Checkbox>
         { (measure === 'C|' || measure === 'C' || measure === '2/4') && (
-          <div className='ui-checkBoxHorizontalLabel'>
-            <Checkbox style={{ minWidth: '20px' }} checked={withTies} onChange={e => onWithTiesChange(e)} />
-            <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('withTies')}><span>{`${t('withTies')}`}</span></Tooltip></Text>
-          </div>)}
+          <Checkbox style={{ minWidth: '20px' }} checked={withTies} onChange={e => onWithTiesChange(e)}>
+            <Tooltip title={showTooltipText('withTies')}><span>&#9833; &#9833; &#129062; &#119134;</span></Tooltip>
+          </Checkbox>)}
         { (measure === '3/2' || measure === '3/4' || measure === '3/8') && ( 
-          <div className='ui-checkBoxHorizontalLabel'>
-            <Checkbox style={{ minWidth: '20px' }} checked={invertRhythm} onChange={e => onInvertRhythmChange(e)} /> 
-            <Text style={{ display: 'block' }}><Tooltip title={showTooltipText('invertRhythm')}><span>{`${t('invertRhythm')}`}</span></Tooltip></Text>
-          </div>)}
+          <Checkbox style={{ minWidth: '20px' }} checked={invertRhythm} onChange={e => onInvertRhythmChange(e)}> 
+            <Tooltip title={showTooltipText('invertRhythm')}><span>{`${t('invertRhythm')}`}</span></Tooltip>
+          </Checkbox>)}
       </div>
     </div>
   );

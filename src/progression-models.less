@@ -1,7 +1,7 @@
 @import "@educandu/educandu/styles/greys.less";
 @import "@educandu/educandu/styles/global-variables.less";
 
-.EP_Educandu_Example_Display {
+.EP_Educandu_Progression_Models_Display {
 
   .smallFontSize {
     font-size: @edu-font-size-sm;
@@ -24,7 +24,7 @@
 
 }
 
-.EP_Educandu_Example_Editor {
+.EP_Educandu_Progression_Models_Editor {
 
   .container {
     padding: 20px;
@@ -65,6 +65,14 @@
   .descriptionContainer {
     margin: 0 20px;
   }
+  .formItemStyle {
+    margin-top: '45px'; 
+    padding-top: '30px'; 
+    border-top: '1px #bfbfbf solid';
+  }
+  .width100 {
+    width: 100%;
+  }
   .label {
     padding-top: 20px;
   }
@@ -104,37 +112,38 @@
   div.ArrowPanel {
     padding-top: 8px;
   }
+  .noModelContainer {
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    background-color: @edu-background-color-light;
+  }
 
   .inspectorItemContainer {
     display: flex; 
     flex-direction: row; 
-    align-items: end; 
+    align-items: flex-end; 
     flex-wrap: wrap;
-  }
-  .inspectorItemContainer > div {
-    padding-top: 30px;
-  }
-  .inspectorElement {
-    margin-right: @edu-content-padding;
-  }
-  .inspectorInputNumber {
-    min-width: 75px;
-    margin-right: @edu-content-padding;
+    gap: 15px;
   }
   .inspectorUnit {
     display: flex;
     flex-direction: column; 
     align-items: left;  
   }
-  .inspectorUnit > :first-child {
-    display: block;
-    padding-bottom: 6px;
-    padding-left: 2px;
+  .inspectorSelect {
+    width: 180px;
     min-height: 30px;
+    display: block;
   }
-  .ui-checkBoxHorizontalLabel {
-    display: flex;
-    margin-right: 15px;
+  .elementWidth {
+    width: 200px;
+  }
+  .pt30 {
+    padding-top: 30px;
+  }
+  .inspectorInputNumber {
+    min-width: 75px;
   }
   .ui-displayLabel {
     width: 180px;

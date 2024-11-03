@@ -129,8 +129,9 @@ function ModelPanel({
     const oldModelTemplate = modelTemplates[index];
     modelTemplates.splice(index, 1);
     const newModelTemplate = cloneDeep(ModelTemplates.getModelTemplate(model));
-    newModelTemplate.key = oldModelTemplate.key;    
+    newModelTemplate.key = oldModelTemplate.key;
     _copyMatchingProperties(oldModelTemplate, newModelTemplate);
+    newModelTemplate.customDescription = '';
     modelTemplates.splice(index, 0, newModelTemplate);
     updateContent({ modelTemplates, selectedModel: model });
   };

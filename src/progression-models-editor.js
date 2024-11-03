@@ -64,20 +64,24 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   }));
 
   return (
-    <div className="EP_Educandu_Example_Editor">
-      <Form labelAlign="left" style={{ width: '100%' }}>
+    <div className="EP_Educandu_Progression_Models_Editor">
+      <Form labelAlign="left" className='width100'>
         <Form.Item>
-          <DragAndDropContainer
-            droppableId={droppableIdRef.current} 
-            items={dragAndDropItems} 
-            onItemMove={handleItemMove}
-            />
+          {
+            modelTemplates.length === 0 
+              ? <div className='noModelContainer'>{t('noModel')}</div> 
+              : <DragAndDropContainer
+                  droppableId={droppableIdRef.current} 
+                  items={dragAndDropItems} 
+                  onItemMove={handleItemMove}
+                  />
+          }
         </Form.Item>
         <Form.Item>
           <Inspector content={content} updateContent={updateContent} />
         </Form.Item>
         <Form.Item
-          style={{ marginTop: '45px', paddingTop: '30px', borderTop: '1px #bfbfbf solid' }}
+          className='formItemStyle'
           label={<Info tooltip={t('common:widthInfo')}>{t('common:width')}</Info>}
           {...FORM_ITEM_LAYOUT}
           >

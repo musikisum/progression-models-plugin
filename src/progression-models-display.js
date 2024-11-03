@@ -83,7 +83,7 @@ export default function MusicPuzzleDisplay({ content }) {
   const markdownElem = <Markdown renderAnchors className='u-horizontally-centered u-width-100'>{description}</Markdown>;
 
   return (
-    <div className='EP_Educandu_Example_Display'>
+    <div className='EP_Educandu_Progression_Models_Display'>
       <div className={`u-horizontally-centered u-width-${content.width}`}>
         <div>
           <AbcSnippet playableABC={abcResult} />

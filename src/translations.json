@@ -4,6 +4,10 @@
       "en": "Voice-Models",
       "de": "Satzmodelle"
     },
+    "noModel": {
+      "en": "Add a progression model ...",
+      "de": "Füge ein Satzmodell hinzu ..."
+    },
     "modelKey": {
       "en": "Begin",
       "de": "Beginn"
@@ -347,10 +351,6 @@
     "transposeToolTip": {
       "en": "Transpose",
       "de": "Transponieren"
-    },
-    "withTies": {
-      "en": "2 → 1",
-      "de": "2 → 1"
     },
     "withTiesToolTip": {
       "en": "Replacing repetitions with double note values or ties",

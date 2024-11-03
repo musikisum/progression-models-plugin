@@ -4,14 +4,15 @@ import AbcPlayer from '@educandu/educandu/components/abc-player.js';
 import AbcNotation from '@educandu/educandu/components/abc-notation.js';
 
 const musicErrorMessage = `X:1
-T: Sorry und Entschuldigung, ...
+T: Sorry und Entschuldigung!
+T: Hier fehlt etwas und muss wohl noch ergänzt werden ...
 %score [1 2 3 4 5]
 M: 3/2
 L: 1/2
 Q: 1/2=120
 K: Em
 V:1
-"^...beim Erstellen dieses Beispiels ist leider ein Fehler aufgetreten!"B e ^d | e z z | =d z z | z x x
+B e ^d | e z z | =d z z | z x x
 w:Es ist nun nichts, nichts,
 V:2
 G B A | B z z | B z z | z x x

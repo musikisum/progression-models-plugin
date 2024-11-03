@@ -244,10 +244,10 @@ musikisum/educandu-plugin-progression-models:
     de: Die Beschreibung eines Modells oder einer Modellkombination im Ansichtsmodus anzeigen
   hideUpperSystemTooltip:
     en: Hide upper voices in view mode
-    de: Oberes Notensystem im Ansichtsmodus ausblenden
+    de: Oberes Notensystem im Ansichtsmodus ausblenden und stummschalten
   hideLowerSystemTooltip:
     en: Hide lower voices in view mode
-    de: Unteres Notensystem im Ansichtsmodus ausblenden
+    de: Unteres Notensystem im Ansichtsmodus ausblenden und stummschalten
   measurePerLineToolTip:
     en: Measure / Line
     de: Takte / Zeile

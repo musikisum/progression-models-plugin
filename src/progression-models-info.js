@@ -31,7 +31,7 @@ class ProgressionModelsInfo {
 
   getDefaultContent() {   
     return  {
-      width: 100,
+      width: 70,
       transposeValue: 0,
       tempo: 120,
       measure: 'C|',

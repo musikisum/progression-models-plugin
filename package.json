@@ -15,7 +15,7 @@
   ],
   "license": "MIT",
   "author": "Educandu Team <team@educandu.dev>, Ulrich Kaiser <kontakt@kaiser-ulrich.de>",
-  "homepage": "https://github.com/musikisum/progression-models-plugin",
+  "homepage": "https://kaiser-ulrich.de",
   "repository": {
     "type": "git",
     "url": "https://github.com/musikisum/progression-models-plugin"
@@ -26,7 +26,7 @@
   "devDependencies": {
     "@ant-design/icons": "5.5.1",
     "@educandu/dev-tools": "^14.0.0",
-    "@educandu/educandu": "^3.21.0",
+    "@educandu/educandu": "^3.26.0",
     "@educandu/node-jsx-loader": "^4.0.0",
     "@educandu/rooms-auth-lambda": "^6.2.1",
     "@vitest/coverage-v8": "^1.0.2",
@@ -43,7 +43,7 @@
   },
   "peerDependencies": {
     "@ant-design/icons": ">=5.5.1",
-    "@educandu/educandu": ">=3.21.0",
+    "@educandu/educandu": ">=3.26.0",
     "antd": ">=5.21.2",
     "joi": ">=17.11.0",
     "react": ">=18.2.0",

@@ -94,6 +94,8 @@ export default function ProgressionModelsDisplay({ content }) {
         { showExample ? <Divider orientation="right" plain>{`${t('showExampleDescription')}: ${t(example.name)}`}</Divider> : null }
         <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
           { showExample ? <AbcSnippet playableABC={example.abc} /> : null }
+        </div>
+        <div className='centered'>
           { showExample ? getParagraph(example.abc) : null }
         </div>
         <div className='vSpacer' />

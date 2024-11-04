@@ -1,6 +1,6 @@
 musikisum/educandu-plugin-progression-models:
   name:
-    en: Voice-Models
+    en: Voice Models
     de: Satzmodelle
   noModel:
     en: Add a progression model ...
@@ -290,12 +290,6 @@ musikisum/educandu-plugin-progression-models:
   descriptionRepeatTail:
     en: see above,
     de: siehe oben.
-  parallelismDiminuated:
-    en: Parallelism (chrom.)
-    de: Parallelismus (chrom.)
-  lowerFiveModulation:
-    en: Lower Quint Modulation
-    de: Unterquintmodulation
   initialCadence:
     en: Initial cadence
     de: Initialkadenz   
@@ -410,5 +404,24 @@ musikisum/educandu-plugin-progression-models:
         This model can be understood as a harmonisation of a tetrachord (fa-mi-re-ut) model (see Kaiser, 2007, 2009, and 2023) or interpreted as a phrase model with three voices (see Gjerdingen's Prinner, 2007, and Martin, 2023).
     de: Wesentliches Mittel für die ***Modulation in die Oberquinte*** ist die Einführung des *Leittons* zur Oberquinttonart, die in dem hier gezeigten Modell mit Septimendissonanzen an zweiter und im Modell ohne Dissonanzen an dritter Position erklingt.  
         (»Es ist genug, wenn die grosse Septime derjenigen Tonart, (semitonium modi), worein man gehet, im Basse, oder einer andern Stimme da ist.«, C. Ph. E. Bach, 1753). Das Modell lässt sich dabei als Ausprägung einer Tetracordharmonisierung 
-        (*fa-mi-re-ut*) verstehen (vgl. Kaiser 2007, 2009 und 2023) oder als ein mehrstimmiger Satz auffassen (vgl. Gjerdingens *Prinner* 2007, Caplin 2015 und Martin 2023). 
-    
+        (*fa-mi-re-ut*) verstehen (vgl. Kaiser 2007, 2009 und 2023) oder als ein mehrstimmiger Satz auffassen (vgl. Gjerdingens *Prinner* 2007, Caplin 2015 und Martin 2023).
+  lowerFiveModulation:
+    en: Lower Quint Modulation
+    de: Unterquintmodulation
+  defaultDescriptionLowerFiveModulation:
+    en: "In music theory, a special kind of ***modulation to the lower fifth*** is called *motivo di cadenza* (J. G. Walther's 1732). His lexical definition, which is difficult to understand today, can be reformulated as follows: When the dominant is reached 
+        of an original key and then the third of the dominant is altered, this chord can be regarded as a ii. degree, wich can be lead about a V. degree ton the key of the lower fifth of the original key. This turn of phrase is often used in fugue 
+        compositions to return to the original key and create a colorful *circle of fifths*."
+    de: "In der Musiktheorie wird eine bestimmte Art der ***Unterquintmodulation*** als *Motivo di Cadenza* bezeichnet (J. G. Walthers 1732). Seine heute schwer verständliche lexikalische Definition lässt sich heute wie folgt formulieren: 
+        Wird von einer Ausgangstonart aus die Dominante herbeigeführt und dann die Terz der Dominante alteriert, lässt sich dieser Akkord als ii. Stufe über eine V. Stufe in die Unterquinttonart der Ausgangstonart führen (*Unterquintmodulation*). 
+        Diese Wendung findet sich häufig in Fugenkompositionen zur Rückführung in die Ausgangstonart und in zur farbigen Gestaltung von *Quintfallsequenzen*."
+  parallelismDiminuated:
+    en: Parallelism (chrom.)
+    de: Parallelismus (chrom.)
+  defaultDescriptionParallelismDiminuated:
+    en: A ***coloured sequence***, which was common in 18th century music and for which ***no name*** has yet been established, can be understood as a chromaticized form of parallelism (downwards). Like parallelism, this sequence is also based on 
+        a 7-6 syncopation chain. However, while in the parallelism the bass alternates between thirds and fifths in relation to the *Agensstimme* of the syncopations, the bass in the (nameless) sequence can be understood as a 3-8-6-5 movement 
+        in relation to the agent voice of the syncopations. The chromaticization tonalized all root chords that lie on a downward third axis.
+    de: Eine ***farbige Sequenz***, die in der Musik des 18. Jahrhunderts weit verbreitet war und die im Fachdiskurs noch ***ohne Name*** ist, kann als eine chromatisierte Form des Parallelismus (abwärts) verstanden werden. 
+        Wie im Parallelismus liegt auch dieser Sequenz eine 7-6-Synkopenkette zugrunde. Doch während im Parallelismus zur *Agensstimme* der Synkopenkette im Bass wechselweise Unterterzen und -quinten erklingen, lässt sich der Bass in der 
+        Sequenz (ohne Namen) als eine 3-8-6-5-Seitenbewegung zur Agensstimme der Synkopenkette verstehen. Die Chromatisierung tonikalisiert dabei alle grundstelligen Akkorde, die auf einer Terzachse abwärts liegen.

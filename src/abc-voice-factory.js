@@ -172,7 +172,8 @@ export default class AbcVoiceFactory {
     }
   }
 
-  // Remove redundant signs (i.e. _ or ^ or =) in a abc measure
+  // Remove redundant signs (i.e. _ or ^ or =) in a abc measure 
+  // TODO: This function is called here to early
   _removeRedundantSigns(measureAbcToneObjects, index = 0, seen = {}, prefixPattern = /^([=_^]+)?/) {
     if (index >= measureAbcToneObjects.length) {
       return measureAbcToneObjects;

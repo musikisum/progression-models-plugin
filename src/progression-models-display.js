@@ -88,8 +88,8 @@ export default function MusicPuzzleDisplay({ content }) {
         <div>
           <AbcSnippet playableABC={abcResult} />
         </div>
-        <div style={{ textAlign: 'center' }}>
-          { (modelTemplates.length !== 0) && getParagraph(abcResult) }
+        <div className='centered'>
+          { getParagraph(abcResult) }
         </div>
         { showExample ? <Divider orientation="right" plain>{`${t('showExampleDescription')}: ${t(example.name)}`}</Divider> : null }
         <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>

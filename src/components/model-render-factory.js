@@ -93,19 +93,19 @@ export default function ModelRenderFactory({
                     />
                 </Tooltip>
                 <ModelProperties index={index} modelTemplates={modelTemplates} cloneDeep={cloneDeep} updateContent={updateContent} />
-                <div style={{ display: 'flex', marginTop: '15px', gap: '6px' }}>
+                <div className='showDescritionSwitch'>
                   <Switch 
                     size="small" 
                     checked={modelTemplate.showDescription}
                     onChange={onShowDescriptionChange}
                     />
-                  <div style={{ marginTop: '-4px' }}>{t('showDescription')}</div>             
+                  <div className='marginCorrection-4'>{t('showDescription')}</div>             
                 </div>
               </div>
             </Col>
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
-                <Text strong style={{ display: 'block', marginBottom: '10px' }}>{t('transposition')}</Text>
+                <Text strong className='voiceChangeHeader'>{t('transposition')}</Text>
                 <Tooltip title={showTooltipText('transposition')}>
                   <div className='buttons'>
                     <Button className='button' onClick={() => onArrowButtonClick('up', index)}><ArrowUpOutlined /></Button>
@@ -123,7 +123,7 @@ export default function ModelRenderFactory({
             </Col>             
             <Col className='gutter-row' xs={24} sm={12} md={12} lg={8}>
               <div className='gutter-box'>
-                <Text strong style={{ display: 'block', marginBottom: '15px' }}>{t('ve')}</Text>
+                <Text strong className='voiceSwitchHeader'>{t('ve')}</Text>
                 <div className='dadLabel'>{t('dragAndDrop')}</div>
                 <VoiceSwitch style={{ margin: '16px 0' }} modelIndex={index} modelTemplates={modelTemplates} updateContent={updateContent} />
               </div>

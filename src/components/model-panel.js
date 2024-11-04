@@ -1,6 +1,6 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import ModelTemplates from '../model-templates.js';
 import ModelRenderFactory from './model-render-factory.js';
@@ -149,17 +149,15 @@ function ModelPanel({
   };
 
   const createHaeder = () => {
-    return (<div className='inspectorUnit'>
-      <div style={{ display: 'flex' }}>
-        <Text className='iu-first' style={{ marginTop: '6px' }}>{t('selectModel')}</Text>
-        <Select 
-          className='inspectorElement'
-          style={{ width: 180, marginLeft: '15px' }}
-          defaultValue={header}
-          onChange={onModelSelectionChange}
-          options={getOptionsForModelSelect()}
-          />
-      </div>
+    return (<div className='modelSelector'>
+      <Text className='iu-first' style={{ marginTop: '6px' }}>{t('selectModel')}</Text>
+      <Select 
+        className='inspectorElement'
+        style={{ width: 180, marginLeft: '15px' }}
+        defaultValue={header}
+        onChange={onModelSelectionChange}
+        options={getOptionsForModelSelect()}
+        />
     </div>);
   };
 

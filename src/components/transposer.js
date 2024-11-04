@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { transposeABC } from 'abc-notation-transposition';
  
 const transpose = (abcNotation, transpositionValue) => {

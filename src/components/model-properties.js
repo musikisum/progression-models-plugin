@@ -50,7 +50,7 @@ function ModelProperties({ index, modelTemplates, updateContent }) {
   }
 
   return (
-    <div style={{ display: 'block' }}>
+    <div>
       {
         addProps
           ? Object.entries(addProps).map(([key, value], propIndex) => {

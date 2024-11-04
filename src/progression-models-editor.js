@@ -10,7 +10,7 @@ import ObjectWidthSlider from '@educandu/educandu/components/object-width-slider
 import DragAndDropContainer from '@educandu/educandu/components/drag-and-drop-container.js';
 import { swapItemsAt, removeItemAt, moveItem } from '@educandu/educandu/utils/array-utils.js';
 
-export default function MusicPuzzleEditor({ content, onContentChanged }) {
+export default function ProgressionModelsEditor({ content, onContentChanged }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
 
@@ -92,6 +92,6 @@ export default function MusicPuzzleEditor({ content, onContentChanged }) {
   );
 }
 
-MusicPuzzleEditor.propTypes = {
+ProgressionModelsEditor.propTypes = {
   ...sectionEditorProps
 };

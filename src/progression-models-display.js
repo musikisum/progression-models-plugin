@@ -9,7 +9,7 @@ import Markdown from '@educandu/educandu/components/markdown.js';
 import Collapse from '@educandu/educandu/components/collapsible.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
 
-export default function MusicPuzzleDisplay({ content }) {
+export default function ProgressionModelsDisplay({ content }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
   const { Paragraph } = Typography;
@@ -105,6 +105,6 @@ export default function MusicPuzzleDisplay({ content }) {
   );
 }
 
-MusicPuzzleDisplay.propTypes = {
+ProgressionModelsDisplay.propTypes = {
   ...sectionDisplayProps
 };

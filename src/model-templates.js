@@ -105,7 +105,8 @@ V:3 bass
     addProps: {
       partLengthValues: [4, 4, false],
       partToBeginValues: [1, 4, false],
-      bassReverse: [false, false]
+      bassReverse: [false, false],
+      endWithoutSuspension: [true, false]
     }
   },
   circleOfFifthsUp:  {

@@ -20,13 +20,13 @@ const getVoices = circleOfFifthsOptions => {
   if (!isMinor) {
     voices = [
       ['=G42', '=A42', '=A42', '=G42', '=G42', '=F42', '=F42', '=E42'],
-      ['=E42', '=E42', '=D42', '=D42', '=C42', '=C42', '=B32', '=C42'],
+      ['=E42', '=E42', '=D42', '=D42', '=C42', '=C42', '=B32', '=B32'],
       ['=C32', '=F32', '=B22', '=E32', '=A22', '=D32', '=G22', '=C32']
     ];
   } else {
     voices = [
       ['=E42', '=F42', '=F42', '=E42', '=E42', '=D42', '=D42', '=C42'],
-      ['=C42', '=C42', '=B32', '=B32', '=A32', '=A32', '^G32', '=A32'],
+      ['=C42', '=C42', '=B32', '=B32', '=A32', '=A32', '=G32:f', '=G32'],
       ['=A22', '=D32', '=G22', '=C32', '=F22', '=B22', '=E22', '=A22']
     ];
   }
@@ -35,7 +35,30 @@ const getVoices = circleOfFifthsOptions => {
       ? ['=C32', '=F22', '=B22', '=E22', '=A22', '=D22', '=G22', '=C22']
       : ['=A22', '=D22', '=G22', '=C22', '=F22', '=B12', '=E22', '=A12'];
   }
+
   const partLengthValue = options.addProps.partLengthValues[0];
+
+  if (options.addProps.endWithoutSuspension[0]) {
+    switch (partLengthValue) {
+      case 4:
+        if (!isMinor) {
+          voices[1][7] = '=C42';
+        } else {
+          voices[1][6] = '^G32';
+          voices[1][7] = '=A32';
+        }
+        break;
+      case 3:
+        voices[1][5] = !isMinor ? '=D42' : '=B32';
+        break;
+      case 2:
+        voices[1][3] = !isMinor ? '=E42' : '=C42';
+        break;
+      default:
+        voices[1][1] = !isMinor ? '=F42' : '=D42';
+        break;
+    }
+  }
   if (partLengthValue !== 4) {
     voices = voices.map(arr => arr.slice(0, partLengthValue * 2));
   }

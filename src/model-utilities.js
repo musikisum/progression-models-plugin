@@ -203,8 +203,18 @@ const addCrossVoicesSaftySigns = voices => {
   return [_combineAbcMeasuresToVoice(voice1Measures), _combineAbcMeasuresToVoice(voice2Measures)];
 };
 
+// Recognizes two identical pitches despite the omission of a redundant sign.
+const _comparewithoutRedundantSigns = (str1, str2) => {
+  const sign = str1.match(/^[_^]+/);
+  if(sign) {
+    return str1 === `${sign}${str2}`;
+  } 
+  return false;
+};
+
 const replaceDoubleValues = voice => {
   const measures = _splitVoiceAbcInMeasures(voice);
+  // console.log('measures', measures)
   for (let index = 1; index < measures.length; index += 1) {
     const lastMeasure = measures[index - 1];
     const currentMeasure = measures[index];
@@ -213,7 +223,7 @@ const replaceDoubleValues = voice => {
     }
   }
   measures.forEach(measure => {
-    if (measure.length > 1 && measure[0] === measure[1]) {
+    if (measure.length > 1 && (measure[0] === measure[1] || _comparewithoutRedundantSigns(measure[0], measure[1]))) {
       let first = measure[0];
       const second = measure[1];
       const firstNumber = parseInt(first.slice(-1), 10);

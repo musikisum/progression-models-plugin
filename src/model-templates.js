@@ -365,7 +365,8 @@ V:2 bass
     },
     addProps: {
       numberOfSections: [4, 4, false],
-      confirmation: [true, false]
+      confirmation: [true, false],
+      endWithoutSuspension: [true, false]
     }
   },
   parallelismDown: {

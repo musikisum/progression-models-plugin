@@ -1,10 +1,6 @@
 import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
-function getModelKeys() {
-  return ['E','C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
-}
-
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('initialCadence');
   if(change) {
@@ -44,8 +40,7 @@ const getVoices = cadenceOptions => {
 
 const Cadence = {
   getDefaultOptions: getOptions,
-  getVoices,
-  getModelKeys
+  getVoices
 };
 
 export default Cadence;

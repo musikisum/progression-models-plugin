@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import ArrowPanel from './arrow-panel.js';
 import React, { useRef, useId } from 'react';
 import { useTranslation } from 'react-i18next';
-import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
 import { moveItem } from '@educandu/educandu/utils/array-utils.js';
 import DragAndDropContainer from '@educandu/educandu/components/drag-and-drop-container.js';
 
@@ -10,8 +9,7 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
   const droppableIdRef = useRef(useId());
-  const newModelTemplates = cloneDeep(modelTemplates);
-  const modelTemplateToModify = newModelTemplates[modelIndex];
+  const modelTemplate = modelTemplates[modelIndex];
 
   const switchButtonsFactory = voiceArrangement => {    
     const switchButtons = voiceArrangement.reduce((akku, current) => {
@@ -25,7 +23,7 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
     return switchButtons;
   };
 
-  const switchButtons = switchButtonsFactory(modelTemplateToModify.voiceArrangement);
+  const switchButtons = switchButtonsFactory(modelTemplate.voiceArrangement);
 
   function renderVoiceLabels({ sb, index, dragHandleProps, isDragged, isOtherDragged }) {
     return (
@@ -46,9 +44,9 @@ function VoiceSwitch({ modelIndex, modelTemplates, updateContent }) {
 
   const handleItemMove = (fromIndex, toIndex) => {
     const newOrder = moveItem(switchButtons, fromIndex, toIndex);
-    modelTemplateToModify.voiceArrangement = [newOrder[0].voiceIndex + 1, newOrder[1].voiceIndex + 1, newOrder[2].voiceIndex + 1];
-    newModelTemplates[modelIndex] = modelTemplateToModify;
-    updateContent({ modelTemplates: newModelTemplates });
+    modelTemplate.voiceArrangement = [newOrder[0].voiceIndex + 1, newOrder[1].voiceIndex + 1, newOrder[2].voiceIndex + 1];
+    modelTemplates[modelIndex] = modelTemplate;
+    updateContent({ modelTemplates });
   };
 
   return (

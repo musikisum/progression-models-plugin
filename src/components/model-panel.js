@@ -108,30 +108,14 @@ function ModelPanel({
     );
   };
 
-  // Copy properties from a modelTemplate to another modelTemplate
-  const _copyMatchingProperties = (oldModelTemplate, newModelTemplate) => {
-    for (const key in oldModelTemplate) {
-      if (key !== 'key' && key !== 'name' && Object.hasOwn(newModelTemplate, key)) {
-        if (typeof oldModelTemplate[key] === 'object' && oldModelTemplate[key] !== null) {
-          if (Array.isArray(oldModelTemplate[key])) {
-            newModelTemplate[key] = [...oldModelTemplate[key]];
-          } else {
-            _copyMatchingProperties(oldModelTemplate[key], newModelTemplate[key]);
-          } 
-        } else {
-          newModelTemplate[key] = oldModelTemplate[key];
-        }
-      }
-    }
-  };
-
   const onModelSelectionChange = model => {
     const oldModelTemplate = modelTemplates[index];
     modelTemplates.splice(index, 1);
     const newModelTemplate = cloneDeep(ModelTemplates.getModelTemplate(model));
-    newModelTemplate.key = oldModelTemplate.key;
-    _copyMatchingProperties(oldModelTemplate, newModelTemplate);
-    newModelTemplate.customDescription = '';
+    newModelTemplate.key = oldModelTemplate.key; 
+    if (newModelTemplate.availableKeys && newModelTemplate.availableKeys.includes(oldModelTemplate.modelKey)) {
+      newModelTemplate.modelKey = oldModelTemplate.modelKey;
+    }
     modelTemplates.splice(index, 0, newModelTemplate);
     updateContent({ modelTemplates, selectedModel: model });
   };
@@ -153,8 +137,8 @@ function ModelPanel({
       <Text className='iu-first' style={{ marginTop: '6px' }}>{t('selectModel')}</Text>
       <Select 
         className='inspectorElement'
-        style={{ width: 180, marginLeft: '15px' }}
-        defaultValue={header}
+        style={{ width: 240, marginLeft: '15px' }}
+        value={header}
         onChange={onModelSelectionChange}
         options={getOptionsForModelSelect()}
         />

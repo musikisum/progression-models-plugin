@@ -1,10 +1,6 @@
 import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
-function getModelKeys() {
-  return ['E','C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
-}
-
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('circleOfFifths');
   if(change) {
@@ -37,6 +33,9 @@ const getVoices = circleOfFifthsOptions => {
   }
 
   const partLengthValue = options.addProps.partLengthValues[0];
+  const partToBeginValues = options.addProps.partToBeginValues[0];
+  options.addProps.partLengthValues[2] = partToBeginValues !== 1;
+  options.addProps.partToBeginValues[2] = partLengthValue !== 4;
 
   if (options.addProps.endWithoutSuspension[0]) {
     switch (partLengthValue) {
@@ -59,20 +58,22 @@ const getVoices = circleOfFifthsOptions => {
         break;
     }
   }
+
+  let decreasedVoices = [];
   if (partLengthValue !== 4) {
-    voices = voices.map(arr => arr.slice(0, partLengthValue * 2));
+    decreasedVoices = voices.map(arr => arr.slice(0, partLengthValue * 2));
   }
-  const partToBeginValues = options.addProps.partToBeginValues[0];
   if (partToBeginValues !== 1) {
-    voices = voices.map(arr => arr.slice((partToBeginValues - 1) * 2));
+    decreasedVoices = voices.map(arr => arr.slice((partToBeginValues - 1) * 2));
   }
+  voices = decreasedVoices.length ? decreasedVoices : voices;
+  
   return ModelUtilities.getVoices(options, voices);
 };
 
 const CircleOfFifths = {
   getDefaultOptions: getOptions,
   getVoices,
-  getModelKeys
 };
 
 export default CircleOfFifths;

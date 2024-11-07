@@ -1,10 +1,6 @@
 import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
-function getModelKeys() {
-  return ['D', 'G', 'C', 'F', 'Bb', 'Eb', 'Ab'];
-}
-
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('circleOfFifthsUp');
   if(change) {
@@ -65,7 +61,6 @@ const getVoices = circleOfFifthsOptionsUp => {
 const CircleOfFifthsUp = {
   getDefaultOptions: getOptions,
   getVoices,
-  getModelKeys
 };
 
 export default CircleOfFifthsUp;

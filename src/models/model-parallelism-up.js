@@ -1,10 +1,6 @@
 import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
-function getModelKeys() {
-  return ['E', 'C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
-}
-
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('parallelismUp');
   if(change) {
@@ -24,8 +20,8 @@ const _adjustDisabled = (isMinor, numberOfSections, chromatic, syncopation, endW
         setChromatic(false);
         break;
       default:
-        setChromatic(endWithoutSuspension[0]);
-        setChromatic(!syncopation[0]);
+        setChromatic(true);
+        chromatic[0] = false;
         break;
     }
   } else {
@@ -33,18 +29,11 @@ const _adjustDisabled = (isMinor, numberOfSections, chromatic, syncopation, endW
       case 3:     
         setChromatic(false);
         break;
-      case 2:
-        setChromatic(!endWithoutSuspension[0]);
-        setChromatic(!syncopation[0]);
-        if(!endWithoutSuspension[0]) {
-          setChromatic(true);
-        }
-        break;
       default:
         setChromatic(true);
+        chromatic[0] = false;
         break;
     }
-
   }
 };
 
@@ -92,7 +81,7 @@ const getVoices = parallelismUpOptions => {
   }
   if (numberOfSections !== 3) {
     if (options.addProps.syncopation[0]) {
-      voices = voices.map(arr => arr.slice(0, numberOfSections * 4));
+      voices = voices.map(arr => arr.slice(0, (numberOfSections * 4) - 2));
     } else {
       voices = voices.map(arr => arr.slice(0, numberOfSections * 2));
     }
@@ -103,10 +92,12 @@ const getVoices = parallelismUpOptions => {
         voices[1][9] = !isMinor ? '=C42' : '=A32';
         break;
       case 2:
-        voices[0][7] = !isMinor ? '=B42' : options.addProps.chromatic[0] ? '^G42' : '=G42';
+        voices[1][5] = !isMinor ? '=A32' : '=F32';
+        break;
+      case 1:
+        voices[1][1] = !isMinor ? '=F32' : '=D32';
         break;
       default:
-        voices[0][3] = !isMinor ? options.addProps.chromatic[0] ? '^G42' : '=G42' : '=E42';
         break;
     }
   }
@@ -116,8 +107,7 @@ const getVoices = parallelismUpOptions => {
 
 const ParallismusUp = {
   getDefaultOptions: getOptions,
-  getVoices,
-  getModelKeys
+  getVoices
 };
 
 export default ParallismusUp;

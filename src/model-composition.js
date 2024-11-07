@@ -6,7 +6,9 @@ const _getMeta = (modelKey, measure, length, tempo, stretchLastLine) => {
   const metaResult = ['X:1'];
   metaResult.push('%%score [(1 2) 3]');
   metaResult.push(`%%measurenb 0${stretchLastLine ? '\n%%stretchLast 1' : ''}`);
-  metaResult.push(`M:${measure}`);
+  if(!(measure === '1/1')) {
+    metaResult.push(`M:${measure}`);
+  }
   metaResult.push(`Q:1/4=${tempo}`);
   metaResult.push(`L:${length}`);
   metaResult.push(`K:${modelKey}`);

@@ -41,7 +41,7 @@ function ModelProperties({ index, modelTemplates, updateContent }) {
           style={{ minWidth: '100px' }}
           min={1}
           max={value[1]} 
-          defaultValue={value[0]}
+          value={value[0]}
           disabled={value[2]} 
           onChange={e => onChange(e, propIndex)}
           />        

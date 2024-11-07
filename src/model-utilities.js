@@ -121,6 +121,8 @@ function convertMeasureSignToDefaultLength(measureSign) {
       return '1/16';
     case '3/2':
       return '1/4';
+    case '1/1':
+      return '1/2';
     default:
       return '1/4';
   }
@@ -205,20 +207,22 @@ const addCrossVoicesSaftySigns = voices => {
 
 // Recognizes two identical pitches despite the omission of a redundant sign.
 const _comparewithoutRedundantSigns = (str1, str2) => {
-  const sign = str1.match(/^[_^]+/);
+  const sign = str1.match(/^[_^=]+/);
   if(sign) {
     return str1 === `${sign}${str2}`;
   } 
   return false;
 };
 
+// Combine two identical note values into a double note value, or connect two identical notes separated by a barline with a tie
 const replaceDoubleValues = voice => {
   const measures = _splitVoiceAbcInMeasures(voice);
-  // console.log('measures', measures)
   for (let index = 1; index < measures.length; index += 1) {
     const lastMeasure = measures[index - 1];
     const currentMeasure = measures[index];
-    if (lastMeasure[lastMeasure.length - 1] === currentMeasure[0]) {
+    const lastNote = lastMeasure.at(-1); 
+    const firstNote = currentMeasure[0];
+    if (lastNote === firstNote || lastNote === `=${firstNote}`) {
       lastMeasure[lastMeasure.length - 1] += '-';
     }
   }

@@ -1,10 +1,6 @@
 import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
-function getModelKeys() {
-  return ['E', 'A', 'D', 'G', 'C', 'F', 'Bb', 'Eb', 'Ab'];
-}
-
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('fiveSixConsecutive');
   if(change) {
@@ -35,21 +31,27 @@ const getVoices = modelOptions => {
     voices[0][9] = '=G52';
     voices[0][11] = '=A52';
   }
+
   const partLengthValue = options.addProps.partLengthValues[0];
-  if (partLengthValue !== 6) {
-    voices = voices.map(arr => arr.slice(0, partLengthValue * 2));
-  }
   const partToBeginValues = options.addProps.partToBeginValues[0];
-  if (partToBeginValues !== 1) {
-    voices = voices.map(arr => arr.slice((partToBeginValues - 1) * 2));
+  options.addProps.partLengthValues[2] = partToBeginValues !== 1;
+  options.addProps.partToBeginValues[2] = partLengthValue !== 6;
+
+  let decreasedVoices = [];
+  if (partLengthValue !== 6) {
+    decreasedVoices = voices.map(arr => arr.slice(0, partLengthValue * 2));
   }
+  if (partToBeginValues !== 1) {
+    decreasedVoices = voices.map(arr => arr.slice((partToBeginValues - 1) * 2));
+  }
+  voices = decreasedVoices.length ? decreasedVoices : voices;
+
   return ModelUtilities.getVoices(options, voices);
 };
 
 const FiveSixConsecutive = {
   getDefaultOptions: getOptions,
-  getVoices,
-  getModelKeys
+  getVoices
 };
 
 export default FiveSixConsecutive;

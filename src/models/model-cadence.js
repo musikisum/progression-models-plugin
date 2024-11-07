@@ -1,10 +1,6 @@
 import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
-function getModelKeys() {
-  return ['E', 'C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
-}
-
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('cadence');
   if(change) {
@@ -27,30 +23,29 @@ const getVoices = cadenceOptions => {
     voices = [
       ['=C52', '=B42', '=B42', '=C52'],
       ['=A42', '=A42', '^G42:f', '=A42'],
-      ['=C42', '=D42', '=E42', '=A32']
+      ['=C32', '=D32', '=E32', '=A22']
     ];
   }
   const isBegin = options.addProps.isBegin[0];
   const isFinal = options.addProps.isFinal[0];
   const isDeceptive = options.addProps.isDeceptiv[0];
   if(isBegin) {
-    voices[2][0] = !isMinor ? '=C42' : '=A42';
+    voices[2][0] = !isMinor ? '=C42' : '=A32';
   }
   if (isFinal) {
     voices[0][3] = !isMinor ? '=C42' : '=A42';
-    voices[2][3] = !isMinor ? '=C32' : '=A32';
+    voices[2][3] = !isMinor ? '=C32' : '=A22';
   }
   if (isDeceptive) {
     voices[0][3] = !isMinor ? '=C42' : '=A42';
-    voices[2][3] = !isMinor ? '=A32' : '=F42';
+    voices[2][3] = !isMinor ? '=A32' : '=F32';
   }
   return ModelUtilities.getVoices(options, voices);
 };
 
 const Cadence = {
   getDefaultOptions: getOptions,
-  getVoices,
-  getModelKeys
+  getVoices
 };
 
 export default Cadence;

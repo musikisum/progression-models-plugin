@@ -87,8 +87,8 @@ export default function ModelRenderFactory({
                 <Tooltip title={showTooltipText('selectKeyToolTip')}>
                   <Select 
                     style={{ minWidth: '100px' }}
-                    defaultValue={modelTemplate.modelKey} 
-                    options={ModelProvider.getModel(modelTemplate.name).getModelKeys().map(modelKey => ({ value: modelKey, label: t(modelKey) }))}
+                    value={modelTemplate.modelKey} 
+                    options={modelTemplate.availableKeys.map(modelKey => ({ value: modelKey, label: t(modelKey) }))}
                     onChange={e => changeModelTemplateKey(e, index)}
                     />
                 </Tooltip>

@@ -1,10 +1,6 @@
 import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
-function getModelKeys() {
-  return ['E','C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
-}
-
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('lowerFiveModulation');
   if(change) {
@@ -27,7 +23,7 @@ const getVoices = lowerFifthModulationOptions => {
     voices = [
       ['=C52', '=B42', '=B42', '=A42', '=D52', '=D52', '^C52', '=D52'],
       ['=A42', '=A42', '=G42:f', '=G42', '=F42', '=E42', '=E42', '=F42'],
-      ['=A32', '=E42', '=E42', '^C42', '=D42', '=A32', '=A32', '=D42']
+      ['=A22', '=E32', '=E32', '^C32', '=D32', '=A22', '=A22', '=D32']
     ];
   }
   if (options.addProps.changeMode[0]) {
@@ -46,8 +42,7 @@ const getVoices = lowerFifthModulationOptions => {
 
 const LowerFiveModulation = {
   getDefaultOptions: getOptions,
-  getVoices,
-  getModelKeys
+  getVoices
 };
   
 export default LowerFiveModulation;

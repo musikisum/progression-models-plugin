@@ -1,7 +1,7 @@
 {
   "musikisum/educandu-plugin-progression-models": {
     "name": {
-      "en": "Voice Models",
+      "en": "Progression Models",
       "de": "Satzmodelle"
     },
     "noModel": {
@@ -121,31 +121,31 @@
       "de": "Stimmtausch"
     },
     "v1": {
-      "en": "voice 1",
+      "en": "Voice 1",
       "de": "1. Stimme"
     },
     "v2": {
-      "en": "voice 2",
+      "en": "Voice 2",
       "de": "2. Stimme"
     },
     "v3": {
-      "en": "voice 3",
+      "en": "Voice 3",
       "de": "3. Stimme"
     },
+    "dragAndDrop": {
+      "en": "Drag & drop",
+      "de": "Drag & drop"
+    },
     "os": {
-      "en": "upper voice",
+      "en": "Up voice",
       "de": "Oberstimme"
     },
-    "dragAndDrop": {
-      "en": "drag & drop",
-      "de": "Drag & Drop"
-    },
     "ms": {
-      "en": "middle voice",
+      "en": "Mid voice",
       "de": "Mittelstimme"
     },
     "us": {
-      "en": "lower voice",
+      "en": "Low voice",
       "de": "Unterstimme"
     },
     "addModel": {
@@ -161,8 +161,8 @@
       "de": "Bass 5↓ 4↑"
     },
     "chromaticBass": {
-      "en": "chromatic",
-      "de": "chromatisch"
+      "en": "Chromatic",
+      "de": "Chromatisch"
     },
     "chromatic2": {
       "en": "#/b middle",
@@ -305,8 +305,8 @@
       "de": "Bass muten"
     },
     "modelNameSelect": {
-      "en": "Choose Example ...",
-      "de": "Wähle Beispiel ..."
+      "en": "Choose an Example ...",
+      "de": "Wähle ein Beispiel ..."
     },
     "noExample": {
       "en": "No selection",
@@ -317,11 +317,11 @@
       "de": "Beispiel"
     },
     "exampleTooltip": {
-      "en": "Provide an Example and Description for the selected Model:",
+      "en": "Example and description for the selected model:",
       "de": "Gibt ein Beispiel und eine Beschreibung für die aktuelle Modellauswahl:"
     },
     "stretchLastLineTooltip": {
-      "en": "Stretch the last line of a abc-notation to the entire width in view mode",
+      "en": "Stretch the last line of an abc-notation to the entire width in view mode",
       "de": "Die letzte Notenlinie füllt im Ansichtsmodus die ganze Anzeigebreite aus"
     },
     "showDescriptionTooltip": {
@@ -337,7 +337,7 @@
       "de": "Unteres Notensystem im Ansichtsmodus ausblenden und stummschalten"
     },
     "measurePerLineToolTip": {
-      "en": "Measure / Line",
+      "en": "Bars / Line",
       "de": "Takte / Zeile"
     },
     "tempoToolTip": {
@@ -353,7 +353,7 @@
       "de": "Transponieren"
     },
     "withTiesToolTip": {
-      "en": "Replacing repetitions with double note values or ties",
+      "en": "Replace repetitions with double note values or ties",
       "de": "Ersetzt Tonwiederholungen durch größere Notenwerte bzw. Überbindungen"
     },
     "selectModel": {
@@ -369,7 +369,7 @@
       "de": "Transponiert die ausgewählte Stimme um eine Okatve"
     },
     "selectKeyToolTip": {
-      "en": "Select for a model key",
+      "en": "Select a model key",
       "de": "Auswahl einer Tonart für das Modell"
     },
     "invertRhythmToolTip": {
@@ -381,7 +381,7 @@
       "de": "Umkehren"
     },
     "descriptionRepeatHead": {
-      "en": "Explanatations about the progression model",
+      "en": "Explanations on progression model",
       "de": "Erklärungen zum Satzmodell"
     },
     "descriptionRepeatTail": {
@@ -392,17 +392,25 @@
       "en": "Initial cadence",
       "de": "Initialkadenz"
     },
+    "noAbcTextU1": {
+      "en": "Sorry about that!",
+      "de": "Sorry und Entschuldigung!"
+    },
+    "noAbcTextU2": {
+      "en": "Looks like something's missing and probably needs to be added ...",
+      "de": "Hier fehlt etwas und muss wohl noch ergänzt werden ..."
+    },
     "defaultDescriptionInitialCadence": {
-      "en": "In German music theory discourse, an initial cadence refers to a form of cadence that consists of a tenor clausula, an upper doubling of the tenor clausula, and a soprano clausula in the bass. The name derives from the limited sense of closure that this cadence creates, due to the absence of a descending fifth and the presence of the soprano clausula in the bass. Because of its effect, the initial cadence is frequently used in the formal function of beginning.",
-      "de": "Als ***Initialkadenz*** wird im musiktheoretischen Diskurs ist eine Form der *Kadenz* bezeichnet, die aus einer Tenorklausel, einer Überterzung der Tenorklausel sowie einer Sopranklausel im Bass besteht. Der Name orientiert sich an der geringen Schlusswirkung, die diese Kadenz aufgrund des fehlenden Quintfalls sowie der Sopranklausel im Bass entfaltet. Aufgrund ihrer Wirkung findet sich die Initialkadenz sehr häufig in der Formfunktion des Anfangens."
+      "en": "In German music theory discourse an initial cadence refers to a form of cadence that consists of a tenor clausula, an upper doubling of the tenor clausula, and a soprano clausula in the bass. The term stems from the limited sense of closure that this cadence creates, due to the absence of a descending fifth and the presence of the soprano clausula in the bass. Because of this effect the initial cadence is frequently used in the formal function of beginning.",
+      "de": "Als ***Initialkadenz*** wird im musiktheoretischen Diskurs eine Form der *Kadenz* bezeichnet, die aus einer Tenorklausel, einer Überterzung der Tenorklausel sowie einer Sopranklausel im Bass besteht. Der Name orientiert sich an der geringen Schlusswirkung, die diese Kadenz aufgrund des fehlenden Quintfalls sowie der Sopranklausel im Bass entfaltet. Aufgrund ihrer Wirkung findet sich die Initialkadenz sehr häufig in der Formfunktion des Anfangens."
     },
     "cadence": {
       "en": "Cadence",
       "de": "Kadenz"
     },
     "defaultDescriptionCadence": {
-      "en": "The ***cadence*** as a phrase model is a musical ending involving three voices: 1. the tenor clausula, 2. the soprano clausula, and 3. the bass clausula. Depending on whether the tenor clausula ends on the final note (finalis) or on the major third above it, the cadence is considered perfect or imperfect. If the bass clausula leads not to the finalis but to the minor third below it, this creates a form of Fuggir la Cadenza, which is referred to as an evaded cadence or deceptive cadence. When the tenor clausula appears in the bass, a six-four chord (quart-sext chord) is heard in three-part harmony, a sound avoided in the past and thus now regarded as a compositional error.",
-      "de": "Die ***Kadenz*** als Satzmodell ist eine Schlusswendung aus drei Stimmen: 1. Der Tenorklausel, 2. der Sopranklausel und 3. der Bassklausel. Je nachdem, ob die Tenorklausel in der Finalis oder in der Oberterz zur Finalis endet, ist die Schlusswendung vollkommen oder unvollkommen. Wird die Bassklausel nicht in die Finalis, sondern in die Unterterz zur Finalis geführt, entsteht eine Form des ›Fuggir la Cadenza‹, die als Trugschluss bezeichent wird. Liegt die Tenorklausel im Bass, erklingt in der Dreistimmigkeit ein Quartsextklang, der früher gemieden worden ist und der deshalb heute als Satzfehler gilt."
+      "en": "The ***cadence*** as a phrase model is a musical ending involving three voices: 1. the tenor clausula, 2. the soprano clausula, and 3. the bass clausula. Depending on whether the tenor clausula ends on the final note (finalis) or on the major third above it, the cadence is considered perfect or imperfect. If the bass clausula leads not to the finalis but to the minor third below it, this creates a form of Fuggir la Cadenza, which is referred to as an evaded cadence or deceptive cadence. When the tenor clausula appears in the bass, a six-four chord (quart-sext chord) is heard in three-part harmony, a sound avoided in the past and thus nowadays regarded as a compositional error.",
+      "de": "Die ***Kadenz*** als Satzmodell ist eine Schlusswendung aus drei Stimmen: 1. der Tenorklausel, 2. der Sopranklausel und 3. der Bassklausel. Je nachdem, ob die Tenorklausel in der Finalis oder in der Oberterz zur Finalis endet, ist die Schlusswendung vollkommen oder unvollkommen. Wird die Bassklausel nicht in die Finalis, sondern in die Unterterz zur Finalis geführt, entsteht eine Form des ›Fuggir la Cadenza‹, die als Trugschluss bezeichnet wird. Liegt die Tenorklausel im Bass, erklingt in der Dreistimmigkeit ein Quartsextklang, der früher gemieden worden ist und der deshalb heute als Satzfehler gilt."
     },
     "circleOfFifths": {
       "en": "Circle of fifths (down)",
@@ -410,22 +418,22 @@
     },
     "defaultDescriptionCircleOfFifths": {
       "en": "Historically, the ***descending circle of fifths*** with root-position chords (stepwise descending sequence of fifths) and sevenths is a reduction of a five-part setting. This setting consists of an *agens* voice and its upper doubling, a *patiens* voice and its lower doubling, and a fifth voice that leaps in fifths and fourths due to compositional necessities. In three-part texture, each root note of the harmony in the bass is accompanied by a seventh, which resolves to the third of the next root note. Additionally, every third to root note becomes a seventh of the next root note (either through repetition or suspension). The descending fifth sequence, in its various forms, is one of the most well-known models of tonal music.",
-      "de": "Historisch gesehen ist die ***Quintfallsequenz mit Grundakkorden*** (*sekundweise abwärts sequenzierter Quintfall*) und Septimen eine Reduktion eines fünfstimmigen Satzes, bestehend aus einer Agensstimme und deren Überterzung, einer Patiensstimme und deren Unterterzung sowie einer aus satztechnischen Notwendigkeiten in Quinten und Quarten springenden fünften Stimme. In der Dreitsimmigkeit erklingt zu jedem Grundton der HArmonie im Bass eine Septime, die sich zur Terz des nächsten Grundtons auflöst sowie eine Septime, die durch Wiederholung oder Überbindung zur Seotime des nächsten Grundtons wird. Die Quintfallsequenz in ihren verschiedenen Ausprägungen gehört zu den bekanntesten Modellen tonaler Musik."
+      "de": "Historisch gesehen ist die ***Quintfallsequenz mit Grundakkorden*** (*sekundweise abwärts sequenzierter Quintfall*) und Septimen eine Reduktion eines fünfstimmigen Satzes, bestehend aus einer Agensstimme und deren Überterzung, einer Patiensstimme und deren Unterterzung sowie einer aus satztechnischen Notwendigkeiten in Quinten und Quarten springenden fünften Stimme. In der Dreistimmigkeit erklingt zu jedem Grundton der Harmonie im Bass eine Septime, die sich zur Terz des nächsten Grundtons auflöst sowie eine Septime, die durch Wiederholung oder Überbindung zur Septime des nächsten Grundtons wird. Die Quintfallsequenz in ihren verschiedenen Ausprägungen gehört zu den bekanntesten Modellen tonaler Musik."
     },
     "circleOfFifthsLinear": {
       "en": "Circle of Fifths (Inversions)",
       "de": "Quintfallsequenz (Umkehrungen)"
     },
     "defaultDescriptionCircleOfFifthsLinear": {
-      "en": "Another variation of the ***circle of fifths*** progression model can be understood as a 7-6 syncopation with an additional voice. The framework consists of an active (agens) and a passive (patiens) voice; an added voice presents itself as a 6-5 movement to the active voice when it is below, or as a 3-4 movement when it is above. This model lends itself excellently to elaboration as a triple counterpoint in the octave, making it significant both in the history of composition and in theoretical development. It appears in numerous 18th-century manuals on fugue or counterpoint.",
-      "de": "Eine weitere Auspägung des Modells ***Quintfallsequenz*** lässt sich als 7-6-Synkopenkette mit einer Zusatzstimme verstehen. Das Gerüst bildet eine Agensstimme und eine Patiensstimme bzw. eine 7-6-Synkopenkette, als Zusatzstimme erklingt eine 6-5-Seitenbewegung zur Agensstimme, wenn sie unter oder einer 3-4-Seitenbewegung, wenn sie über ihr erklingt. Da dieses Modell sich hervorragend für einen Ausarbeitung als dreifacher Kontrapunkt in der Oktave eignet, war es sowohl kompositionsgeschichtlich als auch theoriegeschichtlich bedeutsam. Es findet sich in zahlreichen Anleitung des 18. Jahrhunderts zur Fuge bzw. zum Kontrapunkt."
+      "en": "Another variation of the ***circle of fifths*** progression model can be understood as a 7-6 syncopation with an additional voice. The framework consists of an active (agens) and a passive (patiens) voice; an added voice presents itself as a 6-5 movement to the active voice when it is below, or as a 3-4 movement when it is above. This model is excellently suited for an elaboration as a triple counterpoint in the octave, making it significant both in the history of composition and in theoretical development. It appears in numerous 18th-century manuals on the fugue or the counterpoint.",
+      "de": "Eine weitere Auspägung des Modells ***Quintfallsequenz*** lässt sich als 7-6-Synkopenkette mit einer Zusatzstimme verstehen. Das Gerüst bildet eine Agensstimme und eine Patiensstimme bzw. eine 7-6-Synkopenkette, als Zusatzstimme erklingt eine 6-5-Seitenbewegung zur Agensstimme, wenn sie unter ihr oder einer 3-4-Seitenbewegung, wenn sie über ihr erklingt. Da dieses Modell sich hervorragend für eine Ausarbeitung als dreifacher Kontrapunkt in der Oktave eignet, ist es sowohl kompositionsgeschichtlich als auch theoriegeschichtlich bedeutsam. Es findet sich in zahlreichen Anleitung des 18. Jahrhunderts zur Fuge bzw. zum Kontrapunkt."
     },
     "circleOfFifthsUp": {
       "en": "Circle of fifths (up)",
       "de": "Quintanstiegssequenz"
     },
     "defaultDescriptionCircleOfFifthsUp": {
-      "en": "The ***ascending circle of fifths*** (*ascending fifth sequenced stepwise upward*) can be understood as a inversion of the root notes in a descending circle of fifths. However, in music, This sequence has a different function and is less common than the descending circle of fifths. The ascending circle of fifths often facilitates a movement towards a chord within the home key, from which another sequence leads back. While descending circles of fifths are used in music literature both to confirm and to modulate keys, the ascending circle of fifths is generally not used to modulate, but to establish a key.",
+      "en": "The ***ascending circle of fifths*** (*ascending fifth sequenced stepwise upward*) can be understood as a inversion of the root notes in a descending circle of fifths. However, in music this sequence has a different function than the descending circle of fifths and is less common. The ascending circle of fifths often facilitates a movement towards a chord within the home key, from which another sequence leads back. While descending circles of fifths are used in music literature both to confirm and to modulate keys, the ascending circle of fifths is generally not used to modulate, but to establish a key.",
       "de": "Die ***Quintanstiegssequenz*** lässt sich als Spiegelung der Grundtöne einer Quintfallsequenz verstehen (Quintstieg stufenweise aufwärts sequenziert). In der Musik hat diese Sequenz allerdings eine andere Funktion und geringere Verbreitung als die Quintfallsequenz. Die Quintanstiegssequenz dient häufig der Bewegung zu einem Akkord der Ausgangstonart,, von dem aus eine andere Sequenz wieder zurück zur Ausgangstonart führt. Während sich die Quintfallsequenzen tonartbestätigend und modulierend in der Literatur findet, wird die Quintanstiegssequenz in der Regel nicht modulierend zur Ausformulierung einer Tonart eingesetzt."
     },
     "fauxbourdon": {
@@ -433,63 +441,63 @@
       "de": "Fauxbourdon (7-6)"
     },
     "defaultDescriptionFauxbourdon": {
-      "en": "The term fauxbourdon is ambiguous and is used differently in musicology (Besseler 1974) than in music theory (Burmeister 1606). In music theory, it refers to a compositional model characterized by parallel sixth chords with or without syncopation. In the ***syncopated downward fauxbourdon*** (7→6) there is a root for the development of the *circle of fifths* harmony (*stepwise downward sequence of falling fifths*).",
-      "de": "Der Begriff Fauxbourdon ist mehrdeutig und wird in der Musikwissenschaft (Besseler 1974) auf andere Art verwendet als in der Musiktheorie (Burmeister 1606). In der Musiktheorie wird mit ***Fauxboudonsatz** ein Satzmodell bezeichnet, dass aus parallel geführten Sextakkorden mit oder ohne Synkopenbewegungen besteht. Im ***synkopierten Fauxbourdonsatz abwärts (7→6)*** liegt eine Wurzel für die Entstehung der *Quintfallsequenzharmonik* (*stufenweise abwärts sequenzierter Quintfall*)."
+      "en": "The term fauxbourdon is ambiguous and is used differently in musicology (Besseler 1974) and in music theory (Burmeister 1606). In music theory, it refers to a compositional model characterized by parallel sixth chords with or without syncopation. In the ***syncopated downward fauxbourdon*** (7→6) there is a root for the development of the *circle of fifths* harmony (*stepwise downward sequence of falling fifths*).",
+      "de": "Der Begriff Fauxbourdon ist mehrdeutig und wird in der Musikwissenschaft (Besseler 1974) auf andere Art verwendet als in der Musiktheorie (Burmeister 1606). In der Musiktheorie wird mit ***Fauxbourdonsatz** ein Satzmodell bezeichnet, das aus parallel geführten Sextakkorden mit oder ohne Synkopenbewegungen besteht. Im ***synkopierten Fauxbourdonsatz abwärts (7→6)*** liegt eine Wurzel für die Entstehung der *Quintfallsequenzharmonik* (*stufenweise abwärts sequenzierter Quintfall*)."
     },
     "fiveSixConsecutive": {
       "en": "Fauxbourdon (5-6)",
       "de": "Fauxbourdon (5-6)"
     },
     "defaultDescriptionFiveSixConsecutive": {
-      "en": "Analogous to the syncopated faux-bourdon motion downwards (7→6), a sixth chord motion upwards with a 5-6 side motion to the bass can be understood as a ***syncopated faux-bourdon motion upwards (5→6)***. The harmonies can be described as a *stepwise upward sequenced fifth fall*. Chromatization produces dominant chords to gradually ascending tonic chords. If the chromatic voice is in the melody, it could be used very expressively in the 17th century (cf. H. Schütz, “O süßer, O freundlicher, O gütiger Herr Jesu Christe” SWV 285).",
-      "de": "Analog zum synkopierten Fauxboudonsatz abwärts (7→6) lässt sich ein Sextakkordsatz aufwärts mit 5-6-Seitenbewegung zur Bassstimme als ***synkopierter Fauxbourdonsatz aufwärts (5→6)*** verstehen. Die Harmonik lässt sich angemessen als *stufenweise aufwärts sequenzierter Quintfall* beschreiben. Durch die Chromatisierung erklingen Zwischendominanten zu stufenweise ansteigenden Grundakkorden. Liegt die chromatische Stimme in der Melodie, konnte sie im 17. Jahrhundert zur musikalischen Darstellung besonderer Inhalte verwendet werden (vgl. H. Schütz, »O süßer, O freundlicher, O gütiger Herr Jesu Christe« SWV 285)."
+      "en": "In analogy to the syncopated faux-bourdon motion downwards (7→6), a sixth chord motion upwards with a 5-6 side motion towards the bass can be understood as a ***syncopated faux-bourdon motion upwards (5→6)***. The harmonies can be described as a *stepwise upward sequenced fifth fall*. Chromatization produces dominant chords to gradually ascending tonic chords. If the chromatic voice is in the melody, it would be used in the 17th for special expressions. (cf. H. Schütz, “O süßer, O freundlicher, O gütiger Herr Jesu Christe” SWV 285).",
+      "de": "Analog zum synkopierten Fauxbourdonsatz abwärts (7→6) lässt sich ein Sextakkordsatz aufwärts mit 5-6-Seitenbewegung zur Bassstimme als ***synkopierter Fauxbourdonsatz aufwärts (5→6)*** verstehen. Die Harmonik lässt sich angemessen als *stufenweise aufwärts sequenzierter Quintfall* beschreiben. Durch die Chromatisierung erklingen Zwischendominanten zu stufenweise ansteigenden Grundakkorden. Liegt die chromatische Stimme in der Melodie, konnte sie im 17. Jahrhundert zur musikalischen Darstellung besonderer Inhalte verwendet werden (vgl. H. Schütz, »O süßer, O freundlicher, O gütiger Herr Jesu Christe« SWV 285)."
     },
     "lamento": {
       "en": "lamento bass",
       "de": "Lamentobass"
     },
     "defaultDescriptionLamento": {
-      "en": "The term ***lamento bass*** refers to a descending melodic line in a minor key that connects the root tone with the dominant tone (8-7-6-5 or, in A minor, a-g-f-e). A prime example of a composition based on an ostinato lamento bass is the *Lamento della Ninfa* by Claudio Monteverdi, published in 1638 in Madrigali guerrieri et amorosi (VIII. of Madrigals). Chromatic alterations of the lamento bass (*passus duriusculus*) and a middle voice in parallel thirds create a heightened sound effect. Compositions in which the lamento bass plays a significant role can be interpreted as a historical context of compositions due to their prominence.",
-      "de": "Als ***Lamentobass*** wird in der Musikthorie ein absteigende melodische Linie in Moll bezeichnet, die den Grundton mit dem Quinton verbindet (8-7-6-5 oder in a-Moll a-g-f-e). Als Musterbeispiel für eine Komposition über einen ostinaten Lamentobass gilt das *Lamento della Ninfa* von Claudio Monteverdi, das 1638 in den Madrigali guerrieri et amorosi (VIII. Madrigalbuch) veröffentlicht worden ist. Klangliche Steigerungen bilden die Chromatisierungen des Lamentobasses (*passus duriusculus*) sowie einer Mitelstimme in parallelen Terzen. Kompositionen, in denen der Lamentobass eine tragende Rolle spielt, lassen sich aufgrund ihrer Bekanntheit in einem kompositionsgeschichtlichen Zusammenhang interpretieren."
+      "en": "The term ***lamento bass*** refers to a descending melodic line in a minor key that connects the root tone with the dominant tone (8-7-6-5 or, in A minor, a-g-f-e). A prime example of a composition based on an ostinato lamento bass is the *Lamento della Ninfa* by Claudio Monteverdi, published in 1638 in *Madrigali guerrieri et amorosi* (VIII. of Madrigals). Chromatic alterations of the lamento bass (*passus duriusculus*) and a middle voice in parallel thirds create a heightened sound effect. Compositions in which the lamento bass plays a significant role can be interpreted within a historical context of compositions due to their prominence.",
+      "de": "Als ***Lamentobass*** wird in der Musiktheorie eine absteigende melodische Linie in Moll bezeichnet, die den Grundton mit dem Quinton verbindet (8-7-6-5 oder in a-Moll a-g-f-e). Als Musterbeispiel für eine Komposition über einen ostinaten Lamentobass gilt das *Lamento della Ninfa* von Claudio Monteverdi, das 1638 in den Madrigali guerrieri et amorosi (VIII. Madrigalbuch) veröffentlicht worden ist. Klangliche Steigerungen bilden die Chromatisierungen des Lamentobasses (*passus duriusculus*) sowie einer Mitelstimme in parallelen Terzen. Kompositionen, in denen der Lamentobass eine tragende Rolle spielt, lassen sich aufgrund ihrer Bekanntheit in einem kompositionsgeschichtlichen Zusammenhang interpretieren."
     },
     "parallelismDown": {
       "en": "Parallelism down",
       "de": "Parallelismus abwärts"
     },
     "defaultDescriptionParallelismDown": {
-      "en": "The term ***parallelism*** is ambiguous in music. Parallelism as a model describes a parallel movement of the upper voices in thirds or sixths in connection with a simple, sequenced bass motif (sequenced in thirds, e.g. C | G Am | E or E | Am G | C). As early as the 15th century, Guilelmus Monachus described a form of improvisation or composition (\"regula ad componendum cum tribus vocibus\") that can be understood as paralelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). If the ***parallelism downwards*** is based on a 7-6 syncopation (*ascending fifths downwards in thirds*), this results in alternating fourths and non-firsts in the bass part.",
-      "de": "Der Begriff ***Parallelismus*** ist in der Musik mehrdeutig. Das hier als Parallelismus vorgestellte Modell bezeichnet eine Parallelfühung der Oberstimmen in Terzen oder Sexten in Verbindung mit einem einfachen, sequenzierten Bassmotiv (terzweise abwärts wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilelmus Monachus eine Form der Improvisation bzw. Komposition beschrieben (\"regula ad componendum cum tribus vocibus\"), die sich als Parallelismus verstehen lässt. Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Liegt dem ***Parallelismus abwärts*** (*terzweise abwärts sequenzierter Quintstieg*) eine 7-6-Synkope zugrunde, ergeben sich zur Bassstimme alternierende Quart- und Nonvorhalte."
+      "en": "The term ***parallelism*** is ambiguous in music. Parallelism as a model describes a parallel movement of the upper voices in thirds or sixths in connection with a simple, sequenced bass motif (sequenced in thirds, e.g. C | G Am | E or E | Am G | C). As early as the 15th century, Guilelmus Monachus described a form of improvisation or composition (»regula ad componendum cum tribus vocibus«) that can be understood as parallelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). If the ***parallelism downwards*** is based on a 7-6 syncopation (*ascending fifths downwards in thirds*), this results in alternating fourths and non-firsts in the bass part.",
+      "de": "Der Begriff ***Parallelismus*** ist in der Musik mehrdeutig. Das hier als Parallelismus vorgestellte Modell bezeichnet eine Parallelführung der Oberstimmen in Terzen oder Sexten in Verbindung mit einem einfachen, sequenzierten Bassmotiv (terzweise abwärts wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilelmus Monachus eine Form der Improvisation bzw. Komposition beschrieben (\"regula ad componendum cum tribus vocibus\"), die sich als Parallelismus verstehen lässt. Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Liegt dem ***Parallelismus abwärts*** (*terzweise abwärts sequenzierter Quintstieg*) eine 7-6-Synkope zugrunde, ergeben sich zur Bassstimme alternierende Quart- und Nonvorhalte."
     },
     "parallelismUp": {
       "en": "Parallelism up",
       "de": "Parallelismus aufwärts"
     },
     "defaultDescriptionParallelismUp": {
-      "en": "The term ***parallelism*** is ambiguous in music. Parallelism as a model describes a parallel movement of the upper voices in thirds or sixths in connection with a simple, sequenced bass motif (sequenced in thirds, e.g. C | G Am | E or E | Am G | C). As early as the 15th century, Guilelmus Monachus described a form of improvisation or composition (\"regula ad componendum cum tribus vocibus\") that can be understood as paralelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). When the ***parallelism upwards*** (*falling fifths upwards in thirds*) sounds with 7-6 sysncopations, voice exchanges are necessary to prepare the dissonances.",
-      "de": "Der Begriff ***Parallelismus*** ist in der Musik mehrdeutig. Das hier als Parallelismus vorgestellte Modell bezeichnet eine Parallelfühung der Oberstimmen in Terzen oder Sexten in Verbindung mit einem einfachen, sequenzierten Bassmotiv (terzweise abwärts wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilelmus Monachus eine Form der Improvisation bzw. Komposition beschrieben (\"regula ad componendum cum tribus vocibus\"), die sich als Parallelismus verstehen lässt. Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Erklingen in dem ***Parallelismus aufwärts*** (*terzweise aufwärts sequenzierter Quintfall*) 7-6-Synkopen, sind Stimmkreuzungen zur korrekten Vorbereitung der Dissonanzen notwendig."
+      "en": "The term ***parallelism*** is ambiguous in music. Parallelism as a model describes a parallel movement of the upper voices in thirds or sixths in connection with a simple, sequenced bass motif (sequenced in thirds, e.g. C | G Am | E or E | Am G | C). As early as the 15th century, Guilelmus Monachus described a form of improvisation or composition (»regula ad componendum cum tribus vocibus«) that can be understood as paralelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). When the ***parallelism upwards*** (*falling fifths upwards in thirds*) features 7-6 syncopations, voice exchanges are necessary in order to prepare the dissonances.",
+      "de": "Der Begriff ***Parallelismus*** ist in der Musik mehrdeutig. Das hier als Parallelismus vorgestellte Modell bezeichnet eine Parallelführung der Oberstimmen in Terzen oder Sexten in Verbindung mit einem einfachen, sequenzierten Bassmotiv (terzweise abwärts wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilelmus Monachus eine Form der Improvisation bzw. Komposition beschrieben (\"regula ad componendum cum tribus vocibus\"), die sich als Parallelismus verstehen lässt. Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Erklingen in dem ***Parallelismus aufwärts*** (*terzweise aufwärts sequenzierter Quintfall*) 7-6-Synkopen, sind Stimmkreuzungen zur korrekten Vorbereitung der Dissonanzen notwendig."
     },
     "upperFiveModulation": {
       "en": "Upper Quint Modulation",
       "de": "Oberquintmodulation"
     },
     "defaultDescriptionUpperFiveModulation": {
-      "en": "An essential means for ***modulation to the upper fifth*** is the introduction of the leading tone to the key of the upper fifth, which appears in the model shown here with seventh dissonances in the second position and in the model without dissonances in the third position (\"It is sufficient if the major seventh of the key to which one modulates (semitonium modi) is present in the bass or another voice.\" — C. Ph. E. Bach, 1753). This model can be understood as a harmonisation of a tetrachord (fa-mi-re-ut) model (see Kaiser, 2007, 2009, and 2023) or interpreted as a phrase model with three voices (see Gjerdingen's Prinner, 2007, and Martin, 2023).",
-      "de": "Wesentliches Mittel für die ***Modulation in die Oberquinte*** ist die Einführung des *Leittons* zur Oberquinttonart, die in dem hier gezeigten Modell mit Septimendissonanzen an zweiter und im Modell ohne Dissonanzen an dritter Position erklingt. (»Es ist genug, wenn die grosse Septime derjenigen Tonart, (semitonium modi), worein man gehet, im Basse, oder einer andern Stimme da ist.«, C. Ph. E. Bach, 1753). Das Modell lässt sich dabei als Ausprägung einer Tetracordharmonisierung (*fa-mi-re-ut*) verstehen (vgl. Kaiser 2007, 2009 und 2023) oder als ein mehrstimmiger Satz auffassen (vgl. Gjerdingens *Prinner* 2007, Caplin 2015 und Martin 2023)."
+      "en": "An essential means for ***modulation to the upper fifth*** is the introduction of the leading tone to the key of the upper fifth, which appears in the model shown here with seventh dissonances in the second position and in the model without dissonances in the third position (»Es ist genug, wenn die grosse Septime derjenigen Tonart, (semitonium modi), worein man gehet, im Basse, oder einer andern Stimme da ist.« — C. Ph. E. Bach, 1753). This model can be understood as a harmonisation of a tetrachord (fa-mi-re-ut) model (see Kaiser, 2007, 2009, and 2023) or interpreted as a phrase model with three voices (see Gjerdingen's Prinner, 2007, and Martin, 2023).",
+      "de": "Wesentliches Mittel für die ***Modulation in die Oberquinte*** ist die Einführung des *Leittons* zur Oberquinttonart, die in dem hier gezeigten Modell mit Septimendissonanzen an zweiter und im Modell ohne Dissonanzen an dritter Position erklingt. (»Es ist genug, wenn die grosse Septime derjenigen Tonart, (semitonium modi), worein man gehet, im Basse, oder einer andern Stimme da ist.«, C. Ph. E. Bach, 1753). Das Modell lässt sich dabei als Ausprägung einer Tetrachordharmonisierung (*fa-mi-re-ut*) verstehen (vgl. Kaiser 2007, 2009 und 2023) oder als ein mehrstimmiger Satz auffassen (vgl. Gjerdingens *Prinner* 2007, Caplin 2015 und Martin 2023)."
     },
     "lowerFiveModulation": {
-      "en": "Lower Quint Modulation",
+      "en": "Lower quint modulation",
       "de": "Unterquintmodulation"
     },
     "defaultDescriptionLowerFiveModulation": {
-      "en": "In music theory, a special kind of ***modulation to the lower fifth*** is called *motivo di cadenza* (J. G. Walther's 1732). His lexical definition, which is difficult to understand today, can be reformulated as follows: When the dominant is reached of an original key and then the third of the dominant is altered, this chord can be regarded as a ii. degree, wich can be lead about a V. degree ton the key of the lower fifth of the original key. This turn of phrase is often used in fugue compositions to return to the original key and create a colorful *circle of fifths*.",
-      "de": "In der Musiktheorie wird eine bestimmte Art der ***Unterquintmodulation*** als *Motivo di Cadenza* bezeichnet (J. G. Walthers 1732). Seine heute schwer verständliche lexikalische Definition lässt sich heute wie folgt formulieren: Wird von einer Ausgangstonart aus die Dominante herbeigeführt und dann die Terz der Dominante alteriert, lässt sich dieser Akkord als ii. Stufe über eine V. Stufe in die Unterquinttonart der Ausgangstonart führen (*Unterquintmodulation*). Diese Wendung findet sich häufig in Fugenkompositionen zur Rückführung in die Ausgangstonart und in zur farbigen Gestaltung von *Quintfallsequenzen*."
+      "en": "In music theory, a special kind of ***modulation to the lower fifth*** is called *motivo di cadenza* (J. G. Walther's 1732). His lexical definition, which is difficult to understand today, can be reformulated as follows: When, starting from an original key, the dominant is reached and the third of the dominant is altered, this chord can be can be lead as a ii. degree via a V. degree to the key of the lower fifth of the original key. This turn of phrase is often used in fugue compositions to return to the original key and create a colorful *circle of fifths*.",
+      "de": "In der Musiktheorie wird eine bestimmte Art der ***Unterquintmodulation*** als *Motivo di Cadenza* bezeichnet (J. G. Walthers 1732). Seine heute schwer verständliche lexikalische Definition lässt sich wie folgt reformulieren: Wird von einer Ausgangstonart aus die Dominante herbeigeführt und dann die Terz der Dominante alteriert, lässt sich dieser Akkord als ii. Stufe über eine V. Stufe in die Unterquinttonart der Ausgangstonart führen (*Unterquintmodulation*). Diese Wendung findet sich häufig in Fugenkompositionen zur Rückführung in die Ausgangstonart und zur farbigen Gestaltung von *Quintfallsequenzen*."
     },
     "parallelismDiminuated": {
       "en": "Parallelism (chrom.)",
       "de": "Parallelismus (chrom.)"
     },
     "defaultDescriptionParallelismDiminuated": {
-      "en": "A ***coloured sequence***, which was common in 18th century music and for which ***no name*** has yet been established, can be understood as a chromaticized form of parallelism (downwards). Like parallelism, this sequence is also based on a 7-6 syncopation chain. However, while in the parallelism the bass alternates between thirds and fifths in relation to the *Agensstimme* of the syncopations, the bass in the (nameless) sequence can be understood as a 3-8-6-5 movement in relation to the agent voice of the syncopations. The chromaticization tonalized all root chords that lie on a downward third axis.",
+      "en": "A ***coloured sequence***, which was common in 18th century music and for which ***no name*** has yet been established, can be understood as a chromaticized form of parallelism (downwards). Like parallelism, this sequence is also based on a 7-6 syncopation chain. However, while in the parallelism the bass alternates between thirds and fifths in relation to the *agens* voice of the syncopations, the bass in the (nameless) sequence can be understood as a 3-8-6-5 movement in relation to the *agens* voice of the syncopations. The chromaticization tonalizes all root chords that lie on a downward third axis.",
       "de": "Eine ***farbige Sequenz***, die in der Musik des 18. Jahrhunderts weit verbreitet war und die im Fachdiskurs noch ***ohne Name*** ist, kann als eine chromatisierte Form des Parallelismus (abwärts) verstanden werden. Wie im Parallelismus liegt auch dieser Sequenz eine 7-6-Synkopenkette zugrunde. Doch während im Parallelismus zur *Agensstimme* der Synkopenkette im Bass wechselweise Unterterzen und -quinten erklingen, lässt sich der Bass in der Sequenz (ohne Namen) als eine 3-8-6-5-Seitenbewegung zur Agensstimme der Synkopenkette verstehen. Die Chromatisierung tonikalisiert dabei alle grundstelligen Akkorde, die auf einer Terzachse abwärts liegen."
     }
   }

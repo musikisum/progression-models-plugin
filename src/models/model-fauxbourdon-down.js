@@ -1,10 +1,6 @@
 import ModelUtilities from '../model-utilities.js';
 import ModelTemplates from '../model-templates.js';
 
-function getModelKeys() {
-  return ['E', 'C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F', 'Dm', 'Bb', 'Gm', 'Eb', 'Cm', 'Ab', 'Fm'];
-}
-
 const getOptions = change => {
   const modelTemplate = ModelTemplates.getModelTemplate('fauxbourdon');
   if(change) {
@@ -17,6 +13,7 @@ const getVoices = fauxbourdonOptions => {
   const options = fauxbourdonOptions || getOptions();
   const isMinor = options.modelKey.includes('m');
   let voices;
+
   if (options.addProps.syncopation[0]) {
     options.addProps.partLengthValues[2] = false;
     voices = !isMinor 
@@ -31,6 +28,7 @@ const getVoices = fauxbourdonOptions => {
         ['=A32', '=G32', '=G32', '=F32', '=F32', '=E32', '=E32', '=D32', '=D32', '=C32']
       ];
   }
+
   if (options.addProps.chromaticBass[0]) {
     options.addProps.syncopation = [true, true];
     if (!isMinor) {
@@ -43,8 +41,8 @@ const getVoices = fauxbourdonOptions => {
   } else {    
     options.addProps.syncopation[1] = false;
   }
+
   if (!options.addProps.syncopation[0]) {
-    options.addProps.partLengthValues[2] = true;
     voices = !isMinor
       ? [
         ['=G42', '=G42', '=F42', '=E42', '=D42', '=C42'],
@@ -57,7 +55,6 @@ const getVoices = fauxbourdonOptions => {
         ['=A32', '=G32', '=F32', '=E32', '=D32', '=C32']
       ];
   }
-
   if (options.addProps.partLengthValues[0] !== 5) {
     voices = voices.map(arr => arr.slice(0, options.addProps.partLengthValues[0] * 2));
   }
@@ -67,8 +64,7 @@ const getVoices = fauxbourdonOptions => {
 
 const Fauxbourdon = {
   getDefaultOptions: getOptions,
-  getVoices,
-  getModelKeys
+  getVoices
 };
 
 export default Fauxbourdon;

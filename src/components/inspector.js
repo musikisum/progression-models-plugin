@@ -122,6 +122,10 @@ function Inspector({ content, updateContent }) {
       {
         value: '6/8',
         label: '6/8'
+      },
+      {
+        value: '1/1',
+        label: '1/1'
       }
     ];
   };
@@ -218,7 +222,7 @@ function Inspector({ content, updateContent }) {
             <Select
               className='inspectorElement'
               style={{ width: 120 }}
-              defaultValue={transposeValue}
+              value={transposeValue}
               onChange={e => onTransposeValueChange(e)}
               options={getOptionsForKeySelect()}
               />
@@ -230,7 +234,7 @@ function Inspector({ content, updateContent }) {
             <Select
               className='inspectorElement'
               style={{ width: 80 }}
-              defaultValue={measure ?? 'C|'}
+              value={measure ?? 'C|'}
               onChange={e => onMeasureChange(e)}
               options={getOptionsForMeasureSelect()}
               />
@@ -247,7 +251,7 @@ function Inspector({ content, updateContent }) {
               min={10}
               max={180}
               step={10}
-              defaultValue={tempo ?? 120}
+              value={tempo ?? 120}
               onChange={e => onTempoChange(e)}
               />
           </Tooltip>
@@ -262,7 +266,7 @@ function Inspector({ content, updateContent }) {
               style={{ width: 80 }}
               min={2} 
               max={10} 
-              defaultValue={measuresPerLine}
+              value={measuresPerLine}
               onChange={e => onNumberOfMaesuresChange(e)}
               />
           </Tooltip>

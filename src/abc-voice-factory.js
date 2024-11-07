@@ -38,6 +38,11 @@ export default class AbcVoiceFactory {
         this.measureLength = 6;
         this.startValue = 4;
         break;
+      case '1/1':
+        this.defaultValue = 4;
+        this.measureLength = 0;
+        this.startValue = 1;
+        break;
       default:
         this.measureSign = 'C|';
         this.defaultValue = 4;
@@ -59,6 +64,7 @@ export default class AbcVoiceFactory {
       length += tonObj.length;
       // create a measure unit
       if(length % this.measureLength === 0) {
+        // only for triple meters
         if (tripleMeters.includes(this.measureSign)) {           
           if (!this.invertRhythm) {
             // expand the first length of a measure
@@ -75,6 +81,7 @@ export default class AbcVoiceFactory {
             length += 2;        
           }          
         }
+        // for all measures
         returnValue.push(tempArr.slice());
         tempArr = [];      
       }

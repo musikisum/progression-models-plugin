@@ -81,16 +81,13 @@ export default function ProgressionModelsDisplay({ content }) {
   const abcResult = getPlayableABC();
   const description = getDescription();
   const markdownElem = <Markdown renderAnchors className='u-horizontally-centered u-width-100'>{description}</Markdown>;
+  const showModelAbc = abcResult !== null || !showExample;
 
   return (
     <div className='EP_Educandu_Progression_Models_Display'>
       <div className={`u-horizontally-centered u-width-${content.width}`}>
-        <div>
-          <AbcSnippet playableABC={abcResult} />
-        </div>
-        <div className='centered'>
-          { getParagraph(abcResult) }
-        </div>
+        { showModelAbc ? <AbcSnippet playableABC={abcResult} /> : null }
+        { showModelAbc ? <div className='centered'>{ getParagraph(abcResult) }</div> : null }
         { showExample ? <Divider orientation="right" plain>{`${t('showExampleDescription')}: ${t(example.name)}`}</Divider> : null }
         <div style={{ width: `${example.abc === '' ? '50%' : '100%' }`, margin: 'auto' }}>
           { showExample ? <AbcSnippet playableABC={example.abc} /> : null }

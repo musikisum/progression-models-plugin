@@ -235,7 +235,7 @@ const replaceDoubleValues = voice => {
       first = `${first.slice(0, -1)}${firstNumber + secondNumber}`;
       measure.splice(0, 2, first);
     }
-    if (measure.length > 2 && measure[1] === measure[2]) {
+    if (measure.length > 2 && (measure[1] === measure[2] || _comparewithoutRedundantSigns(measure[1], measure[2]))) {
       let third = measure[1];
       const fourth = measure[2];
       const thirdNumber = parseInt(third.slice(-1), 10);

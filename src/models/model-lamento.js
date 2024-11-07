@@ -35,7 +35,7 @@ const getVoices = lamentoOptions => {
       ]
       : [
         ['=F42', '=F42', '=E42', '=E42', '=D42', '=E42'],
-        ['=C42', '=B32', '=B32', '=A32', '=A32', '^G32'],
+        ['=C42', '=B32', '=B32', '=A32', '=A32', '^G32:f'],
         ['=A32', '=G32', '=G32', '=F32', '=F32', '=E32']
       ];
   } else {
@@ -58,7 +58,7 @@ const getVoices = lamentoOptions => {
     if (options.addProps.chromatic2[0]) {
       voices[1] = !isMinor
         ? ['=E42', '^D42:f', '=D42:f', '^C42:f', '=C42:f', '=B32']
-        : ['=C42', '=B32:f', '_B32:f', '=A32', '=A32', '^G32'];
+        : ['=C42', '=B32:f', '_B32:f', '=A32', '=A32', '^G32:f'];
     }
   }
   const ue65Index = options.addProps.syncopation[0] ? 4 : 2;

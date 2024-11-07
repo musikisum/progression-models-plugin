@@ -12,11 +12,6 @@ export default class AbcVoiceFactory {
   _initializeProperties(measureSign) {
     this.measureSign = measureSign;
     switch (measureSign) {    
-      case 'C':
-        this.defaultValue = 8;
-        this.measureLength = 8;
-        this.startValue = 6;
-        break;
       case '3/2':
         this.defaultValue = 8;
         this.measureLength = 6;
@@ -27,6 +22,7 @@ export default class AbcVoiceFactory {
         this.measureLength = 6;
         this.startValue = 4;
         break;
+      case 'C':
       case '2/4':
         this.defaultValue = 8;
         this.measureLength = 4;
@@ -180,17 +176,25 @@ export default class AbcVoiceFactory {
   }
 
   // Remove redundant signs (i.e. _ or ^ or =) in a abc measure 
-  _removeRedundantSigns(measureAbcToneObjects, index = 0, seen = {}, prefixPattern = /^([=_^]+)?/) {
-    if (index >= measureAbcToneObjects.length) {
-      return measureAbcToneObjects;
+  _removeRedundantSigns(measureAbcToneObjects) {
+    const seen = [];
+    const returnValue = [];
+    let toneObj;
+    for (let index = 0; index < measureAbcToneObjects.length; index += 1) {
+      toneObj = measureAbcToneObjects[index];
+      const signs = toneObj.match(/^[=_^]/g) || [];
+      const base = toneObj.slice(signs.length - 1, -1);
+      if(index === 0) {
+        seen.push(base);
+        returnValue.push(toneObj);
+      } else if(seen.includes(base) && signs.length) {
+        returnValue.push(toneObj.slice(1));
+      } else {
+        seen.push(base);
+        returnValue.push(toneObj);
+      }
     }
-    const currentAbcToneObj = measureAbcToneObjects[index];
-    if (seen[currentAbcToneObj]) {
-      measureAbcToneObjects[index] = seen[currentAbcToneObj]; // Replace unnecessary repetitions of signs (_,=,^)
-    } else {
-      seen[currentAbcToneObj] = currentAbcToneObj.replace(prefixPattern, '');
-    }
-    return this._removeRedundantSigns(measureAbcToneObjects, index + 1, seen, prefixPattern);
+    return returnValue;
   }
 
   // Provide an array of toneObjects and measure signs (i.e. '|')
@@ -212,11 +216,12 @@ export default class AbcVoiceFactory {
         }       
         tempMaesure.push(abcSymbol);
       }
+
       abcSymbols.push(...this._removeRedundantSigns(tempMaesure));
       abcSymbols.push('|');
     });
     abcSymbols.pop();
-    if (this.measureSign === '6/8') {
+    if (this.measureSign === '6/8' || this.measureSign === 'C') {
       let pipeCount = 0;
       return [...abcSymbols.filter(item => {
         if (item === '|') {

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import ModelExample from './modelExample.js';

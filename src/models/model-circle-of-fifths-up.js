@@ -45,7 +45,7 @@ const getVoices = circleOfFifthsOptionsUp => {
         voices[1][voices[1].length - 1] = options.addProps.endWithMajorChord[0] ? '^C42' : '=C42';
         break;  
       case 2:
-        voices[0][voices[0].length - 1] = options.addProps.endWithMajorChord[0] ? '^F42' : '=F42'
+        voices[0][voices[0].length - 1] = options.addProps.endWithMajorChord[0] ? '^F42' : '=F42';
         break; 
       case 1:
         voices[1][voices[1].length - 1] = '=B32';

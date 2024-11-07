@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 import React from 'react';
 import PropTypes from 'prop-types';
 import AbcSnippet from './abc-snippet.js';
@@ -24,7 +25,7 @@ function ModelExample({ selectedModel, example, updateContent }) {
             input={<NeverScrollingTextArea minRows={6} value={example.abc} onChange={handleCurrentAbcCodeChanged} />} 
             preview={<AbcSnippet playableABC={example.abc} />} 
             />
-          </div>
+        </div>
         : null}
     </div>
   );

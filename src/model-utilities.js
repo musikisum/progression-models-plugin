@@ -151,7 +151,7 @@ const divideVoices = (abcVoices, barsPerLine) => {
 };
 
 // Provide an array of arrays with abc tone symbols ob a measure
-const _splitVoiceAbcInMeasures = voice => {
+const splitVoiceAbcInMeasures = voice => {
   return voice.reduce((acc, item) => {
     if (item === '|') {
       acc.push([]);
@@ -166,7 +166,7 @@ const _splitVoiceAbcInMeasures = voice => {
 };
 
 // Restore a model voice with measure signs
-const _combineAbcMeasuresToVoice = measures => {
+const combineAbcMeasuresToVoice = measures => {
   return measures.flatMap((measure, index) => {
     return index > 0 ? ['|', ...measure] : measure;
   });
@@ -182,14 +182,10 @@ const _addSafetySigns = (abcTones, matchTone, hasSign) => {
 };
 
 // Set an safty natural sign ('=') between corresponding abc signs between upper voices
-const addCrossVoicesSaftySigns = voices => {
+const addCrossVoicesSaftySigns = (voice1Measures, voice2Measures) => {
   const abcTones = /[ABCDEFG]/;
-  const [voice1Measures, voice2Measures] = [
-    _splitVoiceAbcInMeasures(voices[0]),
-    _splitVoiceAbcInMeasures(voices[1]),
-  ];
   if (voice1Measures.length !== voice2Measures.length) { 
-    return voices;
+    return [voice1Measures, voice2Measures];
   };
   voice1Measures.forEach((abcToneArr1, index) => {
     const abcToneArr2 = voice2Measures[index];
@@ -202,7 +198,7 @@ const addCrossVoicesSaftySigns = voices => {
       _addSafetySigns(abcToneArr1, tone2, tone2HasSign);
     }
   });
-  return [_combineAbcMeasuresToVoice(voice1Measures), _combineAbcMeasuresToVoice(voice2Measures)];
+  return [voice1Measures, voice2Measures];
 };
 
 // Recognizes two identical pitches despite the omission of a redundant sign.
@@ -214,9 +210,38 @@ const _comparewithoutRedundantSigns = (str1, str2) => {
   return false;
 };
 
+function _getSymbolUpToLength(input) {
+  const lastNumberIndex = input.search(/[1-9](?!.*[1-9])/);
+  return lastNumberIndex !== -1 ? input.slice(0, lastNumberIndex) : input;
+}
+
+// Remove redundant signs (i.e. _ or ^ or =) in a abc measure 
+const removeRedundantSigns = measures => {
+  const cleanedMeasures = measures.map(measureAbcToneObjects => {
+    const seen = [];
+    const returnValue = [];
+    let toneObj;
+    for (let index = 0; index < measureAbcToneObjects.length; index += 1) {
+      toneObj = measureAbcToneObjects[index];
+      const signs = toneObj.match(/^[=_^]/g) || [];
+      const base = _getSymbolUpToLength(toneObj.slice(signs.length - 1, -1));
+      if(index === 0) {
+        seen.push(base);
+        returnValue.push(toneObj);
+      } else if(seen.includes(base) && signs.length) {
+        returnValue.push(toneObj.slice(1));
+      } else {
+        seen.push(base);
+        returnValue.push(toneObj);
+      }
+    }
+    return returnValue;
+  });
+  return cleanedMeasures;
+};
+
 // Combine two identical note values into a double note value, or connect two identical notes separated by a barline with a tie
-const replaceDoubleValues = voice => {
-  const measures = _splitVoiceAbcInMeasures(voice);
+const replaceDoubleValues = measures => {
   for (let index = 1; index < measures.length; index += 1) {
     const lastMeasure = measures[index - 1];
     const currentMeasure = measures[index];
@@ -244,12 +269,15 @@ const replaceDoubleValues = voice => {
       measure.splice(1, 2, third);
     }
   });
-  return _combineAbcMeasuresToVoice(measures);
+  return measures;
 };
  
 const ModelUtilities = {
   convertMeasureSignToDefaultLength,
+  combineAbcMeasuresToVoice,
   addCrossVoicesSaftySigns,
+  splitVoiceAbcInMeasures,
+  removeRedundantSigns,
   replaceDoubleValues,
   divideVoices,
   getVoices

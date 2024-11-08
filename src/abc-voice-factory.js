@@ -175,28 +175,6 @@ export default class AbcVoiceFactory {
     }
   }
 
-  // Remove redundant signs (i.e. _ or ^ or =) in a abc measure 
-  _removeRedundantSigns(measureAbcToneObjects) {
-    const seen = [];
-    const returnValue = [];
-    let toneObj;
-    for (let index = 0; index < measureAbcToneObjects.length; index += 1) {
-      toneObj = measureAbcToneObjects[index];
-      const signs = toneObj.match(/^[=_^]/g) || [];
-      const base = toneObj.slice(signs.length - 1, -1);
-      if(index === 0) {
-        seen.push(base);
-        returnValue.push(toneObj);
-      } else if(seen.includes(base) && signs.length) {
-        returnValue.push(toneObj.slice(1));
-      } else {
-        seen.push(base);
-        returnValue.push(toneObj);
-      }
-    }
-    return returnValue;
-  }
-
   // Provide an array of toneObjects and measure signs (i.e. '|')
   getAbcMeasures() {
     const abcSymbols = [];
@@ -217,7 +195,7 @@ export default class AbcVoiceFactory {
         tempMaesure.push(abcSymbol);
       }
 
-      abcSymbols.push(...this._removeRedundantSigns(tempMaesure));
+      abcSymbols.push(...tempMaesure);
       abcSymbols.push('|');
     });
     abcSymbols.pop();

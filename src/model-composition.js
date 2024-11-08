@@ -47,12 +47,21 @@ const getCompositionAbcOutput = (
     return models.map(row => row[colIndex]).reduce((acc, curr) => acc.concat(curr), []);
   });
   const voices = _convertModelVoicesToAbcVoices([[combinedVoicesCollection[0]], [combinedVoicesCollection[1]], [combinedVoicesCollection[2]]], measure, invertRhythm, hideUpperSystem, hideLowerSystem);
-  [voices[0], voices[1]] = ModelUtilities.addCrossVoicesSaftySigns([voices[0], voices[1]]);
+
+  // ---------- Block ton manipuate abc measures --------------
+  let [voice1, voice2, voice3] = voices.map(voice => ModelUtilities.splitVoiceAbcInMeasures(voice));
+  [voice1, voice2] = ModelUtilities.addCrossVoicesSaftySigns(voice1, voice2);
   if (withTies) {
-    voices[0] = ModelUtilities.replaceDoubleValues(voices[0]);
-    voices[1] = ModelUtilities.replaceDoubleValues(voices[1]);
-    voices[2] = ModelUtilities.replaceDoubleValues(voices[2]);    
+    voice1 = ModelUtilities.replaceDoubleValues(voice1);
+    voice2 = ModelUtilities.replaceDoubleValues(voice2);
+    voice3 = ModelUtilities.replaceDoubleValues(voice3);    
   }
+  voice1 = ModelUtilities.removeRedundantSigns(voice1);
+  voice2 = ModelUtilities.removeRedundantSigns(voice2);
+  voice3 = ModelUtilities.removeRedundantSigns(voice3); 
+  [voices[0], voices[1], voices[2]] = [voice1, voice2, voice3].map(voice => ModelUtilities.combineAbcMeasuresToVoice(voice));
+  // ---------- End block ton manipuate abc measures --------------
+
   const [abcV1, abcV2, abcV3] = ModelUtilities.divideVoices([voices[0].join(' '), voices[1].join(' '), voices[2].join(' ')], barsPerLine);
   abcResult.push(`V:1\n${AbcVoiceFactory.removeSingelNoteNotations(abcV1)}`);
   abcResult.push(`V:2\n${AbcVoiceFactory.removeSingelNoteNotations(abcV2)}`);

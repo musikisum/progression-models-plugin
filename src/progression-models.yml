@@ -339,7 +339,7 @@ musikisum/educandu-plugin-progression-models:
         both in the history of composition and in theoretical development. It appears in numerous 18th-century manuals on the fugue or the counterpoint.
     de: Eine weitere Auspägung des Modells ***Quintfallsequenz*** lässt sich als 7-6-Synkopenkette mit einer Zusatzstimme verstehen. Das Gerüst bildet eine Agensstimme und eine Patiensstimme bzw. eine 7-6-Synkopenkette, als Zusatzstimme 
         erklingt eine 6-5-Seitenbewegung zur Agensstimme, wenn sie unter ihr oder einer 3-4-Seitenbewegung, wenn sie über ihr erklingt. Da dieses Modell sich hervorragend für eine Ausarbeitung als dreifacher Kontrapunkt in der Oktave
-        eignet, ist es sowohl kompositionsgeschichtlich als auch theoriegeschichtlich bedeutsam. Es findet sich in zahlreichen Anleitung des 18. Jahrhunderts zur Fuge bzw. zum Kontrapunkt.
+        eignet, ist es sowohl kompositionsgeschichtlich als auch theoriegeschichtlich bedeutsam. Es findet sich in zahlreichen Anleitungen des 18. Jahrhunderts zur Fuge bzw. zum Kontrapunkt.
   circleOfFifthsUp:
     en: Circle of fifths (up)
     de: Quintanstiegssequenz
@@ -350,8 +350,8 @@ musikisum/educandu-plugin-progression-models:
         confirm and to modulate keys, the ascending circle of fifths is generally not used to modulate, but to establish a key.
     de: Die ***Quintanstiegssequenz*** lässt sich als Spiegelung der Grundtöne einer Quintfallsequenz verstehen (Quintstieg stufenweise aufwärts sequenziert). In der Musik 
         hat diese Sequenz allerdings eine andere Funktion und geringere Verbreitung als die Quintfallsequenz. Die Quintanstiegssequenz dient häufig der Bewegung zu einem Akkord 
-        der Ausgangstonart,, von dem aus eine andere Sequenz wieder zurück zur Ausgangstonart führt. Während sich die Quintfallsequenzen tonartbestätigend und modulierend 
-        in der Literatur findet, wird die Quintanstiegssequenz in der Regel nicht modulierend zur Ausformulierung einer Tonart eingesetzt.
+        der Ausgangstonart, von dem aus eine andere Sequenz wieder zurück zur Ausgangstonart führt. Während sich die Quintfallsequenz tonartbestätigend und modulierend 
+        in der Literatur findet, wird die Quintanstiegssequenz in der Regel nicht modulierend bzw. zur Ausformulierung einer Tonart eingesetzt.
   fauxbourdon:
     en: Fauxbourdon (7-6)
     de: Fauxbourdon (7-6)
@@ -377,29 +377,29 @@ musikisum/educandu-plugin-progression-models:
     en: The term ***lamento bass*** refers to a descending melodic line in a minor key that connects the root tone with the dominant tone (8-7-6-5 or, in A minor, a-g-f-e). A prime example of a composition based on an ostinato lamento bass is 
         the *Lamento della Ninfa* by Claudio Monteverdi, published in 1638 in *Madrigali guerrieri et amorosi* (VIII. of Madrigals). Chromatic alterations of the lamento bass (*passus duriusculus*) and a middle voice in parallel thirds 
         create a heightened sound effect. Compositions in which the lamento bass plays a significant role can be interpreted within a historical context of compositions due to their prominence.
-    de: Als ***Lamentobass*** wird in der Musiktheorie eine absteigende melodische Linie in Moll bezeichnet, die den Grundton mit dem Quinton verbindet (8-7-6-5 oder in a-Moll a-g-f-e). Als Musterbeispiel für eine Komposition über einen 
+    de: Als ***Lamentobass*** wird in der Musiktheorie eine absteigende melodische Linie in Moll bezeichnet, die den Grundton mit dem Quintton verbindet (8-7-6-5 oder in a-Moll a-g-f-e). Als Musterbeispiel für eine Komposition über einen 
         ostinaten Lamentobass gilt das *Lamento della Ninfa* von Claudio Monteverdi, das 1638 in den Madrigali guerrieri et amorosi (VIII. Madrigalbuch) veröffentlicht worden ist. 
-        Klangliche Steigerungen bilden die Chromatisierungen des Lamentobasses (*passus duriusculus*) sowie einer Mitelstimme in parallelen Terzen. Kompositionen, in denen der Lamentobass eine tragende Rolle spielt, 
+        Klangliche Steigerungen bilden die Chromatisierungen des Lamentobasses (*passus duriusculus*) sowie einer Mittelstimme in parallelen Terzen. Kompositionen, in denen der Lamentobass eine tragende Rolle spielt, 
         lassen sich aufgrund ihrer Bekanntheit in einem kompositionsgeschichtlichen Zusammenhang interpretieren.   
   parallelismDown:
     en: Parallelism down
     de: Parallelismus abwärts
   defaultDescriptionParallelismDown:
     en: The term ***parallelism*** is ambiguous in music. Parallelism as a model describes a parallel movement of the upper voices in thirds or sixths in connection with a simple, sequenced bass motif (sequenced in thirds, e.g. C | G Am | E or E | Am G | C). 
-        As early as the 15th century, Guilelmus Monachus described a form of improvisation or composition (»regula ad componendum cum tribus vocibus«) that can be understood as parallelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). 
+        As early as the 15th century, Guilielmus Monachus described a form of improvisation or composition (»regula ad componendum cum tribus vocibus«) that can be understood as parallelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). 
         If the ***parallelism downwards*** is based on a 7-6 syncopation (*ascending fifths downwards in thirds*), this results in alternating fourths and non-firsts in the bass part.
     de: Der Begriff ***Parallelismus*** ist in der Musik mehrdeutig. Das hier als Parallelismus vorgestellte Modell bezeichnet eine Parallelführung der Oberstimmen in Terzen oder Sexten in Verbindung mit einem einfachen, sequenzierten Bassmotiv (terzweise abwärts 
-        wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilelmus Monachus eine Form der Improvisation bzw. Komposition beschrieben ("regula ad componendum cum tribus vocibus"), die sich als Parallelismus verstehen lässt.
+        wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilielmus Monachus eine Form der Improvisation bzw. Komposition beschrieben ("regula ad componendum cum tribus vocibus"), die sich als Parallelismus verstehen lässt.
         Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Liegt dem ***Parallelismus abwärts*** (*terzweise abwärts sequenzierter Quintstieg*) eine 7-6-Synkope zugrunde, ergeben sich zur Bassstimme alternierende Quart- und Nonvorhalte.    
   parallelismUp:
     en: Parallelism up
     de: Parallelismus aufwärts
   defaultDescriptionParallelismUp:
     en: The term ***parallelism*** is ambiguous in music. Parallelism as a model describes a parallel movement of the upper voices in thirds or sixths in connection with a simple, sequenced bass motif (sequenced in thirds, e.g. C | G Am | E or E | Am G | C). 
-        As early as the 15th century, Guilelmus Monachus described a form of improvisation or composition (»regula ad componendum cum tribus vocibus«) that can be understood as paralelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). 
+        As early as the 15th century, Guilielmus Monachus described a form of improvisation or composition (»regula ad componendum cum tribus vocibus«) that can be understood as paralelism. Carl Dahlhaus interpreted this model in terms of functional theory (1962). 
         When the ***parallelism upwards*** (*falling fifths upwards in thirds*) features 7-6 syncopations, voice exchanges are necessary in order to prepare the dissonances.
     de: Der Begriff ***Parallelismus*** ist in der Musik mehrdeutig. Das hier als Parallelismus vorgestellte Modell bezeichnet eine Parallelführung der Oberstimmen in Terzen oder Sexten in Verbindung mit einem einfachen, sequenzierten Bassmotiv (terzweise abwärts 
-        wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilelmus Monachus eine Form der Improvisation bzw. Komposition beschrieben ("regula ad componendum cum tribus vocibus"), die sich als Parallelismus verstehen lässt.
+        wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilielmus Monachus eine Form der Improvisation bzw. Komposition beschrieben ("regula ad componendum cum tribus vocibus"), die sich als Parallelismus verstehen lässt.
         Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Erklingen in dem ***Parallelismus aufwärts*** (*terzweise aufwärts sequenzierter Quintfall*) 7-6-Synkopen, sind Stimmkreuzungen zur korrekten Vorbereitung der Dissonanzen notwendig.
   upperFiveModulation:
     en: Upper Quint Modulation

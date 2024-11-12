@@ -269,8 +269,8 @@ M:3/4
 Q:100
 K:D
 V:1
-a =c3/2 c/ | (T=c B2) | b d3/2 d/ | (Td c2) |  
-c' e3/2 e/ | (Te d2) | d'/c'/b/a/g/f/ | e
+a =c3/2 c/ | (=c B2) | b d3/2 d/ | (d c2) |  
+c' e3/2 e/ | (e d2) | d'/c'/b/a/g/f/ | e
 V:2
 d A2 | D G2 | e B2 | E A2 | 
 f c2 | F B2 | b/a/g/f/e/d/ | c

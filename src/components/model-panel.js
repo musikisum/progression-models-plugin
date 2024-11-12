@@ -135,7 +135,7 @@ function ModelPanel({
 
   const createHaeder = () => {
     return (<div className='modelSelector'>
-      <Text className='iu-first' style={{ marginTop: '6px' }}>{t('selectModel')}</Text>
+      <Text className='iu-first'>{t('selectModel')}</Text>
       <Select 
         className='inspectorElement'
         style={{ width: 240, marginLeft: '15px' }}

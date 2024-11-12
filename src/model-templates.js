@@ -95,17 +95,19 @@ A,, z | B,, z C, z | F, z C, z | D, z E, z | A, z E, z |
     example: {
       name: 'circleOfFifths',
       abc: `X:1
-%%score [(1 2) (3 4)]
+%%score [(1 2) 3 4]
 Q: 1/4=80
 L:1/8
 M:C|
 K:C
 V:1
-z g/=f/e/d/c/B/ | AcAF z f/e/d/c/B/A/ | GBGE z e/d/c/B/A/G/  | FAFD z d/c/B/A/G/F/ | E
+z g/f/e/d/c/B/ | AcAF z f/e/d/c/B/A/ | GBGE z e/d/c/B/A/G/  | FAFD z d/c/B/A/G/F/ | E
 V:2
 E4- | E2 C2 D4- | D2 B,2 C4- | C2 A,2 B,4 | C2
 V:3 bass
-"_J. S. Bach, Präludium und Fuge C-Dur BWV 545, Fuge T. 96–100"z2 C2 | F,4 z2 B,2 | E,4 z2 A,2 | D,4 z2 G,2 | [G,2 C,,2]`,
+"_J. S. Bach, Präludium und Fuge C-Dur BWV 545, Fuge T. 96–100"z2 C2 | F,4 z2 B,2 | E,4 z2 A,2 | D,4 z2 G,2- | G,2
+V:4 bass
+z4 | z8 | z8 | z8 | C,,2`,
     },
     addProps: {
       partLengthValues: [4, 4, false],

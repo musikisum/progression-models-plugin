@@ -70,7 +70,7 @@ export default class AbcVoiceFactory {
             // expand the rest of a measure
             // eslint-disable-next-line no-loop-func
             tempArr.forEach((_, tempIndex) => {
-              if (tempIndex > 0) {
+              if (tempIndex > 0 && tempArr[tempIndex].length !== 1) {
                 tempArr[tempIndex].length *= 2;
               }
             });

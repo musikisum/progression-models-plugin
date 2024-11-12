@@ -196,7 +196,7 @@ musikisum/educandu-plugin-progression-models:
     de: 2 Quinten ↑ 
   Q1:
     en: 1 fifths ↑
-    de: 1 Quinten ↑
+    de: 1 Quinte ↑
   Q-3:
     en: 3 fifths ↓
     de: 3 Quinten ↓ 
@@ -205,7 +205,7 @@ musikisum/educandu-plugin-progression-models:
     de: 2 Quinten ↓ 
   Q-1:
     en: 1 fifths ↓
-    de: 1 Quinten ↓ 
+    de: 1 Quinte ↓ 
   Q0:
     en: No tranposition 
     de: Keine Tranposition
@@ -301,11 +301,11 @@ musikisum/educandu-plugin-progression-models:
     de: Hier fehlt etwas und muss wohl noch ergänzt werden ...
   defaultDescriptionInitialCadence:
     en: In German music theory discourse an initial cadence refers to a form of cadence that consists of a tenor clausula, an upper doubling of the tenor clausula, 
-        and a soprano clausula in the bass. The term stems from the limited sense of closure that this cadence creates, due to the absence of a descending fifth 
+        and a soprano clausula in the bass. The term stems from the limited sense of closure that this cadence creates, due to the absence of a bass clausula 
         and the presence of the soprano clausula in the bass. Because of this effect the initial cadence is frequently used in the formal function of beginning.
     de: Als ***Initialkadenz*** wird im musiktheoretischen Diskurs eine Form der *Kadenz* bezeichnet, die aus einer Tenorklausel, einer Überterzung der 
-        Tenorklausel sowie einer Sopranklausel im Bass besteht. Der Name orientiert sich an der geringen Schlusswirkung, die diese Kadenz aufgrund des fehlenden 
-        Quintfalls sowie der Sopranklausel im Bass entfaltet. Aufgrund ihrer Wirkung findet sich die Initialkadenz sehr häufig in der Formfunktion des Anfangens.
+        Tenorklausel sowie einer Sopranklausel im Bass besteht. Der Name orientiert sich an der geringen Schlusswirkung, die diese Kadenz aufgrund der fehlenden 
+        Bassklausel sowie der Sopranklausel im Bass entfaltet. Aufgrund ihrer Wirkung findet sich die Initialkadenz sehr häufig in der Formfunktion des Anfangens.
   cadence:
     en: Cadence
     de: Kadenz

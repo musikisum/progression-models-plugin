@@ -29,6 +29,11 @@ const getVoices = cadenceOptions => {
   const isBegin = options.addProps.isBegin[0];
   const isFinal = options.addProps.isFinal[0];
   const isDeceptive = options.addProps.isDeceptiv[0];
+  if (isDeceptive) {
+    options.addProps.isFinal[0] = true;
+  }
+  options.addProps.isFinal[1] = isDeceptive;
+
   if(isBegin) {
     voices[2][0] = !isMinor ? '=C42' : '=A32';
   }

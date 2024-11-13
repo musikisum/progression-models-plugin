@@ -6,7 +6,7 @@ musikisum/educandu-plugin-progression-models:
     en: Add a progression model ...
     de: Füge ein Satzmodell hinzu ...
   modelKey: 
-    en: Begin
+    en: Beginning
     de: Beginn  
   C:
     en: C major (C)
@@ -102,7 +102,7 @@ musikisum/educandu-plugin-progression-models:
     en: Drag & drop
     de: Drag & drop
   os:
-    en: Up voice
+    en: High voice
     de: Oberstimme
   ms: 
     en: Mid voice
@@ -123,25 +123,25 @@ musikisum/educandu-plugin-progression-models:
     en: Chromatic
     de: Chromatisch
   chromatic2:
-    en: "#/b middle"
-    de: "#/b Mitte"
+    en: "# / b Middle"
+    de: "# / b Mitte"
   chromatic3:
-    en: "#/b Bass"
-    de: "#/b Bass"
+    en: "# / b Bass"
+    de: "# / b Bass"
   italianSixth:
-    en: 'Ital. 6'
-    de: 'Überm. 6'
+    en: '6#'
+    de: '6#'
   isFinal:
     en: Ending
     de: Schluss
   isBegin:
-    en: Root position
+    en: Root pos.
     de: Grundstellung
   lastBassNoteUp:
     en: Ending ↑
     de: Schluss ↑
   isDeceptiv:
-    en: deceptiv
+    en: Deceptive
     de: Trugschluss
   diatonic:
     en: diatonic
@@ -150,10 +150,10 @@ musikisum/educandu-plugin-progression-models:
     en: with 4 ↑
     de: mit 4 ↑
   partLengthValues:
-    en: Number
+    en: Number of parts
     de: Anzahl
   partToBeginValues:
-    en: Begin
+    en: Beginning part
     de: Anfang
   showDescription:
     en: Description
@@ -162,7 +162,7 @@ musikisum/educandu-plugin-progression-models:
     en: Prinner
     de: Prinner
   begin65:
-    en: Begin 6-5
+    en: Start 6-5
     de: 6-5-Anfang
   changeMode:
     en: chromatic
@@ -174,7 +174,7 @@ musikisum/educandu-plugin-progression-models:
     en: Sections
     de: Abschnitte
   endWithoutSuspension:
-    en: Closing
+    en: Closure
     de: Abschluss
   syncopation:
     en: Syncopations
@@ -207,7 +207,7 @@ musikisum/educandu-plugin-progression-models:
     en: 1 fifths ↓
     de: 1 Quinte ↓ 
   Q0:
-    en: No tranposition 
+    en: No transposition 
     de: Keine Tranposition
   abcCopy:
     en: Copy abc code
@@ -225,10 +225,10 @@ musikisum/educandu-plugin-progression-models:
     en: Mute upper voices
     de: Oberstimmen muten
   hideLowerSystem:
-    en: Mute Bass
+    en: Mute bass
     de: Bass muten
   modelNameSelect:
-    en: Choose an Example ...
+    en: Choose an example ...
     de: Wähle ein Beispiel ...
   noExample:
     en: No selection
@@ -240,7 +240,7 @@ musikisum/educandu-plugin-progression-models:
     en: 'Example and description for the selected model:'
     de: 'Gibt ein Beispiel und eine Beschreibung für die aktuelle Modellauswahl:'
   stretchLastLineTooltip:
-    en: Stretch the last line of an abc-notation to the entire width in view mode
+    en: Justify last system of an abc-notation to the entire width in view mode
     de: Die letzte Notenlinie füllt im Ansichtsmodus die ganze Anzeigebreite aus
   showDescriptionTooltip:
     en: Show a description of a model or model combination in view mode
@@ -252,19 +252,19 @@ musikisum/educandu-plugin-progression-models:
     en: Hide lower voices in view mode
     de: Unteres Notensystem im Ansichtsmodus ausblenden und stummschalten
   measurePerLineToolTip:
-    en: Bars / Line
-    de: Takte / Zeile
+    en: Bars/System
+    de: Takte/System
   tempoToolTip:
-    en: Time
+    en: Tempo
     de: Tempo
   measureToolTip:
-    en: Time signature
+    en: Time sig.
     de: Taktart
   transposeToolTip:
     en: Transpose
     de: Transponieren
   withTiesToolTip:
-    en: Replace repetitions with double note values or ties
+    en: Replace repetitions with double note values or tied notes
     de: Ersetzt Tonwiederholungen durch größere Notenwerte bzw. Überbindungen 
   selectModel:
     en: Select model
@@ -331,7 +331,7 @@ musikisum/educandu-plugin-progression-models:
         Septime, die durch Wiederholung oder Überbindung zur Septime des nächsten Grundtons wird. Die Quintfallsequenz in ihren verschiedenen Ausprägungen gehört zu  
         den bekanntesten Modellen tonaler Musik.
   circleOfFifthsLinear:
-    en: Circle of Fifths (Inversions)
+    en: Circle of fifths (Inversions)
     de: Quintfallsequenz (Umkehrungen)
   defaultDescriptionCircleOfFifthsLinear:
     en: Another variation of the ***circle of fifths*** progression model can be understood as a 7-6 syncopation with an additional voice. The framework consists of an active (agens) and a passive (patiens) voice; an added voice presents itself 
@@ -371,7 +371,7 @@ musikisum/educandu-plugin-progression-models:
         sequenzierter Quintfall* beschreiben. Durch die Chromatisierung erklingen Zwischendominanten zu stufenweise ansteigenden Grundakkorden. Liegt die chromatische Stimme in der Melodie, konnte sie im 17. Jahrhundert zur musikalischen Darstellung 
         besonderer Inhalte verwendet werden (vgl. H. Schütz, »O süßer, O freundlicher, O gütiger Herr Jesu Christe« SWV 285).   
   lamento:
-    en: lamento bass
+    en: Lamento bass
     de: Lamentobass   
   defaultDescriptionLamento:
     en: The term ***lamento bass*** refers to a descending melodic line in a minor key that connects the root tone with the dominant tone (8-7-6-5 or, in A minor, a-g-f-e). A prime example of a composition based on an ostinato lamento bass is 
@@ -402,7 +402,7 @@ musikisum/educandu-plugin-progression-models:
         wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilielmus Monachus eine Form der Improvisation bzw. Komposition beschrieben ("regula ad componendum cum tribus vocibus"), die sich als Parallelismus verstehen lässt.
         Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Erklingen in dem ***Parallelismus aufwärts*** (*terzweise aufwärts sequenzierter Quintfall*) 7-6-Synkopen, sind Stimmkreuzungen zur korrekten Vorbereitung der Dissonanzen notwendig.
   upperFiveModulation:
-    en: Upper Quint Modulation
+    en: Upper quint modulation
     de: Oberquintmodulation
   defaultDescriptionUpperFiveModulation:
     en: An essential means for ***modulation to the upper fifth*** is the introduction of the leading tone to the key of the upper fifth, which appears in the model shown here with seventh dissonances in the second position and in the model 

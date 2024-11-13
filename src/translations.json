@@ -9,7 +9,7 @@
       "de": "Füge ein Satzmodell hinzu ..."
     },
     "modelKey": {
-      "en": "Begin",
+      "en": "Beginning",
       "de": "Beginn"
     },
     "C": {
@@ -137,7 +137,7 @@
       "de": "Drag & drop"
     },
     "os": {
-      "en": "Up voice",
+      "en": "High voice",
       "de": "Oberstimme"
     },
     "ms": {
@@ -165,23 +165,23 @@
       "de": "Chromatisch"
     },
     "chromatic2": {
-      "en": "#/b middle",
-      "de": "#/b Mitte"
+      "en": "# / b Middle",
+      "de": "# / b Mitte"
     },
     "chromatic3": {
-      "en": "#/b Bass",
-      "de": "#/b Bass"
+      "en": "# / b Bass",
+      "de": "# / b Bass"
     },
     "italianSixth": {
-      "en": "Ital. 6",
-      "de": "Überm. 6"
+      "en": "6#",
+      "de": "6#"
     },
     "isFinal": {
       "en": "Ending",
       "de": "Schluss"
     },
     "isBegin": {
-      "en": "Root position",
+      "en": "Root pos.",
       "de": "Grundstellung"
     },
     "lastBassNoteUp": {
@@ -189,7 +189,7 @@
       "de": "Schluss ↑"
     },
     "isDeceptiv": {
-      "en": "deceptiv",
+      "en": "Deceptive",
       "de": "Trugschluss"
     },
     "diatonic": {
@@ -201,11 +201,11 @@
       "de": "mit 4 ↑"
     },
     "partLengthValues": {
-      "en": "Number",
+      "en": "Number of parts",
       "de": "Anzahl"
     },
     "partToBeginValues": {
-      "en": "Begin",
+      "en": "Beginning part",
       "de": "Anfang"
     },
     "showDescription": {
@@ -217,7 +217,7 @@
       "de": "Prinner"
     },
     "begin65": {
-      "en": "Begin 6-5",
+      "en": "Start 6-5",
       "de": "6-5-Anfang"
     },
     "changeMode": {
@@ -233,7 +233,7 @@
       "de": "Abschnitte"
     },
     "endWithoutSuspension": {
-      "en": "Closing",
+      "en": "Closure",
       "de": "Abschluss"
     },
     "syncopation": {
@@ -277,7 +277,7 @@
       "de": "1 Quinte ↓"
     },
     "Q0": {
-      "en": "No tranposition",
+      "en": "No transposition",
       "de": "Keine Tranposition"
     },
     "abcCopy": {
@@ -301,11 +301,11 @@
       "de": "Oberstimmen muten"
     },
     "hideLowerSystem": {
-      "en": "Mute Bass",
+      "en": "Mute bass",
       "de": "Bass muten"
     },
     "modelNameSelect": {
-      "en": "Choose an Example ...",
+      "en": "Choose an example ...",
       "de": "Wähle ein Beispiel ..."
     },
     "noExample": {
@@ -321,7 +321,7 @@
       "de": "Gibt ein Beispiel und eine Beschreibung für die aktuelle Modellauswahl:"
     },
     "stretchLastLineTooltip": {
-      "en": "Stretch the last line of an abc-notation to the entire width in view mode",
+      "en": "Justify last system of an abc-notation to the entire width in view mode",
       "de": "Die letzte Notenlinie füllt im Ansichtsmodus die ganze Anzeigebreite aus"
     },
     "showDescriptionTooltip": {
@@ -337,15 +337,15 @@
       "de": "Unteres Notensystem im Ansichtsmodus ausblenden und stummschalten"
     },
     "measurePerLineToolTip": {
-      "en": "Bars / Line",
-      "de": "Takte / Zeile"
+      "en": "Bars/System",
+      "de": "Takte/System"
     },
     "tempoToolTip": {
-      "en": "Time",
+      "en": "Tempo",
       "de": "Tempo"
     },
     "measureToolTip": {
-      "en": "Time signature",
+      "en": "Time sig.",
       "de": "Taktart"
     },
     "transposeToolTip": {
@@ -353,7 +353,7 @@
       "de": "Transponieren"
     },
     "withTiesToolTip": {
-      "en": "Replace repetitions with double note values or ties",
+      "en": "Replace repetitions with double note values or tied notes",
       "de": "Ersetzt Tonwiederholungen durch größere Notenwerte bzw. Überbindungen"
     },
     "selectModel": {
@@ -421,7 +421,7 @@
       "de": "Historisch gesehen ist die ***Quintfallsequenz mit Grundakkorden*** (*sekundweise abwärts sequenzierter Quintfall*) und Septimen eine Reduktion eines fünfstimmigen Satzes, bestehend aus einer Agensstimme und deren Überterzung, einer Patiensstimme und deren Unterterzung sowie einer aus satztechnischen Notwendigkeiten in Quinten und Quarten springenden fünften Stimme. In der Dreistimmigkeit erklingt zu jedem Grundton der Harmonie im Bass eine Septime, die sich zur Terz des nächsten Grundtons auflöst sowie eine Septime, die durch Wiederholung oder Überbindung zur Septime des nächsten Grundtons wird. Die Quintfallsequenz in ihren verschiedenen Ausprägungen gehört zu den bekanntesten Modellen tonaler Musik."
     },
     "circleOfFifthsLinear": {
-      "en": "Circle of Fifths (Inversions)",
+      "en": "Circle of fifths (Inversions)",
       "de": "Quintfallsequenz (Umkehrungen)"
     },
     "defaultDescriptionCircleOfFifthsLinear": {
@@ -453,12 +453,12 @@
       "de": "Analog zum synkopierten Fauxbourdonsatz abwärts (7→6) lässt sich ein Sextakkordsatz aufwärts mit 5-6-Seitenbewegung zur Bassstimme als ***synkopierter Fauxbourdonsatz aufwärts (5→6)*** verstehen. Die Harmonik lässt sich angemessen als *stufenweise aufwärts sequenzierter Quintfall* beschreiben. Durch die Chromatisierung erklingen Zwischendominanten zu stufenweise ansteigenden Grundakkorden. Liegt die chromatische Stimme in der Melodie, konnte sie im 17. Jahrhundert zur musikalischen Darstellung besonderer Inhalte verwendet werden (vgl. H. Schütz, »O süßer, O freundlicher, O gütiger Herr Jesu Christe« SWV 285)."
     },
     "lamento": {
-      "en": "lamento bass",
+      "en": "Lamento bass",
       "de": "Lamentobass"
     },
     "defaultDescriptionLamento": {
       "en": "The term ***lamento bass*** refers to a descending melodic line in a minor key that connects the root tone with the dominant tone (8-7-6-5 or, in A minor, a-g-f-e). A prime example of a composition based on an ostinato lamento bass is the *Lamento della Ninfa* by Claudio Monteverdi, published in 1638 in *Madrigali guerrieri et amorosi* (VIII. of Madrigals). Chromatic alterations of the lamento bass (*passus duriusculus*) and a middle voice in parallel thirds create a heightened sound effect. Compositions in which the lamento bass plays a significant role can be interpreted within a historical context of compositions due to their prominence.",
-      "de": "Als ***Lamentobass*** wird in der Musiktheorie eine absteigende melodische Linie in Moll bezeichnet, die den Grundton mit dem Quintton verbindet (8-7-6-5 oder in a-Moll a-g-f-e). Als Musterbeispiel für eine Komposition über einen ostinaten Lamentobass gilt das *Lamento della Ninfa* von Claudio Monteverdi, das 1638 in den Madrigali guerrieri et amorosi (VIII. Madrigalbuch) veröffentlicht worden ist. Klangliche Steigerungen bilden die Chromatisierungen des Lamentobasses (*passus duriusculus*) sowie einer Mitelstimme in parallelen Terzen. Kompositionen, in denen der Lamentobass eine tragende Rolle spielt, lassen sich aufgrund ihrer Bekanntheit in einem kompositionsgeschichtlichen Zusammenhang interpretieren."
+      "de": "Als ***Lamentobass*** wird in der Musiktheorie eine absteigende melodische Linie in Moll bezeichnet, die den Grundton mit dem Quintton verbindet (8-7-6-5 oder in a-Moll a-g-f-e). Als Musterbeispiel für eine Komposition über einen ostinaten Lamentobass gilt das *Lamento della Ninfa* von Claudio Monteverdi, das 1638 in den Madrigali guerrieri et amorosi (VIII. Madrigalbuch) veröffentlicht worden ist. Klangliche Steigerungen bilden die Chromatisierungen des Lamentobasses (*passus duriusculus*) sowie einer Mittelstimme in parallelen Terzen. Kompositionen, in denen der Lamentobass eine tragende Rolle spielt, lassen sich aufgrund ihrer Bekanntheit in einem kompositionsgeschichtlichen Zusammenhang interpretieren."
     },
     "parallelismDown": {
       "en": "Parallelism down",
@@ -477,7 +477,7 @@
       "de": "Der Begriff ***Parallelismus*** ist in der Musik mehrdeutig. Das hier als Parallelismus vorgestellte Modell bezeichnet eine Parallelführung der Oberstimmen in Terzen oder Sexten in Verbindung mit einem einfachen, sequenzierten Bassmotiv (terzweise abwärts wie z.B. C | G Am | E oder aufwärts wie in E | Am G | C). Bereits im 15. Jahrhundert hat Guilielmus Monachus eine Form der Improvisation bzw. Komposition beschrieben (\"regula ad componendum cum tribus vocibus\"), die sich als Parallelismus verstehen lässt. Von Carl Dahlhaus wurde das Modell funktionstheoretisch interpretiert (1962). Erklingen in dem ***Parallelismus aufwärts*** (*terzweise aufwärts sequenzierter Quintfall*) 7-6-Synkopen, sind Stimmkreuzungen zur korrekten Vorbereitung der Dissonanzen notwendig."
     },
     "upperFiveModulation": {
-      "en": "Upper Quint Modulation",
+      "en": "Upper quint modulation",
       "de": "Oberquintmodulation"
     },
     "defaultDescriptionUpperFiveModulation": {

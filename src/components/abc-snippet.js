@@ -9,7 +9,7 @@ function AbcSnippet({ playableABC }) {
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
 
   const musicErrorMessageHead = `X:1\nT:${t('noAbcTextU1')}\nT:${t('noAbcTextU2')}\n`;
-  const musicErrorMessage = `%score [1 2 3 4 5]
+  const musicErrorMessage = `%score [1 2 3 4 5 ]
 M: 3/2
 L: 1/2
 Q: 1/2=120

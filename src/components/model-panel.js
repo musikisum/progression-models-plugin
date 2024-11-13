@@ -114,7 +114,7 @@ function ModelPanel({
     modelTemplates.splice(index, 1);
     const newModelTemplate = cloneDeep(ModelTemplates.getModelTemplate(model));
     newModelTemplate.key = oldModelTemplate.key; 
-    if (newModelTemplate.availableKeys && newModelTemplate.availableKeys.includes(oldModelTemplate.modelKey)) {
+    if (model !== 'lamento' && newModelTemplate.availableKeys && newModelTemplate.availableKeys.includes(oldModelTemplate.modelKey)) {
       newModelTemplate.modelKey = oldModelTemplate.modelKey;
     }
     modelTemplates.splice(index, 0, newModelTemplate);

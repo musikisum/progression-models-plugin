@@ -280,12 +280,12 @@ function Inspector({ content, updateContent }) {
         <div className='ui-displayLabel'>
           <Text strong style={{ display: 'block' }}>{t('displayLayout')}</Text>
         </div>
-        <Checkbox checked={stretchLastLine} onChange={e => onStretchLastLineChange(e)}> 
-          <Tooltip title={showTooltipText('stretchLastLine')}><span>{`${t('stretchLastLine')}`}</span></Tooltip>
-        </Checkbox>
         <Checkbox checked={showDescription} onChange={e => onShowDescriptionChange(e)}>
           <Tooltip title={showTooltipText('showDescription')}><span>{`${t('showDescription')}`}</span></Tooltip>
         </Checkbox>
+        <Checkbox checked={stretchLastLine} onChange={e => onStretchLastLineChange(e)}> 
+          <Tooltip title={showTooltipText('stretchLastLine')}><span>{`${t('stretchLastLine')}`}</span></Tooltip>
+        </Checkbox>        
         <Checkbox checked={hideUpperSystem} onChange={e => onHideSystem(e, 'UPPER')}>
           <Tooltip title={showTooltipText('hideUpperSystem')}><span>{`${t('hideUpperSystem')}`}</span></Tooltip>
         </Checkbox>

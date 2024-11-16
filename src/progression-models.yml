@@ -195,7 +195,7 @@ musikisum/educandu-plugin-progression-models:
     en: 2 fifths ↑
     de: 2 Quinten ↑ 
   Q1:
-    en: 1 fifths ↑
+    en: 1 fifth ↑
     de: 1 Quinte ↑
   Q-3:
     en: 3 fifths ↓
@@ -204,7 +204,7 @@ musikisum/educandu-plugin-progression-models:
     en: 2 fifths ↓
     de: 2 Quinten ↓ 
   Q-1:
-    en: 1 fifths ↓
+    en: 1 fifth ↓
     de: 1 Quinte ↓ 
   Q0:
     en: No transposition 

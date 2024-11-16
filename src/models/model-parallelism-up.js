@@ -44,25 +44,25 @@ const getVoices = parallelismUpOptions => {
   if (options.addProps.syncopation[0]) {
     voices = !isMinor 
       ? [
+        ['=G42', '=G42', '=F42', '=B42', '=B42', '=B42', '=A42', '=D52', '=D52', '=D52'],
         ['=E42', '=A42', '=A42', '=A42', '=G42', '=C52', '=C52', '=C52', '=B42', '=E52'],
-        ['=G32', '=G32', '=F32', '=B32', '=B32', '=B32', '=A32', '=D42', '=D42', '=D42'],
         ['=C32', '=F32', '=F32', '=E32', '=E32', '=A32', '=A32', '=G32', '=G32', '=C42']
       ]
       : [
+        ['=E42', '=E42', '=D42', '=G42', '=G42', '=G42', '=F42', '=B42', '=B42', '=B42'],
         ['=C42', '=F42', '=F42', '=F42', '=E42', '=A42', '=A42', '=A42', '=G42', '=C52'],
-        ['=E32', '=E32', '=D32', '=G32', '=G32', '=G32', '=F32', '=B32', '=B32', '=B32'],
         ['=A22', '=D32', '=D32', '=C32', '=C32', '=F32', '=F32', '=E32', '=E32', '=A32']
       ];
   } else {
     voices = !isMinor 
       ? [
+        ['=G42', '=A42', '=B42', '=C52', '=D52', '=E52'],
         ['=E42', '=F42', '=G42', '=A42', '=B42', '=C52'],
-        ['=G32', '=A32', '=B32', '=C42', '=D42', '=E42'],
         ['=C32', '=F32', '=E32', '=A32', '=G32', '=C42']
       ]
       : [
+        ['=E42', '=F42', '=G42', '=A42', '=B42', '=C52'],
         ['=C42', '=D42', '=E42', '=F42', '=G42', '=A42'],
-        ['=E32', '=F32', '=G32', '=A32', '=B32', '=C42'],
         ['=A22', '=D32', '=C32', '=F32', '=E32', '=A32']
       ];
   }
@@ -72,12 +72,12 @@ const getVoices = parallelismUpOptions => {
 
   if (options.addProps.chromatic[0] && !options.addProps.syncopation[0]) {
     const indexShift = isMinor ? 2 : 0;
-    voices[0][1 + indexShift] = '=F42:f';
-    voices[0][2 + indexShift] = '^G42:f';
+    voices[1][1 + indexShift] = '=F42:f';
+    voices[1][2 + indexShift] = '^G42:f';
   }
   if (options.addProps.chromatic[0] && options.addProps.syncopation[0]) {
     const index = isMinor ? 8 : 4;
-    voices[0][index] = '^G42:f';
+    voices[1][index] = '^G42:f';
   }
   if (numberOfSections !== 3) {
     if (options.addProps.syncopation[0]) {
@@ -89,13 +89,13 @@ const getVoices = parallelismUpOptions => {
   if (options.addProps.syncopation[0] && options.addProps.endWithoutSuspension[0]) {
     switch (numberOfSections) {
       case 3:
-        voices[1][9] = !isMinor ? '=C42' : '=A32';
+        voices[0][9] = !isMinor ? '=C52' : '=A42';
         break;
       case 2:
-        voices[1][5] = !isMinor ? '=A32' : '=F32';
+        voices[0][5] = !isMinor ? '=A42' : '=F42';
         break;
       case 1:
-        voices[1][1] = !isMinor ? '=F32' : '=D32';
+        voices[0][1] = !isMinor ? '=F42' : '=D42';
         break;
       default:
         break;

@@ -105,9 +105,9 @@ z g/f/e/d/c/B/ | AcAF z f/e/d/c/B/A/ | GBGE z e/d/c/B/A/G/  | FAFD z d/c/B/A/G/F
 V:2
 E4- | E2 C2 D4- | D2 B,2 C4- | C2 A,2 B,4 | C2
 V:3 bass
-"_J. S. Bach, Präludium und Fuge C-Dur BWV 545, Fuge T. 96–100"z2 C2 | F,4 z2 B,2 | E,4 z2 A,2 | D,4 z2 G,2- | G,2
+z2 C2 | F,4 z2 B,2 | E,4 z2 A,2 | D,4 z2 G,2- | G,2
 V:4 bass
-z4 | z8 | z8 | z8 | C,,2`,
+"_J. S. Bach, Präludium und Fuge C-Dur BWV 545, Fuge T. 96–100"z4 | z8 | z8 | z8 | C,,2`,
     },
     addProps: {
       partLengthValues: [4, 4, false],
@@ -204,7 +204,7 @@ z z/ c/d/c/ | B z/ B/c/B/ | A z/ A/B/A/ | G z/ G/A/G/ |  F z/ A/G/F/ | E z/ E/F/
 D z/ D/E/D/ | C z/ C/D/C/ |  B, z/ B,/C/B,/ | A,/ G/ ^F2- | F/^F/ E2- | E/E/ ^D2 |  z/ ^D/ E |
 V:3 bass
 [K: treble] z z/ A/B/A/ | G z/ G/A/G/ | F z/ F/G/F/ | E z/ E/F/E/ |  D z/ F/E/D/ | C/ [K: bass] C/ C,2- |
-"_J. S. Bach, Preludium in A-Moll BWV 569, T. 9–21 (Particell)"C,/B,/ B,,2- | B,,/A,/ A,,2- |  A,,/^G,/ ^G,,2 | A,, z/ A,/B,/A,/ | G, z/ G,/A,/G,/ | ^F, z/ F,/G,/F,/ |  E, z |`
+"_J. S. Bach, Preludium in a-Moll BWV 569, T. 9–21 (Particell)"C,/B,/ B,,2- | B,,/A,/ A,,2- |  A,,/^G,/ ^G,,2 | A,, z/ A,/B,/A,/ | G, z/ G,/A,/G,/ | ^F, z/ F,/G,/F,/ |  E, z |`
     },
     addProps: {
       partLengthValues: [5, 5, false],

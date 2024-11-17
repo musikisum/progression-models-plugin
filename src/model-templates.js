@@ -418,7 +418,8 @@ G,,/G,/4A,/4 B,/A,/4G,/4 | D/D,/4E,/4 F,/E,/4D,/4 E,,/E,/4F,/4 G,/F,/4E,/4 |
     addProps: {
       numberOfSections: [3, 3, false],
       syncopation: [false, false],
-      endWithoutSuspension: [true, false]
+      endWithoutSuspension: [true, false],
+      chromatic: [false, false]
     }
   },
   parallelismUp: {

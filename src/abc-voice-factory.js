@@ -70,7 +70,7 @@ export default class AbcVoiceFactory {
             // expand the rest of a measure
             // eslint-disable-next-line no-loop-func
             tempArr.forEach((_, tempIndex) => {
-              if (tempIndex > 0 && tempArr[tempIndex].length !== 1) {
+              if (tempIndex > 0) {
                 tempArr[tempIndex].length *= 2;
               }
             });
@@ -85,10 +85,9 @@ export default class AbcVoiceFactory {
         returnValue.push(tempArr.slice());
       }  
     }
+    // Manipulate the first measure
     if (tripleMeters.includes(this.measureSign)) {
-      returnValue[0][0].length = !this.invertRhythm ? returnValue[0][0].length / 2 : returnValue[0][0].length;
-      const lmi = returnValue.length - 1;
-      returnValue[lmi][0].length *= 2;
+      returnValue[0][0].length = !this.invertRhythm ? returnValue[0][0].length / 2 : returnValue[0][0].length * 2;
     }
     return [...returnValue];
   }
@@ -199,6 +198,7 @@ export default class AbcVoiceFactory {
       abcSymbols.push('|');
     });
     abcSymbols.pop();
+    // Remove every second bar line in 6/8 und C measures
     if (this.measureSign === '6/8' || this.measureSign === 'C') {
       let pipeCount = 0;
       return [...abcSymbols.filter(item => {

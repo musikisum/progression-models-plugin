@@ -47,7 +47,9 @@ function Inspector({ content, updateContent }) {
   };
 
   const onMeasureChange = event => {
-    updateContent({ measure: event, withTies: false, invertRhythm: false });
+    const tripleMeters = ['3/2', '3/4', '3/8','6/8'];
+    const value = invertRhythm && tripleMeters.includes(event);
+    updateContent({ measure: event, withTies: false, invertRhythm: value });
   };
 
   const onNumberOfMaesuresChange = number => {

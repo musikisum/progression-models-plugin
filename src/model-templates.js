@@ -276,7 +276,7 @@ d A2 | D G2 | e B2 | E A2 |
 f c2 | F B2 | b/a/g/f/e/d/ | c
 V:3 bass
 F,/E,/F,/D,/E,/F,/ | G,/F,/G,/A,/B,/A,/ | ^G,/F,/G,/E,/F,/G,/ | A,/^G,/A,/B,/C/B,/ | 
-"_Arcangelo Corelli, Concerto grosso D-Dur Op. 6, Nr. 4, T. 9–16 (Concertino)"^A,/^G,/A,/F,/G,/A,/ | B,/^A,/B,/C/D/F,/ | =G, G,,2 | A,,`
+"_Arcangelo Corelli, Concerto grosso D-Dur Op. 6, Nr. 4, 3. Satz, T. 9–16 (Concertino)"^A,/^G,/A,/F,/G,/A,/ | B,/^A,/B,/C/D/F,/ | =G, G,,2 | A,,`
     },
     addProps: {
       partLengthValues: [6, 6, false],

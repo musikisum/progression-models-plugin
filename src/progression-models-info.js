@@ -1,7 +1,7 @@
 import joi from 'joi';
 import React from 'react';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
-import ProgressionModelsIcon from './progression-models-icon.js';
+import IconComponent from './progression-models-icon.js';
 import { PLUGIN_GROUP } from '@educandu/educandu/domain/constants.js';
 import { couldAccessUrlFromRoom } from '@educandu/educandu/utils/source-utils.js';
 import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-markdown.js';
@@ -19,7 +19,7 @@ class ProgressionModelsInfo {
   }
 
   getIcon() {
-    return <ProgressionModelsIcon />;
+    return <IconComponent />;
   }
 
   getGroups() {

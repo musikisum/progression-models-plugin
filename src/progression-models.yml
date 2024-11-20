@@ -208,7 +208,7 @@ musikisum/educandu-plugin-progression-models:
     de: 1 Quinte ↓ 
   Q0:
     en: No transposition 
-    de: Keine Tranposition
+    de: Keine Transposition
   abcCopy:
     en: Copy abc code
     de: ABC-Code kopieren
@@ -274,7 +274,7 @@ musikisum/educandu-plugin-progression-models:
     de: Transposition
   transpositionToolTip:
     en: Transposes the selected voice by one octave 
-    de: Transponiert die ausgewählte Stimme um eine Okatve
+    de: Transponiert die ausgewählte Stimme um eine Oktave
   selectKeyToolTip:
     en: Select a model key 
     de: Auswahl einer Tonart für das Modell
@@ -421,11 +421,11 @@ musikisum/educandu-plugin-progression-models:
         Wird von einer Ausgangstonart aus die Dominante herbeigeführt und dann die Terz der Dominante tiefalteriert, lässt sich dieser Akkord als ii. Stufe über eine V. Stufe in die Unterquinttonart der Ausgangstonart führen (*Unterquintmodulation*). 
         Diese Wendung findet sich häufig in Fugenkompositionen zur Rückführung in die Ausgangstonart oder zur farbigen Gestaltung von *Quintfallsequenzen*."
   parallelismDiminuated:
-    en: Parallelism (chromatic)
-    de: Parallelismus (chromatisch)
+    en: Parallelism (diminution)
+    de: Parallelismus (diminuiert)
   defaultDescriptionParallelismDiminuated:
-    en: A ***coloured sequence***, which was common in 18th century music and for which ***no name*** has yet been established, can be understood as a chromaticized form of descending parallelism. Like in a parallelism, this sequence is also based on 
+    en: A ***coloured sequence***, common in 18th-century music and for which ***no specspecific name*** has yet been established, can be understood as a diminuated and chromaticized form of descending parallelism. Like in a parallelism, this sequence is also based on 
         a chain of 7-6 suspensions. Yet, while in parallelism with the agent voice of the syncopation chain, alternating lower thirds and fifths sound in the bass, the bass in the unnamed sequence can be understood as a 3-8-6-5♭ motion below or as a 6-1-3-4♯ motion above the *agent* voice of the syncopation chain. The chromaticization tonicizes all root chords that lie on a axis of descending thirds.
-    de: Eine ***farbige Sequenz***, die in der Musik des 18. Jahrhunderts weit verbreitet war und die im Fachdiskurs noch ***ohne Name*** ist, kann als eine chromatisierte Form des Parallelismus (abwärts) verstanden werden. 
+    de: Eine ***farbige Sequenz***, die in der Musik des 18. Jahrhunderts weit verbreitet war und die im Fachdiskurs noch ***ohne Namen*** ist, kann als eine diminuierte und chromatisierte Form des Parallelismus (abwärts) verstanden werden. 
         Wie im Parallelismus liegt auch dieser Sequenz eine 7-6-Synkopenkette zugrunde. Doch während im Parallelismus zur *Agensstimme* der Synkopenkette im Bass wechselweise Unterterzen und -quinten erklingen, lässt sich der Bass in der 
         Sequenz (ohne Namen) als eine 3-8-6-5♭-Seitenbewegung unterhalb oder als 6-1-3-4♯-Seitenbewegung oberhalb der Agensstimme der Synkopenkette verstehen. Die Chromatisierung tonikalisiert dabei alle grundstelligen Akkorde, die auf einer Terzachse abwärts liegen.

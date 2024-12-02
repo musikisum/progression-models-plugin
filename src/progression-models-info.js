@@ -89,8 +89,8 @@ class ProgressionModelsInfo {
     return cloneDeep(content);
   }
 
-  getCdnResources(content) {
-    return this.gfm.extractCdnResources(content.text);
+  getCdnResources() {
+    return [];
   }
 }
 

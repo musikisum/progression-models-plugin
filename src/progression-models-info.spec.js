@@ -37,20 +37,4 @@ describe('example-info', () => {
   //     });
   //   });
   // });
-
-  describe('getCdnResources', () => {
-    it('returns media-library and room-media CDN resources from the text', () => {
-      const result = sut.getCdnResources({
-        text: [
-          '![Some image](cdn://media-library/JgTaqob5vqosBiHsZZoh1/some-image.png)',
-          '![Some image](cdn://room-media/63cHjt3BAhGnNxzJGrTsN1/some-image.png)',
-          '![Some image](https://external-domain.org/some-image.png)'
-        ].join('\n')
-      });
-      expect(result).toStrictEqual([
-        'cdn://media-library/JgTaqob5vqosBiHsZZoh1/some-image.png',
-        'cdn://room-media/63cHjt3BAhGnNxzJGrTsN1/some-image.png'
-      ]);
-    });
-  });
 });

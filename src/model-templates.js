@@ -1,7 +1,8 @@
 // Avalable voice model names
 const getAvailableModels = [
-  'initialCadence', 
   'cadence', 
+  'halfCadence',
+  'initialCadence', 
   'circleOfFifths',
   'circleOfFifthsLinear',
   'circleOfFifthsUp',
@@ -80,6 +81,25 @@ A,, z | B,, z C, z | F, z C, z | D, z E, z | A, z E, z |
       isBegin: [false, false],
       isFinal: [false, false],
       isDeceptiv: [false, false]
+    }
+  },
+  halfCadence: {
+    key: '',
+    name: 'halfCadence',
+    modelKey: 'C',
+    availableKeys: standardKeys,
+    transposeValues: [0, 0, 0],
+    voiceArrangement: [1, 2, 3],
+    radioValue: 0,
+    customDescription: '',
+    showDescription: false,
+    example: {
+      name: 'halfCadence',
+      abc: ``
+    },
+    addProps: {
+      hasDd: [true, false],
+      isBegin: [false, false]
     }
   },
   circleOfFifths:  {

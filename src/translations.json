@@ -388,9 +388,13 @@
       "en": "see above,",
       "de": "siehe oben."
     },
-    "initialCadence": {
-      "en": "Initial cadence",
-      "de": "Initialkadenz"
+    "hasDd": {
+      "en": "DD",
+      "de": "DD"
+    },
+    "has64": {
+      "en": "6-4/5-3",
+      "de": "6-4/5-3"
     },
     "noAbcTextU1": {
       "en": "Sorry about that!",
@@ -400,17 +404,29 @@
       "en": "Looks like something's missing and probably needs to be added ...",
       "de": "Hier fehlt etwas und muss wohl noch ergänzt werden ..."
     },
+    "initialCadence": {
+      "en": "Initial cadence",
+      "de": "Initialkadenz"
+    },
     "defaultDescriptionInitialCadence": {
       "en": "In German music theory discourse an initial cadence refers to a form of cadence that consists of a tenor clausula, an upper doubling of the tenor clausula, and a discant clausula in the bass. The term stems from the limited sense of closure that this cadence creates, due to the absence of a bass clausula and the presence of the discant clausula in the bass. Because of this effect the initial cadence is frequently used as a representation of the formal function of beginning.",
       "de": "Als ***Initialkadenz*** wird im musiktheoretischen Diskurs eine Form der *Kadenz* bezeichnet, die aus einer Tenorklausel, einer Überterzung der Tenorklausel sowie einer Sopranklausel im Bass besteht. Der Name orientiert sich an der geringen Schlusswirkung, die diese Kadenz aufgrund der fehlenden Bassklausel sowie der Sopranklausel im Bass entfaltet. Aufgrund ihrer Wirkung findet sich die Initialkadenz sehr häufig in der Formfunktion des Anfangens."
     },
     "cadence": {
-      "en": "Cadence",
-      "de": "Kadenz"
+      "en": "Authentic cadence",
+      "de": "Ganzschluss"
     },
     "defaultDescriptionCadence": {
-      "en": "The ***cadence***, as a progression model, is from a historical point of view, a musical closure involving three voices: 1. the *tenor clausula*, 2. the *discant clausula*, and 3. the *bass clausula*. Depending on whether the tenor clausula (in the upper voice) ends on the final note (finalis) or on the major third above it, the cadence is considered perfect or imperfect. If the bass clausula doesn't lead to the finalis but to the minor third below it, this creates a form of Fuggir la Cadenza, which is referred to as an evaded cadence or deceptive cadence. If the tenor clausula appears in the bass, a six-four chord (second inversion) is heard in three-part harmony, a sound avoided in the past and thus nowadays regarded as a compositional error.",
-      "de": "Die ***Kadenz*** als Modell ist eine Schlusswendung aus drei Stimmen: 1. der Tenorklausel, 2. der Sopranklausel und 3. der Bassklausel. Je nachdem, ob die Tenorklausel (in der Oberstimme) in der Finalis oder in der Oberterz zur Finalis endet, ist die Schlusswendung vollkommen oder unvollkommen. Wird die Bassklausel nicht in die Finalis, sondern in die Unterterz zur Finalis geführt, entsteht eine Form des ›Fuggir la Cadenza‹, die als Trugschluss bezeichnet wird. Liegt die Tenorklausel im Bass, erklingt in der Dreistimmigkeit ein Quartsextklang, der früher gemieden worden ist und der deshalb heute als Satzfehler gilt."
+      "en": "The ***authentic cadence***, as a progression model, is from a historical point of view, a musical closure involving three voices: 1. the *tenor clausula*, 2. the *discant clausula*, and 3. the *bass clausula*. Depending on whether the tenor clausula (in the upper voice) ends on the final note (finalis) or on the major third above it, the cadence is considered perfect or imperfect. If the bass clausula doesn't lead to the finalis but to the minor third below it, this creates a form of Fuggir la Cadenza, which is referred to as an evaded cadence or deceptive cadence. If the tenor clausula appears in the bass, a six-four chord (second inversion) is heard in three-part harmony, a sound avoided in the past and thus nowadays regarded as a compositional error.",
+      "de": "Der ***Ganzschluss*** (Kadenz) als Modell ist eine Schlusswendung aus drei Stimmen: 1. der Tenorklausel, 2. der Sopranklausel und 3. der Bassklausel. Je nachdem, ob die Tenorklausel (in der Oberstimme) in der Finalis oder in der Oberterz zur Finalis endet, ist die Schlusswendung vollkommen oder unvollkommen. Wird die Bassklausel nicht in die Finalis, sondern in die Unterterz zur Finalis geführt, entsteht eine Form des ›Fuggir la Cadenza‹, die als Trugschluss bezeichnet wird. Liegt die Tenorklausel im Bass, erklingt in der Dreistimmigkeit ein Quartsextklang, der früher gemieden worden ist und der deshalb heute als Satzfehler gilt."
+    },
+    "halfCadence": {
+      "en": "Half cadence",
+      "de": "Halbschluss"
+    },
+    "defaultDescriptionHalfCadence": {
+      "en": "The ***half-cadence***, as a progression model, is a three-part musical closure with an opening effect. In contrast to the authentic cadence, the rhythmic values of the penultimate notes of the clauses (soprano, tenor or bass clauses) stretched or doubled (often in the bass clause by chromatic), whereby the dominant chord is shifted to the following bar and the last notes of the clauses are omitted.",
+      "de": "Der ***Halbschluss*** (Kadenz) als Modell ist eine dreistimmige Schlusswendung (aus Sopran-, Tenor- und Bassklausel), die musikalisch öffnend wirkt. Gegenüber der Satztechnik eines Ganzschlusses werden die rhythmischen Werte des vorletzten Töne der Klauseln gedehnt bzw. verdoppelt (in der Bassklausel oftmals durch Chromatisierung), wodurch der Dominantakkord auf die folgende Takteins verschoben und die jeweils letzten Töne der Klauseln weggelassen werden."
     },
     "circleOfFifths": {
       "en": "Circle of fifths (down)",

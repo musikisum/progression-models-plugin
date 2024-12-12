@@ -29,7 +29,7 @@ const getVoices = halfCadenceOptions => {
   const hasDd = options.addProps.hasDd[0];
   const isBegin = options.addProps.isBegin[0];
   if(isBegin) {
-    voices[2][0] = !isMinor ? '=C42' : '=A32';
+    voices[2][0] = !isMinor ? '=C32' : '=A32';
   }
   if(hasDd) {
     voices[2][2] = !isMinor ? '^F32' : '^D32';

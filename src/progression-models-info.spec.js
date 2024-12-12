@@ -1,12 +1,12 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import ProgressionModelsInfo from './progression-models-info.js';
-import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-markdown.js';
+import { beforeEach, describe } from 'vitest'; // expect, it
+// import ProgressionModelsInfo from './progression-models-info.js';
+// import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-markdown.js';
 
 describe('example-info', () => {
-  let sut;
+  // let sut;
 
   beforeEach(() => {
-    sut = new ProgressionModelsInfo(new GithubFlavoredMarkdown());
+    // sut = new ProgressionModelsInfo(new GithubFlavoredMarkdown());
   });
 
   // describe('redactContent', () => {

@@ -95,7 +95,18 @@ A,, z | B,, z C, z | F, z C, z | D, z E, z | A, z E, z |
     showDescription: false,
     example: {
       name: 'halfCadence',
-      abc: ``
+      abc: `X:1
+%%score [ 1 | 2 ]
+Q: 1/4=120
+L:1/16
+M:C
+K:C
+V:1
+E2FG ABcd edcB AGFE | D2EF GAB^c dABc defg | abc'b agfe fgag fedc | 
+B2g2e2c2 d2g2e2c2 |  d4 [Bdg]4 G4 z4 |
+V:2 bass
+[C,C]4 z4 z4 [C,E,]4 | [F,A,]16 | F,6 G,2 A,6 ^F,2 |
+"_W. A. Mozart, Sonate KV 545, 1. Satz, T. 8–12"G,,B,,D,G, G,,C,E,G, G,,B,,D,G, G,,C,E,G, | G,,4 G,4 G,,4 z4 |`
     },
     addProps: {
       hasDd: [true, false],

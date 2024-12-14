@@ -40,7 +40,6 @@ const getVoices = upperFifthModulationOptions => {
   // Set values for prinner selection 
   if(options.addProps.prinner[0]) {
     options.addProps.changeMode = [false, true];
-    options.addProps.begin65 = [false, true];
     voices = !isMinor 
       ? [
         ['=G42', '=G42', '^F42', '=G42'],
@@ -54,10 +53,8 @@ const getVoices = upperFifthModulationOptions => {
       ];
   } else {
     options.addProps.changeMode[1] = false;
-    options.addProps.begin65[1] = false;
   }
   if (options.addProps.begin65[0]) {
-    options.addProps.prinner = [false, true];
     if (!isMinor) {
       voices[0].splice(0, 0, '=A41');
       voices[0].splice(1, 1, '=G41');
@@ -66,7 +63,7 @@ const getVoices = upperFifthModulationOptions => {
       voices[0].splice(1, 1, '=E41');
     }
   }
-  options.addProps.prinner[1] = options.addProps.begin65[0] || options.addProps.changeMode[0];  
+  options.addProps.prinner[1] = options.addProps.changeMode[0];
   return ModelUtilities.getVoices(options, voices);
 };
 

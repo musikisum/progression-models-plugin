@@ -1,40 +1,120 @@
-import { beforeEach, describe } from 'vitest'; // expect, it
-// import ProgressionModelsInfo from './progression-models-info.js';
-// import GithubFlavoredMarkdown from '@educandu/educandu/common/github-flavored-markdown.js';
+import joi from 'joi';
+import { describe, it, expect, beforeEach } from 'vitest';
+import ProgressionModelsInfo from './progression-models-info.js';
+import { PLUGIN_GROUP } from '@educandu/educandu/domain/constants.js';
 
-describe('example-info', () => {
-  // let sut;
+describe('ProgressionModelsInfo', () => {
+  let progressionModelsInfo;
 
   beforeEach(() => {
-    // sut = new ProgressionModelsInfo(new GithubFlavoredMarkdown());
+    progressionModelsInfo = new ProgressionModelsInfo();
   });
 
-  // describe('redactContent', () => {
-  //   it('redacts room-media resources from different rooms', () => {
-  //     const result = sut.redactContent({
-  //       text: '![Some image](cdn://room-media/63cHjt3BAhGnNxzJGrTsN1/some-image.png)'
-  //     }, 'rebhjf4MLq7yjeoCnYfn7E');
-  //     expect(result).toStrictEqual({
-  //       text: '![Some image]()'
-  //     });
-  //   });
+  describe('getDefaultContent', () => {
+    it('should return the default content with the correct structure and values', () => {
+      const result = progressionModelsInfo.getDefaultContent();
 
-  //   it('leaves room-media resources from the same room intact', () => {
-  //     const result = sut.redactContent({
-  //       text: '![Some image](cdn://room-media/63cHjt3BAhGnNxzJGrTsN1/some-image.png)'
-  //     }, '63cHjt3BAhGnNxzJGrTsN1');
-  //     expect(result).toStrictEqual({
-  //       text: '![Some image](cdn://room-media/63cHjt3BAhGnNxzJGrTsN1/some-image.png)'
-  //     });
-  //   });
+      expect(result).toEqual({
+        width: 70,
+        transposeValue: 0,
+        tempo: 120,
+        measure: 'C|',
+        invertRhythm: false,
+        measuresPerLine: 6,
+        stretchLastLine: false,
+        showDescription: false,
+        hideUpperSystem: false,
+        hideLowerSystem: false,
+        withTies: false,
+        showExample: false,
+        example: {
+          name: '',
+          abc: ''
+        },
+        selectedModel: 'cadence',
+        modelTemplates: []
+      });
+    });
+  });
 
-  //   it('leaves non room-media resources intact', () => {
-  //     const result = sut.redactContent({
-  //       text: '![Some image](cdn://media-library/JgTaqob5vqosBiHsZZoh1/some-image.png)'
-  //     }, 'rebhjf4MLq7yjeoCnYfn7E');
-  //     expect(result).toStrictEqual({
-  //       text: '![Some image](cdn://media-library/JgTaqob5vqosBiHsZZoh1/some-image.png)'
-  //     });
-  //   });
-  // });
+  describe('validateContent', () => {
+    it('should pass valid content', () => {
+      const validContent = {
+        width: 70,
+        transposeValue: 0,
+        tempo: 120,
+        measure: 'C|',
+        invertRhythm: false,
+        measuresPerLine: 6,
+        stretchLastLine: false,
+        showDescription: false,
+        hideUpperSystem: false,
+        hideLowerSystem: false,
+        withTies: false,
+        showExample: false,
+        example: { name: '', abc: '' },
+        selectedModel: 'cadence',
+        modelTemplates: []
+      };
+      expect(() => progressionModelsInfo.validateContent(validContent)).not.toThrow();
+    });
+
+    it('should throw an error for invalid content', () => {
+      const invalidContent = {
+        width: -1,
+        transposeValue: 0,
+        tempo: 120,
+        measure: 'C|',
+        invertRhythm: false,
+        measuresPerLine: 6,
+        stretchLastLine: false,
+        showDescription: false,
+        hideUpperSystem: false,
+        hideLowerSystem: false,
+        withTies: false,
+        showExample: false,
+        example: { name: '', abc: '' },
+        selectedModel: 'cadence',
+        modelTemplates: []
+      };
+      expect(() => progressionModelsInfo.validateContent(invalidContent)).toThrowError(joi.ValidationError);
+    });
+  });
+
+  describe('cloneContent', () => {
+    it('should correctly clone the content', () => {
+      const content = progressionModelsInfo.getDefaultContent();
+      const clonedContent = progressionModelsInfo.cloneContent(content);
+      expect(clonedContent).toEqual(content);
+      expect(clonedContent).not.toBe(content);
+    });
+  });
+
+  describe('redactContent', () => {
+    it('should correctly redact the content', () => {
+      const content = progressionModelsInfo.getDefaultContent();
+      const redactedContent = progressionModelsInfo.redactContent(content);
+      expect(redactedContent).toEqual(content);
+      expect(redactedContent).not.toBe(content);
+    });
+  });
+
+  describe('getGroups', () => {
+    it('should return the correct groups', () => {
+      const groups = progressionModelsInfo.getGroups();
+      expect(groups).toEqual([PLUGIN_GROUP.mostUsed, PLUGIN_GROUP.other]);
+    });
+  });
+
+  describe('resolveDisplayComponent and resolveEditorComponent', () => {
+    it('should resolve the display component correctly', async () => {
+      const component = await progressionModelsInfo.resolveDisplayComponent();
+      expect(component).toBeDefined();
+    });
+
+    it('should resolve the editor component correctly', async () => {
+      const component = await progressionModelsInfo.resolveEditorComponent();
+      expect(component).toBeDefined();
+    });
+  });
 });

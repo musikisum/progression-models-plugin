@@ -302,6 +302,9 @@ musikisum/educandu-plugin-progression-models:
   noAbcTextU2:
     en: Looks like something's missing and probably needs to be added ...
     de: Hier fehlt etwas und muss wohl noch ergänzt werden ...
+  schema:
+    en: T-D-D-T
+    de: T-D-D-T
   initialCadence:
     en: Initial cadence
     de: Initialkadenz
@@ -309,9 +312,13 @@ musikisum/educandu-plugin-progression-models:
     en: In German music theory discourse an initial cadence refers to a form of cadence that consists of a tenor clausula, an upper doubling of the tenor clausula, 
         and a discant clausula in the bass. The term stems from the limited sense of closure that this cadence creates, due to the absence of a bass clausula 
         and the presence of the discant clausula in the bass. Because of this effect the initial cadence is frequently used as a representation of the formal function of beginning.
+        A beginning with the harmonic chiasmus T-D-D-T (often combined with a motivic parallelism a-b-a-b) is referred to as a 'Schema' in German-language discourse, following Robert Gjerdingen. 
+        In German musicological discourse, Wolfgang Plath has proposed the label I-(x)-V-I for this »allgemeine Initialformel«.
     de: Als ***Initialkadenz*** wird im musiktheoretischen Diskurs eine Form der *Kadenz* bezeichnet, die aus einer Tenorklausel, einer Überterzung der 
         Tenorklausel sowie einer Sopranklausel im Bass besteht. Der Name orientiert sich an der geringen Schlusswirkung, die diese Kadenz aufgrund der fehlenden 
-        Bassklausel sowie der Sopranklausel im Bass entfaltet. Aufgrund ihrer Wirkung findet sich die Initialkadenz sehr häufig in der Formfunktion des Anfangens.
+        Bassklausel sowie der Sopranklausel im Bass entfaltet. Aufgrund ihrer Wirkung findet sich die Initialkadenz sehr häufig in der Formfunktion des Anfangens. 
+        Ein Beginn mit dem harmonischen Chiasmus T-D-D-T (oft in Verbindung mit einem motivischen Parallelismus a-b-a-b) wird im deutschsprachigen Diskurs in Anlehnung an Robert Gjerdingen auch als *Schema* bezeichnet,
+        im musikwissenschaftlichen Diskurs hat Wolgang Plath für diese »allgemeine Initialformel« das Label I-(x)-V-I vorgeschlagen.  
   cadence:
     en: Authentic cadence
     de: Ganzschluss

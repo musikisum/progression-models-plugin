@@ -37,9 +37,9 @@ const getVoices = halfCadenceOptions => {
   return ModelUtilities.getVoices(options, voices);
 };
 
-const Cadence = {
+const HalfCadence = {
   getDefaultOptions: getOptions,
   getVoices
 };
 
-export default Cadence;
+export default HalfCadence;

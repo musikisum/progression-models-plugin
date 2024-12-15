@@ -144,11 +144,11 @@ musikisum/educandu-plugin-progression-models:
     en: Deceptive
     de: Trugschluss
   diatonic:
-    en: diatonic
-    de: diatonisch
+    en: Diatonic
+    de: Diatonisch
   withRootNotes:
-    en: with 4 ↑
-    de: mit 4 ↑
+    en: With 4 ↑
+    de: Mit 4 ↑
   partLengthValues:
     en: Number of parts
     de: Anzahl
@@ -165,8 +165,8 @@ musikisum/educandu-plugin-progression-models:
     en: Start 6-5
     de: 6-5-Anfang
   changeMode:
-    en: chromatic
-    de: chromatisch
+    en: Chromatic
+    de: Chromatisch
   confirmation:
     en: Confirmation
     de: Bestätigung
@@ -180,8 +180,8 @@ musikisum/educandu-plugin-progression-models:
     en: Syncopations
     de: Synkopen
   chromatic:
-    en: with D
-    de: mit D
+    en: With D
+    de: Mit D
   descriptionTitle:
     en: Description of the voice models used
     de: Beschreibung der verwendeten Satzmodelle
@@ -288,14 +288,17 @@ musikisum/educandu-plugin-progression-models:
     en: Explanations on progression model
     de: Erklärungen zum Satzmodell
   descriptionRepeatTail:
-    en: see above,
-    de: siehe oben.
+    en: See above,
+    de: Siehe oben.
   hasDd:
     en: DD
     de: DD
   has64:
     en: 6-4/5-3
     de: 6-4/5-3
+  expanded:
+    en: Expanded
+    de: Erweitert
   noAbcTextU1:
     en: Sorry about that!
     de: Sorry und Entschuldigung!
@@ -373,6 +376,16 @@ musikisum/educandu-plugin-progression-models:
         hat diese Sequenz allerdings eine andere Funktion und geringere Verbreitung als die Quintfallsequenz. Die Quintanstiegssequenz dient häufig der Bewegung zu einem Akkord 
         der Ausgangstonart, von dem aus eine andere Sequenz wieder zurück zur Ausgangstonart führt. Während sich die Quintfallsequenz tonartbestätigend und modulierend 
         in der Literatur findet, wird die Quintanstiegssequenz in der Regel nicht modulierend bzw. zur Ausformulierung einer Tonart eingesetzt.
+  fonte:
+    en: Fonte (Riepel)
+    de: Fonte (Riepel)
+  defaultDescriptionFonte:
+    en: "Riepel illustrates the fonte model using the opening of the B-sections in minuets written in major keys: »Das zweyte (Fonte) macht nach besagter Cadenz einen Einschnitt in D Terz minor [Anm.: A-Dur → d-Moll], 
+        um hiedurch eine Stuffe tieffer wieder einen Grundabsatz, nämlich in C als dem Haupttone, zu formiren [Anm.: G-Dur → C-Dur], und glücklich wieder nach Hause zur ■-Cadenz zu kommen.« Joseph Riepel, *Tonordnung* (1755), S. 44.
+        In Mozart's early works, the fonte model is typically used for the (formal function) development and can be extended by an additional section (III) to compose an episode (vi) in major-key compositions."
+    de: "Riepel veranschaulicht das *Fonte*-Modell anhand des Anfangs der B-Teile von Menuetten in Dur: »Das zweyte (Fonte) macht nach besagter Cadenz einen Einschnitt in D Terz minor [Anm.: A-Dur → d-Moll], 
+        um hiedurch eine Stuffe tieffer wieder einen Grundabsatz, nämlich in C als dem Haupttone, zu formiren [Anm.: G-Dur → C-Dur], und glücklich wieder nach Hause zur ■-Cadenz zu kommen.« Joseph Riepel, *Tonordnung* (1755), S. 44.
+        In frühen Werken Mozarts ist das Fonte-Modell typisch für Durchführungnen und kann dort um ein Glied (III. Stufe) erweitert werden, um in Dur-Kompositionen eine Episode in der vi. Stufe auszukomponieren."
   fauxbourdon:
     en: Fauxbourdon (7-6 downward)
     de: Fauxbourdon (7-6 abwärts)

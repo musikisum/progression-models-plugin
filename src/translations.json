@@ -193,12 +193,12 @@
       "de": "Trugschluss"
     },
     "diatonic": {
-      "en": "diatonic",
-      "de": "diatonisch"
+      "en": "Diatonic",
+      "de": "Diatonisch"
     },
     "withRootNotes": {
-      "en": "with 4 ↑",
-      "de": "mit 4 ↑"
+      "en": "With 4 ↑",
+      "de": "Mit 4 ↑"
     },
     "partLengthValues": {
       "en": "Number of parts",
@@ -221,8 +221,8 @@
       "de": "6-5-Anfang"
     },
     "changeMode": {
-      "en": "chromatic",
-      "de": "chromatisch"
+      "en": "Chromatic",
+      "de": "Chromatisch"
     },
     "confirmation": {
       "en": "Confirmation",
@@ -241,8 +241,8 @@
       "de": "Synkopen"
     },
     "chromatic": {
-      "en": "with D",
-      "de": "mit D"
+      "en": "With D",
+      "de": "Mit D"
     },
     "descriptionTitle": {
       "en": "Description of the voice models used",
@@ -385,8 +385,8 @@
       "de": "Erklärungen zum Satzmodell"
     },
     "descriptionRepeatTail": {
-      "en": "see above,",
-      "de": "siehe oben."
+      "en": "See above,",
+      "de": "Siehe oben."
     },
     "hasDd": {
       "en": "DD",
@@ -395,6 +395,10 @@
     "has64": {
       "en": "6-4/5-3",
       "de": "6-4/5-3"
+    },
+    "expanded": {
+      "en": "Expanded",
+      "de": "Erweitert"
     },
     "noAbcTextU1": {
       "en": "Sorry about that!",
@@ -455,6 +459,14 @@
     "defaultDescriptionCircleOfFifthsUp": {
       "en": "The ***ascending circle of fifths*** (*ascending fifths sequenced upward by seconds*) can be understood as a inversion of the root notes in a descending circle of fifths. However, in music this sequence has a different function compared to descending circle of fifths and is less common. The ascending circle of fifths often facilitates a movement towards a scale degree within the home key, from which another sequence leads back. While descending circles of fifths are used in music literature both to confirm tonality and to modulate to other keys, the ascending circle of fifths is generally used not to modulate, but to establish a key.",
       "de": "Die ***Quintanstiegssequenz*** lässt sich über die Spiegelung der Grundtöne einer Quintfallsequenz verstehen (*Quintstieg stufenweise aufwärts sequenziert*). In der Musik hat diese Sequenz allerdings eine andere Funktion und geringere Verbreitung als die Quintfallsequenz. Die Quintanstiegssequenz dient häufig der Bewegung zu einem Akkord der Ausgangstonart, von dem aus eine andere Sequenz wieder zurück zur Ausgangstonart führt. Während sich die Quintfallsequenz tonartbestätigend und modulierend in der Literatur findet, wird die Quintanstiegssequenz in der Regel nicht modulierend bzw. zur Ausformulierung einer Tonart eingesetzt."
+    },
+    "fonte": {
+      "en": "Fonte (Riepel)",
+      "de": "Fonte (Riepel)"
+    },
+    "defaultDescriptionFonte": {
+      "en": "Riepel illustrates the fonte model using the opening of the B-sections in minuets written in major keys: »Das zweyte (Fonte) macht nach besagter Cadenz einen Einschnitt in D Terz minor [Anm.: A-Dur → d-Moll], um hiedurch eine Stuffe tieffer wieder einen Grundabsatz, nämlich in C als dem Haupttone, zu formiren [Anm.: G-Dur → C-Dur], und glücklich wieder nach Hause zur ■-Cadenz zu kommen.« Joseph Riepel, *Tonordnung* (1755), S. 44. In Mozart's early works, the fonte model is typically used for the (formal function) development and can be extended by an additional section (III) to compose an episode (vi) in major-key compositions.",
+      "de": "Riepel veranschaulicht das *Fonte*-Modell anhand des Anfangs der B-Teile von Menuetten in Dur: »Das zweyte (Fonte) macht nach besagter Cadenz einen Einschnitt in D Terz minor [Anm.: A-Dur → d-Moll], um hiedurch eine Stuffe tieffer wieder einen Grundabsatz, nämlich in C als dem Haupttone, zu formiren [Anm.: G-Dur → C-Dur], und glücklich wieder nach Hause zur ■-Cadenz zu kommen.« Joseph Riepel, *Tonordnung* (1755), S. 44. In frühen Werken Mozarts ist das Fonte-Modell typisch für Durchführungnen und kann dort um ein Glied (III. Stufe) erweitert werden, um in Dur-Kompositionen eine Episode in der vi. Stufe auszukomponieren."
     },
     "fauxbourdon": {
       "en": "Fauxbourdon (7-6 downward)",

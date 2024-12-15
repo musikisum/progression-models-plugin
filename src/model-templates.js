@@ -6,6 +6,7 @@ const getAvailableModels = [
   'circleOfFifths',
   'circleOfFifthsLinear',
   'circleOfFifthsUp',
+  'fonte',
   'lamento',
   'fauxbourdon',
   'fiveSixConsecutive',
@@ -208,6 +209,38 @@ V:3 bass
       partToBeginValues: [1, 4, false],
       lastBassNoteUp: [false, false],
       endWithoutSuspension: [true, false]
+    }
+  },
+  fonte: {
+    key: '',
+    name: 'fonte',
+    modelKey: 'C',
+    availableKeys: ['E', 'A', 'D', 'G', 'C', 'F', 'Bb', 'Eb', 'Ab'],
+    transposeValues: [0, 0, 0],
+    voiceArrangement: [1, 2, 3],
+    radioValue: 0,
+    customDescription: '',
+    showDescription: false,
+    example: {
+      name: 'fonte',
+      abc: `X:1
+%%score [ 1 | 2 ]
+Q: 1/4=120
+L:1/16
+M:C
+K:C
+V:1
+BAGA BcBc dede f2A2 | ^G^FEF GAGA BcBc edcB | a16 | 
+e12 Td4 | ^cBAB cde^f g4 z4 | (g2e2) z2 !wedge!e2 !wedge!g2(e2d2^c2) | 
+d^cde fefg a4 z4 | (f2d2) z2 !wedge!d2 !wedge!f2(d2c2B2) | cBcd edef g4 z2 x2 |
+V:2 bass
+ G,DB,D G,DB,D G,DB,D =F,DA,D | E,B,^G,B, E,B,G,B, E,B,G,B, E,B,G,B, | A,ECE A,ECE A,ECE A,ECE | 
+^G,EB,E G,EB,E G,EB,E G,EB,E | A,E^CE A,ECE A,ECE A,ECE | A,E^CE A,ECE A,ECE A,ECE | 
+"_W. A. Mozart, Sonate in C-Dur KV 28, 1. Satz, Durchführung (o. Vl.)"F,DA,D F,DA,D F,DA,D F,DA,D | G,DB,D G,DB,D G,DB,D G,DB,D | E,CG,C E,CG,C E,CG,C E,CG,C |`
+    },
+    addProps: {
+      expanded: [false, false],
+      bassReverse: [true, false]
     }
   },
   fauxbourdon: {

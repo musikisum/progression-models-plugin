@@ -42,9 +42,9 @@ const getVoices = cadenceOptions => {
   return ModelUtilities.getVoices(options, voices);
 };
 
-const Cadence = {
+const InitialCadence = {
   getDefaultOptions: getOptions,
   getVoices
 };
 
-export default Cadence;
+export default InitialCadence;

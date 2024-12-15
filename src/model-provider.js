@@ -1,3 +1,4 @@
+import Fonte from './models/model-fonte.js';
 import Cadence from './models/model-cadence.js';
 import Lamento from './models/model-lamento.js';
 import HalfCadence from './models/model-half-cadence.js';
@@ -14,6 +15,7 @@ import CircleOfFifthsLinear from './models/model-circle-of-fifths-linear.js';
 import ParallelismDiminuated from './models/model-parallelism-diminuated.js';
 
 const models = {
+  fonte: Fonte,
   cadence: Cadence,
   lamento: Lamento,
   halfCadence: HalfCadence,

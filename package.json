@@ -1,6 +1,6 @@
 {
   "name": "@musikisum/educandu-plugin-progression-models",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A plugin for progression models in music",
   "type": "module",
   "exports": {

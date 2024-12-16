@@ -3,6 +3,7 @@ import React, { useId, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Inspector from './components/inspector.js';
 import ModelPanel from './components/model-panel.js';
+import updateValidation from './update-validation.js';
 import Info from '@educandu/educandu/components/info.js';
 import { FORM_ITEM_LAYOUT } from '@educandu/educandu/domain/constants.js';
 import { sectionEditorProps } from '@educandu/educandu/ui/default-prop-types.js';
@@ -14,11 +15,13 @@ export default function ProgressionModelsEditor({ content, onContentChanged }) {
 
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
 
-  const { modelTemplates, width } = content;
-  const droppableIdRef = useRef(useId());
+  const validatedContent = updateValidation.validateContentAfterUpdates(content);
 
+  const { modelTemplates, width } = validatedContent;
+  const droppableIdRef = useRef(useId());
+  
   const updateContent = newContentValues => {
-    onContentChanged({ ...content, ...newContentValues });
+    onContentChanged({ ...validatedContent, ...newContentValues });
   };
 
   const handleItemMove = (fromIndex, toIndex) => {
@@ -58,7 +61,7 @@ export default function ProgressionModelsEditor({ content, onContentChanged }) {
         onMoveUp={handleMoveModelUp}
         onMoveDown={handleMoveModelDown}
         onDelete={handleDeleteModel}
-        content={content}
+        content={validatedContent}
         updateContent={updateContent}
         />)
   }));
@@ -78,7 +81,7 @@ export default function ProgressionModelsEditor({ content, onContentChanged }) {
           }
         </Form.Item>
         <Form.Item>
-          <Inspector content={content} updateContent={updateContent} />
+          <Inspector content={validatedContent} updateContent={updateContent} />
         </Form.Item>
         <Form.Item
           className='formItemStyle'

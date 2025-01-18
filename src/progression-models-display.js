@@ -30,6 +30,7 @@ export default function ProgressionModelsDisplay({ content }) {
   } = content;
  
   const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`;
+  const cancelUpbeat = modelTemplates[0]?.name === 'ariaDiFiorenza';
 
   const voices = [];
   const descriptions = [];
@@ -63,6 +64,9 @@ export default function ProgressionModelsDisplay({ content }) {
       if(transposeValue !== 0) {
         playableABC = Transposer.getTransposition(playableABC, transposeValue);
       }      
+    }
+    if (cancelUpbeat) {
+      playableABC = playableABC.replace(/(V:\d(?:\s+\w+)?\s+)[^|]+\|\s/gm, '$1');
     }
     return playableABC;
   };

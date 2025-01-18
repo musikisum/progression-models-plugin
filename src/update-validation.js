@@ -1,27 +1,56 @@
 import modelTemplates from './model-templates.js';
 import cloneDeep from '@educandu/educandu/utils/clone-deep.js';
+import ProgressionModelsInfo from './progression-models-info.js';
 
+// Update model templates with new properties
 const updateModelTemplates = dbContentModelTemplates => {
-  for (let index = 0; index < dbContentModelTemplates.length; index += 1) {
-    const targetTemplate = dbContentModelTemplates[index];
-    const sourceTemplate = modelTemplates.getModelTemplate(targetTemplate.name);
-    const targetAddProps = targetTemplate.addProps;
-    const sourceAddProps = sourceTemplate.addProps;
-    for (const key in sourceAddProps) {
-      if(!targetAddProps[key]) {
-        targetAddProps[key] = sourceAddProps[key];
-      }
-    }    
-  }
-  return dbContentModelTemplates;
+  return dbContentModelTemplates.map(dbClonedContentTemplate => {
+    const newTemplate = modelTemplates.getModelTemplate(dbClonedContentTemplate.name);
+
+    // Delete obsolete props from dbClonedContentTemplate addProps
+    dbClonedContentTemplate.addProps = Object.keys(dbClonedContentTemplate.addProps)
+      .filter(key => key in newTemplate.addProps)
+      .reduce((updatedProps, key) => {
+        updatedProps[key] = dbClonedContentTemplate.addProps[key];
+        return updatedProps;
+      }, {});
+
+    // Merge dbClonedContentTemplate addProps with new addProps
+    dbClonedContentTemplate.addProps = {
+      ...dbClonedContentTemplate.addProps,
+      ...Object.keys(newTemplate.addProps)
+        .filter(key => !(key in dbClonedContentTemplate.addProps))
+        .reduce((newProps, key) => {
+          newProps[key] = newTemplate.addProps[key];
+          return newProps;
+        }, {})
+    };
+
+    return dbClonedContentTemplate;
+  });
 };
 
-// Validate content after updates (up to v1.4.0)
+// Validate content after updates
 const validateContentAfterUpdates = dbContent => {
-  const clonedContent  = cloneDeep(dbContent);
-  const updatedModelTemplates = updateModelTemplates(clonedContent.modelTemplates);
-  clonedContent.modelTemplates = updatedModelTemplates;
-  return clonedContent;
+  const updatedContent = new ProgressionModelsInfo().getDefaultContent();
+  const dbClonedContent  = cloneDeep(dbContent);
+  for (const key in updatedContent) {
+    if (key !== 'modelTemplates') {
+      if (!Object.hasOwn(dbClonedContent, key)) {
+        dbClonedContent[key] = updatedContent[key];
+      }
+    }
+  }
+  for (const key in dbClonedContent) {
+    if (key !== 'modelTemplates') {
+      if (!Object.hasOwn(updatedContent, key)) {
+        delete dbClonedContent[key];
+      }
+    }
+  }
+  const updatedModelTemplates = updateModelTemplates(dbClonedContent.modelTemplates);
+  dbClonedContent.modelTemplates = updatedModelTemplates;
+  return dbClonedContent;
 };
 
 const UpdateValidator = { 

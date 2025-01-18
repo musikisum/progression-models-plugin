@@ -26,10 +26,11 @@ function Inspector({ content, updateContent }) {
     showExample,
     example,
     invertRhythm,
-    modelTemplates 
+    modelTemplates
   } = content;
 
   const [exampleName, setExampleName] = useState(showExample ? example.name : 'default');
+  const cancelUpbeat = modelTemplates[0].name === 'ariaDiFiorenza';
 
   const handleAddModelButtonClick = () => {
     const modelTemplate = cloneDeep(ModelTemplates.getModelTemplate('cadence'));
@@ -187,6 +188,8 @@ function Inspector({ content, updateContent }) {
         return `${t('invertRhythmToolTip')}`;
       case 'withTies':
         return `${t('withTiesToolTip')}`;
+      case 'cancelUpbeat':
+        return `${t('cancelUpbeatToolTip')}`;
       default:
         return '';
     }    
@@ -302,6 +305,11 @@ function Inspector({ content, updateContent }) {
           <Checkbox checked={invertRhythm} onChange={e => onInvertRhythmChange(e)}> 
             <Tooltip title={showTooltipText('invertRhythm')}><span>{`${t('invertRhythm')}`}</span></Tooltip>
           </Checkbox>)}
+        { (cancelUpbeat
+          ? <Text className='iu-first'>
+            <Tooltip title={showTooltipText('cancelUpbeat')}><span>{`${t('cancelUpbeat')}`}</span></Tooltip>
+          </Text>
+          : null)}
       </div>
     </div>
   );

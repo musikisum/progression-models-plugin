@@ -48,7 +48,7 @@ const getCompositionAbcOutput = (
   });
   const voices = _convertModelVoicesToAbcVoices([[combinedVoicesCollection[0]], [combinedVoicesCollection[1]], [combinedVoicesCollection[2]]], measure, invertRhythm, hideUpperSystem, hideLowerSystem);
 
-  // ---------- Block ton manipuate abc measures --------------
+  // ---------- Block to manipulate abc measures --------------
   let [voice1, voice2, voice3] = voices.map(voice => ModelUtilities.splitVoiceAbcInMeasures(voice));
   [voice1, voice2] = ModelUtilities.addCrossVoicesSaftySigns(voice1, voice2);
   if (withTies) {
@@ -60,7 +60,7 @@ const getCompositionAbcOutput = (
   voice2 = ModelUtilities.removeRedundantSigns(voice2);
   voice3 = ModelUtilities.removeRedundantSigns(voice3); 
   [voices[0], voices[1], voices[2]] = [voice1, voice2, voice3].map(voice => ModelUtilities.combineAbcMeasuresToVoice(voice));
-  // ---------- End block ton manipuate abc measures --------------
+  // ---------- End block to manipulate abc measures --------------
 
   const [abcV1, abcV2, abcV3] = ModelUtilities.divideVoices([voices[0].join(' '), voices[1].join(' '), voices[2].join(' ')], barsPerLine);
   abcResult.push(`V:1\n${AbcVoiceFactory.removeSingelNoteNotations(abcV1)}`);

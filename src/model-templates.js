@@ -2,7 +2,8 @@
 const getAvailableModels = [
   'cadence', 
   'halfCadence',
-  'initialCadence', 
+  'initialCadence',
+  'ariaDiFiorenza',
   'circleOfFifths',
   'circleOfFifthsLinear',
   'circleOfFifthsUp',
@@ -21,6 +22,26 @@ const standardKeys = ['E','C#m', 'A', 'F#m', 'D', 'Bm', 'G', 'Em', 'C', 'Am', 'F
 
 // Model templates to create a voice model
 const templates = {
+  ariaDiFiorenza: {
+    key: '',
+    name: 'ariaDiFiorenza',
+    modelKey: 'C',
+    availableKeys: standardKeys,
+    transposeValues: [0, 0, 0],
+    voiceArrangement: [1, 2, 3],
+    radioValue: 0,
+    customDescription: '',
+    showDescription: false,
+    example: {
+      name: 'ariaDiFiorenza',
+      abc: ``
+    },
+    addProps: {
+      isFinal: [false, false],
+      isVariation: [false, false],
+      isTwice: [true, false]
+    },
+  },
   initialCadence: {
     key: '',
     name: 'initialCadence',

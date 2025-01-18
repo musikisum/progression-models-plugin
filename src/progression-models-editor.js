@@ -16,8 +16,8 @@ export default function ProgressionModelsEditor({ content, onContentChanged }) {
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
 
   const validatedContent = updateValidation.validateContentAfterUpdates(content);
-
   const { modelTemplates, width } = validatedContent;
+
   const droppableIdRef = useRef(useId());
   
   const updateContent = newContentValues => {

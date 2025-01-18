@@ -308,6 +308,24 @@ musikisum/educandu-plugin-progression-models:
   schema:
     en: T-D-D-T
     de: T-D-D-T
+  isVariation:
+    en: Variation
+    de: Variation
+  isTwice:
+    en: Twice
+    de: Zweimal
+  cancelUpbeat:
+    en: without upbeat
+    de: ohne Auftakt
+  cancelUpbeatToolTip:
+    en: Cancels the upbeat of abc-notation in the display mode.
+    de: Entfernt den Auftakt in der ABC-Notation im Anzeigemodus.
+  ariaDiFiorenza:
+    en: Aria di fiorenza
+    de: Aria di fiorenza
+  defaultDescriptionAriaDiFiorenza:
+    en: TODO Aria di fiorenza
+    de: TODO Aria di fiorenza
   initialCadence:
     en: Initial cadence
     de: Initialkadenz

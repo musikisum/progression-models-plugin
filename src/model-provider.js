@@ -4,6 +4,7 @@ import Lamento from './models/model-lamento.js';
 import HalfCadence from './models/model-half-cadence.js';
 import Fauxbourdon from './models/model-fauxbourdon-down.js';
 import ParallelismUp from './models/model-parallelism-up.js';
+import AriaDiFiorenza from './models/model-aria-di-fiorenza.js';
 import InitialCadence from  './models/model-initial-cadence.js';
 import CircleOfFifths from './models/model-circle-of-fifths.js'; 
 import ParallelismDown from './models/model-parallelism-down.js';
@@ -21,6 +22,7 @@ const models = {
   halfCadence: HalfCadence,
   fauxbourdon: Fauxbourdon,
   initialCadence: InitialCadence,
+  ariaDiFiorenza: AriaDiFiorenza,
   circleOfFifths: CircleOfFifths,
   circleOfFifthsUp: CircleOfFifthsUp,
   parallelismUp: ParallelismUp,

@@ -51,6 +51,9 @@ const getVoices = regolaOptions => {
     options.addProps.partLengthValues[2] = partToBeginValues !== 1;
     options.addProps.partToBeginValues[2] = partLengthValue !== 4;
   }
+  if (options.addProps.partLengthValues[0] < 3 || options.addProps.partToBeginValues[0] > 3) {
+    options.addProps.hasS[0] = false;
+  }
 
   // Decrease voices
   let decreasedVoices = [];

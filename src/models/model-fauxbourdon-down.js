@@ -14,6 +14,16 @@ const getVoices = fauxbourdonOptions => {
   const isMinor = options.modelKey.includes('m');
   let voices;
 
+  if  (options.addProps.chromaticBass[0]) {
+    options.addProps.syncopation[0] = true;
+    options.addProps.syncopation[1] = true;
+    options.addProps.partLengthValues[1] = 5;
+  }
+  if (!options.addProps.syncopation[0]) {
+    options.addProps.partLengthValues[0] = options.addProps.partLengthValues[0] > 3 ? 3 : options.addProps.partLengthValues[0];
+    options.addProps.partLengthValues[1] = 3;
+  }
+
   if (options.addProps.syncopation[0]) {
     options.addProps.partLengthValues[2] = false;
     voices = !isMinor 

@@ -1,4 +1,5 @@
 import Fonte from './models/model-fonte.js';
+import Regola from './models/model-regola.js';
 import Cadence from './models/model-cadence.js';
 import Lamento from './models/model-lamento.js';
 import HalfCadence from './models/model-half-cadence.js';
@@ -17,6 +18,7 @@ import ParallelismDiminuated from './models/model-parallelism-diminuated.js';
 
 const models = {
   fonte: Fonte,
+  regola: Regola,
   cadence: Cadence,
   lamento: Lamento,
   halfCadence: HalfCadence,

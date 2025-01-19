@@ -420,6 +420,10 @@
       "en": "Twice",
       "de": "Zweimal"
     },
+    "hasS": {
+      "en": "with S",
+      "de": "mit S"
+    },
     "cancelUpbeat": {
       "en": "without upbeat",
       "de": "ohne Auftakt"
@@ -487,6 +491,14 @@
     "fonte": {
       "en": "Fonte (Riepel)",
       "de": "Fonte (Riepel)"
+    },
+    "regola": {
+      "en": "Rule of the octave",
+      "de": "Oktavregel"
+    },
+    "defaultDescriptionRegola": {
+      "en": null,
+      "de": null
     },
     "defaultDescriptionFonte": {
       "en": "Riepel illustrates the fonte model using the opening of the B-sections in minuets written in major keys: »Das zweyte (Fonte) macht nach besagter Cadenz einen Einschnitt in D Terz minor [Anm.: A-Dur → d-Moll], um hiedurch eine Stuffe tieffer wieder einen Grundabsatz, nämlich in C als dem Haupttone, zu formiren [Anm.: G-Dur → C-Dur], und glücklich wieder nach Hause zur ■-Cadenz zu kommen.« Joseph Riepel, *Tonordnung* (1755), S. 44. In Mozart's early works, the fonte model is typically used for the (formal function) development and can be extended by an additional section (III) to compose an episode in the key of the sixth scale degree of a major-key composition.",

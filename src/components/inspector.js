@@ -30,7 +30,7 @@ function Inspector({ content, updateContent }) {
   } = content;
 
   const [exampleName, setExampleName] = useState(showExample ? example.name : 'default');
-  const cancelUpbeat = modelTemplates[0].name === 'ariaDiFiorenza';
+  const cancelUpbeat = modelTemplates[0]?.name === 'ariaDiFiorenza';
 
   const handleAddModelButtonClick = () => {
     const modelTemplate = cloneDeep(ModelTemplates.getModelTemplate('cadence'));

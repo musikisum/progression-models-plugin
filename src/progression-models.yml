@@ -314,6 +314,9 @@ musikisum/educandu-plugin-progression-models:
   isTwice:
     en: Twice
     de: Zweimal
+  hasS:
+    en: with S
+    de: mit S
   cancelUpbeat:
     en: without upbeat
     de: ohne Auftakt
@@ -382,6 +385,12 @@ musikisum/educandu-plugin-progression-models:
   fonte:
     en: Fonte (Riepel)
     de: Fonte (Riepel)
+  regola:
+    en: Rule of the octave
+    de: Oktavregel
+  defaultDescriptionRegola:
+    en:
+    de:
   defaultDescriptionFonte:
     en: "Riepel illustrates the fonte model using the opening of the B-sections in minuets written in major keys: »Das zweyte (Fonte) macht nach besagter Cadenz einen Einschnitt in D Terz minor [Anm.: A-Dur → d-Moll], 
         um hiedurch eine Stuffe tieffer wieder einen Grundabsatz, nämlich in C als dem Haupttone, zu formiren [Anm.: G-Dur → C-Dur], und glücklich wieder nach Hause zur ■-Cadenz zu kommen.« Joseph Riepel, *Tonordnung* (1755), S. 44.

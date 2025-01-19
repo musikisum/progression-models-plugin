@@ -9,6 +9,7 @@ const getAvailableModels = [
   'circleOfFifthsUp',
   'fonte',
   'lamento',
+  'regola',
   'fauxbourdon',
   'fiveSixConsecutive',
   'parallelismDown',
@@ -34,7 +35,22 @@ const templates = {
     showDescription: false,
     example: {
       name: 'ariaDiFiorenza',
-      abc: ``
+      abc: `X:1
+%%score 1 [ 2 | 3 ]
+Q:1/2=60
+L:1/4
+M:C|
+K:G
+V:1
+ B, B, A, A, | B, B, D D | E E/c/ (c/B/)(B/A/) | 
+A/G/ G D D | E E/>c/ (c/B/)(F/A,/) | B,/>G/D/>B,/ G, x
+V:2
+ g/>d/B/>G/ d/>A/F/>D/ |{/A} G/>F/ G G/>B/d/>g/ | (g/A/)(A/e/) (e/d/)(d/c/) | 
+(c/B/) B g/>d/B/>G/ | (^G/A/) A/>e/ (e/d/)(d/F/) | G z z2
+V:3 bass
+ G, G, F, F, | E, E, B,, B,, | C, C, D, D, | 
+"_W. A. Mozart, Sonate für Klavier und Violine in G-Dur KV 9, 1. Satz, T. 1–6."E,/>B,,/G,,/>E,,/ B,, B,, | C, C, D, D, | G,,/>G,/D,/>B,,/ G,, x 
+`
     },
     addProps: {
       isFinal: [false, false],
@@ -334,6 +350,41 @@ D, z/ D3/2 | ^C3/2 =C3/2 | B,3/2 _B,3/2 | A,3/2-  A,,3/2 |  D,3/2- D,,3/2 |
       chromatic3: [false, false],
       italianSixth: [false, false],
       chromatic2: [false, false]
+    }
+  },
+  regola:  {
+    key: '',
+    name: 'regola',
+    modelKey: 'C',
+    availableKeys: standardKeys,
+    transposeValues: [0, 0, 0],
+    voiceArrangement: [1, 2, 3],
+    radioValue: 0,
+    customDescription: '',
+    showDescription: false,
+    example: {
+      name: 'regola',
+      abc: `X:1
+%%score [ (1 2) | (3 4) ]
+L:1/4
+Q:1/4=60
+M:C
+K:A
+V:1
+ c | B- B/>c/ A/4c/4F/4G/4 A- | A/4A/4G/4F/4 G G/>G/ A/4B/4B/4A/8B/8 | c2 |
+V:2
+ A | [^DF]3/2 E/- E- E/4F/4D/ | E E- E3/4 x/4 E | z/4 B/4A/4G/4 A |
+V:3 bass
+ E | x x/4 B,3/4 C3/2 B,/4A,/4 | B, B,- B,3/4 z/4 z/4 A,/G,/4 | z/ z/4 E,/4 A,/4B,/4E,/4F,/4 |
+V:4
+ "_J. S. Bach, Allemande aus der Suite in A-Dur BWV 806, T. 4–6 (vereinfachte Partitur),"A,/4C/4F,/4G,/4 | A,/4F,/4^D,/4B,,/4 G, F,2 | E,- E,/4F,/4B,,/4C,/4 =D,/4B,,/4G,,/4E,,/4 C,/B,,/ | A,, x |
+`,
+    },
+    addProps: {
+      partLengthValues: [4, 4, false],
+      partToBeginValues: [1, 4, false],
+      isVariation: [false, false],
+      hasS: [false, false]
     }
   },
   fiveSixConsecutive: {

@@ -327,8 +327,8 @@ musikisum/educandu-plugin-progression-models:
     en: Aria di fiorenza
     de: Aria di fiorenza
   defaultDescriptionAriaDiFiorenza:
-    en: TODO Aria di fiorenza
-    de: TODO Aria di fiorenza
+    en: Many openings of compositions from the 17th and 18th centuries can be understood as variations of a model referred to as the ***Aria di Fiorenza***, a term inspired by Warren Kirkendale’s research (Florence, 1972). This model begins in the bass with a descending scalar motion (8–7–6), where the 7th scale degree is typically harmonized with either a secondary chord or a sixth chord. This opening is followed by a perfect cadence (authentic cadence), characterized by the bass motion 3–4–5–1 and a 7–6 syncopation in the upper voices. Extensions of this structure are frequently found in the repertoire, often employing a deceptive cadence. 
+    de: Viele Anfänge von Kompositionen des 17. und 18. Jahrhunderts lassen sich als Variationen eines Modells verstehen, dass in Anlehnung an eine Forschungsarbeit von Warren Kirkendale (Florenz 1972) auch als ***Aria di Fiorenza*** bezeichnet wird. Es beginnt im Bass mit einer Tonleiterbewegung abwärts (8-7-6), wobei für den 7. Skalenton eine Sekundakkord- oder Sextakkordharmonisierungen gebräuchlich ist. Diesem Anfang folgt ein Ganzschluss mit der Basswebegung 3-4-5-1 und einer 7-6-Synkopenbewegeung in den Oberstimmen. In der Literatur finden sich häufig Verlängerungen des Patterns mithilfe eines Trugschlusses.
   initialCadence:
     en: Initial cadence
     de: Initialkadenz
@@ -385,12 +385,6 @@ musikisum/educandu-plugin-progression-models:
   fonte:
     en: Fonte (Riepel)
     de: Fonte (Riepel)
-  regola:
-    en: Rule of the octave
-    de: Oktavregel
-  defaultDescriptionRegola:
-    en:
-    de:
   defaultDescriptionFonte:
     en: "Riepel illustrates the fonte model using the opening of the B-sections in minuets written in major keys: »Das zweyte (Fonte) macht nach besagter Cadenz einen Einschnitt in D Terz minor [Anm.: A-Dur → d-Moll], 
         um hiedurch eine Stuffe tieffer wieder einen Grundabsatz, nämlich in C als dem Haupttone, zu formiren [Anm.: G-Dur → C-Dur], und glücklich wieder nach Hause zur ■-Cadenz zu kommen.« Joseph Riepel, *Tonordnung* (1755), S. 44.
@@ -398,13 +392,19 @@ musikisum/educandu-plugin-progression-models:
     de: "Riepel veranschaulicht das *Fonte*-Modell anhand des Anfangs der B-Teile von Menuetten in Dur: »Das zweyte (Fonte) macht nach besagter Cadenz einen Einschnitt in D Terz minor [Anm.: A-Dur → d-Moll], 
         um hiedurch eine Stuffe tieffer wieder einen Grundabsatz, nämlich in C als dem Haupttone, zu formiren [Anm.: G-Dur → C-Dur], und glücklich wieder nach Hause zur ■-Cadenz zu kommen.« Joseph Riepel, *Tonordnung* (1755), S. 44.
         In frühen Werken Mozarts ist das Fonte-Modell typisch für Durchführungen und kann dort um ein Glied (III. Stufe) erweitert werden, um in Dur-Kompositionen eine Episode in der vi. Stufe auszukomponieren."
+  regola:
+    en: Rule of the octave
+    de: Oktavregel
+  defaultDescriptionRegola:
+    en: In the 17th and 18th centuries, the ***rule of the octave*** was a didactic tool for learning basso continuo playing. Today, it serves as a model for analyzing tonal music from the 17th to the 19th centuries. As a standard of harmonization, root-position chords on the first, fourth, and fifth bass degrees, as well as sixth-chord harmonizations of the remaining bass degrees, are typical, with the exception of the secondary-chord harmonization of the descending fourth bass degree. Particularly in southern Germany, a subdominant harmonization was also common at this point.
+    de: Im 17. und 18. Jahrhundert war die ***Oktavregel*** eine didaktische Hilfe zum Erlernen des Generalbassspiels. Heute dient sie als Modell zur Analyse von tonaler Musik des 17. bis 19. Jahrhunderts. Als Standard der Harmonisierung gelten Grundakkorde auf der ersten, vierten und fünften Bassstufe sowie Sextakkordharmonisierungen der übrigen Bassstufen, wobei die Sekundakkord-Harmonisierung der vierten Bassstufe abwärts eine Ausnahme bildet. Insbesondere im süddeutschen Raum war an dieser Stelle als Variante auch eine subdominantische Harmonisierung gebräuchlich.  
   fauxbourdon:
     en: Fauxbourdon (7-6 downward)
     de: Fauxbourdon (7-6 abwärts)
   defaultDescriptionFauxbourdon:
     en: The term fauxbourdon is ambiguous and is used differently in musicology (Besseler 1974) and in music theory (Burmeister 1606). In music theory, it refers to a progression model characterized by parallel sixth chords with or without suspensions. 
         In the ***syncopated descending fauxbourdon*** (7→6) is an origin for the development of the *circle of fifths* model (*descending fifths sequenced upward by seconds*).
-    de: Der Begriff Fauxbourdon ist mehrdeutig und wird in der Musikwissenschaft (Besseler 1974) auf andere Art verwendet als in der Musiktheorie (Burmeister 1606). In der Musiktheorie wird mit ***Fauxbourdonsatz** ein Satzmodell bezeichnet, das aus 
+    de: Der Begriff Fauxbourdon ist mehrdeutig und wird in der Musikwissenschaft (Besseler 1974) auf andere Art verwendet als in der Musiktheorie (Burmeister 1606). In der Musiktheorie wird mit ***Fauxbourdonsatz** ein Modell bezeichnet, das aus 
         parallel geführten Sextakkorden mit oder ohne Synkopenbewegungen besteht. Im ***synkopierten Fauxbourdonsatz abwärts (7→6)*** liegt eine Wurzel für die Entstehung der *Quintfallsequenzharmonik* (*Quintfall stufenweise abwärts sequenziert*).
   fiveSixConsecutive:
     en: Fauxbourdon (5-6 upward)

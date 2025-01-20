@@ -311,9 +311,9 @@ musikisum/educandu-plugin-progression-models:
   isVariation:
     en: Variation
     de: Variation
-  isTwice:
-    en: Twice
-    de: Zweimal
+  short:
+    en: short
+    de: kurz
   hasS:
     en: with S
     de: mit S

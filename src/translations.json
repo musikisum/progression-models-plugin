@@ -416,9 +416,9 @@
       "en": "Variation",
       "de": "Variation"
     },
-    "isTwice": {
-      "en": "Twice",
-      "de": "Zweimal"
+    "short": {
+      "en": "short",
+      "de": "kurz"
     },
     "hasS": {
       "en": "with S",

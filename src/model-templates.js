@@ -55,7 +55,7 @@ V:3 bass
     addProps: {
       isFinal: [false, false],
       isVariation: [false, false],
-      isTwice: [true, false]
+      short: [false, false]
     },
   },
   initialCadence: {

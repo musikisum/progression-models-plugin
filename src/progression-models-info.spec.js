@@ -102,7 +102,7 @@ describe('ProgressionModelsInfo', () => {
   describe('getGroups', () => {
     it('should return the correct groups', () => {
       const groups = progressionModelsInfo.getGroups();
-      expect(groups).toEqual([PLUGIN_GROUP.mostUsed, PLUGIN_GROUP.other]);
+      expect(groups).toEqual([PLUGIN_GROUP.other]);
     });
   });
 

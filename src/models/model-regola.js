@@ -41,7 +41,7 @@ const voicesFactory = (isupwards, isMinor, isVariation) => {
     ];
     if (isVariation) {
       voices[0][4] = '=C52';
-      voices[0][4] = '=A42';
+      voices[1][4] = '=A42';
     }
   } 
   if (!isupwards && isMinor) {    

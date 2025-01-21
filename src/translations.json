@@ -424,6 +424,10 @@
       "en": "with S",
       "de": "mit S"
     },
+    "isUpwards": {
+      "en": "upwards",
+      "de": "aufwärts"
+    },
     "cancelUpbeat": {
       "en": "without upbeat",
       "de": "ohne Auftakt"

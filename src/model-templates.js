@@ -383,8 +383,8 @@ V:4
     addProps: {
       partLengthValues: [4, 4, false],
       partToBeginValues: [1, 4, false],
+      isUpwards: [false, false],
       isVariation: [false, false],
-      hasS: [false, false]
     }
   },
   fiveSixConsecutive: {

@@ -5,11 +5,14 @@ import ModelProvider from './model-provider.js';
 import Transposer from './components/transposer.js';
 import AbcSnippet from './components/abc-snippet.js';
 import ModelComposition from './model-composition.js';
+import updateValidation from './update-validation.js';
 import Markdown from '@educandu/educandu/components/markdown.js';
 import Collapse from '@educandu/educandu/components/collapsible.js';
 import { sectionDisplayProps } from '@educandu/educandu/ui/default-prop-types.js';
 
 export default function ProgressionModelsDisplay({ content }) {
+
+  const validatedContent = updateValidation.validateContentAfterUpdates(content);
 
   const { t } = useTranslation('musikisum/educandu-plugin-progression-models');
   const { Paragraph } = Typography;
@@ -27,7 +30,7 @@ export default function ProgressionModelsDisplay({ content }) {
     invertRhythm,
     withTies,
     showExample
-  } = content;
+  } = validatedContent;
  
   const capitalizeFirstLetter = modelName => `${modelName[0].toUpperCase()}${modelName.slice(1)}`;
   const cancelUpbeat = modelTemplates[0]?.name === 'ariaDiFiorenza';

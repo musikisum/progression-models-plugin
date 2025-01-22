@@ -75,13 +75,21 @@ const getVoices = regolaOptions => {
   options.addProps.partLengthValues[2] = partToBeginValues !== 1;
   options.addProps.partToBeginValues[2] = partLengthValue !== 4;
 
-  // Decrease voices
+  // Control voices length
   let decreasedVoices = [];
   if (partLengthValue !== 4) {
     decreasedVoices = voices.map(arr => arr.slice(0, partLengthValue * 2));
   }
   if (partToBeginValues !== 1) {
     decreasedVoices = voices.map(arr => arr.slice((partToBeginValues - 1) * 2));
+  }
+
+  // Control visability of variations
+  if (partLengthValue < 3 || partToBeginValues > 3) {
+    options.addProps.isVariation[0] = false;
+    options.addProps.isVariation[1] = true;
+  } else {
+    options.addProps.isVariation[1] = false;
   }
   voices = decreasedVoices.length ? decreasedVoices : voices;
   

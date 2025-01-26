@@ -19,7 +19,7 @@ const voicesFactory = (isupwards, isMinor, isVariation) => {
     ];
     if (isVariation) {
       voices[0] = ['=C52', '=B42', '=C52', '=D52', '=B42', '=C52', '=D52', '=C52'];
-      voices[1] = ['=E42', '=F42', '=G42', '=A42', '=G42', '=F42', '=F42', '=E42'];
+      voices[1] = ['=E42', '=F42', '=G42', '=A42', '=G42', '^F42', '=F42', '=E42'];
     }
   }
   if (isupwards && isMinor) {  
